@@ -34,13 +34,12 @@
 </template>
 
 <script>
-	import Card from "~/components/Card";
+	import {Vue, Component} from "vue-property-decorator";
+	import Card from "@/components/Card";
 
-	export default {
+	@Component({
 		name: "HomePage",
-
-		components: {
-			Card
-		}
-	};
+		components: {Card},
+	})
+	export default class ChordProgressionGenerator extends Vue {}
 </script>

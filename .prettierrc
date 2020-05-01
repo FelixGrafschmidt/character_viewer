@@ -2,5 +2,10 @@
 	"semi": true,
 	"arrowParens": "always",
 	"singleQuote": false,
-	"vueIndentScriptAndStyle": true
+	"vueIndentScriptAndStyle": true,
+	"bracketSpacing": false,
+	"endOfLine": "lf",
+	"trailingComma": "all",
+	"useTabs": true,
+	"tabWidth": 4
 }
