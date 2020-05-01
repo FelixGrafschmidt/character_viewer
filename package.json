@@ -10,6 +10,7 @@
 		"generate": "nuxt-ts generate",
 		"start": "nuxt-ts start",
 		"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+		"fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
 		"test": "jest"
 	},
 	"lint-staged": {
@@ -27,11 +28,15 @@
 		"@nuxtjs/axios": "^5.3.6",
 		"@nuxtjs/dotenv": "^1.4.0",
 		"@nuxtjs/pwa": "^3.0.0-0",
+		"@types/uuid": "^7.0.3",
 		"bulmaswatch": "^0.8.1",
+		"mobile-device-detect": "^0.3.3",
 		"nuxt": "^2.0.0",
 		"nuxt-buefy": "^0.3.2",
+		"nuxt-property-decorator": "^2.7.2",
+		"uuid": "^7.0.3",
 		"vue-material-design-icons": "^4.6.0",
-		"vue-property-decorator": "^8.4.2"
+		"vue-scrollto": "^2.18.1"
 	},
 	"devDependencies": {
 		"@nuxt/typescript-build": "^0.6.6",

@@ -1,14 +1,10 @@
 <template>
 	<div>
-		<nav
-			class="navbar header has-shadow is-primary"
-			role="navigation"
-			aria-label="main navigation"
-		>
+		<nav class="navbar header has-shadow is-link" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
-				<a class="navbar-item" href="/">
+				<!-- <a class="navbar-item" href="/">
 					<img src="~assets/buefy.png" alt="Buefy" height="28" />
-				</a>
+				</a> -->
 
 				<div class="navbar-burger">
 					<span />
@@ -18,21 +14,27 @@
 			</div>
 		</nav>
 
-		<section class="main-content columns">
+		<section class="main-content columns ">
 			<aside class="column is-2 section">
 				<p class="menu-label is-hidden-touch">
-					General
+					Characters
 				</p>
 				<ul class="menu-list">
-					<li v-for="(item, key) of items" :key="key">
-						<nuxt-link :to="item.to" exact-active-class="is-active">
-							<b-icon :icon="item.icon" /> {{ item.title }}
-						</nuxt-link>
+					<li v-for="(item, key) of characterItems" :key="key">
+						<nuxt-link :to="item.to" exact-active-class="is-active"> <b-icon :icon="item.icon" /> {{ item.title }} </nuxt-link>
+					</li>
+				</ul>
+				<p class="menu-label is-hidden-touch">
+					Lists
+				</p>
+				<ul class="menu-list">
+					<li v-for="(item, key) of listItems" :key="key">
+						<nuxt-link :to="item.to" exact-active-class="is-active"> <b-icon :icon="item.icon" /> {{ item.title }} </nuxt-link>
 					</li>
 				</ul>
 			</aside>
 
-			<div class="container column is-10">
+			<div class="container column is-10 has-border-left">
 				<nuxt />
 			</div>
 		</section>
@@ -43,19 +45,35 @@
 	export default {
 		data() {
 			return {
-				items: [
+				characterItems: [
 					{
-						title: "Home",
-						icon: "home",
-						to: {name: "index"},
+						title: "Character-Carousel",
+						// icon: "home",
+						to: { name: "MoeCharacterCarousel" },
 					},
 					{
-						title: "Inspire",
-						icon: "lightbulb",
-						to: {name: "inspire"},
+						title: "Character-Table",
+						// icon: "home",
+						to: { name: "MoeCharacterTable" },
+					},
+				],
+				listItems: [
+					{
+						title: "List-Manager",
+						// icon: "home",
+						to: { name: "MoeListManager" },
 					},
 				],
 			};
 		},
 	};
 </script>
+
+<style lang="scss" scoped>
+	.has-border-right {
+		border-right: 2px solid #00ffff;
+	}
+	.has-border-left {
+		border-left: 2px solid #00ffff;
+	}
+</style>
