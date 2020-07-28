@@ -7,16 +7,21 @@
 		"lib": ["esnext", "esnext.asynciterable", "dom"],
 		"experimentalDecorators": true,
 		"esModuleInterop": true,
-		"allowJs": true,
+		"allowJs": false,
+		"alwaysStrict": true,
+		"importHelpers": true,
+		"pretty": true,
 		"sourceMap": true,
 		"strict": true,
 		"noEmit": true,
 		"baseUrl": ".",
 		"paths": {
 			"~/*": ["./*"],
-			"@/*": ["./*"]
+			"@/*": ["./*"],
+			"~~/*": ["./*"],
+			"@@/*": ["./*"]
 		},
 		"types": ["@types/node", "@nuxt/types", "buefy/types"]
 	},
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", ".nuxt", "dist"]
 }

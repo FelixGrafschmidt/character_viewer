@@ -16,13 +16,13 @@
 			</div>
 			<div v-if="variantsVisible" class="columns">
 				<div v-for="variant in character.variants" :key="variant.name" class="column">
-					<h3 class="title is-3  moe-character-name">{{ variant.name }}</h3>
+					<h3 class="title is-3 moe-character-name">{{ variant.name }}</h3>
 					<img :alt="variant.name" class="character-image" :src="variant.imageUrl" />
 				</div>
 			</div>
 			<div v-if="partnersVisible" class="columns">
 				<div v-for="partner in character.partners" :key="partner.name" class="column">
-					<h3 class="title is-3  moe-character-name">{{ partner.name }}</h3>
+					<h3 class="title is-3 moe-character-name">{{ partner.name }}</h3>
 					<img :alt="partner.name" class="character-image" :src="partner.imageUrl" />
 				</div>
 			</div>

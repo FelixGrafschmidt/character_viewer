@@ -1,5 +1,4 @@
 export default {
-	mode: "spa",
 	/*
 	 ** Headers of the page
 	 */
@@ -59,10 +58,13 @@ export default {
 	/*
 	 ** Build configuration
 	 */
-	build: {
-		/*
-		 ** You can extend webpack config here
-		 */
-		extend(_config, _ctx) {},
+	// build: {
+	// 	/*
+	// 	 ** You can extend webpack config here
+	// 	 */
+	// 	extend(_config: any, _ctx: any) {},
+	// },
+	dotenv: {
+		filename: process.env.NODE_ENV === "prod" ? "prod.env" : "dev.env",
 	},
 };

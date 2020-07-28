@@ -85,5 +85,6 @@
 	"vetur.format.scriptInitialIndent": true,
 	"vetur.format.styleInitialIndent": true,
 	"vetur.useWorkspaceDependencies": true,
-	"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+	"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+	"editor.codeActionsOnSave": { "source.fixAll": true, "source.organizeImports": true }
 }

@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="card column ">
+		<div class="card column">
 			<button class="button is-danger delete-sub-character-button" @click="$emit('delete-character', character)">
 				X
 			</button>

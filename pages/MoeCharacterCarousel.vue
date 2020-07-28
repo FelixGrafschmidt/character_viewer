@@ -19,13 +19,13 @@
 	import MoeCharacterElement from "@/components/viewer/MoeCharacterElement.vue";
 	// Tmodels
 	import { Character } from "@/models/Character";
+	import { state } from "@/store";
 
 	@Component({
 		components: { MoeCharacterElement },
 	})
 	export default class MoeViewer extends Vue {
-		@Prop({ required: true, default: [], type: Array })
-		characters!: Array<Character>;
+		private characters: Array<Character> = state().list.characters;
 
 		@Prop({ required: false, default: 0, type: Number })
 		startPosition!: number;

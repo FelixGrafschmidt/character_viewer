@@ -2,21 +2,32 @@ import { Character } from "~/models/Character";
 import { Collection } from "~/models/Collection";
 import { List } from "~/models/List";
 
-export const state: StoreState = {
+const store = {
 	character: new Character(),
 	collection: new Collection(),
 	list: new List(),
 };
 
+export function state(): StoreState {
+	return store;
+}
+
 export const mutations = {
 	setCharacter(character: Character): void {
-		state.character = character;
+		store.character = character;
 	},
 	setCollection(collection: Collection): void {
-		state.collection = collection;
+		store.collection = collection;
 	},
 	setList(list: List): void {
-		state.list = list;
+		store.list = list;
+	},
+	addCharacterToList(character: Character, addToTop: boolean): void {
+		if (addToTop) {
+			store.list.characters.unshift(character);
+		} else {
+			store.list.characters.push(character);
+		}
 	},
 };
 

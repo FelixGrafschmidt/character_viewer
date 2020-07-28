@@ -46,17 +46,17 @@
 
 <script lang="ts">
 	// Vue basics
-	import { Component, Vue, Prop } from "nuxt-property-decorator";
+	import { Component, Vue } from "nuxt-property-decorator";
 	import { v4 as uuidv4 } from "uuid";
 	import { List } from "@/models/List";
 	import { Collection } from "@/models/Collection";
 	import { loadList, saveCollection } from "@/services/AjaxService";
+	import { state } from "@/store";
 	@Component({
 		components: {},
 	})
 	export default class MoeListManager extends Vue {
-		@Prop({ required: true })
-		collection!: Collection;
+		private collection: Collection = state().collection;
 
 		private renameList(list: List, event: MouseEvent): void {
 			list.name = ((event.target as HTMLElement).parentElement!.previousElementSibling as HTMLInputElement).value;

@@ -54,6 +54,7 @@
 	// // Vue basics
 	import {
 		Vue,
+		Component,
 		//  Component
 	} from "nuxt-property-decorator";
 	// // Vue components
@@ -83,7 +84,8 @@
 	// 		MoeListManager,
 	// 	},
 	// })
-	export default class App extends Vue {
+	@Component({ layout: "default" })
+	export default class MoeApp extends Vue {
 		// 	private created(): void {
 		// 		const collectionIdFromUrl = window.location.pathname.substr(1);
 		// 		const collectionIdFromLocalStorage = localStorage.getItem("collectionId");

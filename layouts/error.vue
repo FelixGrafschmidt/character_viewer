@@ -7,21 +7,19 @@
 </template>
 
 <script lang="ts">
-	class Error {
-		statusCode: number;
-
-		constructor() {
-			this.statusCode = 200;
-		}
+	import { Component, Vue, Prop } from "nuxt-property-decorator";
+	@Component
+	export default class error extends Vue {
+		@Prop({ required: true, default: () => {} })
+		private error!: { message: string; statusCode: number; path: string };
 	}
-
-	export default {
-		props: {
-			error: {
-				type: Error,
-				default: new Error(),
-			},
-		},
-		layout: "blog", // you can set a custom layout for the error page
-	};
+	// export default {}
+	// 	props: {
+	// 		error: {
+	// 			type: Object,
+	// 			default: () => {},
+	// 		},
+	// 	},
+	// 	// layout: "blog", // you can set a custom layout for the error page
+	// };
 </script>

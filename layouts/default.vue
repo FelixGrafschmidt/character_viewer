@@ -14,8 +14,8 @@
 			</div>
 		</nav>
 
-		<section class="main-content columns ">
-			<aside class="column is-2 section">
+		<section class="main-content columns">
+			<aside class="column is-2 section has-border-right">
 				<p class="menu-label is-hidden-touch">
 					Characters
 				</p>
@@ -34,39 +34,39 @@
 				</ul>
 			</aside>
 
-			<div class="container column is-10 has-border-left">
+			<div class="container column is-10">
 				<nuxt />
 			</div>
 		</section>
 	</div>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				characterItems: [
-					{
-						title: "Character-Carousel",
-						// icon: "home",
-						to: { name: "MoeCharacterCarousel" },
-					},
-					{
-						title: "Character-Table",
-						// icon: "home",
-						to: { name: "MoeCharacterTable" },
-					},
-				],
-				listItems: [
-					{
-						title: "List-Manager",
-						// icon: "home",
-						to: { name: "MoeListManager" },
-					},
-				],
-			};
-		},
-	};
+<script lang="ts">
+	// Vue basics
+	import { Component, Vue } from "nuxt-property-decorator";
+	@Component({ name: "default" })
+	export default class Default extends Vue {
+		private characterItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
+			{
+				title: "Character-Carousel",
+				// icon: "home",
+				to: { name: "MoeCharacterCarousel" },
+			},
+			{
+				title: "Character-Table",
+				// icon: "home",
+				to: { name: "MoeCharacterTable" },
+			},
+		];
+
+		private listItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
+			{
+				title: "List-Manager",
+				// icon: "home",
+				to: { name: "MoeListManager" },
+			},
+		];
+	}
 </script>
 
 <style lang="scss" scoped>
