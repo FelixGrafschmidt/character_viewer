@@ -67,4 +67,8 @@ export default {
 	dotenv: {
 		filename: process.env.NODE_ENV === "prod" ? "prod.env" : "dev.env",
 	},
+	serverMiddleware: {
+		"/loadCollection": "~/api/loadCollection.ts",
+		"/saveCollection": "~/api/saveCollection.ts",
+	},
 };

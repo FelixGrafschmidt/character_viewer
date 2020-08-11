@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="columns section wrapper">
-			<b-table ref="table" class="column is-half is-offset-3" :data="collection.lists">
+			<b-table ref="table" class="column is-half is-offset-3" :data="collection">
 				<template slot-scope="props">
 					<b-table-column field="id" label="ID" width="150">
 						<div class="text-column">
@@ -50,7 +50,7 @@
 	import { v4 as uuidv4 } from "uuid";
 	import { List } from "@/models/List";
 	import { Collection } from "@/models/Collection";
-	import { loadList, saveCollection } from "@/services/AjaxService";
+	import { loadList } from "@/services/AjaxService";
 	import { state } from "@/store";
 	@Component({
 		components: {},
@@ -61,7 +61,7 @@
 		private renameList(list: List, event: MouseEvent): void {
 			list.name = ((event.target as HTMLElement).parentElement!.previousElementSibling as HTMLInputElement).value;
 			this.$buefy.toast.open({ message: "Name saved!", type: "is-link" });
-			saveCollection(this.collection);
+			// saveCollection(this.collection);
 		}
 
 		private deleteList(list: List) {
@@ -75,8 +75,8 @@
 				trapFocus: true,
 				confirmText: "Delete",
 				onConfirm: () => {
-					this.collection.lists.splice(this.collection.lists.indexOf(list), 1);
-					saveCollection(this.collection);
+					this.collection.splice(this.collection.indexOf(list), 1);
+					// saveCollection(this.collection);
 				},
 			});
 		}
@@ -95,8 +95,8 @@
 				ariaModal: true,
 				trapFocus: true,
 				onConfirm: (value) => {
-					this.collection.lists.push({ id: uuidv4(), name: value, characters: [] });
-					saveCollection(this.collection);
+					this.collection.push({ id: uuidv4(), name: value, characters: [] });
+					// saveCollection(this.collection);
 				},
 			});
 		}
@@ -113,8 +113,8 @@
 				type: "is-link",
 				title: "Import list from file",
 				onConfirm: (value) => {
-					this.collection.lists.push(JSON.parse(value) as List);
-					saveCollection(this.collection);
+					this.collection.push(JSON.parse(value) as List);
+					// saveCollection(this.collection);
 				},
 			});
 		}
@@ -131,8 +131,8 @@
 				onConfirm: (value) => {
 					loadList(value)
 						.then((response) => {
-							this.collection.lists.push(response.data);
-							saveCollection(this.collection);
+							this.collection.push(response.data);
+							// saveCollection(this.collection);
 						})
 						.catch();
 				},

@@ -84,7 +84,7 @@
 	// 		MoeListManager,
 	// 	},
 	// })
-	@Component({ layout: "default" })
+	@Component
 	export default class MoeApp extends Vue {
 		// 	private created(): void {
 		// 		const collectionIdFromUrl = window.location.pathname.substr(1);

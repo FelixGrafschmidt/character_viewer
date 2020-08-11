@@ -1,38 +1,33 @@
-import { Character } from "~/models/Character";
+import type { Context as AppContext } from "@nuxt/types";
+import { ActionTree, ActionContext, MutationTree } from "vuex/types/index";
+import { RootState } from "~/models/RootState";
 import { Collection } from "~/models/Collection";
-import { List } from "~/models/List";
+import { loadCollection } from "~/services/AjaxService";
+export const state = (): RootState => ({ collection: new Collection("") });
 
-const store = {
-	character: new Character(),
-	collection: new Collection(),
-	list: new List(),
+export const mutations: MutationTree<RootState> = {
+	setCollection(currentState: RootState, collection: Collection): void {
+		currentState.collection = collection;
+	},
+	getCollection(currentState: RootState): Collection {
+		return currentState.collection;
+	},
 };
 
-export function state(): StoreState {
-	return store;
+interface Actions<S, R> extends ActionTree<S, R> {
+	nuxtServerInit(actionContext: ActionContext<S, R>, appContext: AppContext): void;
 }
 
-export const mutations = {
-	setCharacter(character: Character): void {
-		store.character = character;
-	},
-	setCollection(collection: Collection): void {
-		store.collection = collection;
-	},
-	setList(list: List): void {
-		store.list = list;
-	},
-	addCharacterToList(character: Character, addToTop: boolean): void {
-		if (addToTop) {
-			store.list.characters.unshift(character);
-		} else {
-			store.list.characters.push(character);
+export const actions: Actions<RootState, RootState> = {
+	async nuxtServerInit({ commit }, context) {
+		let collection: Collection = new Collection("");
+
+		if (context.params.id) {
+			await loadCollection(context.params.id).then((response) => {
+				collection = response.data;
+			});
 		}
+
+		commit("setCollection", collection);
 	},
 };
-
-export interface StoreState {
-	character: Character;
-	collection: Collection;
-	list: List;
-}
