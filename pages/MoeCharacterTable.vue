@@ -157,13 +157,11 @@
 	// models
 	import { Character, SubCharacter } from "@/models/Character";
 
-	import { state, mutations } from "@/store/index";
-
 	@Component({
 		components: {},
 	})
 	export default class MoeTable extends Vue {
-		private characters: Array<Character> = state().list.characters;
+		private characters: Array<Character> = [];
 
 		private modalIsActive: boolean = false;
 
@@ -350,7 +348,7 @@
 			]);
 		}
 
-		private addCharacter(row: any): void {
+		private addCharacter(): void {
 			const character: Character = {
 				name: "",
 				origin: "",
@@ -359,7 +357,7 @@
 				editing: false,
 				detailsOpened: false,
 			};
-			mutations.addCharacterToList(character, row.isFirst);
+			// mutations.addCharacterToList(character, row.isFirst);
 			this.editCharacter(character);
 			(this.$refs.table as Vue).$forceUpdate();
 			this.$forceUpdate();

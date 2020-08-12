@@ -25,7 +25,7 @@
 		components: { MoeCharacterElement },
 	})
 	export default class MoeViewer extends Vue {
-		private characters: Array<Character> = state().list.characters;
+		private characters: Array<Character> = [];
 
 		@Prop({ required: false, default: 0, type: Number })
 		startPosition!: number;

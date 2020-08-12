@@ -38,6 +38,13 @@
 				<nuxt />
 			</div>
 		</section>
+		<footer class="footer">
+			<div class="content has-text-centered">
+				<nuxt-link :to="'imprint'">Imprint</nuxt-link>
+				<nuxt-link :to="'faq'">FAQ</nuxt-link>
+			</div>
+			<div class="content has-text-centered">© Felix Grafschmidt {{ new Date().getFullYear() }}</div>
+		</footer>
 	</div>
 </template>
 
@@ -75,5 +82,15 @@
 	}
 	.has-border-left {
 		border-left: 2px solid #00ffff;
+	}
+	.main-content {
+		min-height: 80vh;
+		height: auto;
+	}
+	.footer {
+		max-height: 20vh;
+		bottom: 0;
+		width: 100%;
+		position: absolute;
 	}
 </style>
