@@ -54,8 +54,9 @@
 	import { state } from "@/store";
 	@Component({
 		components: {},
+		name: "lists",
 	})
-	export default class MoeListManager extends Vue {
+	export default class Lists extends Vue {
 		private collection: Collection = state().collection;
 
 		private renameList(list: List, event: MouseEvent): void {

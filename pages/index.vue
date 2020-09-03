@@ -9,6 +9,7 @@
 					<h2 class="subtitle">
 						To get started select a menu item on the left
 					</h2>
+					<h3>First time visit? Start by creating a <nuxt-link to="lists"> new list</nuxt-link></h3>
 				</div>
 			</div>
 		</section>
@@ -16,7 +17,19 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue } from "nuxt-property-decorator";
-	@Component({ name: "index" })
-	export default class Index extends Vue {}
+	import Vue from "vue";
+	import { state, getters } from "~/store";
+
+	export default Vue.extend({
+		computed: {
+			collection() {
+				return this.$accessor.collection;
+			},
+		},
+		created() {
+			if (!getters.collection(state()).id) {
+				console.log("empty id");
+			}
+		},
+	});
 </script>

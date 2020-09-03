@@ -26,11 +26,13 @@
 		"nuxt": "^2.14.1",
 		"nuxt-buefy": "^0.3.31",
 		"nuxt-property-decorator": "^2.7.2",
+		"nuxt-typed-vuex": "^0.1.21",
 		"save-dev": "0.0.1-security",
 		"tedis": "^0.1.12",
 		"uuid": "^8.3.0",
 		"vue-material-design-icons": "^4.8.0",
-		"vue-scrollto": "^2.18.2"
+		"vue-scrollto": "^2.18.2",
+		"vuex-module-decorators": "^0.17.0"
 	},
 	"devDependencies": {
 		"@babel/parser": "^7.11.3",

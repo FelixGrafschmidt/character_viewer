@@ -90,5 +90,6 @@
 		"source.fixAll": true
 	},
 	"deepscan.enable": false,
-	"deepscan.ignoreConfirmWarning": true
+	"deepscan.ignoreConfirmWarning": true,
+	"typescript.tsdk": "node_modules\\typescript\\lib"
 }

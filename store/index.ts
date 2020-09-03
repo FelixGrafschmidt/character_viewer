@@ -1,33 +1,40 @@
-import type { Context as AppContext } from "@nuxt/types";
-import { ActionTree, ActionContext, MutationTree } from "vuex/types/index";
-import { RootState } from "~/models/RootState";
+import { getAccessorType, getterTree, mutationTree, actionTree } from "typed-vuex";
+
 import { Collection } from "~/models/Collection";
-import { loadCollection } from "~/services/AjaxService";
-export const state = (): RootState => ({ collection: new Collection("") });
+import { List } from "~/models/List";
+import { Character } from "~/models/Character";
 
-export const mutations: MutationTree<RootState> = {
-	setCollection(currentState: RootState, collection: Collection): void {
-		currentState.collection = collection;
+export const state = () => ({
+	collection: new Collection(""),
+	list: new List(),
+	character: new Character(),
+});
+
+export type RootState = ReturnType<typeof state>;
+
+export const getters = getterTree(state, {
+	collection: (state) => state.collection,
+	list: (currentState) => currentState.list,
+	character: (currentState) => currentState.character,
+});
+
+export const mutations = mutationTree(state, {
+	setCollection: (currentState, newCollection: Collection) => (currentState.collection = newCollection),
+	setList: (currentState, newList: List) => (currentState.list = newList),
+	setCharacter: (currentState, newCharacter: Character) => (currentState.character = newCharacter),
+
+	initializeStore() {
+		// eslint-disable-next-line no-console
+		console.log("Store initialized");
 	},
-	getCollection(currentState: RootState): Collection {
-		return currentState.collection;
-	},
-};
+});
+export const actions = actionTree({ state, getters, mutations }, {});
 
-interface Actions<S, R> extends ActionTree<S, R> {
-	nuxtServerInit(actionContext: ActionContext<S, R>, appContext: AppContext): void;
-}
-
-export const actions: Actions<RootState, RootState> = {
-	async nuxtServerInit({ commit }, context) {
-		let collection: Collection = new Collection("");
-
-		if (context.params.id) {
-			await loadCollection(context.params.id).then((response) => {
-				collection = response.data;
-			});
-		}
-
-		commit("setCollection", collection);
-	},
-};
+// This compiles to nothing and only serves to return the correct type of the accessor
+export const accessorType = getAccessorType({
+	state,
+	getters,
+	mutations,
+	actions,
+	modules: {},
+});
