@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<nav class="navbar header has-shadow is-link" role="navigation" aria-label="main navigation">
+		<nav class="navbar header has-shadow" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
 				<!-- <a class="navbar-item" href="/">
 					<img src="~assets/buefy.png" alt="Buefy" height="28" />
@@ -98,18 +98,20 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "~/assets/styles.scss";
 	.has-border-right {
-		border-right: 2px solid #00ffff;
+		border-right: 2px solid $primary;
 	}
 	.has-border-left {
-		border-left: 2px solid #00ffff;
+		border-left: 2px solid $primary;
 	}
+
 	.main-content {
 		min-height: 80vh;
 		height: auto;
 	}
 	.footer {
-		max-height: 20vh;
+		max-height: 10vh;
 		bottom: 0;
 		width: 100%;
 		position: absolute;

@@ -7,7 +7,7 @@ import { Character } from "~/models/Character";
 
 export const state = () => ({
 	collection: new Collection(""),
-	list: new List(),
+	list: new List("", []),
 	character: new Character(),
 });
 
@@ -20,10 +20,20 @@ export const getters = getterTree(state, {
 });
 
 export const mutations = mutationTree(state, {
-	setCollection: (currentState, newCollection: Collection) => (currentState.collection = newCollection),
-	setList: (currentState, newList: List) => (currentState.list = newList),
-	setCharacter: (currentState, newCharacter: Character) => (currentState.character = newCharacter),
 	initializeCollection: (currentState) => (currentState.collection = new Collection(v4())),
+	setCollection: (currentState, newCollection: Collection) => (currentState.collection = newCollection),
+	addListToCollection: (currentState, newList: List) => currentState.collection.push(newList),
+	removeListFromCollection: (currentState, id: string) => currentState.collection.filter((list) => list.id !== id),
+
+	setList: (currentState, newList: List) => (currentState.list = newList),
+	renameList: (currentState, { id, name }) =>
+		currentState.collection.filter((list) => {
+			if (list.id === id) {
+				list.name = name;
+			}
+		}),
+
+	setCharacter: (currentState, newCharacter: Character) => (currentState.character = newCharacter),
 
 	initializeStore() {
 		// eslint-disable-next-line no-console

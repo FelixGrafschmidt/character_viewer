@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { Character } from "./Character";
 
 export class List {
@@ -5,9 +6,9 @@ export class List {
 	name: string;
 	characters: Array<Character>;
 
-	constructor() {
-		this.id = "";
-		this.name = "";
-		this.characters = [];
+	constructor(name: string, characters: Array<Character>) {
+		this.id = v4();
+		this.name = name;
+		this.characters = characters;
 	}
 }
