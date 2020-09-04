@@ -50,12 +50,26 @@ export default {
 		"@nuxtjs/pwa",
 		// Doc: https://github.com/nuxt-community/dotenv-module
 		"@nuxtjs/dotenv",
+		// "nuxt-i18n",
 	],
 	/*
 	 ** Axios module configuration
 	 ** See https://axios.nuxtjs.org/options
 	 */
 	axios: {},
+	// i18n: {
+	// 	locales: [
+	// 		{ code: "en", file: "en.json" },
+	// 		{ code: "de", file: "de.json" },
+	// 	],
+	// 	strategy: "prefix",
+	// 	defaultLocale: "en",
+	// 	langDir: "i18n/",
+	// 	lazy: true,
+	// 	vueI18n: {
+	// 		fallbackLocale: "en",
+	// 	},
+	// },
 	/*
 	 ** Build configuration
 	 */

@@ -49,7 +49,6 @@
 	"javascript.suggest.completeFunctionCalls": true,
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"npm-scripts.showStartNotification": false,
-	"npm.enableScriptExplorer": true,
 	"prettier.arrowParens": "always",
 	"prettier.disableLanguages": [],
 	"prettier.endOfLine": "lf",
@@ -71,8 +70,6 @@
 	"typescript.suggest.completeFunctionCalls": true,
 	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
-	"typescriptHero.imports.organizeOnSave": true,
-	"typescriptHero.imports.stringQuoteStyle": "\"",
 	"vetur.experimental.templateInterpolationService": true,
 	"vetur.format.defaultFormatter.html": "prettier",
 	"vetur.format.defaultFormatterOptions": {
@@ -84,12 +81,9 @@
 	"vetur.format.options.useTabs": true,
 	"vetur.format.scriptInitialIndent": true,
 	"vetur.format.styleInitialIndent": true,
-	"vetur.useWorkspaceDependencies": true,
-	"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true
 	},
-	"deepscan.enable": false,
-	"deepscan.ignoreConfirmWarning": true,
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"comments.openPanel": "neverOpen"
 }

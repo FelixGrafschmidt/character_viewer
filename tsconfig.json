@@ -21,7 +21,12 @@
 			"~~/*": ["./*"],
 			"@@/*": ["./*"]
 		},
-		"types": ["@types/node", "@nuxt/types", "buefy/types"]
+		"types": [
+			"@types/node",
+			"@nuxt/types",
+			"buefy/types"
+			// , "nuxt-i18n"
+		]
 	},
 	"exclude": ["node_modules", ".nuxt", "dist"]
 }

@@ -12,6 +12,19 @@
 					<span />
 				</div>
 			</div>
+			<!-- <div class="navbar-end">
+				<div class="navbar-item">
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">
+							{{ $t("language") }}
+						</a>
+
+						<div class="navbar-dropdown">
+							<nuxt-link v-for="locale in availableLocales" :key="locale.code" class="navbar-item" :to="switchLocalePath(locale.code)">{{ locale.code }}</nuxt-link>
+						</div>
+					</div>
+				</div>
+			</div> -->
 		</nav>
 
 		<section class="main-content columns">
@@ -21,7 +34,7 @@
 				</p>
 				<ul class="menu-list">
 					<li v-for="(item, key) of characterItems" :key="key">
-						<nuxt-link :to="item.to" exact-active-class="is-active"> <b-icon :icon="item.icon" /> {{ item.title }} </nuxt-link>
+						<nuxt-link :to="item.to.name" exact-active-class="is-active"> <b-icon :icon="item.icon" /> {{ item.title }} </nuxt-link>
 					</li>
 				</ul>
 				<p class="menu-label is-hidden-touch">
@@ -70,9 +83,17 @@
 			{
 				title: "List-Manager",
 				// icon: "home",
-				to: { name: "MoeListManager" },
+				to: { name: "lists" },
 			},
 		];
+
+		// get availableLocales() {
+		// 	const result: Array<NuxtVueI18n.Options.LocaleObject> = [];
+		// 	this.$i18n.locales!.forEach((locale) => {
+		// 		result.push(locale as NuxtVueI18n.Options.LocaleObject);
+		// 	});
+		// 	return result;
+		// }
 	}
 </script>
 

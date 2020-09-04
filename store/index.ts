@@ -1,5 +1,6 @@
 import { getAccessorType, getterTree, mutationTree, actionTree } from "typed-vuex";
 
+import { v4 } from "uuid";
 import { Collection } from "~/models/Collection";
 import { List } from "~/models/List";
 import { Character } from "~/models/Character";
@@ -13,7 +14,7 @@ export const state = () => ({
 export type RootState = ReturnType<typeof state>;
 
 export const getters = getterTree(state, {
-	collection: (state) => state.collection,
+	collection: (currentState) => currentState.collection,
 	list: (currentState) => currentState.list,
 	character: (currentState) => currentState.character,
 });
@@ -22,6 +23,7 @@ export const mutations = mutationTree(state, {
 	setCollection: (currentState, newCollection: Collection) => (currentState.collection = newCollection),
 	setList: (currentState, newList: List) => (currentState.list = newList),
 	setCharacter: (currentState, newCharacter: Character) => (currentState.character = newCharacter),
+	initializeCollection: (currentState) => (currentState.collection = new Collection(v4())),
 
 	initializeStore() {
 		// eslint-disable-next-line no-console

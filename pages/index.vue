@@ -9,7 +9,7 @@
 					<h2 class="subtitle">
 						To get started select a menu item on the left
 					</h2>
-					<h3>First time visit? Start by creating a <nuxt-link to="lists"> new list</nuxt-link></h3>
+					<h3>First time visit? Start by creating a <nuxt-link to="lists">new list</nuxt-link></h3>
 				</div>
 			</div>
 		</section>
@@ -17,19 +17,35 @@
 </template>
 
 <script lang="ts">
-	import Vue from "vue";
-	import { state, getters } from "~/store";
+	import { Component, Vue } from "nuxt-property-decorator";
+	import { Collection } from "~/models/Collection";
 
-	export default Vue.extend({
-		computed: {
-			collection() {
-				return this.$accessor.collection;
-			},
-		},
-		created() {
-			if (!getters.collection(state()).id) {
-				console.log("empty id");
+	@Component({
+		components: {},
+		name: "index",
+	})
+	export default class Index extends Vue {
+		private mounted() {
+			if (!this.collection.id) {
+				const collection = localStorage.getItem("collection");
+				if (collection) {
+					this.setCollection(JSON.parse(collection!) as Collection);
+				} else {
+					this.initializeCollection();
+				}
 			}
-		},
-	});
+		}
+
+		get collection() {
+			return this.$accessor.collection;
+		}
+
+		setCollection(collection: Collection) {
+			this.$accessor.setCollection(collection);
+		}
+
+		initializeCollection() {
+			this.$accessor.initializeCollection();
+		}
+	}
 </script>
