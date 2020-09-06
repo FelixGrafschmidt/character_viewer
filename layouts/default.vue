@@ -12,6 +12,16 @@
 					<span />
 				</div>
 			</div>
+			<div class="navbar-start">
+				<div class="navbar-item">
+					<nuxt-link class="title logo" to="/" tag="h1">Character List Manager</nuxt-link>
+				</div>
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item">
+					{{ $accessor.collection.id }}
+				</div>
+			</div>
 			<!-- <div class="navbar-end">
 				<div class="navbar-item">
 					<div class="navbar-item has-dropdown is-hoverable">
@@ -167,5 +177,8 @@
 		&:hover {
 			opacity: 1;
 		}
+	}
+	.logo {
+		cursor: pointer;
 	}
 </style>
