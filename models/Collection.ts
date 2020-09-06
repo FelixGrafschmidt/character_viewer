@@ -1,18 +1,16 @@
+import { v4 } from "uuid";
 import { List } from "./List";
 
-export class Collection extends Array<List> {
-	constructor(id: string) {
-		super();
-		this._id = id;
+export class Collection {
+	id: string = "";
+	lists: Array<List> = [];
+
+	constructor() {
+		return this;
 	}
 
-	private _id: string;
-
-	public get id(): string {
-		return this._id;
-	}
-
-	public set id(id: string) {
-		this._id = id;
+	init(id?: string): Collection {
+		this.id = id || v4();
+		return this;
 	}
 }

@@ -22,9 +22,9 @@
 			"@@/*": ["./*"]
 		},
 		"types": [
+			"buefy/types",
 			"@types/node",
-			"@nuxt/types",
-			"buefy/types"
+			"@nuxt/types"
 			// , "nuxt-i18n"
 		]
 	},

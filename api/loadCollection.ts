@@ -1,7 +1,6 @@
 import * as http from "http";
 import * as url from "url";
 import * as createServer from "connect";
-import uuid from "uuid";
 import { Tedis } from "tedis";
 import { Collection } from "../models/Collection";
 
@@ -15,8 +14,12 @@ export default async function (req: createServer.IncomingMessage, res: http.Serv
 
 	const id: string = params.get("id") || "";
 	if (id && (await tedis.exists(id))) {
-		res.end(tedis.get(id));
+		res.end(await tedis.get(id));
+	} else if (id) {
+		res.statusCode = 404;
+		res.end(JSON.stringify(new Collection().init(id)));
 	} else {
-		res.end(JSON.stringify(new Collection(uuid.v4())));
+		res.statusCode = 404;
+		res.end(JSON.stringify(new Collection().init()));
 	}
 }

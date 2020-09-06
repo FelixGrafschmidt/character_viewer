@@ -8,23 +8,20 @@ const tedis = new Tedis({
 	port: 6378,
 });
 
-export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
+export default function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): void {
 	let body: string = "";
 
-	req.on("data", (chunk: string) => {
+	req.on("data", async (chunk: string) => {
 		body += chunk;
-	});
 
-	const id: string = (JSON.parse(body) as Collection).id;
+		const id: string = (JSON.parse(body) as Collection).id;
 
-	if (id) {
-		if (await tedis.exists(id)) {
-			res.end(await tedis.get(id));
-		} else {
+		if (id) {
 			await tedis.set(id, body);
 			res.end();
+		} else {
+			res.statusCode = 404;
+			res.end();
 		}
-	} else {
-		res.end();
-	}
+	});
 }

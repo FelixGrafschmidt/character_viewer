@@ -25,7 +25,7 @@ export default {
 	/*
 	 ** Global CSS
 	 */
-	css: ["@/assets/styles.scss"],
+	// css: ["@/assets/styles.scss"],
 	/*
 	 ** Plugins to load before mounting the App
 	 */
@@ -50,13 +50,19 @@ export default {
 		"@nuxtjs/pwa",
 		// Doc: https://github.com/nuxt-community/dotenv-module
 		"@nuxtjs/dotenv",
+		"@nuxtjs/proxy",
 		// "nuxt-i18n",
 	],
 	/*
 	 ** Axios module configuration
 	 ** See https://axios.nuxtjs.org/options
 	 */
-	axios: {},
+	axios: {
+		proxy: true,
+	},
+	proxy: {
+		"/api/": { target: process.env.BASE_URL },
+	},
 	// i18n: {
 	// 	locales: [
 	// 		{ code: "en", file: "en.json" },
@@ -80,10 +86,14 @@ export default {
 	// 	extend(_config: any, _ctx: any) {},
 	// },
 	dotenv: {
-		filename: process.env.NODE_ENV === "prod" ? "prod.env" : "dev.env",
+		filename: process.env.NODE_ENV === "production" ? "prod.env" : "dev.env",
 	},
 	serverMiddleware: {
 		"/loadCollection": "~/api/loadCollection.ts",
 		"/saveCollection": "~/api/saveCollection.ts",
+	},
+	server: {
+		host: "0.0.0.0",
+		port: 3000,
 	},
 };
