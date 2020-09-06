@@ -3,7 +3,7 @@ export default {
 	 ** Headers of the page
 	 */
 	head: {
-		title: process.env.npm_package_name || "",
+		title: "Character List Manager",
 		meta: [
 			{ charset: "utf-8" },
 			{
@@ -15,8 +15,18 @@ export default {
 				name: "description",
 				content: process.env.npm_package_description || "",
 			},
+
+			{ rel: "them-color", content: "#ffffff" },
+			{ rel: "msapplication-TileColor", content: "#00aba9" },
+			{ rel: "msapplication-TileImage", content: "/mstile-144x144.png" },
+			{ rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5" },
 		],
-		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+		link: [
+			{ rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+			{ rel: "icon", sizes: "16x16", type: "image/png", href: "/favicon-16x16.png" },
+			{ rel: "icon", sizes: "32x32", type: "image/png", href: "/favicon-32x32.png" },
+			{ rel: "manifest", href: "/site.webmanifest" },
+		],
 	},
 	/*
 	 ** Customize the progress-bar color
