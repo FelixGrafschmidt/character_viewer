@@ -36,7 +36,7 @@
 				</div>
 			</div> -->
 		</nav>
-		<div v-if="$accessor.changes" class="unsaved-changes has-background-danger has-text-centered" @click="$accessor.saveChanges">You have unsaved changes. Click here to save them.</div>
+		<div v-if="$accessor.changes" class="unsaved-changes has-background-danger has-text-centered" @click="saveChanges">You have unsaved changes. Click here to save them.</div>
 		<section class="main-content columns">
 			<aside class="column is-2 section has-border-right">
 				<p class="menu-label is-hidden-touch">Characters</p>
@@ -59,11 +59,36 @@
 		</section>
 		<footer class="footer">
 			<div class="content has-text-centered">
-				<nuxt-link :to="'imprint'">Imprint</nuxt-link>
-				<nuxt-link :to="'faq'">FAQ</nuxt-link>
+				<nuxt-link class="footer_link" :to="'imprint'">Imprint</nuxt-link>
+				<nuxt-link class="footer_link" :to="'faq'">FAQ</nuxt-link>
 			</div>
 			<div class="content has-text-centered">© Felix Grafschmidt {{ new Date().getFullYear() }}</div>
 		</footer>
+		<b-modal v-model="saveError" class="error_modal" scroll="keep" :full-screen="false" has-modal-card :destroy-on-hide="false" aria-role="dialog" aria-modal>
+			<div class="card">
+				<div class="card-content">
+					<div class="content">An error has occurred while saving your changes. Your changes have NOT been saved!</div>
+					<div class="buttons has-text-centered is-centered">
+						<b-button @click="saveChanges">Try again</b-button>
+						<b-button @click="exportData">Export your data</b-button>
+						<b-button @click="contactUs">Contact us</b-button>
+					</div>
+				</div>
+			</div>
+		</b-modal>
+		<b-modal v-model="contactUsActive" class="error_modal" scroll="keep" :full-screen="false" has-modal-card :destroy-on-hide="false" aria-role="dialog" aria-modal>
+			<div class="card is-danger">
+				<div class="card-content">
+					<div class="content">
+						Feel free to <a target="_blank" href="https://github.com/Ithambar/character_viewer/issues/new">raise an issue</a> on our Github page or
+						<a target="_blank" href="https://github.com/Ithambar/character_viewer/issues">add more info</a> to an existing issue.
+						<br />
+						You can also <a target="_blank" href="mailto:felix.grafschmidt@gmail.com?subject=Issue%20on%20character%20manager%20webpage">send us an eMail</a>.
+					</div>
+				</div>
+			</div>
+		</b-modal>
+		<b-loading v-model="isLoading" :is-full-page="true" :can-cancel="false"></b-loading>
 	</div>
 </template>
 
@@ -74,6 +99,9 @@
 	@Component({ name: "default" })
 	export default class Default extends Vue {
 		private changes = this.$accessor.changes;
+		private saveError = false;
+		private isLoading = false;
+		private contactUsActive = false;
 
 		private mounted() {
 			if (!(this.collection && this.collection.id)) {
@@ -128,6 +156,26 @@
 			},
 		];
 
+		private saveChanges(): Promise<void> {
+			this.isLoading = true;
+			return this.$accessor
+				.saveChanges()
+				.then()
+				.catch(() => {
+					this.isLoading = false;
+					this.saveError = true;
+				})
+				.finally(() => {
+					this.isLoading = false;
+				});
+		}
+
+		private contactUs() {
+			this.contactUsActive = true;
+		}
+
+		private exportData() {}
+
 		// get availableLocales() {
 		// 	const result: Array<NuxtVueI18n.Options.LocaleObject> = [];
 		// 	this.$i18n.locales!.forEach((locale) => {
@@ -180,5 +228,11 @@
 	}
 	.logo {
 		cursor: pointer;
+	}
+	.footer_link {
+		padding: 1rem;
+	}
+	.error_modal {
+		color: white;
 	}
 </style>

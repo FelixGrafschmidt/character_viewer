@@ -3,6 +3,8 @@ export default {
 	 ** Headers of the page
 	 */
 	head: {
+		target: "server",
+		mode: "universal",
 		title: "Character List Manager",
 		meta: [
 			{ charset: "utf-8" },

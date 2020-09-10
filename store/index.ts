@@ -3,6 +3,7 @@
 import { getAccessorType, getterTree, mutationTree, actionTree } from "typed-vuex";
 
 import axios from "@nuxtjs/axios";
+import { ModalProgrammatic as Modal } from "buefy";
 import { Collection } from "~/models/Collection";
 import { List } from "~/models/List";
 import { Character } from "~/models/Character";

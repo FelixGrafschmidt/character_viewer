@@ -2,7 +2,7 @@
 	<section class="section hero">
 		<div class="hero-body">
 			<div class="container wrapper">
-				<div v-if="!initialVisit" class="introduction">
+				<div v-if="initialVisit" class="introduction">
 					<h2 class="title is-4 is-spaced">Welcome! This appears to be your first visit.</h2>
 					<h3 class="subtitle is-5">
 						On this website you are able to manage lists of characters with a lot of customization ability. To achieve that, you were just assigned a collection id. You can see it in the top right corner. This id is saved on

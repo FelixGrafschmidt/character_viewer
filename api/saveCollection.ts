@@ -10,6 +10,7 @@ const tedis = new Tedis({
 
 export default function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): void {
 	let body: string = "";
+	res.statusCode = 404;
 
 	req.on("data", async (chunk: string) => {
 		body += chunk;
@@ -18,10 +19,10 @@ export default function (req: createServer.IncomingMessage, res: http.ServerResp
 
 		if (id) {
 			await tedis.set(id, body);
-			res.end();
-		} else {
-			res.statusCode = 404;
-			res.end();
+			res.statusCode = 204;
+			// res.end();
 		}
+	}).on("end", () => {
+		res.end();
 	});
 }
