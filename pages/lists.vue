@@ -28,16 +28,10 @@
 				</b-table-column>
 			</b-table>
 		</div>
-		<div class="columns button-wrapper">
-			<b-tooltip class="column is-offset-3 is-2" label="Add new" position="is-bottom">
-				<b-button expanded size="is-large" icon-left="plus-circle-outline" type="is-text" @click="addNewList" />
-			</b-tooltip>
-			<b-tooltip class="column is-2" label="Import from file" position="is-bottom">
-				<b-button expanded size="is-large" icon-left="import" type="is-text" @click="importFromFile" />
-			</b-tooltip>
-			<b-tooltip class="column is-2" label="Import by id" position="is-bottom">
-				<b-button expanded size="is-large" icon-left="import" type="is-text" @click="importById" />
-			</b-tooltip>
+		<div class="has-text-centered button-wrapper">
+			<b-button size="is-medium" type="is-text" @click="addNewList">Add new list</b-button>
+			<b-button size="is-medium" type="is-text" @click="importFromFile">Import from file</b-button>
+			<b-button size="is-medium" type="is-text" @click="importById">Import by ID</b-button>
 		</div>
 	</div>
 </template>

@@ -8,6 +8,8 @@
 		"experimentalDecorators": true,
 		"esModuleInterop": true,
 		"allowJs": false,
+		"forceConsistentCasingInFileNames": true,
+		"removeComments": true,
 		"alwaysStrict": true,
 		"importHelpers": true,
 		"pretty": true,

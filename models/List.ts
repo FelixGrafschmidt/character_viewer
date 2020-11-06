@@ -17,13 +17,12 @@ export class List {
 	}
 
 	initFromJSON(json: string): List {
-		const parsedJSON = JSON.parse(json) as { id: string; name: string; characters: Array<Character> };
+		const parsedJSON = JSON.parse(json) as ListFromJSON;
 		this._id = parsedJSON.id;
 		this._name = parsedJSON.name;
-		this.characters = parsedJSON.characters;
 		this._characters = [];
-		parsedJSON.characters.forEach((character) => {
-			this._characters.push(new Character().initFromJSON(JSON.stringify(character)));
+		(parsedJSON.characters || []).forEach((character) => {
+			this._characters.push(new Character().initFromJSON(character));
 		});
 		return this;
 	}
@@ -59,4 +58,10 @@ export class List {
 	set characters(characters: Array<Character>) {
 		this._characters = characters;
 	}
+}
+
+interface ListFromJSON {
+	id: string;
+	name: string;
+	characters: Array<string>;
 }

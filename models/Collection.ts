@@ -15,12 +15,12 @@ export class Collection {
 	}
 
 	initFromJSON(json: string): Collection {
-		const parsedJSON = JSON.parse(json) as { id: string; lists: Array<List> };
+		const parsedJSON = JSON.parse(JSON.parse(json)) as CollectionFromJSON;
 		this._id = parsedJSON.id;
-		this._lists = parsedJSON.lists;
 		this._lists = [];
-		parsedJSON.lists.forEach((list) => {
-			this._lists.push(new List().initFromJSON(JSON.stringify(list)));
+
+		parsedJSON.lists.forEach((list: string) => {
+			this._lists.push(new List().initFromJSON(list));
 		});
 		return this;
 	}
@@ -48,4 +48,9 @@ export class Collection {
 	set lists(lists: Array<List>) {
 		this._lists = lists;
 	}
+}
+
+interface CollectionFromJSON {
+	id: string;
+	lists: Array<string>;
 }

@@ -35,8 +35,8 @@
 	},
 	"eslint.validate": ["javascript", "javascriptreact", "vue", "typescript"],
 	"files.exclude": {
-		"**/node_modules": true,
 		"**/dist": true,
+		"**/node_modules/**": true,
 		"**/nuxt": true
 	},
 	"files.insertFinalNewline": true,

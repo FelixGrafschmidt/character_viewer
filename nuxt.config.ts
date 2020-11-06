@@ -73,7 +73,7 @@ export default {
 		proxy: true,
 	},
 	proxy: {
-		"/api/": { target: process.env.BASE_URL },
+		"/api/": { target: process.env.BASE_URL || "http://localhost:3000" },
 	},
 	// i18n: {
 	// 	locales: [
@@ -91,12 +91,13 @@ export default {
 	/*
 	 ** Build configuration
 	 */
-	// build: {
-	// 	/*
-	// 	 ** You can extend webpack config here
-	// 	 */
-	// 	extend(_config: any, _ctx: any) {},
-	// },
+	build: {
+		extend(config: any, ctx: { isDev: boolean; isClient: boolean }) {
+			if (ctx.isDev) {
+				config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
+			}
+		},
+	},
 	dotenv: {
 		filename: process.env.NODE_ENV === "production" ? "prod.env" : "dev.env",
 	},

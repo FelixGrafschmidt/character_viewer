@@ -12,14 +12,16 @@ const tedis = new Tedis({
 export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
 	const params: url.URLSearchParams = new url.URL(req.originalUrl!, process.env._AXIOS_BASE_URL_).searchParams;
 
+	res.setHeader("Content-Type", "application/json");
+
 	const id: string = params.get("id") || "";
 	if (id && (await tedis.exists(id))) {
 		res.end(await tedis.get(id));
 	} else if (id) {
 		res.statusCode = 404;
-		res.end(JSON.stringify(new Collection().init(id)));
+		res.end(new Collection().init(id));
 	} else {
 		res.statusCode = 404;
-		res.end(JSON.stringify(new Collection().init()));
+		res.end(new Collection().init());
 	}
 }

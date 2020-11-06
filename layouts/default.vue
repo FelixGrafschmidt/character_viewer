@@ -83,7 +83,7 @@
 						Feel free to <a target="_blank" href="https://github.com/Ithambar/character_viewer/issues/new">raise an issue</a> on our Github page or
 						<a target="_blank" href="https://github.com/Ithambar/character_viewer/issues">add more info</a> to an existing issue.
 						<br />
-						You can also <a target="_blank" href="mailto:felix.grafschmidt@gmail.com?subject=Issue%20on%20character%20manager%20webpage">send us an eMail</a>.
+						You can also <a target="_blank" href="mailto:ithambar.lethenain@gmail.com?subject=Issue%20on%20character%20manager%20webpage">send us an eMail</a>.
 					</div>
 				</div>
 			</div>
@@ -113,8 +113,8 @@
 								id: collectionId,
 							},
 						})
-						.then((response: Collection) => {
-							this.$accessor.setCollection(response);
+						.then((response: string) => {
+							this.$accessor.setCollection(new Collection().initFromJSON(response));
 						})
 						.catch(() => {
 							this.saveNewCollection(new Collection().init(collectionId));
@@ -126,7 +126,12 @@
 		}
 
 		private saveNewCollection(collection: Collection) {
-			this.$axios.$post("/saveCollection", collection).then().catch();
+			this.$axios
+				.$post("/saveCollection", collection)
+				.then(() => {
+					this.saveError = false;
+				})
+				.catch();
 			this.$accessor.setCollection(collection);
 			localStorage.setItem("collectionId", collection.id);
 		}
@@ -171,6 +176,7 @@
 		}
 
 		private contactUs() {
+			this.saveError = false;
 			this.contactUsActive = true;
 		}
 

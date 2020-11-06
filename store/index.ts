@@ -50,7 +50,7 @@ export const actions = actionTree(
 	{ state, getters, mutations },
 	{
 		async saveChanges(): Promise<void> {
-			return await this.$axios.$post("/saveCollection", JSON.stringify(this.app.$accessor.collection)).then(() => {
+			return await this.$axios.$post("/saveCollection", this.app.$accessor.collection).then(() => {
 				this.app.$accessor.setChanges(false);
 			});
 		},
