@@ -10,18 +10,28 @@ const tedis = new Tedis({
 });
 
 export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
-	const params: url.URLSearchParams = new url.URL(req.originalUrl!, process.env._AXIOS_BASE_URL_).searchParams;
+	let collection = new Collection().init();
+	try {
+		const params: url.URLSearchParams = new url.URL(req.originalUrl!, process.env._AXIOS_BASE_URL_).searchParams;
 
-	res.setHeader("Content-Type", "application/json");
+		res.setHeader("Content-Type", "application/json");
+		res.statusCode = 404;
 
-	const id: string = params.get("id") || "";
-	if (id && (await tedis.exists(id))) {
-		res.end(await tedis.get(id));
-	} else if (id) {
-		res.statusCode = 404;
-		res.end(new Collection().init(id));
-	} else {
-		res.statusCode = 404;
-		res.end(new Collection().init());
+		const id: string = params.get("id") || "";
+		if (id) {
+			collection = new Collection().init(id);
+			await tedis.exists(id).then(async () => {
+				await tedis.get(id).then((response: any) => {
+					if (typeof response === "string") {
+						collection = new Collection().fromJSON(response);
+						res.statusCode = 200;
+					}
+				});
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	} finally {
+		res.end(collection.toJSON());
 	}
 }

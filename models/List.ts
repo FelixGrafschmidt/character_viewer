@@ -1,6 +1,12 @@
 import { v4 } from "uuid";
 import { Character } from "./Character";
 
+interface ListFromJSON {
+	id: string;
+	name: string;
+	characters: Array<string>;
+}
+
 export class List {
 	private _id: string = "";
 	private _name: string = "";
@@ -16,13 +22,13 @@ export class List {
 		return this;
 	}
 
-	initFromJSON(json: string): List {
+	fromJSON(json: string): List {
 		const parsedJSON = JSON.parse(json) as ListFromJSON;
 		this._id = parsedJSON.id;
 		this._name = parsedJSON.name;
 		this._characters = [];
 		(parsedJSON.characters || []).forEach((character) => {
-			this._characters.push(new Character().initFromJSON(character));
+			this._characters.push(new Character().fromJSON(character));
 		});
 		return this;
 	}
@@ -58,10 +64,4 @@ export class List {
 	set characters(characters: Array<Character>) {
 		this._characters = characters;
 	}
-}
-
-interface ListFromJSON {
-	id: string;
-	name: string;
-	characters: Array<string>;
 }

@@ -1,11 +1,13 @@
-export default {
+import { NuxtConfig } from "@nuxt/types";
+
+const nuxtConfig: NuxtConfig = {
+	target: "server",
+	mode: "universal",
+	title: "Character List Manager",
 	/*
 	 ** Headers of the page
 	 */
 	head: {
-		target: "server",
-		mode: "universal",
-		title: "Character List Manager",
 		meta: [
 			{ charset: "utf-8" },
 			{
@@ -18,10 +20,10 @@ export default {
 				content: process.env.npm_package_description || "",
 			},
 
-			{ rel: "them-color", content: "#ffffff" },
-			{ rel: "msapplication-TileColor", content: "#00aba9" },
-			{ rel: "msapplication-TileImage", content: "/mstile-144x144.png" },
-			{ rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5" },
+			{ rel: "them-color", content: "#ffffff", property: "" },
+			{ rel: "msapplication-TileColor", content: "#00aba9", property: "" },
+			{ rel: "msapplication-TileImage", content: "/mstile-144x144.png", property: "" },
+			{ rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5", property: "", content: "" },
 		],
 		link: [
 			{ rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
@@ -101,12 +103,14 @@ export default {
 	dotenv: {
 		filename: process.env.NODE_ENV === "production" ? "prod.env" : "dev.env",
 	},
-	serverMiddleware: {
-		"/loadCollection": "~/api/loadCollection.ts",
-		"/saveCollection": "~/api/saveCollection.ts",
-	},
+	serverMiddleware: [
+		{ path: "/loadCollection", handler: "~/api/loadCollection.ts" },
+		{ path: "/saveCollection", handler: "~/api/saveCollection.ts" },
+	],
 	server: {
 		host: "0.0.0.0",
 		port: 3000,
 	},
 };
+
+export default nuxtConfig;

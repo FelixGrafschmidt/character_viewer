@@ -114,7 +114,7 @@
 							},
 						})
 						.then((response: string) => {
-							this.$accessor.setCollection(new Collection().initFromJSON(response));
+							this.$accessor.setCollection(new Collection().fromJSON(response));
 						})
 						.catch(() => {
 							this.saveNewCollection(new Collection().init(collectionId));

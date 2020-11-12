@@ -15,7 +15,7 @@ export default function (req: createServer.IncomingMessage, res: http.ServerResp
 	req.on("data", async (chunk: string) => {
 		body += chunk;
 
-		const id: string = new Collection().initFromJSON(body).id;
+		const id: string = new Collection().fromJSON(body).id;
 
 		if (id) {
 			await tedis.set(id, body);

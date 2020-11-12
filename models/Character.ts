@@ -1,5 +1,35 @@
 import { v4 } from "uuid";
 
+export class SubCharacter {
+	private _id: string = "";
+	private _name: string = "";
+	private _origin: string = "";
+	private _images: Array<string> = [];
+	private _attributeArrays: Map<string, string> = new Map();
+
+	constructor() {
+		return this;
+	}
+
+	init(id?: string): SubCharacter {
+		this._id = id || v4();
+		return this;
+	}
+
+	fromJSON(json: string): SubCharacter {
+		const parsedJSON = JSON.parse(json) as { id: string; name: string; origin: string; images: Array<string>; attributeArrays: Map<string, string> };
+		this._id = parsedJSON.id;
+		this._name = parsedJSON.name;
+		this._origin = parsedJSON.origin;
+		this._images = parsedJSON.images;
+		this._attributeArrays = parsedJSON.attributeArrays;
+		return this;
+	}
+
+	toJSON(): string {
+		return JSON.stringify({ id: this._id, name: this._name, origin: this._origin, images: this._images, attributeArrays: this._attributeArrays });
+	}
+}
 export class Character {
 	private _id: string = "";
 	private _name: string = "";
@@ -17,7 +47,7 @@ export class Character {
 		return this;
 	}
 
-	initFromJSON(json: string): Character {
+	fromJSON(json: string): Character {
 		const parsedJSON = JSON.parse(json) as { id: string; name: string; origin: string; images: Array<string>; attributeArrays: Map<string, string>; subCharacterArrays: Map<string, Array<SubCharacter>> };
 		this._id = parsedJSON.id;
 		this._name = parsedJSON.name;
@@ -28,7 +58,7 @@ export class Character {
 		parsedJSON.subCharacterArrays.forEach((subCharacterArray, type) => {
 			const parsedSubCharacterArray: Array<SubCharacter> = [];
 			subCharacterArray.forEach((subCharacter) => {
-				parsedSubCharacterArray.push(new SubCharacter().initFromJSON(JSON.stringify(subCharacter)));
+				parsedSubCharacterArray.push(new SubCharacter().fromJSON(JSON.stringify(subCharacter)));
 			});
 
 			this._subCharacterArrays.set(type, parsedSubCharacterArray);
@@ -44,36 +74,5 @@ export class Character {
 			});
 		});
 		return JSON.stringify({ id: this._id, name: this._name, origin: this._origin, images: this._images, attributeArrays: this._attributeArrays, subCharacterArrays });
-	}
-}
-
-export class SubCharacter {
-	private _id: string = "";
-	private _name: string = "";
-	private _origin: string = "";
-	private _images: Array<string> = [];
-	private _attributeArrays: Map<string, string> = new Map();
-
-	constructor() {
-		return this;
-	}
-
-	init(id?: string): SubCharacter {
-		this._id = id || v4();
-		return this;
-	}
-
-	initFromJSON(json: string): SubCharacter {
-		const parsedJSON = JSON.parse(json) as { id: string; name: string; origin: string; images: Array<string>; attributeArrays: Map<string, string> };
-		this._id = parsedJSON.id;
-		this._name = parsedJSON.name;
-		this._origin = parsedJSON.origin;
-		this._images = parsedJSON.images;
-		this._attributeArrays = parsedJSON.attributeArrays;
-		return this;
-	}
-
-	toJSON(): string {
-		return JSON.stringify({ id: this._id, name: this._name, origin: this._origin, images: this._images, attributeArrays: this._attributeArrays });
 	}
 }

@@ -1,6 +1,11 @@
 import { v4 } from "uuid";
 import { List } from "./List";
 
+interface CollectionFromJSON {
+	id: string;
+	lists: Array<string>;
+}
+
 export class Collection {
 	private _id: string = "";
 	private _lists: Array<List> = [];
@@ -14,13 +19,13 @@ export class Collection {
 		return this;
 	}
 
-	initFromJSON(json: string): Collection {
+	fromJSON(json: string): Collection {
 		const parsedJSON = JSON.parse(JSON.parse(json)) as CollectionFromJSON;
 		this._id = parsedJSON.id;
 		this._lists = [];
 
 		parsedJSON.lists.forEach((list: string) => {
-			this._lists.push(new List().initFromJSON(list));
+			this._lists.push(new List().fromJSON(list));
 		});
 		return this;
 	}
@@ -48,9 +53,4 @@ export class Collection {
 	set lists(lists: Array<List>) {
 		this._lists = lists;
 	}
-}
-
-interface CollectionFromJSON {
-	id: string;
-	lists: Array<string>;
 }
