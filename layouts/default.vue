@@ -2,10 +2,6 @@
 	<div>
 		<nav class="navbar header has-shadow" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
-				<!-- <a class="navbar-item" href="/">
-					<img src="~assets/buefy.png" alt="Buefy" height="28" />
-				</a> -->
-
 				<div class="navbar-burger">
 					<span />
 					<span />
@@ -15,6 +11,15 @@
 			<div class="navbar-start">
 				<div class="navbar-item">
 					<nuxt-link class="title logo" to="/" tag="h1">Character List Manager</nuxt-link>
+				</div>
+				<div class="navbar-item">
+					Autosave:&nbsp;
+					<p v-if="autosave" class="has-text-success">on</p>
+					<p v-else class="has-text-danger">off</p>
+				</div>
+				<div class="navbar-item">
+					<b-button v-if="autosave" size="is-small" @click="disableAutosave">Disable autosave</b-button>
+					<b-button v-else size="is-small" @click="enableAutosave">Enable autosave</b-button>
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -95,15 +100,18 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Collection } from "~/models/Collection";
+	import { Collection } from "@/models/Collection";
 	@Component({ name: "default" })
 	export default class Default extends Vue {
 		private changes = this.$accessor.changes;
 		private saveError = false;
 		private isLoading = false;
 		private contactUsActive = false;
+		private autosave = false;
+		private autosaveId = 0;
 
 		private mounted() {
+			this.performAutosave();
 			if (!(this.collection && this.collection.id)) {
 				const collectionId = localStorage.getItem("collectionId");
 				if (collectionId) {
@@ -189,11 +197,31 @@
 		// 	});
 		// 	return result;
 		// }
+
+		private enableAutosave() {
+			this.autosave = true;
+		}
+
+		private disableAutosave() {
+			this.autosave = false;
+		}
+
+		private performAutosave() {
+			this.autosaveId = window.setInterval(() => {
+				if (this.autosave) {
+					this.$accessor.saveChanges();
+				}
+			}, 1000 * 60);
+		}
+
+		private beforeDestory() {
+			window.clearInterval(this.autosaveId);
+		}
 	}
 </script>
 
 <style lang="scss">
-	@import "~/assets/styles.scss";
+	@import "@/assets/styles.scss";
 	:root {
 		--color-primary: #d9ff00;
 	}

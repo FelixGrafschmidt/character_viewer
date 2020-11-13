@@ -28,6 +28,7 @@
 		"nuxt-buefy": "^0.4.4",
 		"nuxt-property-decorator": "^2.8.8",
 		"nuxt-typed-vuex": "^0.1.22",
+		"nuxt-winston-log": "^1.2.0",
 		"save-dev": "0.0.1-security",
 		"tedis": "^0.1.12",
 		"uuid": "^8.3.1",

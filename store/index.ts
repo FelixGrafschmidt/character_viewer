@@ -4,9 +4,9 @@ import { getAccessorType, getterTree, mutationTree, actionTree } from "typed-vue
 
 import axios from "@nuxtjs/axios";
 import { ModalProgrammatic as Modal } from "buefy";
-import { Collection } from "~/models/Collection";
-import { List } from "~/models/List";
-import { Character } from "~/models/Character";
+import { Collection } from "@/models/Collection";
+import { List } from "@/models/List";
+import { Character } from "@/models/Character";
 
 export const state = () => ({
 	collection: new Collection(),
@@ -42,7 +42,6 @@ export const mutations = mutationTree(state, {
 	setChanges: (currentState, newChanges: boolean) => (currentState.changes = newChanges),
 
 	initializeStore() {
-		// eslint-disable-next-line no-console
 		console.log("Store initialized");
 	},
 });

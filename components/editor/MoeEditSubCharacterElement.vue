@@ -1,9 +1,7 @@
 <template>
 	<section>
 		<div class="card column">
-			<button class="button is-danger delete-sub-character-button" @click="$emit('delete-character', character)">
-				X
-			</button>
+			<button class="button is-danger delete-sub-character-button" @click="$emit('delete-character', character)">X</button>
 
 			<div class="has-text-centered is-centered columns">
 				<b-field type="is-link" label="Name" class="field column is-7">

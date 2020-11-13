@@ -3,12 +3,8 @@
 		<section class="section hero">
 			<div class="hero-body">
 				<div class="container">
-					<h1 class="title">
-						Imprint
-					</h1>
-					<h2 class="subtitle">
-						Felix Grafschmidt
-					</h2>
+					<h1 class="title">Imprint</h1>
+					<h2 class="subtitle">Felix Grafschmidt</h2>
 				</div>
 			</div>
 		</section>

@@ -1,8 +1,9 @@
 import { NuxtConfig } from "@nuxt/types";
+import { NuxtOptionsLoaders, NuxtWebpackEnv } from "@nuxt/types/config/build";
+import { Configuration as WebpackConfiguration } from "webpack";
 
 const nuxtConfig: NuxtConfig = {
 	target: "server",
-	mode: "universal",
 	title: "Character List Manager",
 	/*
 	 ** Headers of the page
@@ -31,6 +32,7 @@ const nuxtConfig: NuxtConfig = {
 			{ rel: "icon", sizes: "32x32", type: "image/png", href: "/favicon-32x32.png" },
 			{ rel: "manifest", href: "/site.webmanifest" },
 		],
+		title: "Character List Manager",
 	},
 	/*
 	 ** Customize the progress-bar color
@@ -65,6 +67,7 @@ const nuxtConfig: NuxtConfig = {
 		// Doc: https://github.com/nuxt-community/dotenv-module
 		"@nuxtjs/dotenv",
 		"@nuxtjs/proxy",
+		"nuxt-winston-log",
 		// "nuxt-i18n",
 	],
 	/*
@@ -94,7 +97,12 @@ const nuxtConfig: NuxtConfig = {
 	 ** Build configuration
 	 */
 	build: {
-		extend(config: any, ctx: { isDev: boolean; isClient: boolean }) {
+		extend(
+			config: WebpackConfiguration,
+			ctx: {
+				loaders: NuxtOptionsLoaders;
+			} & NuxtWebpackEnv,
+		) {
 			if (ctx.isDev) {
 				config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
 			}
@@ -111,6 +119,7 @@ const nuxtConfig: NuxtConfig = {
 		host: "0.0.0.0",
 		port: 3000,
 	},
+	winstonLog: {},
 };
 
 export default nuxtConfig;
