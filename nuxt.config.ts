@@ -119,7 +119,14 @@ const nuxtConfig: NuxtConfig = {
 		host: "0.0.0.0",
 		port: 3000,
 	},
-	winstonLog: {},
+	winstonLog: {
+		transportOptions: {
+			eol: "\n",
+			maxsize: 5242880,
+			maxFiles: 10,
+			timestamp: true,
+		},
+	},
 };
 
 export default nuxtConfig;
