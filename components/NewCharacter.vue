@@ -89,11 +89,10 @@
 		}
 
 		changeActiveImage(i: number) {
-			if (this.character.images[this.activeImageIndex].src === this.character.images[i].src) {
-				this.activeImageIndex = i;
-				return;
+			if (this.character.images[this.activeImageIndex].src !== this.character.images[i].src) {
+				this.activeImageLoading = true;
 			}
-			this.activeImageLoading = true;
+			this.activeImageIndex = i;
 		}
 	}
 </script>
