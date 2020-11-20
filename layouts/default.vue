@@ -224,6 +224,7 @@
 	@import "@/assets/styles.scss";
 	:root {
 		--color-primary: #d9ff00;
+		--color-secondary: #02fdff;
 	}
 </style>
 
@@ -268,5 +269,16 @@
 	}
 	.error_modal {
 		color: white;
+	}
+	body::-webkit-scrollbar {
+		width: 0.2em;
+	}
+	body::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+	body::-webkit-scrollbar-thumb {
+		background-color: var(--color-secondary);
+		outline: 1px solid black;
 	}
 </style>

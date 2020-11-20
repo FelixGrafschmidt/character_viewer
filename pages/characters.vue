@@ -1,18 +1,8 @@
 <template>
-	<div>
-		<div class="moe-table-wrapper">
-			<b-table v-if="list.characters.length" class="moe-table" :data="list" :columns="columns"></b-table>
-			<b-button class="moe-button" expanded label="New character" @click="newCharacterActive = true" />
-		</div>
-		<b-modal v-model="newCharacterActive" class="error_modal" scroll="keep" :full-screen="false" has-modal-card :destroy-on-hide="false" aria-role="dialog" aria-modal>
-			<div class="card is-danger">
-				<div class="card-content">
-					<div class="content">
-						<new-character />
-					</div>
-				</div>
-			</div>
-		</b-modal>
+	<new-character v-if="newCharacterActive"> </new-character>
+	<div v-else class="moe-table-wrapper">
+		<b-table v-if="list.characters.length" class="moe-table" :data="list" :columns="columns"></b-table>
+		<b-button class="moe-button" expanded label="New character" @click="newCharacterActive = true" />
 	</div>
 </template>
 
@@ -34,6 +24,5 @@
 <style lang="scss" scoped>
 	.moe-table-wrapper {
 		margin-top: 2rem;
-		width: 20vw;
 	}
 </style>
