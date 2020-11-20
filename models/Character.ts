@@ -49,6 +49,12 @@ export class SubCharacter {
 	toJSON(): string {
 		return JSON.stringify({ id: this.id, name: this.name, origin: this.origin, images: this.images, attributeArrays: this.attributeArrays });
 	}
+
+	mainImage() {
+		return this.images.filter((image) => {
+			return image.main;
+		})[0];
+	}
 }
 export class Character {
 	id: string = "";

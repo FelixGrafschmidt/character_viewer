@@ -99,15 +99,19 @@
 			let name = "";
 			const target = event.target as HTMLElement;
 
-			if (target.tagName === "I") {
+			if (target.tagName !== "I") {
 				name = (target.parentElement!.children[0] as HTMLInputElement).value;
 			} else {
 				name = (target.parentElement!.parentElement!.children[0] as HTMLInputElement).value;
 			}
 
-			this.$accessor.renameList({ id: list.id, name });
+			this.$accessor.setList(list);
+
+			this.$accessor.renameList(name);
 			this.$accessor.setChanges(true);
 			this.$buefy.toast.open({ message: "Name saved!", type: "is-primary" });
+
+			this.$accessor.setList(new List());
 		}
 
 		private exportList(): void {}
@@ -144,23 +148,3 @@
 		}
 	}
 </script>
-
-<!--style lang="scss" scoped>
-	/deep/.mdi {
-		color: #00ffff;
-	}
-	.text-column {
-		padding-top: 0.4rem;
-	}
-	.wrapper {
-		padding-bottom: unset;
-		max-width: 99.7vw;
-		padding-right: unset;
-		padding-left: unset;
-	}
-	.button-wrapper {
-		max-width: 99.7vw;
-		padding-right: unset;
-		padding-left: unset;
-	}
-</style-->

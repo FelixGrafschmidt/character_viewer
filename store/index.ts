@@ -30,16 +30,15 @@ export const mutations = mutationTree(state, {
 	removeListFromCollection: (currentState, id: string) => currentState.collection.lists.filter((list) => list.id !== id),
 
 	setList: (currentState, newList: List) => (currentState.list = newList),
-	renameList: (currentState, { id, name }) =>
-		currentState.collection.lists.filter((list) => {
-			if (list.id === id) {
-				list.name = name;
-			}
-		}),
+	renameList: (currentState, name: string) => {
+		currentState.list.name = name;
+	},
 
 	setCharacter: (currentState, newCharacter: Character) => (currentState.character = newCharacter),
 
 	setChanges: (currentState, newChanges: boolean) => (currentState.changes = newChanges),
+
+	addCharacter: (currentState, newCharacter: Character) => currentState.list.characters.push(newCharacter),
 
 	initializeStore() {
 		console.log("Store initialized");

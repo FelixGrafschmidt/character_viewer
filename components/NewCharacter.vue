@@ -17,21 +17,43 @@
 				</div>
 			</section>
 		</div>
-		<div class="columns _add-image-wrapper mt-1">
-			<b-button class="column" type="is-primary" outlined @click="imagesActive = false">Back to Character</b-button>
-			<b-button :disabled="Number.isNaN(activeImageIndex)" class="column" type="is-link" outlined @click="designateMainImage">Designate as Main Image</b-button>
-			<b-button :disabled="Number.isNaN(activeImageIndex)" class="column" type="is-danger" outlined @click="removeImage">Remove this Image</b-button>
-			<b-button class="column" outlined type="is-success" @click="addNewImage">Add new Image</b-button>
+		<div class="columns mt-1">
+			<div class="column">
+				<b-button expanded type="is-primary" outlined @click="imagesActive = false">Back to Character</b-button>
+			</div>
+			<div class="column">
+				<b-button expanded :disabled="Number.isNaN(activeImageIndex)" type="is-link" outlined @click="designateMainImage"> Designate as Main Image </b-button>
+			</div>
+			<div class="column">
+				<b-button expanded :disabled="Number.isNaN(activeImageIndex)" type="is-danger" outlined @click="removeImage">Remove this Image</b-button>
+			</div>
+			<div class="column">
+				<b-button expanded outlined type="is-success" @click="addNewImage">Add new Image</b-button>
+			</div>
 		</div>
 	</section>
 	<section v-else>
-		<b-field label="Name">
-			<b-input v-model="character.name"></b-input>
-		</b-field>
-		<b-field label="Origin">
-			<b-input v-model="character.origin"></b-input>
-		</b-field>
-		<b-button @click="imagesActive = true">Show Images</b-button>
+		<div class="columns is-centered is-multiline">
+			<div class="column is-half active-image-wrapper">
+				<figure class="columns is-centered image is-4by7 active-image-wrapper">
+					<img v-if="getMainImage()" class="column is-10 active-image" :src="getMainImage().src" alt="Main Image" />
+				</figure>
+				<div class="columns is-centered mt-1">
+					<b-button @click="imagesActive = true">Show Images</b-button>
+				</div>
+			</div>
+			<section class="column is-half is-multiline">
+				<b-field class="column" label="Name">
+					<b-input v-model="character.name"></b-input>
+				</b-field>
+				<b-field class="column" label="Origin">
+					<b-input v-model="character.origin"></b-input>
+				</b-field>
+				<div class="columns is-centered mt-1">
+					<b-button outlined type="is-success" @click="saveCharacter">Save Character</b-button>
+				</div>
+			</section>
+		</div>
 	</section>
 </template>
 
@@ -88,11 +110,21 @@
 			});
 		}
 
+		getMainImage() {
+			return this.character.images.filter((image) => {
+				return image.main;
+			})[0];
+		}
+
 		changeActiveImage(i: number) {
 			if (this.character.images[this.activeImageIndex].src !== this.character.images[i].src) {
 				this.activeImageLoading = true;
 			}
 			this.activeImageIndex = i;
+		}
+
+		saveCharacter() {
+			this.$emit("save-character", this.character);
 		}
 	}
 </script>
@@ -131,8 +163,5 @@
 	.gallery::-webkit-scrollbar-thumb {
 		background-color: var(--color-secondary);
 		outline: 1px solid black;
-	}
-	.add-image-wrapper {
-		width: 20%;
 	}
 </style>
