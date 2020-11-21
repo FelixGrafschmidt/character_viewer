@@ -76,7 +76,7 @@
 				trapFocus: true,
 				onConfirm: (value) => {
 					this.$axios
-						.$get("/loadList", {
+						.$get("loadList", {
 							params: {
 								id: value,
 							},

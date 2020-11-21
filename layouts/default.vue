@@ -116,7 +116,7 @@
 				const collectionId = localStorage.getItem("collectionId");
 				if (collectionId) {
 					this.$axios
-						.$get("/loadCollection", {
+						.$get("loadCollection", {
 							params: {
 								id: collectionId,
 							},
@@ -137,7 +137,7 @@
 
 		private saveNewCollection(collection: Collection) {
 			this.$axios
-				.$post("/saveCollection", collection)
+				.$post("saveCollection", collection)
 				.then(() => {
 					this.saveError = false;
 				})
