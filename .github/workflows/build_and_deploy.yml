@@ -19,8 +19,7 @@ jobs:
     build:
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
-        strategy:
-            max-parallel: 1
+
         # Steps represent a sequence of tasks that will be executed as part of the job
         steps:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -34,15 +33,7 @@ jobs:
             # Runs a single command using the runners shell
             - name: Run a one-line script
               run: npm i && npm run build
-    deploy:
-        # The type of runner that the job will run on
-        runs-on: ubuntu-latest
-        strategy:
-            max-parallel: 1
 
-        # Steps represent a sequence of tasks that will be executed as part of the job
-        steps:
-            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - name: copy file via ssh password
               env:
                   HOST: ${{ secrets.HOST }}
@@ -57,23 +48,16 @@ jobs:
                   password: $PASSWORD
                   source: ".nuxt/,static/,api/,node_modules/,nuxt.config.ts,package.json,prod.env,tsconfig.json"
                   target: "/srv/character_viewer/"
-    restart:
-        # The type of runner that the job will run on
-        runs-on: ubuntu-latest
-        strategy:
-            max-parallel: 1
-
-        # Steps represent a sequence of tasks that will be executed as part of the job
-        steps:
             - name: restart via ssh
               env:
                   HOST: ${{ secrets.HOST }}
                   PORT: ${{ secrets.PORT }}
                   USERNAME: ${{ secrets.USERNAME }}
                   PASSWORD: ${{ secrets.PASSWORD }}
-              uses: garygrossgarten/github-action-ssh@release
+              uses: appleboy/ssh-action@master
               with:
-                  host: $HOST
-                  port: $PORT
-                  username: $USERNAME
-                  password: $PASSWORD
+                  HOST: ${{ secrets.HOST }}
+                  PORT: ${{ secrets.PORT }}
+                  USERNAME: ${{ secrets.USERNAME }}
+                  PASSWORD: ${{ secrets.PASSWORD }}
+                  script: pm2 restart character_viewer
