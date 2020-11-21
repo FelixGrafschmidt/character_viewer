@@ -51,6 +51,9 @@ const nuxtConfig: NuxtConfig = {
 			}
 		},
 	},
+	axios: {
+		baseURL: process.env.NODE_ENV === "production" ? "https://ithambar.moe" : "http://localhost:3000",
+	},
 	serverMiddleware: [
 		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
 		{ path: "/saveCollection", handler: "../api/saveCollection.ts" },
