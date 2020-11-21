@@ -56,8 +56,8 @@ jobs:
                   PASSWORD: ${{ secrets.PASSWORD }}
               uses: appleboy/ssh-action@master
               with:
-                  HOST: ${{ secrets.HOST }}
-                  PORT: ${{ secrets.PORT }}
-                  USERNAME: ${{ secrets.USERNAME }}
-                  PASSWORD: ${{ secrets.PASSWORD }}
+                  host: $HOST
+                  port: $PORT
+                  username: $USERNAME
+                  password: $PASSWORD
                   script: pm2 restart character_viewer
