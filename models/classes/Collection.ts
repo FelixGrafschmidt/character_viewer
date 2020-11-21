@@ -20,8 +20,6 @@ export class Collection {
 	}
 
 	fromJSON(json: string): Collection {
-		console.log(json);
-
 		const parsedJSON = JSON.parse(JSON.parse(json)) as CollectionFromJSON;
 		this.id = parsedJSON.id;
 		this.lists = [];

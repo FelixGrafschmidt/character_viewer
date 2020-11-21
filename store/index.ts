@@ -7,12 +7,12 @@ import axios from "@nuxtjs/axios";
 import { ModalProgrammatic as Modal } from "buefy";
 import { Collection } from "~/models/interfaces/Collection";
 import { List } from "~/models/interfaces/List";
-import { Character } from "~/models/interfaces/Character";
+import { Character, CharacterImage, SubCharacter } from "~/models/interfaces/Character";
 
 export const state = () => ({
 	collection: { id: "", lists: new Array<List>() },
 	list: { id: "", name: "", characters: new Array<Character>() },
-	character: {},
+	character: { id: "", name: "", origin: "", images: new Array<CharacterImage>(), attributeArrays: new Map<string, string>(), subCharacterArrays: new Map<string, SubCharacter[]>() },
 	changes: false,
 });
 
@@ -26,20 +26,40 @@ export const getters = getterTree(state, {
 });
 
 export const mutations = mutationTree(state, {
-	setCollection: (currentState, newCollection: Collection) => (currentState.collection = newCollection),
-	addListToCollection: (currentState, newList: List) => currentState.collection.lists.push(newList),
-	removeListFromCollection: (currentState, id: string) => currentState.collection.lists.filter((list) => list.id !== id),
+	setCollection: (currentState, newCollection: Collection) => {
+		currentState.collection = newCollection;
+	},
+	addListToCollection: (currentState, newList: List) => {
+		currentState.collection.lists.push(newList);
+	},
+	removeListFromCollection: (currentState, id: string) => {
+		currentState.collection.lists.filter((list) => list.id !== id);
+	},
 
-	setList: (currentState, newList: List) => (currentState.list = newList),
+	setList: (currentState, newList: List) => {
+		currentState.list = newList;
+	},
 	renameList: (currentState, name: string) => {
 		currentState.list.name = name;
 	},
 
-	setCharacter: (currentState, newCharacter: Character) => (currentState.character = newCharacter),
+	setCharacter: (currentState, newCharacter: Character) => {
+		currentState.character = newCharacter;
+	},
 
-	setChanges: (currentState, newChanges: boolean) => (currentState.changes = newChanges),
+	setChanges: (currentState, newChanges: boolean) => {
+		currentState.changes = newChanges;
+	},
 
-	addCharacter: (currentState, newCharacter: Character) => currentState.list.characters.push(newCharacter),
+	addCharacter: (currentState, newCharacter: Character) => {
+		currentState.list.characters.push(newCharacter);
+	},
+	deleteCharacter: (currentState, character: Character) => {
+		const newList = currentState.list.characters.filter((characterInList) => {
+			return character.id !== characterInList.id;
+		});
+		currentState.list.characters = newList;
+	},
 
 	initializeStore() {
 		console.log("Store initialized");

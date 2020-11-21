@@ -57,7 +57,7 @@
 						<b-button outlined expanded type="is-success" @click="saveCharacter">Save Character</b-button>
 					</div>
 					<div class="column is-4">
-						<b-button outlined expanded type="is-danger" @click="discardCharacter">Discard Character</b-button>
+						<b-button outlined expanded type="is-danger" @click="deleteCharacter">Delete Character</b-button>
 					</div>
 				</div>
 			</section>
@@ -68,13 +68,13 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Character, newCharacter, newCharacterImage } from "~/models/interfaces/Character";
+	import { Character, newCharacterImage } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
-		name: "NewCharacter",
+		name: "EditCharacter",
 	})
-	export default class NewCharacter extends Vue {
-		character: Character = newCharacter();
+	export default class EditCharacter extends Vue {
+		character: Character = this.$accessor.character;
 		imagesActive = false;
 		activeImageIndex: number = NaN;
 		activeImageLoading: boolean = false;
@@ -135,8 +135,8 @@
 			this.$emit("save-character", this.character);
 		}
 
-		discardCharacter() {
-			this.$emit("discard-character");
+		deleteCharacter() {
+			this.$emit("delete-character", this.character);
 		}
 	}
 </script>

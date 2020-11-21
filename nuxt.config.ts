@@ -13,7 +13,11 @@ const nuxtConfig: NuxtConfig = {
 			{ charset: "utf-8" },
 			{
 				name: "viewport",
-				content: "width=device-width, initial- scale=1",
+				content: "width=device-width, scale=1",
+			},
+			{
+				name: "theme-color",
+				content: "black",
 			},
 			{
 				hid: "description",

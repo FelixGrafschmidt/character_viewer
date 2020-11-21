@@ -25,3 +25,7 @@ export interface Character {
 export function newCharacter(id = v4(), name = "", origin = "", images = [], attributeArrays = new Map<string, string>(), subCharacterArrays = new Map<string, Array<SubCharacter>>()): Character {
 	return { id, name, origin, images, attributeArrays, subCharacterArrays };
 }
+
+export function newCharacterImage(src = "", main = false): CharacterImage {
+	return { src, main };
+}

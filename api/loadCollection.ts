@@ -29,7 +29,7 @@ export default async function (req: createServer.IncomingMessage, res: http.Serv
 			});
 		}
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	} finally {
 		res.end(JSON.stringify(collection));
 	}

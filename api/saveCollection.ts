@@ -15,8 +15,6 @@ export default function (req: createServer.IncomingMessage, res: http.ServerResp
 	req.on("data", async (chunk: string) => {
 		body += chunk;
 
-		console.log(body);
-
 		const id: string = (JSON.parse(body) as Collection).id;
 
 		if (id) {

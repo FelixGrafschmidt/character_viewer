@@ -122,8 +122,6 @@
 							},
 						})
 						.then((response: Collection) => {
-							console.log(response);
-
 							this.$accessor.setCollection(response);
 						})
 						.catch((error) => {
@@ -143,7 +141,9 @@
 				.then(() => {
 					this.saveError = false;
 				})
-				.catch();
+				.catch((error) => {
+					console.error(error);
+				});
 			this.$accessor.setCollection(collection);
 			localStorage.setItem("collectionId", collection.id);
 		}
