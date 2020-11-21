@@ -33,7 +33,13 @@ jobs:
             # Runs a single command using the runners shell
             - name: Run a one-line script
               run: npm i && npm run build
+    deploy:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
 
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - name: copy file via ssh password
               env:
                   HOST: ${{ secrets.HOST }}
@@ -48,6 +54,12 @@ jobs:
                   password: $PASSWORD
                   source: ".nuxt/,static/,api/,node_modules/,nuxt.config.ts,package.json,prod.env,tsconfig.json"
                   target: "/srv/character_viewer/"
+    restart:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
             - name: restart via ssh
               env:
                   HOST: ${{ secrets.HOST }}
