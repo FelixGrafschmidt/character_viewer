@@ -42,4 +42,4 @@ jobs:
                   password: ${{ secrets.PASSWORD }}
                   port: ${{ secrets.PORT }}
                   source: ".nuxt/,api/,node_modules/,nuxt.config.ts,package.json,prod.env,tsconfig.json"
-                  target: "/srv/characterViewer_Frontend/"
+                  target: "/srv/character_viewer/"
