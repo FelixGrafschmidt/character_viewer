@@ -1,5 +1,5 @@
 <template>
-	<new-character v-if="newCharacterActive" @save-character="saveCharacter" @discard-character="discardCharacter" />
+	<new-character v-if="newCharacterActive" @save-new-character="saveNewCharacter" @discard-character="discardCharacter" />
 	<edit-character v-else-if="editCharacterActive" @save-character="saveCharacter" @delete-character="deleteCharacter" />
 	<div v-else class="moe-table-wrapper">
 		<div class="columns is-centered">
@@ -40,10 +40,13 @@
 			this.editCharacterActive = true;
 		}
 
-		saveCharacter(character: Character) {
+		saveCharacter() {
+			this.editCharacterActive = false;
+		}
+
+		saveNewCharacter(character: Character) {
 			this.$accessor.addCharacter(character);
 			this.newCharacterActive = false;
-			this.editCharacterActive = false;
 		}
 
 		discardCharacter() {

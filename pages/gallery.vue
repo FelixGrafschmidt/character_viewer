@@ -3,21 +3,6 @@
 		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
 			<img class="" :src="image.src" :alt="i" />
 		</figure>
-		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
-			<img class="" :src="image.src" :alt="i" />
-		</figure>
-		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
-			<img class="" :src="image.src" :alt="i" />
-		</figure>
-		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
-			<img class="" :src="image.src" :alt="i" />
-		</figure>
-		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
-			<img class="" :src="image.src" :alt="i" />
-		</figure>
-		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
-			<img class="" :src="image.src" :alt="i" />
-		</figure>
 	</div>
 </template>
 

@@ -54,6 +54,12 @@ export const mutations = mutationTree(state, {
 	addCharacter: (currentState, newCharacter: Character) => {
 		currentState.list.characters.push(newCharacter);
 	},
+	changeName: (currentState, name: string) => {
+		currentState.character.name = name;
+	},
+	changeOrigin: (currentState, origin: string) => {
+		currentState.character.origin = origin;
+	},
 	deleteCharacter: (currentState, character: Character) => {
 		const newList = currentState.list.characters.filter((characterInList) => {
 			return character.id !== characterInList.id;

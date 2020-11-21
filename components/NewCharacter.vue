@@ -132,7 +132,7 @@
 		}
 
 		saveCharacter() {
-			this.$emit("save-character", this.character);
+			this.$emit("save-new-character", this.character);
 		}
 
 		discardCharacter() {

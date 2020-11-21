@@ -47,10 +47,10 @@
 			</div>
 			<section class="column is-half is-multiline">
 				<b-field class="column" label="Name">
-					<b-input v-model="character.name"></b-input>
+					<b-input :value="character.name" @input="changeName"></b-input>
 				</b-field>
 				<b-field class="column" label="Origin">
-					<b-input v-model="character.origin"></b-input>
+					<b-input :value="character.origin" @input="changeOrigin"></b-input>
 				</b-field>
 				<div class="columns is-centered mt-1">
 					<div class="column is-4">
@@ -68,16 +68,31 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Character, newCharacterImage } from "~/models/interfaces/Character";
+	import { Character, newCharacter, newCharacterImage } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "EditCharacter",
 	})
 	export default class EditCharacter extends Vue {
-		character: Character = this.$accessor.character;
+		character: Character = newCharacter();
 		imagesActive = false;
 		activeImageIndex: number = NaN;
 		activeImageLoading: boolean = false;
+
+		mounted() {
+			this.character = this.$accessor.character;
+			if (this.character.images.length) {
+				this.activeImageIndex = 0;
+			}
+		}
+
+		changeName(name: string) {
+			this.$accessor.changeName(name);
+		}
+
+		changeOrigin(origin: string) {
+			this.$accessor.changeOrigin(origin);
+		}
 
 		addNewImage() {
 			this.$buefy.dialog.prompt({
