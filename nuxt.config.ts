@@ -5,9 +5,6 @@ import { Configuration as WebpackConfiguration } from "webpack";
 const nuxtConfig: NuxtConfig = {
 	target: "server",
 	title: "Character List Manager",
-	/*
-	 ** Headers of the page
-	 */
 	head: {
 		meta: [
 			{ charset: "utf-8" },
@@ -38,68 +35,10 @@ const nuxtConfig: NuxtConfig = {
 		],
 		title: "Character List Manager",
 	},
-	/*
-	 ** Customize the progress-bar color
-	 */
-	loading: { color: "#fff" },
-	/*
-	 ** Global CSS
-	 */
-	// css: ["@/assets/styles.scss"],
-	/*
-	 ** Plugins to load before mounting the App
-	 */
+	loading: { color: "#02fdff" },
 	plugins: [],
-	/*
-	 ** Nuxt.js dev-modules
-	 */
-	buildModules: [
-		"@nuxt/typescript-build",
-		// Doc: https://github.com/nuxt-community/stylelint-module
-		"@nuxtjs/stylelint-module",
-		"nuxt-typed-vuex",
-	],
-	/*
-	 ** Nuxt.js modules
-	 */
-	modules: [
-		// Doc: https://buefy.github.io/#/documentation
-		"nuxt-buefy",
-		// Doc: https://axios.nuxtjs.org/usage
-		"@nuxtjs/axios",
-		"@nuxtjs/pwa",
-		// Doc: https://github.com/nuxt-community/dotenv-module
-		"@nuxtjs/dotenv",
-		"@nuxtjs/proxy",
-		"nuxt-winston-log",
-		// "nuxt-i18n",
-	],
-	/*
-	 ** Axios module configuration
-	 ** See https://axios.nuxtjs.org/options
-	 */
-	axios: {
-		proxy: true,
-	},
-	proxy: {
-		"/api/": { target: process.env.BASE_URL || "http://localhost:3000" },
-	},
-	// i18n: {
-	// 	locales: [
-	// 		{ code: "en", file: "en.json" },
-	// 		{ code: "de", file: "de.json" },
-	// 	],
-	// 	strategy: "prefix",
-	// 	defaultLocale: "en",
-	// 	langDir: "i18n/",
-	// 	lazy: true,
-	// 	vueI18n: {
-	// 		fallbackLocale: "en",
-	// 	},
-	// },
-	/*
-	 ** Build configuration
-	 */
+	buildModules: ["@nuxt/typescript-build", "@nuxtjs/stylelint-module", "nuxt-typed-vuex"],
+	modules: ["nuxt-buefy", "@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log"],
 	build: {
 		extend(
 			config: WebpackConfiguration,
@@ -112,17 +51,10 @@ const nuxtConfig: NuxtConfig = {
 			}
 		},
 	},
-	dotenv: {
-		filename: process.env.NODE_ENV === "production" ? "prod.env" : "dev.env",
-	},
 	serverMiddleware: [
 		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
 		{ path: "/saveCollection", handler: "../api/saveCollection.ts" },
 	],
-	server: {
-		host: "0.0.0.0",
-		port: 3000,
-	},
 	winstonLog: {
 		transportOptions: {
 			eol: "\n",

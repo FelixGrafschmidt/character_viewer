@@ -12,7 +12,7 @@ const tedis = new Tedis({
 export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
 	let collection = { id: v4(), lists: new Array<any>() };
 	try {
-		const params: url.URLSearchParams = new url.URL(req.originalUrl!, process.env._AXIOS_BASE_URL_).searchParams;
+		const params: url.URLSearchParams = new url.URL(req.originalUrl!, "https://localhost").searchParams;
 
 		res.setHeader("Content-Type", "application/json");
 		res.statusCode = 404;

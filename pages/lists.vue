@@ -40,7 +40,6 @@
 	// Vue basics
 	import { Component, Vue, Prop } from "nuxt-property-decorator";
 	import { List, newList } from "@/models/interfaces/List";
-	import { loadList } from "@/services/AjaxService";
 	@Component({
 		components: {},
 		name: "lists",
@@ -76,7 +75,12 @@
 				ariaModal: true,
 				trapFocus: true,
 				onConfirm: (value) => {
-					loadList(value)
+					this.$axios
+						.$get("/loadList", {
+							params: {
+								id: value,
+							},
+						})
 						.then((response) => {
 							this.addListToCollection(response.data);
 						})

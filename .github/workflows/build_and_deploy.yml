@@ -46,7 +46,7 @@ jobs:
                   port: $PORT
                   username: $USERNAME
                   password: $PASSWORD
-                  source: ".nuxt/,static/,api/,node_modules/,nuxt.config.ts,package.json,prod.env,tsconfig.json"
+                  source: ".nuxt/,static/,api/,node_modules/,nuxt.config.ts,package.json,tsconfig.json"
                   target: "/srv/character_viewer/"
             - name: restart via ssh
               env:
