@@ -35,11 +35,16 @@ jobs:
               run: npm i && npm run build
 
             - name: copy file via ssh password
+              env:
+                  HOST: ${{ secrets.HOST }}
+                  PORT: ${{ secrets.PORT }}
+                  USERNAME: ${{ secrets.USERNAME }}
+                  PASSWORD: ${{ secrets.PASSWORD }}
               uses: appleboy/scp-action@master
               with:
-                  host: ${{ secrets.HOST }}
-                  username: ${{ secrets.USERNAME }}
-                  password: ${{ secrets.PASSWORD }}
-                  port: ${{ secrets.PORT }}
+                  host: $HOST
+                  port: $PORT
+                  username: $USERNMAE
+                  password: $PASSWORD
                   source: ".nuxt/,api/,node_modules/,nuxt.config.ts,package.json,prod.env,tsconfig.json"
                   target: "/srv/character_viewer/"
