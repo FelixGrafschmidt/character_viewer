@@ -44,8 +44,8 @@
 		<div v-if="$accessor.changes" class="unsaved-changes has-background-danger has-text-centered" @click="saveChanges">You have unsaved changes. Click here to save them.</div>
 		<section class="main-content columns">
 			<aside class="column is-2 section has-border-right">
-				<p class="menu-label is-hidden-touch">Characters</p>
-				<ul class="menu-list">
+				<p v-if="$accessor.list.id" class="menu-label is-hidden-touch">Characters</p>
+				<ul v-if="$accessor.list.id" class="menu-list">
 					<li v-for="(item, key) of characterItems" :key="key">
 						<nuxt-link :to="item.to.name" exact-active-class="is-active"> <b-icon :icon="item.icon" /> {{ item.title }} </nuxt-link>
 					</li>
@@ -100,7 +100,7 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Collection } from "@/models/Collection";
+	import { Collection, newCollection } from "@/models/interfaces/Collection";
 	@Component({ name: "default" })
 	export default class Default extends Vue {
 		private changes = this.$accessor.changes;
@@ -121,14 +121,18 @@
 								id: collectionId,
 							},
 						})
-						.then((response: string) => {
-							this.$accessor.setCollection(new Collection().fromJSON(response));
+						.then((response: Collection) => {
+							console.log(response);
+
+							this.$accessor.setCollection(response);
 						})
-						.catch(() => {
-							this.saveNewCollection(new Collection().init(collectionId));
+						.catch((error) => {
+							console.error(error);
+
+							this.saveNewCollection({ id: collectionId, lists: [] });
 						});
 				} else {
-					this.saveNewCollection(new Collection().init());
+					this.saveNewCollection(newCollection());
 				}
 			}
 		}
@@ -214,7 +218,7 @@
 			}, 1000 * 60);
 		}
 
-		private beforeDestory() {
+		private beforeDestroy() {
 			window.clearInterval(this.autosaveId);
 		}
 	}

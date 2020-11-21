@@ -2,15 +2,14 @@ import * as http from "http";
 import * as url from "url";
 import * as createServer from "connect";
 import { Tedis } from "tedis";
-import { Collection } from "../models/Collection";
-
+import { Collection, newCollection } from "../models/interfaces/Collection";
 const tedis = new Tedis({
 	host: "127.0.0.1",
 	port: 6378,
 });
 
 export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
-	let collection = new Collection().init();
+	let collection: Collection = newCollection();
 	try {
 		const params: url.URLSearchParams = new url.URL(req.originalUrl!, process.env._AXIOS_BASE_URL_).searchParams;
 
@@ -19,11 +18,11 @@ export default async function (req: createServer.IncomingMessage, res: http.Serv
 
 		const id: string = params.get("id") || "";
 		if (id) {
-			collection = new Collection().init(id);
+			collection = { id, lists: [] };
 			await tedis.exists(id).then(async () => {
 				await tedis.get(id).then((response: any) => {
 					if (typeof response === "string") {
-						collection = new Collection().fromJSON(response);
+						collection = JSON.parse(response) as Collection;
 						res.statusCode = 200;
 					}
 				});
@@ -32,6 +31,6 @@ export default async function (req: createServer.IncomingMessage, res: http.Serv
 	} catch (error) {
 		console.log(error);
 	} finally {
-		res.end(collection.toJSON());
+		res.end(JSON.stringify(collection));
 	}
 }

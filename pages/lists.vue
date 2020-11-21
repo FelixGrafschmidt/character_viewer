@@ -39,7 +39,7 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue, Prop } from "nuxt-property-decorator";
-	import { List } from "@/models/List";
+	import { List, newList } from "@/models/interfaces/List";
 	import { loadList } from "@/services/AjaxService";
 	@Component({
 		components: {},
@@ -62,7 +62,7 @@
 				ariaModal: true,
 				trapFocus: true,
 				onConfirm: (value) => {
-					this.addListToCollection(new List().init(value));
+					this.addListToCollection(newList(undefined, value));
 				},
 			});
 		}
@@ -111,7 +111,7 @@
 			this.$accessor.setChanges(true);
 			this.$buefy.toast.open({ message: "Name saved!", type: "is-primary" });
 
-			this.$accessor.setList(new List());
+			this.$accessor.setList({ id: "", name: "", characters: [] });
 		}
 
 		private exportList(): void {}

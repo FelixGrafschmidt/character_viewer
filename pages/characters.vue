@@ -22,7 +22,7 @@
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
 	import NewCharacter from "@/components/NewCharacter.vue";
-	import { Character } from "~/models/Character";
+	import { Character } from "~/models/interfaces/Character";
 	@Component({
 		components: { NewCharacter },
 		name: "characters",

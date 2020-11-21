@@ -60,13 +60,13 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Character, CharacterImage } from "~/models/Character";
+	import { Character, CharacterImage, newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "NewCharacter",
 	})
 	export default class NewCharacter extends Vue {
-		character = new Character();
+		character: Character = newCharacter();
 		imagesActive = false;
 		activeImageIndex: number = NaN;
 		activeImageLoading: boolean = false;
@@ -77,7 +77,7 @@
 				trapFocus: true,
 				scroll: "keep",
 				onConfirm: (value) => {
-					this.character.images.push(new CharacterImage(value));
+					this.character.images.push(JSON.parse(value) as CharacterImage);
 					if (!this.activeImageIndex) {
 						this.character.images[0].main = true;
 						this.activeImageIndex = 0;

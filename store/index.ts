@@ -1,17 +1,18 @@
+/* eslint-disable no-array-constructor */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { getAccessorType, getterTree, mutationTree, actionTree } from "typed-vuex";
 
 import axios from "@nuxtjs/axios";
 import { ModalProgrammatic as Modal } from "buefy";
-import { Collection } from "@/models/Collection";
-import { List } from "@/models/List";
-import { Character } from "@/models/Character";
+import { Collection } from "~/models/interfaces/Collection";
+import { List } from "~/models/interfaces/List";
+import { Character } from "~/models/interfaces/Character";
 
 export const state = () => ({
-	collection: new Collection(),
-	list: new List(),
-	character: new Character(),
+	collection: { id: "", lists: new Array<List>() },
+	list: { id: "", name: "", characters: new Array<Character>() },
+	character: {},
 	changes: false,
 });
 

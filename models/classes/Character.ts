@@ -81,14 +81,18 @@ export class Character {
 		this.images = parsedJSON.images;
 		this.attributeArrays = parsedJSON.attributeArrays;
 		this.subCharacterArrays = new Map();
-		parsedJSON.subCharacterArrays.forEach((subCharacterArray, type) => {
-			const parsedSubCharacterArray: Array<SubCharacter> = [];
-			subCharacterArray.forEach((subCharacter) => {
-				parsedSubCharacterArray.push(new SubCharacter().fromJSON(JSON.stringify(subCharacter)));
-			});
 
-			this.subCharacterArrays.set(type, parsedSubCharacterArray);
-		});
+		if (parsedJSON.subCharacterArrays.size) {
+			parsedJSON.subCharacterArrays.forEach((subCharacterArray, type) => {
+				const parsedSubCharacterArray: Array<SubCharacter> = [];
+				subCharacterArray.forEach((subCharacter) => {
+					parsedSubCharacterArray.push(new SubCharacter().fromJSON(JSON.stringify(subCharacter)));
+				});
+
+				this.subCharacterArrays.set(type, parsedSubCharacterArray);
+			});
+		}
+
 		return this;
 	}
 

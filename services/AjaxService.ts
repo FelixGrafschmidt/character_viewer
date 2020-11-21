@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { Collection } from "@/models/Collection";
-import { List } from "@/models/List";
+import { Collection } from "~/models/interfaces/Collection";
+import { List } from "~/models/interfaces/List";
 
 // function saveList(list: List): Promise<AxiosResponse<string>> {
 // 	if (list.characters === null) {
