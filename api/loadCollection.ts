@@ -1,15 +1,16 @@
+/* eslint-disable no-array-constructor */
 import * as http from "http";
 import * as url from "url";
 import * as createServer from "connect";
 import { Tedis } from "tedis";
-import { Collection, newCollection } from "../models/interfaces/Collection";
+import { v4 } from "uuid";
 const tedis = new Tedis({
 	host: "127.0.0.1",
 	port: 6378,
 });
 
 export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
-	let collection: Collection = newCollection();
+	let collection = { id: v4(), lists: new Array<any>() };
 	try {
 		const params: url.URLSearchParams = new url.URL(req.originalUrl!, process.env._AXIOS_BASE_URL_).searchParams;
 
@@ -22,7 +23,7 @@ export default async function (req: createServer.IncomingMessage, res: http.Serv
 			await tedis.exists(id).then(async () => {
 				await tedis.get(id).then((response: any) => {
 					if (typeof response === "string") {
-						collection = JSON.parse(response) as Collection;
+						collection = JSON.parse(response) as { id: string; lists: Array<any> };
 						res.statusCode = 200;
 					}
 				});

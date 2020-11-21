@@ -116,8 +116,8 @@ const nuxtConfig: NuxtConfig = {
 		filename: process.env.NODE_ENV === "production" ? "prod.env" : "dev.env",
 	},
 	serverMiddleware: [
-		{ path: "/loadCollection", handler: "~/api/loadCollection.ts" },
-		{ path: "/saveCollection", handler: "~/api/saveCollection.ts" },
+		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
+		{ path: "/saveCollection", handler: "../api/saveCollection.ts" },
 	],
 	server: {
 		host: "0.0.0.0",

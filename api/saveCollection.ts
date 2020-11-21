@@ -1,7 +1,6 @@
 import * as http from "http";
 import * as createServer from "connect";
 import { Tedis } from "tedis";
-import { Collection } from "../models/interfaces/Collection";
 
 const tedis = new Tedis({
 	host: "127.0.0.1",
@@ -15,7 +14,7 @@ export default function (req: createServer.IncomingMessage, res: http.ServerResp
 	req.on("data", async (chunk: string) => {
 		body += chunk;
 
-		const id: string = (JSON.parse(body) as Collection).id;
+		const id: string = (JSON.parse(body) as { id: string }).id;
 
 		if (id) {
 			await tedis.set(id, body);
