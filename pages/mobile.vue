@@ -33,6 +33,7 @@
 				inputAttrs: {
 					placeholder: "Collection ID",
 				},
+				message: "",
 				canCancel: false,
 				confirmText: "Load",
 				trapFocus: true,

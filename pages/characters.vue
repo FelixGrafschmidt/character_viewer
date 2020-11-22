@@ -1,9 +1,8 @@
 <template>
-	<new-character v-if="newCharacterActive" @save-new-character="saveNewCharacter" @discard-character="discardCharacter" />
-	<edit-character v-else-if="editCharacterActive" @save-character="saveCharacter" @delete-character="deleteCharacter" />
+	<edit-character v-if="editCharacterActive" @save-character="saveCharacter" @delete-character="deleteCharacter" />
 	<div v-else class="moe-table-wrapper">
 		<div class="columns is-centered new-character-button">
-			<b-button class="column is-2" label="New character" @click="newCharacterActive = true" />
+			<b-button class="column is-2" label="New character" @click="createNewCharacter" />
 		</div>
 		<b-table v-if="list.characters.length" scrollable :sticky-header="true" focusable striped :data="list.characters" @click="editCharacter">
 			<b-table-column v-slot="props" field="name" label="Name" width="40%">
@@ -22,18 +21,23 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import NewCharacter from "@/components/NewCharacter.vue";
 	import EditCharacter from "@/components/EditCharacter.vue";
 	import { Character, newCharacter } from "~/models/interfaces/Character";
 	@Component({
-		components: { NewCharacter, EditCharacter },
+		components: { EditCharacter },
 		name: "characters",
 		middleware: "routeguard",
 	})
 	export default class Characters extends Vue {
-		newCharacterActive = false;
 		editCharacterActive = false;
 		list = this.$accessor.list;
+
+		createNewCharacter() {
+			const character = newCharacter();
+			this.$accessor.setCharacter(character);
+			this.$accessor.addCharacter({ newCharacter: this.$accessor.character });
+			this.editCharacterActive = true;
+		}
 
 		editCharacter(character: Character) {
 			this.$accessor.setCharacter(character);
@@ -42,15 +46,6 @@
 
 		saveCharacter() {
 			this.editCharacterActive = false;
-		}
-
-		saveNewCharacter(character: Character) {
-			this.$accessor.addCharacter(character);
-			this.newCharacterActive = false;
-		}
-
-		discardCharacter() {
-			this.newCharacterActive = false;
 		}
 
 		deleteCharacter(character: Character) {

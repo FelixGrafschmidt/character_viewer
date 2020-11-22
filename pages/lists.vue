@@ -62,6 +62,9 @@
 				trapFocus: true,
 				onConfirm: (value) => {
 					this.addListToCollection(newList(undefined, value));
+					if (this.$accessor.collection.lists.length === 1) {
+						this.openList(this.$accessor.collection.lists[0]);
+					}
 				},
 			});
 		}
@@ -112,7 +115,6 @@
 			this.$accessor.setList(list);
 
 			this.$accessor.renameList(name);
-			this.$accessor.setChanges(true);
 			this.$buefy.toast.open({ message: "Name saved!", type: "is-primary" });
 
 			this.$accessor.setList({ id: "", name: "", characters: [] });
@@ -137,7 +139,6 @@
 				confirmText: "Delete",
 				onConfirm: () => {
 					this.$accessor.removeListFromCollection(list.id);
-					this.$accessor.setChanges(true);
 				},
 			});
 		}
@@ -148,7 +149,6 @@
 
 		private addListToCollection(list: List) {
 			this.$accessor.addListToCollection(list);
-			this.$accessor.setChanges(true);
 		}
 	}
 </script>

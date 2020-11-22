@@ -10,7 +10,7 @@
 				</figure>
 			</div>
 			<section class="column is-half columns is-multiline gallery">
-				<div v-for="(image, i) in character.images" :key="i" class="column is-one-quarter">
+				<div v-for="(image, i) in images" :key="i" class="column is-one-quarter">
 					<figure class="gallery-image-wrapper columns is-centered image is-4by7">
 						<img v-if="image && !image.main" :src="image.src" :alt="i" class="column is-7 gallery-image" @click="changeActiveImage(i)" @error="image.src = ''" />
 						<b-tooltip v-else-if="image && image.main" label="Main Image" position="is-bottom" multilined size="is-small">
@@ -47,10 +47,10 @@
 			</div>
 			<section class="column is-half is-multiline">
 				<b-field class="column" label="Name">
-					<b-input :value="character.name" @input="changeName"></b-input>
+					<b-input v-model="name"></b-input>
 				</b-field>
 				<b-field class="column" label="Origin">
-					<b-input :value="character.origin" @input="changeOrigin"></b-input>
+					<b-input v-model="origin"></b-input>
 				</b-field>
 				<div class="columns is-centered mt-1">
 					<div class="column is-4">
@@ -68,30 +68,41 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Character, newCharacter, newCharacterImage } from "~/models/interfaces/Character";
+	import { newCharacterImage } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "EditCharacter",
 	})
 	export default class EditCharacter extends Vue {
-		character: Character = newCharacter();
+		character = this.$accessor.character;
 		imagesActive = false;
 		activeImageIndex: number = NaN;
 		activeImageLoading: boolean = false;
 
 		mounted() {
-			this.character = this.$accessor.character;
 			if (this.character.images.length) {
 				this.activeImageIndex = 0;
 			}
 		}
 
-		changeName(name: string) {
-			this.$accessor.changeName(name);
+		get name() {
+			return this.$accessor.characterName;
 		}
 
-		changeOrigin(origin: string) {
-			this.$accessor.changeOrigin(origin);
+		set name(name: string) {
+			this.$accessor.changeCharacterName(name);
+		}
+
+		get origin() {
+			return this.$accessor.characterOrigin;
+		}
+
+		set origin(origin: string) {
+			this.$accessor.changeCharacterOrigin(origin);
+		}
+
+		get images() {
+			return this.$accessor.characterImages;
 		}
 
 		addNewImage() {
@@ -100,10 +111,10 @@
 				trapFocus: true,
 				scroll: "keep",
 				onConfirm: (value) => {
-					this.character.images.push(newCharacterImage(value));
+					this.$accessor.addCharacterImage(newCharacterImage(value));
 					if (!this.activeImageIndex) {
-						this.character.images[0].main = true;
 						this.activeImageIndex = 0;
+						this.designateMainImage();
 					}
 				},
 			});
@@ -114,10 +125,10 @@
 			if (this.character.images[this.activeImageIndex].main) {
 				wasMain = true;
 			}
-			this.character.images.splice(this.activeImageIndex, 1);
+			this.$accessor.removeCharacterImage(this.activeImageIndex);
 			if (wasMain) {
 				if (this.character.images[0]) {
-					this.character.images[0].main = true;
+					this.$accessor.designateMainImage(0);
 				}
 			}
 			if (this.character.images.length) {
@@ -128,9 +139,7 @@
 		}
 
 		designateMainImage() {
-			this.character.images.forEach((image, index) => {
-				image.main = index === this.activeImageIndex;
-			});
+			this.$accessor.designateMainImage(this.activeImageIndex);
 		}
 
 		getMainImage() {
@@ -158,13 +167,13 @@
 
 <style lang="scss" scoped>
 	.gallery {
-		max-height: 75vh;
-		min-height: 75vh;
+		max-height: 70vh;
+		min-height: 70vh;
 		overflow: auto;
 	}
 	.active-image-wrapper {
-		max-height: 75vh;
-		min-height: 75vh;
+		max-height: 70vh;
+		min-height: 70vh;
 	}
 	.active-image {
 		object-fit: contain;

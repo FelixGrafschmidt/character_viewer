@@ -24,6 +24,9 @@
 				<div class="navbar-item">
 					<b-button size="is-small" @click="saveChanges">Save</b-button>
 				</div>
+				<div class="navbar-item">
+					<div v-if="changes" class="unsaved-changes">UNSAVED CHANGES</div>
+				</div>
 			</div>
 			<div class="navbar-end">
 				<div class="navbar-item has-dropdown is-hoverable">
@@ -36,7 +39,6 @@
 				</div>
 			</div>
 		</nav>
-		<div v-if="$accessor.changes" class="unsaved-changes has-background-danger has-text-centered" @click="saveChanges">You have unsaved changes. Click here to save them.</div>
 		<section class="main-content-wrapper columns">
 			<aside class="column is-2 section has-border-right">
 				<p v-if="$accessor.list.id" class="menu-label is-hidden-touch">Characters</p>
@@ -95,10 +97,9 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Collection, newCollection } from "@/models/interfaces/Collection";
+	import { Collection, getHash, newCollection } from "@/models/interfaces/Collection";
 	@Component({ name: "default" })
 	export default class Default extends Vue {
-		changes = this.$accessor.changes;
 		saveError = false;
 		isLoading = false;
 		contactUsActive = false;
@@ -128,6 +129,10 @@
 
 		get collection() {
 			return this.$accessor.collection;
+		}
+
+		get changes() {
+			return this.$accessor.originalHash !== getHash(this.collection);
 		}
 
 		mounted() {
@@ -211,14 +216,6 @@
 			});
 		}
 
-		// get availableLocales() {
-		// 	const result: Array<NuxtVueI18n.Options.LocaleObject> = [];
-		// 	this.$i18n.locales!.forEach((locale) => {
-		// 		result.push(locale as NuxtVueI18n.Options.LocaleObject);
-		// 	});
-		// 	return result;
-		// }
-
 		enableAutosave() {
 			this.autosave = true;
 		}
@@ -253,6 +250,7 @@
 	.main-wrapper {
 		min-width: 80vw;
 		max-width: 80vw;
+		margin-top: 2rem;
 	}
 	.has-border-right {
 		border-right: 2px solid var(--color-primary);
@@ -262,7 +260,7 @@
 	}
 
 	.main-content-wrapper {
-		height: 85vh;
+		height: 80vh;
 		margin: unset;
 	}
 	.main-content {
@@ -283,13 +281,13 @@
 		background-color: #0e0e0e;
 	}
 	.unsaved-changes {
-		cursor: pointer;
-		font-weight: bold;
-		height: 3vh;
-		opacity: 0.5;
-		&:hover {
-			opacity: 1;
-		}
+		font-weight: bolder;
+		color: red;
+		// height: 3vh;
+		// opacity: 0.5;
+		// &:hover {
+		// 	opacity: 1;
+		// }
 	}
 	.logo {
 		cursor: pointer;
