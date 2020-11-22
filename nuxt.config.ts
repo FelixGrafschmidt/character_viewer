@@ -38,7 +38,7 @@ const nuxtConfig: NuxtConfig = {
 	loading: { color: "#02fdff" },
 	plugins: [],
 	buildModules: ["@nuxt/typescript-build", "@nuxtjs/stylelint-module", "nuxt-typed-vuex"],
-	modules: ["nuxt-buefy", "@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log"],
+	modules: ["nuxt-buefy", "@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device"],
 	build: {
 		extend(
 			config: WebpackConfiguration,
