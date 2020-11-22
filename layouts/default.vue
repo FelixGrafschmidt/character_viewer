@@ -21,6 +21,9 @@
 					<b-button v-if="autosave" size="is-small" @click="disableAutosave">Disable autosave</b-button>
 					<b-button v-else size="is-small" @click="enableAutosave">Enable autosave</b-button>
 				</div>
+				<div class="navbar-item">
+					<b-button size="is-small" @click="saveChanges">Save</b-button>
+				</div>
 			</div>
 			<div class="navbar-end">
 				<div class="navbar-item">
@@ -42,7 +45,7 @@
 			</div> -->
 		</nav>
 		<div v-if="$accessor.changes" class="unsaved-changes has-background-danger has-text-centered" @click="saveChanges">You have unsaved changes. Click here to save them.</div>
-		<section class="main-content columns">
+		<section class="main-content-wrapper columns">
 			<aside class="column is-2 section has-border-right">
 				<p v-if="$accessor.list.id" class="menu-label is-hidden-touch">Characters</p>
 				<ul v-if="$accessor.list.id" class="menu-list">
@@ -58,8 +61,8 @@
 				</ul>
 			</aside>
 
-			<div class="container column is-10">
-				<nuxt />
+			<div class="container column main-content columns">
+				<nuxt class="column" />
 			</div>
 		</section>
 		<footer class="footer">
@@ -240,9 +243,14 @@
 		border-left: 2px solid var(--color-primary);
 	}
 
-	.main-content {
+	.main-content-wrapper {
 		height: 85vh;
 		margin: unset;
+	}
+	.main-content {
+		margin: 2rem;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 	.footer {
 		height: 10vh;
