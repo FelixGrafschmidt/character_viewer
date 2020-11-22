@@ -26,8 +26,13 @@
 				</div>
 			</div>
 			<div class="navbar-end">
-				<div class="navbar-item">
-					{{ $accessor.collection.id }}
+				<div class="navbar-item has-dropdown is-hoverable">
+					<div class="navbar-item">
+						{{ $accessor.collection.id }}
+					</div>
+					<div class="navbar-dropdown">
+						<div class="navbar-item load-collection" @click="loadCollection">Load Collection</div>
+					</div>
 				</div>
 			</div>
 		</nav>
@@ -93,14 +98,39 @@
 	import { Collection, newCollection } from "@/models/interfaces/Collection";
 	@Component({ name: "default" })
 	export default class Default extends Vue {
-		private changes = this.$accessor.changes;
-		private saveError = false;
-		private isLoading = false;
-		private contactUsActive = false;
-		private autosave = false;
-		private autosaveId = 0;
+		changes = this.$accessor.changes;
+		saveError = false;
+		isLoading = false;
+		contactUsActive = false;
+		autosave = false;
+		autosaveId = 0;
 
-		private mounted() {
+		characterItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
+			{
+				title: "Characters",
+				// icon: "home",
+				to: { name: "characters" },
+			},
+			{
+				title: "Gallery",
+				// icon: "home",
+				to: { name: "gallery" },
+			},
+		];
+
+		listItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
+			{
+				title: "List-Manager",
+				// icon: "home",
+				to: { name: "lists" },
+			},
+		];
+
+		get collection() {
+			return this.$accessor.collection;
+		}
+
+		mounted() {
 			this.performAutosave();
 			if (!(this.collection && this.collection.id)) {
 				const collectionId = localStorage.getItem("collectionId");
@@ -125,7 +155,7 @@
 			}
 		}
 
-		private saveNewCollection(collection: Collection) {
+		saveNewCollection(collection: Collection) {
 			this.$axios
 				.$post("saveCollection", collection)
 				.then(() => {
@@ -138,32 +168,7 @@
 			localStorage.setItem("collectionId", collection.id);
 		}
 
-		get collection() {
-			return this.$accessor.collection;
-		}
-
-		private characterItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
-			{
-				title: "Characters",
-				// icon: "home",
-				to: { name: "characters" },
-			},
-			{
-				title: "Gallery",
-				// icon: "home",
-				to: { name: "gallery" },
-			},
-		];
-
-		private listItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
-			{
-				title: "List-Manager",
-				// icon: "home",
-				to: { name: "lists" },
-			},
-		];
-
-		private saveChanges(): Promise<void> {
+		saveChanges(): Promise<void> {
 			this.isLoading = true;
 			return this.$accessor
 				.saveChanges()
@@ -177,12 +182,34 @@
 				});
 		}
 
-		private contactUs() {
+		contactUs() {
 			this.saveError = false;
 			this.contactUsActive = true;
 		}
 
-		private exportData() {}
+		exportData() {}
+
+		loadCollection() {
+			this.$buefy.dialog.prompt({
+				message: "Enter collection ID. WARNING: This will overwrite your current collection!",
+				trapFocus: true,
+				onConfirm: (value) => {
+					this.$axios
+						.$get("loadCollection", {
+							params: {
+								id: value,
+							},
+						})
+						.then((response: Collection) => {
+							this.$accessor.setCollection(response);
+							localStorage.setItem("collectionId", response.id);
+						})
+						.catch((error) => {
+							console.error(error);
+						});
+				},
+			});
+		}
 
 		// get availableLocales() {
 		// 	const result: Array<NuxtVueI18n.Options.LocaleObject> = [];
@@ -192,15 +219,15 @@
 		// 	return result;
 		// }
 
-		private enableAutosave() {
+		enableAutosave() {
 			this.autosave = true;
 		}
 
-		private disableAutosave() {
+		disableAutosave() {
 			this.autosave = false;
 		}
 
-		private performAutosave() {
+		performAutosave() {
 			this.autosaveId = window.setInterval(() => {
 				if (this.autosave) {
 					this.$accessor.saveChanges();
@@ -208,7 +235,7 @@
 			}, 1000 * 60);
 		}
 
-		private beforeDestroy() {
+		beforeDestroy() {
 			window.clearInterval(this.autosaveId);
 		}
 	}
@@ -283,5 +310,8 @@
 	body::-webkit-scrollbar-thumb {
 		background-color: var(--color-secondary);
 		outline: 1px solid black;
+	}
+	.load-collection {
+		cursor: pointer;
 	}
 </style>
