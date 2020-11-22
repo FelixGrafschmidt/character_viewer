@@ -30,19 +30,6 @@
 					{{ $accessor.collection.id }}
 				</div>
 			</div>
-			<!-- <div class="navbar-end">
-				<div class="navbar-item">
-					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							{{ $t("language") }}
-						</a>
-
-						<div class="navbar-dropdown">
-							<nuxt-link v-for="locale in availableLocales" :key="locale.code" class="navbar-item" :to="switchLocalePath(locale.code)">{{ locale.code }}</nuxt-link>
-						</div>
-					</div>
-				</div>
-			</div> -->
 		</nav>
 		<div v-if="$accessor.changes" class="unsaved-changes has-background-danger has-text-centered" @click="saveChanges">You have unsaved changes. Click here to save them.</div>
 		<section class="main-content-wrapper columns">
@@ -62,7 +49,7 @@
 			</aside>
 
 			<div class="container column main-content columns">
-				<nuxt class="column" />
+				<nuxt class="column main-wrapper" />
 			</div>
 		</section>
 		<footer class="footer">
@@ -236,6 +223,10 @@
 </style>
 
 <style lang="scss">
+	.main-wrapper {
+		min-width: 80vw;
+		max-width: 80vw;
+	}
 	.has-border-right {
 		border-right: 2px solid var(--color-primary);
 	}

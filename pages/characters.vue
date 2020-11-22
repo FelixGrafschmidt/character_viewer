@@ -5,7 +5,7 @@
 		<div class="columns is-centered new-character-button">
 			<b-button class="column is-2" label="New character" @click="newCharacterActive = true" />
 		</div>
-		<b-table v-if="list.characters.length" focusable striped :data="list.characters" @click="editCharacter">
+		<b-table v-if="list.characters.length" scrollable :sticky-header="true" focusable striped :data="list.characters" @click="editCharacter">
 			<b-table-column v-slot="props" field="name" label="Name" width="40%">
 				{{ props.row.name }}
 			</b-table-column>
@@ -68,38 +68,30 @@
 </script>
 
 <style lang="scss" scoped>
-	.moe-table-wrapper {
-		min-width: 80vw;
-		max-width: 80vw;
-		max-height: 75vh;
-		min-height: 75vh;
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
 	.table-image {
 		height: auto;
 		max-height: 8rem;
 	}
-	.new-character-button {
-		margin-top: 3rem;
+	::v-deep tbody tr {
+		cursor: pointer;
+	}
+	::v-deep .table-wrapper {
+		min-height: 80vh;
+	}
+	::v-deep .table-wrapper::-webkit-scrollbar {
+		width: 0.2em;
+	}
+	::v-deep .table-wrapper::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+	::v-deep .table-wrapper::-webkit-scrollbar-thumb {
+		background-color: var(--color-secondary);
+		outline: 1px solid black;
 	}
 	::v-deep .b-table .table:focus {
 		border: none;
 		outline: none;
 		box-shadow: none;
-	}
-	::v-deep tbody tr {
-		cursor: pointer;
-	}
-	.moe-table-wrapper::-webkit-scrollbar {
-		width: 0.2em;
-	}
-	.moe-table-wrapper::-webkit-scrollbar-track {
-		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
-	.moe-table-wrapper::-webkit-scrollbar-thumb {
-		background-color: var(--color-secondary);
-		outline: 1px solid black;
 	}
 </style>

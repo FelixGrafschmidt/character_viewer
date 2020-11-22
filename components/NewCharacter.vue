@@ -1,5 +1,5 @@
 <template>
-	<section v-if="imagesActive">
+	<section v-if="imagesActive" class="main-wrapper">
 		<div class="columns is-centered is-multiline">
 			<div class="column is-half active-image-wrapper">
 				<figure class="columns is-centered image is-4by7 active-image-wrapper">
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 	</section>
-	<section v-else>
+	<section v-else class="main-wrapper">
 		<div class="columns is-centered is-multiline">
 			<div class="column is-half active-image-wrapper">
 				<figure class="columns is-centered image is-4by7 active-image-wrapper">
