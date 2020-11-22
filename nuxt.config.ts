@@ -58,6 +58,9 @@ const nuxtConfig: NuxtConfig = {
 		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
 		{ path: "/saveCollection", handler: "../api/saveCollection.ts" },
 	],
+	router: {
+		middleware: "mobileRedirect",
+	},
 	winstonLog: {
 		transportOptions: {
 			eol: "\n",

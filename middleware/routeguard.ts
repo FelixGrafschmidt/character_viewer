@@ -1,9 +1,6 @@
 import { Context } from "@nuxt/types";
 
-export default function (context: { isDesktop: boolean } & Context) {
-	if (!context.isDesktop) {
-		return context.redirect("/mobile", context.route.query);
-	}
+export default function (context: Context) {
 	if (context.store.state.list.id === "") {
 		return context.redirect("/");
 	}
