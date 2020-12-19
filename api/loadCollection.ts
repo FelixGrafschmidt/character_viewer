@@ -9,7 +9,7 @@ const tedis = new Tedis({
 	port: 6378,
 });
 
-export default async function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): Promise<void> {
+export default async function (req: createServer.IncomingMessage, res: http.ServerResponse): Promise<void> {
 	let collection = { id: v4(), lists: new Array<any>() };
 	try {
 		const params: url.URLSearchParams = new url.URL(req.originalUrl!, "https://localhost").searchParams;

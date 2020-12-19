@@ -49,6 +49,8 @@
 				this.$buefy.dialog.prompt({
 					inputAttrs: {
 						placeholder: "Collection ID",
+						autocomplete: "collectionID",
+						name: "collectionID",
 					},
 					message: "",
 					canCancel: false,

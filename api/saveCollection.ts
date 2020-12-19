@@ -7,7 +7,7 @@ const tedis = new Tedis({
 	port: 6378,
 });
 
-export default function (req: createServer.IncomingMessage, res: http.ServerResponse, _next: createServer.NextFunction): void {
+export default function (req: createServer.IncomingMessage, res: http.ServerResponse): void {
 	let body: string = "";
 	res.statusCode = 404;
 

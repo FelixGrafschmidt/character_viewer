@@ -76,10 +76,10 @@ export const mutations = mutationTree(state, {
 		});
 	},
 	deleteCharacter: (currentState, character: Character) => {
-		const newList = currentState.list.characters.filter((characterInList) => {
+		const characters = currentState.list.characters.filter((characterInList) => {
 			return character.id !== characterInList.id;
 		});
-		currentState.list.characters = newList;
+		currentState.list.characters = characters;
 	},
 
 	initializeStore() {
@@ -94,7 +94,7 @@ export const actions = actionTree(
 				this.app.$accessor.setCollection(this.app.$accessor.collection);
 			});
 		},
-	},
+	}
 );
 
 // This compiles to nothing and only serves to return the correct type of the accessor
