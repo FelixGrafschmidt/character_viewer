@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<nuxt />
+		<MoeModal />
 	</div>
 </template>
 
@@ -11,10 +12,15 @@
 	export default class Mobile extends Vue {}
 </script>
 
-<style lang="scss">
-	@import "@/assets/styles.scss";
+<style lang="postcss">
+	@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lato&display=swap");
+	.dark-mode {
+		@apply text-gray-100 bg-gray-900;
+	}
+	.light-mode {
+		@apply text-gray-900 bg-gray-100;
+	}
 	:root {
-		--color-primary: #d9ff00;
-		--color-secondary: #02fdff;
+		font-family: "Lato", sans-serif;
 	}
 </style>

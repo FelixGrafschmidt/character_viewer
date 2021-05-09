@@ -1,0 +1,9 @@
+export enum Modal {
+	"NONE",
+	"SAVEERROR",
+	"CONTACTUS",
+	"DELETELIST",
+	"DELETECHARACTER",
+	"NEWIMAGE",
+	"LOADCOLLECTION",
+}

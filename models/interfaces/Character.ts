@@ -22,7 +22,14 @@ export interface Character {
 	subCharacterArrays: Map<string, Array<SubCharacter>>;
 }
 
-export function newCharacter(id = v4(), name = "", origin = "", images = [], attributeArrays = new Map<string, string>(), subCharacterArrays = new Map<string, Array<SubCharacter>>()): Character {
+export function newCharacter(
+	id = v4(),
+	name = "",
+	origin = "",
+	images = [],
+	attributeArrays = new Map<string, string>(),
+	subCharacterArrays = new Map<string, Array<SubCharacter>>()
+): Character {
 	return { id, name, origin, images, attributeArrays, subCharacterArrays };
 }
 

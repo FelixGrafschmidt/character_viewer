@@ -1,154 +1,200 @@
 <template>
-	<div>
-		<div class="columns section wrapper">
-			<b-table ref="table" class="column is-half is-offset-3" :data="collection.lists">
-				<b-table-column v-slot="props" field="id" label="ID" width="150">
-					<div class="text-column">
-						<a @click="openList(props.row)">{{ props.row.id }}</a>
-					</div>
-				</b-table-column>
-				<b-table-column v-slot="props" field="name" label="Name" width="150">
-					<b-field>
-						<b-input placeholder="List name" :value="props.row.name" type="text" icon-right="content-save" icon-right-clickable @icon-right-click="renameList(props.row, $event)" />
-					</b-field>
-				</b-table-column>
-				<b-table-column v-slot="props" width="30" style="cursor: pointer">
-					<b-tooltip label="View" position="is-top">
-						<b-button size="medium" icon-left="magnify" type="is-text" @click="openList(props.row)" />
-					</b-tooltip>
-					<!-- <b-tooltip label="Export" position="is-top">
-						<b-button size="medium" icon-left="export" type="is-text" @click="exportList(props.row)" />
-					</b-tooltip>
-					<b-tooltip label="Share" position="is-top">
-						<b-button size="medium" icon-left="share" type="is-text" @click="shareList(props.row)" />
-					</b-tooltip> -->
-					<b-tooltip label="Delete" position="is-top">
-						<b-button size="medium" icon-left="delete" type="is-text" @click="deleteList(props.row)" />
-					</b-tooltip>
-				</b-table-column>
-			</b-table>
+	<div v-if="newList">
+		<h2 class="text-xl font-bold">New List</h2>
+		<div class="pt-8">
+			<label for="name">
+				<p class="block text-sm font-medium">Type a name for your list</p>
+			</label>
+			<form class="relative w-1/4" @submit.prevent="addNewList">
+				<input
+					id="name"
+					v-model="newListName"
+					type="text"
+					class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 w-full"
+					placeholder="name"
+				/>
+				<div class="absolute inset-y-0 right-0 flex items-center">
+					<MoeButton
+						v-if="newListName !== ''"
+						:text="'Save'"
+						class-names="w-16 h-full px-3 rounded-md text-sm font-medium focus:outline-none rounded-l-none"
+						color="dark:bg-gray-600 bg-gray-400"
+					>
+					</MoeButton>
+					<MoeButton
+						v-else
+						:text="'Save'"
+						disabled
+						class-names="w-16 cursor-not-allowed h-full px-3 rounded-md text-sm font-medium focus:outline-none rounded-l-none"
+						color="dark:bg-gray-600 bg-gray-400"
+					>
+					</MoeButton>
+				</div>
+			</form>
+			<div v-if="collection.lists.length > 0">
+				<MoeButton
+					class-names="w-16 h-full px-3 rounded-md text-sm font-medium focus:outline-none mt-2"
+					color="dark:bg-gray-600 bg-gray-400"
+					:text="'Back'"
+					@click.native="newList = false"
+				></MoeButton>
+			</div>
 		</div>
-		<div class="has-text-centered button-wrapper">
-			<b-button size="is-medium" type="is-text" @click="addNewList">Add new list</b-button>
-			<b-button size="is-medium" type="is-text" @click="importFromFile">Import from file</b-button>
-			<b-button size="is-medium" type="is-text" @click="importById">Import by ID</b-button>
+	</div>
+	<div v-else class="grid">
+		<div class="grid max-h-[48rem]">
+			<div class="flex mb-2">
+				<div class="w-2/5 text-center">ID</div>
+				<div class="w-2/5 text-center">Name</div>
+				<div class="w-1/6 text-center">Content</div>
+				<div class="w-1/6"></div>
+			</div>
+			<div
+				class="scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700 max-h-[28rem] overflow-y-scroll rounded"
+			>
+				<div
+					v-for="(list, index) in collection.lists"
+					:key="list.id"
+					class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
+					:class="{
+						'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
+						'border-4 border-green-500': list.id === $accessor.list.id,
+					}"
+					@click="openList(list)"
+				>
+					<div class="w-2/5 text-center">{{ list.id }}</div>
+					<form class="w-2/5 text-center relative">
+						<input
+							:value="list.name"
+							type="text"
+							class="rounded-lg border text-gray-900 bg-gray-300 focus:outline-none w-full"
+							@input="updateListname(list.id, $event)"
+						/>
+					</form>
+					<div class="w-1/6 text-center">{{ list.characters.length }} Item(s)</div>
+					<div class="w-1/6 text-center">
+						<MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" />
+						<MoeButton
+							:text="'Export'"
+							class="w-16"
+							color="dark:bg-gray-600 bg-gray-400 m-1"
+							@click.stop.native="exportList(list)"
+						/>
+						<MoeButton
+							:text="'Delete'"
+							class="w-16"
+							color="dark:bg-gray-600 bg-gray-400 m-1"
+							@click.stop.native="deleteList(list)"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="flex mt-7 justify-center">
+			<MoeButton
+				:text="'Create New List'"
+				class="w-64 mr-2"
+				color="dark:bg-gray-600 bg-gray-400"
+				@click.native="newList = true"
+			/>
+			<MoeButton :text="'Import List'" class="w-64" color="dark:bg-gray-600 bg-gray-400" />
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 	// Vue basics
-	import { Component, Vue, Prop } from "nuxt-property-decorator";
+	import { Component, Vue } from "nuxt-property-decorator";
 	import { List, newList } from "@/models/interfaces/List";
+	import { saveAs } from "file-saver";
+	import { Modal } from "~/models/enums/Modal";
+	import { newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "lists",
 	})
 	export default class Lists extends Vue {
-		@Prop({ default: false })
-		private newList!: boolean;
+		newListName: string = "";
 
-		private addNewList() {
-			this.$buefy.dialog.prompt({
-				title: "New list",
-				message: "Please enter a name for your list.",
-				scroll: "keep",
-				inputAttrs: {
-					placeholder: "name",
-				},
-				confirmText: "Save",
-				ariaRole: "alertdialog",
-				ariaModal: true,
-				trapFocus: true,
-				onConfirm: (value) => {
-					this.addListToCollection(newList(undefined, value));
-					if (this.$accessor.collection.lists.length === 1) {
-						this.openList(this.$accessor.collection.lists[0]);
-					}
-				},
-			});
+		newList: boolean = false;
+
+		listToDelete: List = newList();
+
+		mounted() {
+			this.newList = this.collection.lists.length === 0;
 		}
 
-		private importById(): void {
-			this.$buefy.dialog.prompt({
-				title: "Load list by id",
-				message: "Paste the id of the list you wish to load into the textfield.",
-				confirmText: "Import",
-				ariaRole: "alertdialog",
-				ariaModal: true,
-				trapFocus: true,
-				onConfirm: (value) => {
-					this.$axios
-						.$get("loadList", {
-							params: {
-								id: value,
-							},
-						})
-						.then((response) => {
-							this.addListToCollection(response.data);
-						})
-						.catch();
-				},
-			});
+		deleteList(list: List) {
+			this.$accessor.setModal(Modal.DELETELIST);
+			this.$accessor.setListToDelete(list);
 		}
 
-		private importFromFile(): void {
-			this.$buefy.dialog.prompt({
-				message: "Paste the content of the file you wish to import into the textfield.",
-				title: "Import list from file",
-				onConfirm: (value) => {
-					this.addListToCollection(JSON.parse(value) as List);
-				},
-			});
-		}
-
-		private renameList(list: List, event: MouseEvent): void {
-			let name = "";
-			const target = event.target as HTMLElement;
-
-			if (target.tagName !== "I") {
-				name = (target.parentElement!.children[0] as HTMLInputElement).value;
+		addNewList() {
+			this.addListToCollection(newList(undefined, this.newListName));
+			this.newListName = "";
+			if (this.collection.lists.length === 1) {
+				this.openList(this.collection.lists[0]);
 			} else {
-				name = (target.parentElement!.parentElement!.children[0] as HTMLInputElement).value;
+				this.newList = false;
 			}
-
-			this.$accessor.setList(list);
-
-			this.$accessor.renameList(name);
-			this.$buefy.toast.open({ message: "Name saved!", type: "is-primary" });
-
-			this.$accessor.setList({ id: "", name: "", characters: [] });
 		}
 
-		private exportList(): void {}
-		private openList(list: List): void {
-			this.$accessor.setList(list);
-			this.$router.push("characters");
+		exportList(list: List): void {
+			saveAs(new File([JSON.stringify(list)], list.name + ".json"));
 		}
 
-		private shareList(): void {}
-
-		private deleteList(list: List) {
-			this.$buefy.dialog.confirm({
-				title: "Delete list",
-				message: "This will permanently delete your list. Are you sure?",
-				scroll: "keep",
-				ariaRole: "alertdialog",
-				ariaModal: true,
-				trapFocus: true,
-				confirmText: "Delete",
-				onConfirm: () => {
-					this.$accessor.removeListFromCollection(list.id);
-				},
-			});
+		openList(list: List): void {
+			this.$accessor.setList(list);
+			this.$accessor.setCharacter(list.characters[0] || newCharacter());
+			this.$router.push("/characters");
 		}
 
 		get collection() {
 			return this.$accessor.collection;
 		}
 
-		private addListToCollection(list: List) {
+		addListToCollection(list: List) {
 			this.$accessor.addListToCollection(list);
+		}
+
+		updateListname(id: string, event: InputEvent) {
+			const name = (event.target as HTMLInputElement).value;
+			this.$accessor.renameList({ name, id });
+		}
+
+		shareList(): void {}
+
+		importById(): void {
+			// this.$buefy.dialog.prompt({
+			// 	title: "Load list by id",
+			// 	message: "Paste the id of the list you wish to load into the textfield.",
+			// 	confirmText: "Import",
+			// 	ariaRole: "alertdialog",
+			// 	ariaModal: true,
+			// 	trapFocus: true,
+			// 	onConfirm: (value) => {
+			// 		this.$axios
+			// 			.$get("loadList", {
+			// 				params: {
+			// 					id: value,
+			// 				},
+			// 			})
+			// 			.then((response) => {
+			// 				this.addListToCollection(response.data);
+			// 			})
+			// 			.catch();
+			// 	},
+			// });
+		}
+
+		importFromFile(): void {
+			// this.$buefy.dialog.prompt({
+			// 	message: "Paste the content of the file you wish to import into the textfield.",
+			// 	title: "Import list from file",
+			// 	onConfirm: (value) => {
+			// 		this.addListToCollection(JSON.parse(value) as List);
+			// 	},
+			// });
 		}
 	}
 </script>

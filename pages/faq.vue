@@ -1,13 +1,7 @@
 <template>
 	<div>
-		<section class="section hero">
-			<div class="hero-body">
-				<div class="container">
-					<h1 class="title">FAQ</h1>
-					<h2 class="subtitle">Frequently asked questions</h2>
-				</div>
-			</div>
-		</section>
+		<h1 class="text-2xl pb-2">FAQ</h1>
+		<p class="text-lg">Frequently asked questions</p>
 	</div>
 </template>
 

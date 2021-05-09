@@ -3,7 +3,14 @@
 		<div class="columns is-centered is-multiline">
 			<div class="column is-half active-image-wrapper">
 				<figure class="columns is-centered image is-4by7 active-image-wrapper">
-					<img v-if="character.images[activeImageIndex]" class="column is-10 active-image" :src="character.images[activeImageIndex].src" alt="active Image" @load="activeImageLoading = false" @error="activeImageLoading = false" />
+					<img
+						v-if="character.images[activeImageIndex]"
+						class="column is-10 active-image"
+						:src="character.images[activeImageIndex].src"
+						alt="active Image"
+						@load="activeImageLoading = false"
+						@error="activeImageLoading = false"
+					/>
 					<b-loading v-model="activeImageLoading" :is-full-page="false" :can-cancel="true">
 						<b-icon pack="fas" icon="sync-alt" size="is-large" custom-class="fa-spin"> </b-icon>
 					</b-loading>
@@ -12,9 +19,28 @@
 			<section class="column is-half columns is-multiline gallery">
 				<div v-for="(image, i) in images" :key="i" class="column is-one-quarter">
 					<figure class="gallery-image-wrapper columns is-centered image is-4by7">
-						<img v-if="image && !image.main" :src="image.src" :alt="i" class="column is-7 gallery-image" @click="changeActiveImage(i)" @error="image.src = ''" />
-						<b-tooltip v-else-if="image && image.main" label="Main Image" position="is-bottom" multilined size="is-small">
-							<img :src="image.src" :alt="i" class="column is-7 gallery-image main-image" @click="changeActiveImage(i)" @error="image.src = ''" />
+						<img
+							v-if="image && !image.main"
+							:src="image.src"
+							:alt="i"
+							class="column is-7 gallery-image"
+							@click="changeActiveImage(i)"
+							@error="image.src = ''"
+						/>
+						<b-tooltip
+							v-else-if="image && image.main"
+							label="Main Image"
+							position="is-bottom"
+							multilined
+							size="is-small"
+						>
+							<img
+								:src="image.src"
+								:alt="i"
+								class="column is-7 gallery-image main-image"
+								@click="changeActiveImage(i)"
+								@error="image.src = ''"
+							/>
 						</b-tooltip>
 					</figure>
 				</div>
@@ -25,10 +51,25 @@
 				<b-button expanded type="is-primary" outlined @click="imagesActive = false">Back to Character</b-button>
 			</div>
 			<div class="column">
-				<b-button expanded :disabled="Number.isNaN(activeImageIndex)" type="is-link" outlined @click="designateMainImage"> Designate as Main Image </b-button>
+				<b-button
+					expanded
+					:disabled="Number.isNaN(activeImageIndex)"
+					type="is-link"
+					outlined
+					@click="designateMainImage"
+				>
+					Designate as Main Image
+				</b-button>
 			</div>
 			<div class="column">
-				<b-button expanded :disabled="Number.isNaN(activeImageIndex)" type="is-danger" outlined @click="removeImage">Remove this Image</b-button>
+				<b-button
+					expanded
+					:disabled="Number.isNaN(activeImageIndex)"
+					type="is-danger"
+					outlined
+					@click="removeImage"
+					>Remove this Image</b-button
+				>
 			</div>
 			<div class="column">
 				<b-button expanded outlined type="is-success" @click="addNewImage">Add new Image</b-button>
@@ -39,7 +80,12 @@
 		<div class="columns is-centered is-multiline">
 			<div class="column is-half active-image-wrapper">
 				<figure class="columns is-centered image is-4by7 active-image-wrapper">
-					<img v-if="getMainImage()" class="column is-10 active-image" :src="getMainImage().src" alt="Main Image" />
+					<img
+						v-if="getMainImage()"
+						class="column is-10 active-image"
+						:src="getMainImage().src"
+						alt="Main Image"
+					/>
 				</figure>
 				<div class="columns is-centered mt-1">
 					<b-button @click="imagesActive = true">Show Images</b-button>
@@ -57,7 +103,9 @@
 						<b-button outlined expanded type="is-success" @click="saveCharacter">Save Character</b-button>
 					</div>
 					<div class="column is-4">
-						<b-button outlined expanded type="is-danger" @click="deleteCharacter">Delete Character</b-button>
+						<b-button outlined expanded type="is-danger" @click="deleteCharacter"
+							>Delete Character</b-button
+						>
 					</div>
 				</div>
 			</section>
@@ -68,7 +116,7 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { newCharacterImage } from "~/models/interfaces/Character";
+	// import { newCharacterImage } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "EditCharacter",
@@ -106,18 +154,18 @@
 		}
 
 		addNewImage() {
-			this.$buefy.dialog.prompt({
-				message: "Enter image URL",
-				trapFocus: true,
-				scroll: "keep",
-				onConfirm: (value) => {
-					this.$accessor.addCharacterImage(newCharacterImage(value));
-					if (!this.activeImageIndex) {
-						this.activeImageIndex = 0;
-						this.designateMainImage();
-					}
-				},
-			});
+			// this.$buefy.dialog.prompt({
+			// 	message: "Enter image URL",
+			// 	trapFocus: true,
+			// 	scroll: "keep",
+			// 	onConfirm: (value) => {
+			// 		this.$accessor.addCharacterImage(newCharacterImage(value));
+			// 		if (!this.activeImageIndex) {
+			// 			this.activeImageIndex = 0;
+			// 			this.designateMainImage();
+			// 		}
+			// 	},
+			// });
 		}
 
 		removeImage() {
@@ -165,7 +213,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.gallery {
 		max-height: 70vh;
 		min-height: 70vh;

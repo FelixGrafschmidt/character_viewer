@@ -1,92 +1,81 @@
 <template>
-	<edit-character v-if="editCharacterActive" @save-character="saveCharacter" @delete-character="deleteCharacter" />
-	<div v-else class="moe-table-wrapper">
-		<div class="columns is-centered new-character-button">
-			<b-button class="column is-2" label="New character" @click="createNewCharacter" />
+	<div class="grid">
+		<div v-if="characters.length > 0" class="grid max-h-[48rem]">
+			<div class="flex mb-2">
+				<div class="w-2/5 text-center">Name</div>
+				<div class="w-2/5 text-center">Origin</div>
+				<div class="w-1/6 text-center">Main Image</div>
+			</div>
+			<div
+				class="scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700 max-h-[28rem] overflow-y-scroll rounded"
+			>
+				<div
+					v-for="(character, index) in characters"
+					:key="index"
+					class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer my-1"
+					:class="{
+						'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
+					}"
+					@click="selectCharacter(character)"
+				>
+					<div class="w-2/5 text-center">{{ character.name }}</div>
+					<form class="w-2/5 text-center relative">{{ character.origin }}</form>
+					<div class="w-1/6 text-center">
+						<img class="max-h-24 max-w-24 rounded m-auto" :src="getMainImage(character).src" alt="" />
+					</div>
+				</div>
+			</div>
 		</div>
-		<b-table v-if="list.characters.length" scrollable :sticky-header="true" focusable striped :data="list.characters" @click="editCharacter">
-			<b-table-column v-slot="props" field="name" label="Name" width="40%">
-				{{ props.row.name }}
-			</b-table-column>
-			<b-table-column v-slot="props" field="origin" label="Origin" width="40%">
-				{{ props.row.origin }}
-			</b-table-column>
-			<b-table-column v-slot="props" field="mainImage" label="Main Image" width="10%">
-				<img v-if="props.row.images.length" :alt="props.row.name" class="table-image" :src="getMainImage(props.row)" />
-			</b-table-column>
-		</b-table>
+		<div class="flex mt-7 justify-center">
+			<MoeButton
+				:text="'Add New Character'"
+				class="w-64 mr-2"
+				color="dark:bg-gray-600 bg-gray-400"
+				@click.native="addNewCharacter"
+			/>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import EditCharacter from "@/components/EditCharacter.vue";
 	import { Character, newCharacter } from "~/models/interfaces/Character";
 	@Component({
-		components: { EditCharacter },
 		name: "characters",
 		middleware: "routeguard",
 	})
 	export default class Characters extends Vue {
-		editCharacterActive = false;
-		list = this.$accessor.list;
+		get character() {
+			return this.$accessor.character;
+		}
 
-		createNewCharacter() {
-			const character = newCharacter();
+		get characters() {
+			return this.$accessor.list.characters;
+		}
+
+		addNewCharacter() {
+			this.$accessor.setCharacter(newCharacter());
+			this.$router.push("/character-edit");
+		}
+
+		selectCharacter(character: Character) {
 			this.$accessor.setCharacter(character);
-			this.$accessor.addCharacter({ newCharacter: this.$accessor.character });
-			this.editCharacterActive = true;
-		}
-
-		editCharacter(character: Character) {
-			this.$accessor.setCharacter(character);
-			this.editCharacterActive = true;
-		}
-
-		saveCharacter() {
-			this.editCharacterActive = false;
-		}
-
-		deleteCharacter(character: Character) {
-			this.$accessor.setCharacter(newCharacter(""));
-			this.$accessor.deleteCharacter(character);
-			this.editCharacterActive = false;
+			this.$router.push("/character-edit");
 		}
 
 		getMainImage(character: Character) {
-			return character.images.filter((image) => {
-				return image.main;
-			})[0].src;
+			return (
+				character.images.filter((image) => {
+					return image.main;
+				})[0] || ""
+			);
 		}
+
+		// mounted() {
+		// 	if (this.characters.length === 0) {
+		// 		this.$router.push("/character-edit");
+		// 	}
+		// }
 	}
 </script>
-
-<style lang="scss" scoped>
-	.table-image {
-		height: auto;
-		max-height: 8rem;
-	}
-	::v-deep tbody tr {
-		cursor: pointer;
-	}
-	::v-deep .table-wrapper {
-		min-height: 80vh;
-	}
-	::v-deep .table-wrapper::-webkit-scrollbar {
-		width: 0.2em;
-	}
-	::v-deep .table-wrapper::-webkit-scrollbar-track {
-		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
-	::v-deep .table-wrapper::-webkit-scrollbar-thumb {
-		background-color: var(--color-secondary);
-		outline: 1px solid black;
-	}
-	::v-deep .b-table .table:focus {
-		border: none;
-		outline: none;
-		box-shadow: none;
-	}
-</style>

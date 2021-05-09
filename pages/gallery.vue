@@ -1,7 +1,9 @@
 <template>
-	<div class="gallery columns is-multiline">
-		<figure v-for="(image, i) in getImages()" :key="i" class="column is-one-third">
-			<img class="" :src="image.src" :alt="i" />
+	<div
+		class="flex h-full flex-wrap gap-2 overflow-y-scroll scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700 max-h-[71vh]"
+	>
+		<figure v-for="(image, i) in getImages()" :key="i" class="w-[30%]">
+			<img :src="image.src" :alt="i" class="" />
 		</figure>
 	</div>
 </template>
@@ -32,22 +34,3 @@
 		}
 	}
 </script>
-
-<style lang="scss" scoped>
-	.gallery {
-		max-height: 85vh;
-		min-height: 85vh;
-		overflow: auto;
-	}
-	.gallery::-webkit-scrollbar {
-		width: 0.2em;
-	}
-	.gallery::-webkit-scrollbar-track {
-		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
-	.gallery::-webkit-scrollbar-thumb {
-		background-color: var(--color-secondary);
-		outline: 1px solid black;
-	}
-</style>

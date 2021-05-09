@@ -1,86 +1,113 @@
 <template>
-	<section class="columns is-mobile is-centered">
-		<div v-if="mode === 'character'" class="column">
-			<div class="has-text-centered">{{ character.name }}</div>
-			<b-button expanded @click="mode = 'list'">Back</b-button>
-			<b-image v-for="(image, i) in character.images" :key="i" class="character-image" :src="image.src" />
-		</div>
-		<div v-else-if="mode === 'list'" class="column">
-			<div class="has-text-centered">{{ list.name }}</div>
-			<b-button expanded @click="mode = 'collection'">Back</b-button>
-			<b-image v-for="character in list.characters" :key="character.id" class="character-image" :src="getMainImage(character)" @click.native="selectCharacter(character)" />
-		</div>
-		<div v-else class="column">
-			<div class="has-text-centered">{{ collection.id }}</div>
-			<b-button v-for="list in collection.lists" :key="list.id" expanded @click.prevent="selectList(list)">{{ list.name }}</b-button>
-		</div>
-	</section>
+	<div class="">
+		<header class="sticky top-0 dark:bg-gray-900 bg-gray-100 pb-2">
+			<div v-if="mode === 'character'" class="flex flex-col gap-4">
+				<div class="m-auto">{{ character.name }}</div>
+				<MoeButton
+					text="Back"
+					class="m-auto w-60 h-8"
+					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+					color="dark:bg-gray-600 bg-gray-400"
+					@click.native="mode = 'list'"
+				/>
+			</div>
+			<div v-else-if="mode === 'list'" class="flex flex-col gap-4">
+				<div class="m-auto">{{ list.name }}</div>
+				<MoeButton
+					text="Back"
+					class="m-auto w-60 h-8"
+					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+					color="dark:bg-gray-600 bg-gray-400"
+					@click.native="mode = 'collection'"
+				/>
+			</div>
+			<div v-else-if="collection.lists.length > 0" class="flex flex-col gap-4">
+				<span class="m-auto">{{ collection.id }}</span>
+			</div>
+		</header>
+		<section class="mt-2">
+			<div v-if="mode === 'character'" class="flex flex-col gap-4">
+				<img v-for="(image, i) in character.images" :key="i" :src="image.src" />
+			</div>
+			<div v-else-if="mode === 'list'" class="flex flex-col gap-4">
+				<img
+					v-for="character in list.characters"
+					:key="character.id"
+					:src="getMainImage(character).src"
+					@click="selectCharacter(character)"
+				/>
+			</div>
+			<div v-else class="flex flex-col gap-4">
+				<div v-if="collection.lists.length === 0" class="m-auto flex flex-col items-center">
+					<p>Empty collection. Load a different one?</p>
+					<MoeButton
+						text="Load Collection"
+						class="w-60 h-8 mt-2"
+						class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+						color="dark:bg-gray-600 bg-gray-400"
+						@click.native="openModal()"
+					/>
+				</div>
+				<template v-else>
+					<MoeButton
+						v-for="list in collection.lists"
+						:key="list.id"
+						class="m-auto w-60 h-12"
+						class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+						color="dark:bg-gray-600 bg-gray-400"
+						:text="list.name"
+						@click.native="selectList(list)"
+					/>
+				</template>
+			</div>
+		</section>
+	</div>
 </template>
 
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Character, newCharacter } from "~/models/interfaces/Character";
-	import { Collection, newCollection } from "~/models/interfaces/Collection";
-	import { List, newList } from "~/models/interfaces/List";
+	import { Modal } from "~/models/enums/Modal";
+	import { Character } from "~/models/interfaces/Character";
+	import { List } from "~/models/interfaces/List";
 
-	@Component({ name: "mobile", layout: "mobile" })
+	@Component({
+		name: "mobile",
+		layout: "mobile",
+	})
 	export default class Mobile extends Vue {
-		collection: Collection = newCollection("");
-		list: List = newList();
-		character: Character = newCharacter();
 		mode: string = "collection";
+
+		get collection() {
+			return this.$accessor.collection;
+		}
+
+		get list() {
+			return this.$accessor.list;
+		}
+
+		get character() {
+			return this.$accessor.character;
+		}
 
 		mounted() {
 			if (this.$route.query.id) {
-				this.$axios
-					.$get("loadCollection", {
-						params: {
-							id: this.$route.query.id,
-						},
-					})
-					.then((response: Collection) => {
-						this.collection = response;
-					})
-					.catch((error) => {
-						console.error(error);
-					});
+				window.localStorage.setItem("collectionId", this.$route.query.id[0]!);
+				this.$accessor.loadCollection();
+			} else if (window.localStorage.getItem("collectionId")) {
+				this.$accessor.loadCollection();
 			} else {
-				this.$buefy.dialog.prompt({
-					inputAttrs: {
-						placeholder: "Collection ID",
-						autocomplete: "collectionID",
-						name: "collectionID",
-					},
-					message: "",
-					canCancel: false,
-					confirmText: "Load",
-					trapFocus: true,
-					onConfirm: (value) => {
-						this.$axios
-							.$get("loadCollection", {
-								params: {
-									id: value,
-								},
-							})
-							.then((response: Collection) => {
-								this.collection = response;
-							})
-							.catch((error) => {
-								console.error(error);
-							});
-					},
-				});
+				this.$accessor.setModal(Modal.LOADCOLLECTION);
 			}
 		}
 
 		selectList(list: List) {
-			this.list = list;
+			this.$accessor.setList(list);
 			this.changeMode("list");
 		}
 
 		selectCharacter(character: Character) {
-			this.character = character;
+			this.$accessor.setCharacter(character);
 			this.changeMode("character");
 		}
 
@@ -88,26 +115,16 @@
 			this.mode = mode;
 		}
 
+		openModal() {
+			this.$accessor.setModal(Modal.LOADCOLLECTION);
+		}
+
 		getMainImage(character: Character) {
-			let imageResult;
-			character.images.forEach((image) => {
-				if (image.main) {
-					imageResult = image.src;
-				}
-			});
-			return imageResult;
+			return (
+				character.images.filter((image) => {
+					return image.main;
+				})[0] || ""
+			);
 		}
 	}
 </script>
-
-<style lang="scss" scoped>
-	.columns {
-		margin: unset;
-	}
-	.button {
-		margin-top: 1rem;
-	}
-	.character-image {
-		margin-top: 1rem;
-	}
-</style>

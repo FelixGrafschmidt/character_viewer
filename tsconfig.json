@@ -2,6 +2,8 @@
 {
 	"compilerOptions": {
 		"target": "es2020",
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
 		"module": "esnext",
 		"moduleResolution": "node",
 		"lib": ["esnext", "esnext.asynciterable", "dom"],
@@ -25,9 +27,9 @@
 			"@@/*": ["./*"]
 		},
 		"types": [
-			"buefy/types",
 			"@types/node",
-			"@nuxt/types"
+			"@nuxt/types",
+			"@nuxtjs/color-mode"
 			// , "nuxt-i18n"
 		]
 	},
