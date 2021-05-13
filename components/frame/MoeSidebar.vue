@@ -1,6 +1,6 @@
 <template>
 	<aside class="dark:bg-gray-700 bg-gray-400 py-4 px-4">
-		<h3 v-if="$accessor.list.id" class="text-lg max-w-[11rem] whitespace-nowrap truncate">{{ `Characters (${list.name})` }}</h3>
+		<h3 v-if="$accessor.list.id" class="text-lg max-w-[15rem] whitespace-nowrap truncate">{{ list.name }}</h3>
 		<template v-if="$accessor.list.id">
 			<nuxt-link v-for="item of characterItems" :key="item.title" v-slot="{ navigate, isExactActive }" custom :to="item.to.name">
 				<div
