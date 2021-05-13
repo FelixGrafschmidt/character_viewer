@@ -135,11 +135,9 @@ export const actions = actionTree(
 	{
 		nuxtServerInit(_vuexContext: ActionContext<any, any>, _nuxtContext: Context): void {},
 		async saveChanges(): Promise<void> {
-			return await this.$axios
-				.$post("saveCollection", this.app.$accessor.collection, { timeout: 1000 })
-				.then(() => {
-					this.app.$accessor.setCollection(this.app.$accessor.collection);
-				});
+			return await this.$axios.$post("saveCollection", this.app.$accessor.collection, { timeout: 1000 }).then(() => {
+				this.app.$accessor.setCollection(this.app.$accessor.collection);
+			});
 		},
 		async loadCollection(_vuexContext: ActionContext<any, any>) {
 			const collectionId = localStorage.getItem("collectionId");
