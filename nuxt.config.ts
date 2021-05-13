@@ -99,6 +99,11 @@ const nuxtConfig: NuxtConfig = {
 	tailwindcss: {
 		jit: true,
 	},
+	pwa: {
+		workbox: {
+			enabled: false,
+		},
+	},
 	// vite: {
 	// 	build: {
 	// 		rollupOptions: {
