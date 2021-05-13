@@ -1,5 +1,16 @@
 <template>
-	<div class="grid grid-cols-2">
+	<div class="grid grid-cols-2 relative">
+		<div class="has-tooltip absolute">
+			<MoeButton
+				icon-class-names="fas fa-arrow-left"
+				class="py-1 px-4 rounded-br-sm has-tooltip"
+				class-names="text-sm font-medium focus:outline-none"
+				color="dark:bg-gray-600 bg-gray-400"
+				@click.native="$router.push('characters')"
+			/>
+			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 rounded">Back to Character List</span>
+		</div>
+
 		<div class="col-span-1 flex flex-col m-auto max-h-[71vh] items-center w-full">
 			<img class="max-h-[70vh] rounded" :src="getMainImage().src || ''" />
 			<MoeButton
