@@ -1,6 +1,6 @@
 import { NuxtConfig } from "@nuxt/types";
 import { NuxtOptionsLoaders, NuxtWebpackEnv } from "@nuxt/types/config/build";
-import { Configuration as WebpackConfiguration } from "webpack";
+import { Configuration as WebpackConfiguration } from "@nuxt/types/node_modules/@types/webpack";
 
 const polyfillUrl =
 	"https://polyfill.io/v3/polyfill.min.js?features=Array.from,Array.isArray,Array.prototype.entries,Array.prototype.every,Array.prototype.fill,Array.prototype.filter,Array.prototype.find,Array.prototype.findIndex,Array.prototype.forEach,Array.prototype.includes,Array.prototype.indexOf,Array.prototype.keys,Array.prototype.lastIndexOf,Array.prototype.map,Array.prototype.reduce,Array.prototype.some,Array.prototype.sort,ArrayBuffer,Blob,console,DataView,Date.now,Date.prototype.toISOString,document,Function.prototype.bind,IntersectionObserver,Intl,JSON,localStorage,Map,Math.sign,modernizr:es5object,MutationObserver,Number.isInteger,Number.isNaN,Object.assign,Object.entries,Object.freeze,Object.getOwnPropertyDescriptors,Object.getOwnPropertySymbols,Object.is,Object.isExtensible,Object.isFrozen,Object.preventExtensions,Object.setPrototypeOf,Promise,Promise.prototype.finally,Reflect,Reflect.construct,Reflect.ownKeys,RegExp.prototype.flags,ResizeObserver,Set,String.prototype.includes,String.prototype.repeat,String.prototype.startsWith,String.prototype.trim,Symbol,Symbol.for,Symbol.iterator,Symbol.prototype.description,Symbol.toStringTag,Uint8Array,URL,URLSearchParams,WeakMap,WeakSet,XMLHttpRequest";
