@@ -14,7 +14,7 @@
 				</div>
 			</nuxt-link>
 		</template>
-		<h3 class="text-lg caps-small">Lists</h3>
+		<h3 class="text-lg caps-small cursor-pointer" @click="$router.push('lists')">Lists</h3>
 		<!-- <div v-for="list of collection.lists" :key="list.id" v-slot="{ isExactActive }"> -->
 		<div
 			v-for="list of collection.lists"
