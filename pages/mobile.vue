@@ -112,6 +112,7 @@
 		}
 
 		changeMode(mode: string) {
+			window.scroll(0, 0);
 			this.mode = mode;
 		}
 
