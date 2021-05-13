@@ -1,5 +1,15 @@
 <template>
-	<div class="flex flex-col gap-3 max-h-[75vh] p-8">
+	<div class="flex flex-col gap-3 max-h-[75vh] p-8 relative">
+		<div class="has-tooltip absolute top-0 left-0">
+			<MoeButton
+				icon-class-names="fas fa-arrow-left"
+				class="py-1 px-4 rounded-br-sm has-tooltip"
+				class-names="text-sm font-medium focus:outline-none"
+				color="dark:bg-gray-600 bg-gray-400"
+				@click.native="backToCharacter"
+			/>
+			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 rounded">Back to Character</span>
+		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<div class="col-span-1 flex flex-col m-auto h-[71vh] items-center w-full">
 				<img class="max-h-[70vh] rounded" :src="image.src" />
@@ -36,13 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="grid grid-cols-4 gap-8 mx-20">
-			<MoeButton
-				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
-				color="dark:bg-gray-600 bg-gray-400"
-				text="Back to Character"
-				@click.native="backToCharacter"
-			/>
+		<div class="grid grid-cols-3 gap-8 mx-20">
 			<MoeButton
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
