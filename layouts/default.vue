@@ -3,7 +3,7 @@
 		<MoeHeader class="navbar" />
 		<MoeSidebar class="side-nav" />
 		<div v-if="$accessor.ready" class="content">
-			<nuxt class="px-8 py-8" />
+			<nuxt />
 		</div>
 		<MoeFooter class="footer" />
 		<MoeModal />

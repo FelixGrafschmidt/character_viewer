@@ -1,5 +1,5 @@
 <template>
-	<div v-if="newList">
+	<div v-if="newList" class="p-8">
 		<h2 class="text-xl font-bold">New List</h2>
 		<div class="pt-8">
 			<label for="name">
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 	</div>
-	<div v-else class="grid">
+	<div v-else class="grid p-8">
 		<div class="grid max-h-[48rem]">
 			<div class="flex mb-2">
 				<div class="w-2/5 text-center">ID</div>
@@ -50,7 +50,13 @@
 				<div class="w-1/6"></div>
 			</div>
 			<div
-				class="scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700 max-h-[28rem] overflow-y-scroll rounded"
+				class="
+					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400
+					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700
+					max-h-[28rem]
+					overflow-y-scroll
+					rounded
+				"
 			>
 				<div
 					v-for="(list, index) in collection.lists"
@@ -91,12 +97,7 @@
 			</div>
 		</div>
 		<div class="flex mt-7 justify-center">
-			<MoeButton
-				:text="'Create New List'"
-				class="w-64 mr-2"
-				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="newList = true"
-			/>
+			<MoeButton :text="'Create New List'" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="newList = true" />
 			<MoeButton :text="'Import List'" class="w-64" color="dark:bg-gray-600 bg-gray-400" />
 		</div>
 	</div>

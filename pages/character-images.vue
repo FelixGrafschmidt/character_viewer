@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col gap-3 max-h-[75vh]">
+	<div class="flex flex-col gap-3 max-h-[75vh] p-8">
 		<div class="grid grid-cols-2 gap-4">
 			<div class="col-span-1 flex flex-col m-auto h-[71vh] items-center w-full">
 				<img class="max-h-[70vh] rounded" :src="image.src" />

@@ -1,5 +1,5 @@
 <template>
-	<div class="grid grid-cols-2 relative">
+	<div class="grid grid-cols-2 relative p-8">
 		<div class="has-tooltip absolute">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"

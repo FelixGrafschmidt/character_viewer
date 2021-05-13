@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="p-8">
 		<h1 class="text-2xl pb-2">Imprint</h1>
 		<p class="text-lg">Felix Grafschmidt</p>
 	</div>

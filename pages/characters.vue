@@ -1,5 +1,5 @@
 <template>
-	<div class="grid">
+	<div class="grid p-8">
 		<div v-if="characters.length > 0" class="grid max-h-[48rem]">
 			<div class="flex mb-2">
 				<div class="w-2/5 text-center">Name</div>
@@ -7,7 +7,13 @@
 				<div class="w-1/6 text-center">Main Image</div>
 			</div>
 			<div
-				class="scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700 max-h-[28rem] overflow-y-scroll rounded"
+				class="
+					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400
+					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700
+					max-h-[28rem]
+					overflow-y-scroll
+					rounded
+				"
 			>
 				<div
 					v-for="(character, index) in characters"
@@ -27,12 +33,7 @@
 			</div>
 		</div>
 		<div class="flex mt-7 justify-center">
-			<MoeButton
-				:text="'Add New Character'"
-				class="w-64 mr-2"
-				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="addNewCharacter"
-			/>
+			<MoeButton :text="'Add New Character'" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="addNewCharacter" />
 		</div>
 	</div>
 </template>
