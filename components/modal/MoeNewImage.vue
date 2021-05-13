@@ -15,9 +15,9 @@
 			w-[40vw]
 			items-center
 		"
-		@submit.prevent="src !== '' ? addImage() : undefined"
+		@submit.prevent="src !== '' || valid === undefined ? addImage() : undefined"
 	>
-		<img :src="src" alt="" class="m-8 max-h-[55vh]" />
+		<img :src="src" alt="" class="m-8 max-h-[55vh]" @load="valid = true" @error="valid = false" />
 		<label class="mx-12">
 			<span>Image URL</span>
 			<input
@@ -26,7 +26,8 @@
 				type="text"
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 mb-8 w-80"
 		/></label>
-		<MoeButton text="Add Image" :class="{ 'cursor-not-allowed': src === '' }" class="m-auto" />
+		<p v-if="src !== '' && !valid" class="text-red-600">Invalid image url</p>
+		<MoeButton text="Add Image" :class="{ 'cursor-not-allowed': src === '' || valid === undefined }" class="m-auto" />
 		<div
 			class="
 				top-1
@@ -59,9 +60,10 @@
 	})
 	export default class MoeNewImage extends Vue {
 		src = "";
+		valid = undefined;
 
 		addImage() {
-			this.$accessor.addCharacterImage(this.src);
+			this.$accessor.addCharacterImage({ src: this.src, valid: this.valid });
 			this.$accessor.deactivateModal();
 		}
 	}

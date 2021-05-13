@@ -65,6 +65,11 @@ export const mutations = mutationTree(state, {
 	},
 
 	setCharacter: (currentState, newCharacter: Character) => {
+		newCharacter.images.forEach((image) => {
+			if (image.valid === undefined) {
+				image.valid = true;
+			}
+		});
 		currentState.character = newCharacter;
 	},
 
@@ -81,10 +86,13 @@ export const mutations = mutationTree(state, {
 	changeCharacterOrigin: (currentState, origin: string) => {
 		currentState.character.origin = origin;
 	},
-	addCharacterImage: (currentState, src: string) => {
+	addCharacterImage: (currentState, { src, valid }) => {
 		currentState.character.images.push(
-			newCharacterImage(src, currentState.character.images.filter((image) => image.main).length === 0)
+			newCharacterImage(src, currentState.character.images.filter((image) => image.main).length === 0, valid)
 		);
+	},
+	designateImageAsInvalid: (currentState, img: CharacterImage) => {
+		currentState.character.images.filter((image) => image === img)[0].valid = false;
 	},
 	removeCharacterImage: (currentState, index: number) => {
 		if (currentState.character.images.length > 1 && currentState.character.images[index].main) {
