@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 export interface CharacterImage {
 	src: string;
 	main: boolean;
+	valid: boolean;
 }
 
 export interface SubCharacter {
@@ -33,6 +34,6 @@ export function newCharacter(
 	return { id, name, origin, images, attributeArrays, subCharacterArrays };
 }
 
-export function newCharacterImage(src = "", main = false): CharacterImage {
-	return { src, main };
+export function newCharacterImage(src = "", main = false, valid = true): CharacterImage {
+	return { src, main, valid };
 }

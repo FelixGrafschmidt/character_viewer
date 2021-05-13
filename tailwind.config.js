@@ -7,6 +7,9 @@ module.exports = {
 				84: "21rem",
 				96: "24rem",
 			},
+			outline: {
+				blue: ["4px solid #3b82f6", "-8px"],
+			},
 		},
 		darkSelector: ".dark-mode",
 	},

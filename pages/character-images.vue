@@ -14,8 +14,25 @@
 					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700
 				"
 			>
-				<div v-for="(img, i) in character.images" :key="i" class="w-1/5">
-					<img :src="img.src" alt="" class="cursor-pointer" @click="image = img" />
+				<div
+					v-for="(img, i) in character.images"
+					:key="i"
+					class="w-1/5 flex items-center cursor-pointer max-h-44"
+					:class="{
+						'border-red-500 border-4': !img.valid,
+					}"
+					@click="image = img"
+				>
+					<img
+						:src="img.src"
+						alt=""
+						class=""
+						:class="{
+							'border-blue-500 border-4': img.main,
+							'border-green-500 border-4': img === image && img.valid,
+						}"
+						@error="designateImageAsInvalid(img)"
+					/>
 				</div>
 			</div>
 		</div>
@@ -59,7 +76,7 @@
 		middleware: "routeguard",
 	})
 	export default class CharacterImages extends Vue {
-		image: CharacterImage = { src: "", main: false };
+		image: CharacterImage = { src: "", main: false, valid: true };
 
 		get character() {
 			return this.$accessor.character;
@@ -88,6 +105,10 @@
 		designateMainImage() {
 			const index = this.character.images.indexOf(this.image);
 			this.$accessor.designateMainImage(index);
+		}
+
+		designateImageAsInvalid(image: CharacterImage) {
+			this.$accessor.designateImageAsInvalid(image);
 		}
 
 		deleteImage() {
