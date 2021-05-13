@@ -43,6 +43,8 @@
 					return "MoeNewImage";
 				case Modal.LOADCOLLECTION:
 					return "MoeLoadCollection";
+				case Modal.IMPORTLIST:
+					return "MoeImportList";
 
 				default:
 					return "";

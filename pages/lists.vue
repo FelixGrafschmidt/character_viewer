@@ -77,7 +77,7 @@
 							@input="updateListname(list.id, $event)"
 						/>
 					</form>
-					<div class="w-1/6 text-center">{{ list.characters.length }} Item(s)</div>
+					<div class="w-1/6 text-center">{{ list.characters.length }} Character(s)</div>
 					<div class="w-1/6 text-center">
 						<MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" />
 						<MoeButton
@@ -98,7 +98,7 @@
 		</div>
 		<div class="flex mt-7 justify-center">
 			<MoeButton :text="'Create New List'" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="newList = true" />
-			<MoeButton :text="'Import List'" class="w-64" color="dark:bg-gray-600 bg-gray-400" />
+			<MoeButton :text="'Import List'" class="w-64" color="dark:bg-gray-600 bg-gray-400" @click.native="importFromFile" />
 		</div>
 	</div>
 </template>
@@ -189,13 +189,7 @@
 		}
 
 		importFromFile(): void {
-			// this.$buefy.dialog.prompt({
-			// 	message: "Paste the content of the file you wish to import into the textfield.",
-			// 	title: "Import list from file",
-			// 	onConfirm: (value) => {
-			// 		this.addListToCollection(JSON.parse(value) as List);
-			// 	},
-			// });
+			this.$accessor.setModal(Modal.IMPORTLIST);
 		}
 	}
 </script>

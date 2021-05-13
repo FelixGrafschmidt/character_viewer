@@ -6,4 +6,5 @@ export enum Modal {
 	"DELETECHARACTER",
 	"NEWIMAGE",
 	"LOADCOLLECTION",
+	"IMPORTLIST",
 }
