@@ -61,7 +61,7 @@ const nuxtConfig: NuxtConfig = {
 		"@nuxtjs/color-mode",
 		// "nuxt-vite",
 	],
-	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device"],
+	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device", "nuxt-custom-headers"],
 	build: {
 		extend(
 			config: WebpackConfiguration,

@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="pb-4">
 		<header class="sticky top-0 dark:bg-gray-900 bg-gray-100 pb-2">
 			<div v-if="mode === 'character'" class="flex flex-col gap-4">
 				<div class="m-auto">{{ character.name }}</div>
