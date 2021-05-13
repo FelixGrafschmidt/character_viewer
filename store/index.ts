@@ -148,7 +148,8 @@ export const actions = actionTree(
 			});
 		},
 		async loadCollection(_vuexContext: ActionContext<any, any>) {
-			const collectionId = localStorage.getItem("collectionId");
+			let collectionId = localStorage.getItem("collectionId");
+			const collection = newCollection();
 			if (collectionId) {
 				await this.$axios
 					.$get("loadCollection", {
@@ -158,18 +159,21 @@ export const actions = actionTree(
 						timeout: 1000,
 					})
 					.then((response: Collection) => {
+						collectionId = response.id;
 						this.app.$accessor.setCollection(response);
 					})
 					.catch((error) => {
 						console.error(error);
 
-						this.app.$accessor.setCollection(newCollection());
+						this.app.$accessor.setCollection(collection);
 					})
 					.finally(() => {
+						localStorage.setItem("collectionId", collectionId!);
 						this.app.$accessor.setReady(true);
 					});
 			} else {
-				this.app.$accessor.setCollection(newCollection());
+				this.app.$accessor.setCollection(collection);
+				localStorage.setItem("collectionId", collection.id);
 				this.app.$accessor.setReady(true);
 			}
 		},

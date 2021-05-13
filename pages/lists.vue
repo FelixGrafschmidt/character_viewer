@@ -74,6 +74,7 @@
 							:value="list.name"
 							type="text"
 							class="rounded-lg border text-gray-900 bg-gray-300 focus:outline-none w-full"
+							@click.stop
 							@input="updateListname(list.id, $event)"
 						/>
 					</form>
