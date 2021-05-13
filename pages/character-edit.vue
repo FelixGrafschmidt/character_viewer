@@ -106,6 +106,7 @@
 
 		deleteCharacter() {
 			this.$accessor.setModal(Modal.DELETECHARACTER);
+			// TODO do not switch page until user has made a choice
 			this.$router.push("/characters");
 		}
 

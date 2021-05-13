@@ -1,10 +1,10 @@
 <template>
 	<aside class="dark:bg-gray-700 bg-gray-400 py-4 px-4">
-		<h3 v-if="$accessor.list.id" class="text-lg">{{ `Characters (${list.name})` }}</h3>
+		<h3 v-if="$accessor.list.id" class="text-lg max-w-[11rem] whitespace-nowrap truncate">{{ `Characters (${list.name})` }}</h3>
 		<template v-if="$accessor.list.id">
 			<nuxt-link v-for="item of characterItems" :key="item.title" v-slot="{ navigate, isExactActive }" custom :to="item.to.name">
 				<div
-					:class="isExactActive ? 'dark:text-teal-400 text-teal-500 hover:text-teal-300' : ''"
+					:class="isExactActive ? 'dark:text-green-400 text-green-500 hover:text-green-300' : ''"
 					class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
 					role="link"
 					@click="navigate"
@@ -15,22 +15,23 @@
 			</nuxt-link>
 		</template>
 		<h3 class="text-lg caps-small">Lists</h3>
-		<nuxt-link v-for="item of listItems" :key="item.title" v-slot="{ navigate, isExactActive }" custom :to="item.to.name">
-			<div
-				:class="isExactActive ? 'dark:text-teal-400 text-teal-500 hover:text-teal-300' : ''"
-				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
-				role="link"
-				@click="navigate"
-				@keypress.enter="navigate"
-			>
-				{{ item.title }}
-			</div>
-		</nuxt-link>
+		<!-- <div v-for="list of collection.lists" :key="list.id" v-slot="{ isExactActive }"> -->
+		<div
+			v-for="list of collection.lists"
+			:key="list.id"
+			class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
+			role="link"
+			@click="navigateToList(list)"
+		>
+			{{ list.name }}
+		</div>
+		<!-- </div> -->
 	</aside>
 </template>
 
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
+	import { List } from "~/models/interfaces/List";
 
 	@Component({
 		components: {},
@@ -39,6 +40,10 @@
 	export default class MoeSidebar extends Vue {
 		get list() {
 			return this.$accessor.list;
+		}
+
+		get collection() {
+			return this.$accessor.collection;
 		}
 
 		characterItems: Array<{ title: string; to: { name: string }; icon?: string }> = [
@@ -58,5 +63,10 @@
 				to: { name: "lists" },
 			},
 		];
+
+		navigateToList(list: List) {
+			this.$accessor.setList(list);
+			this.$router.push("characters");
+		}
 	}
 </script>
