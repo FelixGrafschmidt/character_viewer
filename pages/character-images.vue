@@ -5,7 +5,14 @@
 				<img class="max-h-[70vh] rounded" :src="image.src" />
 			</div>
 			<div
-				class="flex flex-wrap gap-2 h-[71vh] overflow-y-scroll scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700"
+				class="
+					flex flex-wrap
+					gap-2
+					h-[71vh]
+					overflow-y-scroll
+					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400
+					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700
+				"
 			>
 				<div v-for="(img, i) in character.images" :key="i" class="w-1/5">
 					<img :src="img.src" alt="" class="cursor-pointer" @click="image = img" />
@@ -60,6 +67,9 @@
 
 		mounted() {
 			this.image = this.getMainImage();
+			if (!this.image) {
+				this.$accessor.setModal(Modal.NEWIMAGE);
+			}
 		}
 
 		getMainImage() {
