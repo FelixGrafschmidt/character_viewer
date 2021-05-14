@@ -17,7 +17,7 @@
 		"
 		@submit.prevent="src !== '' || valid === undefined ? addImage() : undefined"
 	>
-		<img :src="src" alt="" class="m-8 max-h-[55vh]" @load="valid = true" @error="valid = false" />
+		<img :src="src" alt="new image" class="m-8 max-h-[55vh]" @load="valid = true" @error="valid = false" />
 		<label class="mx-12">
 			<span>Image URL</span>
 			<input

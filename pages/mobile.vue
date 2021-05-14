@@ -27,12 +27,13 @@
 		</header>
 		<section class="mt-2">
 			<div v-if="mode === 'character'" class="flex flex-col gap-4">
-				<img v-for="(image, i) in character.images" :key="i" :src="image.src" />
+				<img v-for="(image, i) in character.images" :key="i" :src="image.src" :alt="image.src" />
 			</div>
 			<div v-else-if="mode === 'list'" class="flex flex-col gap-4">
 				<img
 					v-for="character in list.characters"
 					:key="character.id"
+					:alt="character.name"
 					:src="getMainImage(character).src"
 					@click="selectCharacter(character)"
 				/>

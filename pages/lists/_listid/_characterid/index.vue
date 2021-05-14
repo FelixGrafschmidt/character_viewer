@@ -1,24 +1,23 @@
 <template>
-	<div class="grid grid-cols-2 relative p-8">
-		<div class="has-tooltip absolute">
+	<div class="grid grid-cols-2 relative">
+		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"
 				class="py-1 px-4 rounded-br-sm has-tooltip"
 				class-names="text-sm font-medium focus:outline-none"
 				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="$router.push('characters')"
+				@click.native="backToCharacterList"
 			/>
-			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 rounded">Back to Character List</span>
+			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 rounded w-44">Back to Character List</span>
 		</div>
 
-		<div class="col-span-1 flex flex-col m-auto max-h-[71vh] items-center w-full">
-			<img class="max-h-[70vh] rounded" :src="getMainImage().src || ''" />
+		<div class="col-span-1 flex flex-col m-auto items-center w-full">
+			<img class="max-h-[30rem] rounded" :alt="character.name" :src="getMainImage().src || ''" />
 			<MoeButton
 				text="Edit Images"
 				class="mt-2 mb-2 py-2"
 				class-names="px-1 rounded-md text-sm font-medium focus:outline-none w-1/2"
 				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="openImages"
 			/>
 		</div>
 		<form class="col-span-1 flex flex-col" @submit.prevent="isNewCharacter() ? saveNewCharacter() : saveChanges()">
@@ -72,7 +71,6 @@
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { Modal } from "~/models/enums/Modal";
-	import { newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		name: "character-edit",
 		middleware: "routeguard",
@@ -92,22 +90,22 @@
 
 		saveNewCharacter() {
 			this.$accessor.addCharacter({ newCharacter: this.character });
-			this.$router.push("/characters");
+			this.backToCharacterList();
 		}
 
 		saveChanges() {
-			this.$router.push("/characters");
+			this.backToCharacterList();
 		}
 
 		discardCharacter() {
-			this.$router.push("/characters");
-			this.$accessor.setCharacter(newCharacter());
+			this.$accessor.resetCharacter();
+			this.backToCharacterList();
 		}
 
 		deleteCharacter() {
 			this.$accessor.setModal(Modal.DELETECHARACTER);
 			// TODO do not switch page until user has made a choice
-			this.$router.push("/characters");
+			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 
 		changeName(event: InputEvent) {
@@ -128,8 +126,9 @@
 			);
 		}
 
-		openImages() {
-			this.$router.push("/character-images");
+		backToCharacterList() {
+			this.$accessor.resetCharacter();
+			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 	}
 </script>

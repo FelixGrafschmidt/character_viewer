@@ -1,6 +1,6 @@
 <template>
-	<div class="grid p-8">
-		<div v-if="characters.length > 0" class="grid max-h-[48rem]">
+	<div class="grid">
+		<div v-if="characters.length > 0" class="grid">
 			<div class="flex mb-2">
 				<div class="w-2/5 text-center">Name</div>
 				<div class="w-2/5 text-center">Origin</div>
@@ -10,7 +10,6 @@
 				class="
 					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400
 					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700
-					max-h-[28rem]
 					overflow-y-scroll
 					rounded
 				"
@@ -27,7 +26,7 @@
 					<div class="w-2/5 text-center">{{ character.name }}</div>
 					<form class="w-2/5 text-center relative">{{ character.origin }}</form>
 					<div class="w-1/6 text-center">
-						<img class="max-h-24 max-w-24 rounded m-auto" :src="getMainImage(character).src" alt="" />
+						<img class="max-h-24 max-w-24 rounded m-auto" :src="getMainImage(character).src" :alt="character.name" />
 					</div>
 				</div>
 			</div>
@@ -57,12 +56,12 @@
 
 		addNewCharacter() {
 			this.$accessor.setCharacter(newCharacter());
-			this.$router.push("/character-edit");
+			this.$router.push(this.$accessor.navigationPaths.character);
 		}
 
 		selectCharacter(character: Character) {
 			this.$accessor.setCharacter(character);
-			this.$router.push("/character-edit");
+			this.$router.push(this.$accessor.navigationPaths.character);
 		}
 
 		getMainImage(character: Character) {

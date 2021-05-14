@@ -1,0 +1,41 @@
+<template>
+	<div class="">
+		<div class="flex flex-wrap gap-2 pt-2">
+			<figure v-for="(character, i) in list.characters" :key="i" class="w-[24%] cursor-pointer" @click="selectCharacter(character)">
+				<img :src="getMainImage(character).src" :alt="character.name" class="" />
+			</figure>
+		</div>
+	</div>
+</template>
+
+<script lang="ts">
+	// Vue basics
+	import { Component, Vue } from "nuxt-property-decorator";
+	import { Character } from "~/models/interfaces/Character";
+	@Component({
+		components: {},
+		name: "gallery",
+		middleware: "routeguard",
+	})
+	export default class Gallery extends Vue {
+		mode: string = "list";
+
+		get list() {
+			return this.$accessor.list;
+		}
+
+		getMainImage(character: Character) {
+			return (
+				character.images.filter((image) => {
+					return image.main;
+				})[0] || ""
+			);
+		}
+
+		selectCharacter(character: Character) {
+			this.mode = "characters";
+			this.$accessor.setCharacter(character);
+			this.$router.push(this.$accessor.navigationPaths["gallery-character"]);
+		}
+	}
+</script>

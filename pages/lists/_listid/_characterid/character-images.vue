@@ -12,7 +12,7 @@
 		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<div class="col-span-1 flex flex-col m-auto h-[71vh] items-center w-full">
-				<img class="max-h-[70vh] rounded" :src="image.src" />
+				<img class="max-h-[70vh] rounded" :src="image.src" :alt="character.name" />
 			</div>
 			<div
 				class="
@@ -35,7 +35,7 @@
 				>
 					<img
 						:src="img.src"
-						alt=""
+						:alt="img.src"
 						class=""
 						:class="{
 							'border-blue-500 border-4': img.main,

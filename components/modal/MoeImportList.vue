@@ -55,6 +55,7 @@
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { fixImportListJSON } from "@/utils/json";
+	import { v4 } from "uuid";
 	import { List } from "~/models/interfaces/List";
 
 	@Component({
@@ -90,6 +91,11 @@
 			try {
 				this.json = (event.target as HTMLInputElement).value;
 				this.list = JSON.parse(this.json, fixImportListJSON);
+				this.list.characters.forEach((character) => {
+					if (!character.id) {
+						character.id = v4();
+					}
+				});
 				this.valid = true;
 			} catch (error) {
 				console.error(error);

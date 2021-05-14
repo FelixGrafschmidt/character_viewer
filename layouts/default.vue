@@ -1,11 +1,14 @@
 <template>
-	<div class="main-layout h-screen">
-		<MoeHeader class="navbar" />
-		<MoeSidebar class="side-nav" />
-		<div v-if="$accessor.ready" class="content">
-			<nuxt />
+	<div class="flex flex-col min-h-screen justify-between">
+		<MoeHeader class="h-16 fixed z-10" />
+		<div class="flex">
+			<MoeSidebar class="w-1/6 fixed h-full mt-16 mb-32" />
+			<div v-if="$accessor.ready" class="w-5/6 ml-auto my-20 px-6 py-2">
+				<nuxt />
+			</div>
 		</div>
-		<MoeFooter class="footer" />
+
+		<MoeFooter class="h-16 fixed bottom-0 z-10 w-full" />
 		<MoeModal />
 		<div v-if="$accessor.loading"></div>
 	</div>
@@ -33,29 +36,12 @@
 	:root {
 		font-family: "Lato", sans-serif;
 	}
-	.main-layout {
-		display: grid;
-		grid-template-columns: 0.3fr 1.7fr;
-		grid-template-rows: 0.2fr 2.7fr 0.1fr;
-		gap: 0px 0px;
-		grid-template-areas:
-			"navbar navbar"
-			"side-nav content"
-			"footer footer";
+
+	.tooltip {
+		@apply invisible absolute bg-white;
 	}
-	.content {
-		grid-area: content;
-	}
-	.navbar {
-		grid-area: navbar;
-	}
-	.side-nav {
-		grid-area: side-nav;
-	}
-	.side-nav {
-		grid-area: side-nav;
-	}
-	.footer {
-		grid-area: footer;
+
+	.has-tooltip:hover .tooltip {
+		@apply visible z-50;
 	}
 </style>

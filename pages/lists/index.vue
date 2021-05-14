@@ -1,5 +1,5 @@
 <template>
-	<div v-if="newList" class="p-8">
+	<div v-if="newList" class="">
 		<h2 class="text-xl font-bold">New List</h2>
 		<div class="pt-8">
 			<label for="name">
@@ -41,23 +41,15 @@
 			</div>
 		</div>
 	</div>
-	<div v-else class="grid p-8">
-		<div class="grid max-h-[48rem]">
+	<div v-else class="grid">
+		<div class="grid">
 			<div class="flex mb-2">
 				<div class="w-2/5 text-center">ID</div>
 				<div class="w-2/5 text-center">Name</div>
 				<div class="w-1/6 text-center">Content</div>
 				<div class="w-1/6"></div>
 			</div>
-			<div
-				class="
-					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-400
-					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-700
-					max-h-[28rem]
-					overflow-y-scroll
-					rounded
-				"
-			>
+			<div class="">
 				<div
 					v-for="(list, index) in collection.lists"
 					:key="list.id"
@@ -110,7 +102,6 @@
 	import { List, newList } from "@/models/interfaces/List";
 	import { saveAs } from "file-saver";
 	import { Modal } from "~/models/enums/Modal";
-	import { newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "lists",
@@ -147,8 +138,7 @@
 
 		openList(list: List): void {
 			this.$accessor.setList(list);
-			this.$accessor.setCharacter(list.characters[0] || newCharacter());
-			this.$router.push("/characters");
+			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 
 		get collection() {

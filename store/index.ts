@@ -43,6 +43,14 @@ export const getters = getterTree(state, {
 	modal: (currentState) => currentState.modal,
 	loading: (currentState) => currentState.loading,
 	ready: (currentState) => currentState.ready,
+	navigationPaths: (currentState) => {
+		return {
+			list: `/lists/${currentState.list.id}`,
+			character: `/lists/${currentState.list.id}/${currentState.character.id}`,
+			gallery: `/lists/${currentState.list.id}/gallery`,
+			"gallery-character": `/lists/${currentState.list.id}/gallery/${currentState.character.id}`,
+		};
+	},
 });
 
 export const mutations = mutationTree(state, {
@@ -71,6 +79,17 @@ export const mutations = mutationTree(state, {
 			}
 		});
 		currentState.character = newCharacter;
+	},
+
+	resetCharacter: (currenState) => {
+		currenState.character = {
+			id: "",
+			name: "",
+			origin: "",
+			images: new Array<CharacterImage>(),
+			attributeArrays: new Map<string, string>(),
+			subCharacterArrays: new Map<string, SubCharacter[]>(),
+		};
 	},
 
 	addCharacter: (currentState, { newCharacter, index = -1 }) => {
