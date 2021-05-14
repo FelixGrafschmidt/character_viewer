@@ -2,7 +2,7 @@
 	<div class="">
 		<div class="flex flex-wrap gap-2 pt-2">
 			<figure v-for="(character, i) in list.characters" :key="i" class="w-[24%] cursor-pointer" @click="selectCharacter(character)">
-				<img :src="getMainImage(character).src" :alt="character.name" class="" />
+				<img :src="getMainImage(character).src" :alt="character.name" class="overflow-hidden" />
 			</figure>
 		</div>
 	</div>

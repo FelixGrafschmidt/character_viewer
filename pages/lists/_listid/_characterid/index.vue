@@ -1,5 +1,5 @@
 <template>
-	<div class="grid grid-cols-2 relative">
+	<div class="flex relative gap-4 max-h-[inherit]">
 		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"
@@ -8,19 +8,69 @@
 				color="dark:bg-gray-600 bg-gray-400"
 				@click.native="backToCharacterList"
 			/>
-			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 rounded w-44">Back to Character List</span>
+			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 my-0 py-0 rounded w-44">Back to Character List</span>
 		</div>
 
-		<div class="col-span-1 flex flex-col m-auto items-center w-full">
-			<img class="max-h-[30rem] rounded" :alt="character.name" :src="getMainImage().src || ''" />
-			<MoeButton
-				text="Edit Images"
-				class="mt-2 mb-2 py-2"
-				class-names="px-1 rounded-md text-sm font-medium focus:outline-none w-1/2"
-				color="dark:bg-gray-600 bg-gray-400"
-			/>
+		<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
+			<figure class="h-[26rem] 2xl:h-[40rem]">
+				<img class="rounded max-h-full" :alt="character.name" :src="image.src || ''" />
+			</figure>
+			<div
+				class="
+					max-h-[7rem]
+					min-h-[7rem]
+					w-full
+					flex
+					gap-1
+					items-center
+					overflow-x-scroll
+					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
+					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-800
+				"
+			>
+				<figure
+					v-for="(img, i) in character.images"
+					:key="i"
+					class="cursor-pointer max-h-full min-w-[4rem] max-w-[4rem]"
+					:class="{
+						'border-red-500 border-4': !img.valid,
+					}"
+					@click="image = img"
+				>
+					<img
+						class="rounded overflow-hidden max-h-full mx-auto"
+						:class="{
+							'border-blue-500 border-4': img.main,
+							'border-green-500 border-4': img === image && img.valid,
+						}"
+						:src="img.src"
+						:alt="i"
+						@error="designateImageAsInvalid(img)"
+					/>
+				</figure>
+			</div>
+			<div class="flex gap-8 h-[2rem] pt-4 items-center">
+				<MoeButton
+					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+					color="dark:bg-gray-600 bg-gray-400"
+					text="Designate as Main Image"
+					@click.native="designateMainImage"
+				/>
+				<MoeButton
+					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+					color="dark:bg-gray-600 bg-gray-400"
+					text="Remove this Image"
+					@click.native="deleteImage"
+				/>
+				<MoeButton
+					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
+					color="dark:bg-gray-600 bg-gray-400"
+					text="Add Image"
+					@click.native="addNewImage"
+				/>
+			</div>
 		</div>
-		<form class="col-span-1 flex flex-col" @submit.prevent="isNewCharacter() ? saveNewCharacter() : saveChanges()">
+		<form class="h-1/5 w-1/2 flex flex-col" @submit.prevent="isNewCharacter() ? saveNewCharacter() : saveChanges()">
 			<label>
 				Name
 				<input
@@ -69,8 +119,9 @@
 
 <script lang="ts">
 	// Vue basics
-	import { Component, Vue } from "nuxt-property-decorator";
+	import { Component, Vue, Watch } from "nuxt-property-decorator";
 	import { Modal } from "~/models/enums/Modal";
+	import { CharacterImage } from "~/models/interfaces/Character";
 	@Component({
 		name: "character-edit",
 		middleware: "routeguard",
@@ -82,6 +133,15 @@
 
 		get characters() {
 			return this.$accessor.list.characters;
+		}
+
+		image: CharacterImage = { src: "", main: false, valid: true };
+
+		mounted() {
+			this.image = this.getMainImage();
+			if (!this.image) {
+				this.$accessor.setModal(Modal.NEWIMAGE);
+			}
 		}
 
 		isNewCharacter() {
@@ -129,6 +189,33 @@
 		backToCharacterList() {
 			this.$accessor.resetCharacter();
 			this.$router.push(this.$accessor.navigationPaths.list);
+		}
+
+		addNewImage() {
+			this.$accessor.setModal(Modal.NEWIMAGE);
+			this.image = this.getMainImage();
+		}
+
+		designateMainImage() {
+			const index = this.character.images.indexOf(this.image);
+			this.$accessor.designateMainImage(index);
+		}
+
+		designateImageAsInvalid(image: CharacterImage) {
+			this.$accessor.designateImageAsInvalid(image);
+		}
+
+		deleteImage() {
+			const index = this.character.images.indexOf(this.image);
+			this.$accessor.removeCharacterImage(index);
+			this.image = this.getMainImage();
+		}
+
+		@Watch("character.images.length", { deep: true })
+		onLengthChanged(_val: Number, _oldVal: Number) {
+			if (!this.image) {
+				this.image = this.getMainImage();
+			}
 		}
 	}
 </script>

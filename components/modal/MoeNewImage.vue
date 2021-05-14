@@ -9,15 +9,15 @@
 			flex flex-col
 			relative
 			m-auto
-			pb-10
+			py-10
 			z-20
 			max-h-[80vh]
 			w-[40vw]
 			items-center
 		"
-		@submit.prevent="src !== '' || valid === undefined ? addImage() : undefined"
+		@submit.prevent="src !== '' ? addImage() : undefined"
 	>
-		<img :src="src" alt="new image" class="m-8 max-h-[55vh]" @load="valid = true" @error="valid = false" />
+		<img v-if="src" :src="src" alt="new image" class="max-h-[55vh]" @load="valid = true" @error="valid = false" />
 		<label class="mx-12">
 			<span>Image URL</span>
 			<input
@@ -27,7 +27,7 @@
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 mb-8 w-80"
 		/></label>
 		<p v-if="src !== '' && !valid" class="text-red-600">Invalid image url</p>
-		<MoeButton text="Add Image" :class="{ 'cursor-not-allowed': src === '' || valid === undefined }" class="m-auto" />
+		<MoeButton text="Add Image" :class="{ 'cursor-not-allowed': src === '' }" class="m-auto" />
 		<div
 			class="
 				top-1
@@ -60,7 +60,7 @@
 	})
 	export default class MoeNewImage extends Vue {
 		src = "";
-		valid = undefined;
+		valid: Boolean = false;
 
 		addImage() {
 			this.$accessor.addCharacterImage({ src: this.src, valid: this.valid });

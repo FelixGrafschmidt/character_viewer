@@ -12,7 +12,7 @@
 		</div>
 		<div class="flex flex-wrap gap-2 pt-2">
 			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%]">
-				<img :src="image.src" :alt="image.src" class="" />
+				<img :src="image.src" :alt="image.src" class="overflow-hidden" />
 			</figure>
 		</div>
 	</div>
