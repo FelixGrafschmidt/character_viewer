@@ -103,6 +103,7 @@
 		}
 
 		selectList(list: List) {
+			this.$accessor.resetCharacter();
 			this.$accessor.setList(list);
 			this.changeMode("list");
 		}

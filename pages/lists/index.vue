@@ -1,5 +1,5 @@
 <template>
-	<div v-if="newList" class="">
+	<div v-if="newList" class="my-20">
 		<h2 class="text-xl font-bold">New List</h2>
 		<div class="pt-8">
 			<label for="name">
@@ -41,55 +41,53 @@
 			</div>
 		</div>
 	</div>
-	<div v-else class="grid">
-		<div class="grid">
-			<div class="flex mb-2">
-				<div class="w-2/5 text-center">ID</div>
-				<div class="w-2/5 text-center">Name</div>
-				<div class="w-1/6 text-center">Content</div>
-				<div class="w-1/6"></div>
-			</div>
-			<div class="">
-				<div
-					v-for="(list, index) in collection.lists"
-					:key="list.id"
-					class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
-					:class="{
-						'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
-						'border-4 border-green-500': list.id === $accessor.list.id,
-					}"
-					@click="openList(list)"
-				>
-					<div class="w-2/5 text-center">{{ list.id }}</div>
-					<form class="w-2/5 text-center relative">
-						<input
-							:value="list.name"
-							type="text"
-							class="rounded-lg border text-gray-900 bg-gray-300 focus:outline-none w-full"
-							@click.stop
-							@input="updateListname(list.id, $event)"
-						/>
-					</form>
-					<div class="w-1/6 text-center">{{ list.characters.length }} Character(s)</div>
-					<div class="w-1/6 text-center">
-						<MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" />
-						<MoeButton
-							:text="'Export'"
-							class="w-16"
-							color="dark:bg-gray-600 bg-gray-400 m-1"
-							@click.stop.native="exportList(list)"
-						/>
-						<MoeButton
-							:text="'Delete'"
-							class="w-16"
-							color="dark:bg-gray-600 bg-gray-400 m-1"
-							@click.stop.native="deleteList(list)"
-						/>
-					</div>
+	<div v-else class="mb-20 mt-12 grid">
+		<div class="flex mb-2 font-extrabold text-lg sticky top-16 dark:bg-gray-600 bg-gray-100 py-5 z-[3] rounded">
+			<div class="w-2/5 text-center">ID</div>
+			<div class="w-2/5 text-center">Name</div>
+			<div class="w-1/6 text-center">Content</div>
+			<div class="w-1/6"></div>
+		</div>
+		<div class="">
+			<div
+				v-for="(list, index) in collection.lists"
+				:key="list.id"
+				class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
+				:class="{
+					'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
+					'border-4 border-green-500': list.id === $accessor.list.id,
+				}"
+				@click="openList(list)"
+			>
+				<div class="w-2/5 text-center">{{ list.id }}</div>
+				<form class="w-2/5 text-center relative">
+					<input
+						:value="list.name"
+						type="text"
+						class="rounded-lg border text-gray-900 bg-gray-300 focus:outline-none w-full"
+						@click.stop
+						@input="updateListname(list.id, $event)"
+					/>
+				</form>
+				<div class="w-1/6 text-center">{{ list.characters.length }} Character(s)</div>
+				<div class="w-1/6 text-center">
+					<MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" />
+					<MoeButton
+						:text="'Export'"
+						class="w-16"
+						color="dark:bg-gray-600 bg-gray-400 m-1"
+						@click.stop.native="exportList(list)"
+					/>
+					<MoeButton
+						:text="'Delete'"
+						class="w-16"
+						color="dark:bg-gray-600 bg-gray-400 m-1"
+						@click.stop.native="deleteList(list)"
+					/>
 				</div>
 			</div>
 		</div>
-		<div class="flex mt-7 justify-center">
+		<div class="flex mt-7 justify-center mb-20">
 			<MoeButton :text="'Create New List'" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="newList = true" />
 			<MoeButton :text="'Import List'" class="w-64" color="dark:bg-gray-600 bg-gray-400" @click.native="importFromFile" />
 		</div>
@@ -119,6 +117,7 @@
 
 		deleteList(list: List) {
 			this.$accessor.setModal(Modal.DELETELIST);
+			this.$accessor.resetCharacter();
 			this.$accessor.setListToDelete(list);
 		}
 
@@ -137,6 +136,7 @@
 		}
 
 		openList(list: List): void {
+			this.$accessor.resetCharacter();
 			this.$accessor.setList(list);
 			this.$router.push(this.$accessor.navigationPaths.list);
 		}

@@ -19,6 +19,7 @@ export interface Character {
 	name: string;
 	origin: string;
 	images: Array<CharacterImage>;
+	created: Date;
 	attributeArrays: Map<string, string>;
 	subCharacterArrays: Map<string, Array<SubCharacter>>;
 }
@@ -27,11 +28,12 @@ export function newCharacter(
 	id = v4(),
 	name = "",
 	origin = "",
+	created = new Date(),
 	images = [],
 	attributeArrays = new Map<string, string>(),
 	subCharacterArrays = new Map<string, Array<SubCharacter>>()
 ): Character {
-	return { id, name, origin, images, attributeArrays, subCharacterArrays };
+	return { id, name, origin, images, created, attributeArrays, subCharacterArrays };
 }
 
 export function newCharacterImage(src = "", main = false, valid = true): CharacterImage {

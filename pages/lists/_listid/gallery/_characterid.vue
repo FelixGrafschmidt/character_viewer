@@ -1,5 +1,5 @@
 <template>
-	<div class="relative">
+	<div class="relative my-20">
 		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"

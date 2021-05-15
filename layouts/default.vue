@@ -3,7 +3,7 @@
 		<MoeHeader class="h-16 fixed z-10" />
 		<div class="flex">
 			<MoeSidebar class="w-1/6 fixed h-full mt-16 mb-32" />
-			<div v-if="$accessor.ready" class="w-5/6 ml-auto my-20 px-6 py-2 max-h-[36rem] 2xl:max-h-[50rem]">
+			<div v-if="$accessor.ready" class="w-5/6 ml-auto px-6 py-2 max-h-[36rem] 2xl:max-h-[50rem]">
 				<nuxt />
 			</div>
 		</div>
@@ -43,5 +43,15 @@
 
 	.has-tooltip:hover .tooltip {
 		@apply visible z-50;
+	}
+
+	body {
+		@apply scrollbar;
+		@apply scrollbar-thin;
+		@apply scrollbar-track-gray-300;
+		@apply scrollbar-thumb-gray-500;
+		@apply dark:scrollbar-track-gray-800;
+		@apply dark:scrollbar-thumb-gray-500;
+		@apply overflow-y-scroll;
 	}
 </style>

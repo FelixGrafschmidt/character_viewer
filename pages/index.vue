@@ -1,5 +1,5 @@
 <template>
-	<div v-if="initialVisit" class="">
+	<div v-if="initialVisit" class="my-20">
 		<h2 class="text-xl font-bold">Welcome! This appears to be your first visit.</h2>
 		<h3 class="py-2">
 			On this website you are able to manage lists of characters with a lot of customization ability. To achieve that, you were just
@@ -23,7 +23,7 @@
 			<nuxt-link class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500" to="/lists"> create a new list. </nuxt-link>
 		</h3>
 	</div>
-	<div v-else class="">
+	<div v-else class="my-20">
 		<h2 class="text-xl font-bold">To get started select a menu item on the left</h2>
 	</div>
 </template>

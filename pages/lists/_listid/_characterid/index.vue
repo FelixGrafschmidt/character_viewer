@@ -1,5 +1,5 @@
 <template>
-	<div class="flex relative gap-4 max-h-[inherit]">
+	<div class="flex relative gap-4 max-h-[inherit] my-20">
 		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"
@@ -25,7 +25,7 @@
 					items-center
 					overflow-x-scroll
 					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
-					dark:scrollbar-track-gray-500 dark:scrollbar-thumb-gray-800
+					dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
 				"
 			>
 				<figure
@@ -139,9 +139,6 @@
 
 		mounted() {
 			this.image = this.getMainImage();
-			if (!this.image) {
-				this.$accessor.setModal(Modal.NEWIMAGE);
-			}
 		}
 
 		isNewCharacter() {

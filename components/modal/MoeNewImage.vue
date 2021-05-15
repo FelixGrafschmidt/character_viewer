@@ -11,7 +11,7 @@
 			m-auto
 			py-10
 			z-20
-			max-h-[80vh]
+			h-[80vh]
 			w-[40vw]
 			items-center
 		"
@@ -21,12 +21,13 @@
 		<label class="mx-12">
 			<span>Image URL</span>
 			<input
-				v-model="src"
 				v-autofocus
+				:value="src"
 				type="text"
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 mb-8 w-80"
+				@blur="updateUrl"
 		/></label>
-		<p v-if="src !== '' && !valid" class="text-red-600">Invalid image url</p>
+		<p v-if="!valid" class="text-red-600">Invalid image url</p>
 		<MoeButton text="Add Image" :class="{ 'cursor-not-allowed': src === '' }" class="m-auto" />
 		<div
 			class="
@@ -60,7 +61,19 @@
 	})
 	export default class MoeNewImage extends Vue {
 		src = "";
-		valid: Boolean = false;
+		valid: Boolean = true;
+
+		updateUrl(event: Event) {
+			const value = (event.target as HTMLInputElement).value;
+			if (value.startsWith("data:")) {
+				this.valid = false;
+				this.src = "";
+				this.$forceUpdate();
+			} else {
+				this.src = value;
+				this.valid = false;
+			}
+		}
 
 		addImage() {
 			this.$accessor.addCharacterImage({ src: this.src, valid: this.valid });

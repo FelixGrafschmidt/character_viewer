@@ -13,13 +13,3 @@
 	@apply visible;
 	@apply z-50;
 }
-
-body {
-	@apply scrollbar;
-	@apply scrollbar-thin;
-	@apply scrollbar-track-gray-300;
-	@apply scrollbar-thumb-gray-500;
-	@apply dark:scrollbar-track-gray-500;
-	@apply dark:scrollbar-thumb-gray-800;
-	@apply overflow-y-scroll;
-}

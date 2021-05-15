@@ -1,5 +1,5 @@
 <template>
-	<div class="p-8">
+	<div class="p-8 my-20">
 		<h1 class="text-2xl pb-2">FAQ</h1>
 		<p class="text-lg">Frequently asked questions</p>
 	</div>

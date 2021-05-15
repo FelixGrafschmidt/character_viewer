@@ -10,13 +10,15 @@ import { Collection, getHash, newCollection } from "~/models/interfaces/Collecti
 import { List } from "~/models/interfaces/List";
 import { Character, CharacterImage, newCharacterImage, SubCharacter } from "~/models/interfaces/Character";
 import { Modal } from "~/models/enums/Modal";
+import { Sortorder } from "~/models/enums/Sortorder";
 
 export const state = () => ({
 	collection: { id: "", lists: new Array<List>() },
-	list: { id: "", name: "", characters: new Array<Character>() },
+	list: { id: "", name: "", characters: new Array<Character>(), sortorder: Sortorder.DEFAULT },
 	character: {
 		id: "",
 		name: "",
+		created: new Date(),
 		origin: "",
 		images: new Array<CharacterImage>(),
 		attributeArrays: new Map<string, string>(),
@@ -66,6 +68,14 @@ export const mutations = mutationTree(state, {
 	},
 
 	setList: (currentState, newList: List) => {
+		newList.characters.forEach((character) => {
+			if (!character.created) {
+				character.created = new Date();
+			}
+		});
+		if (!newList.sortorder) {
+			newList.sortorder = Sortorder.DEFAULT;
+		}
 		currentState.list = newList;
 	},
 	renameList: (currentState, { name, id }) => {
@@ -85,6 +95,7 @@ export const mutations = mutationTree(state, {
 		currenState.character = {
 			id: "",
 			name: "",
+			created: new Date(),
 			origin: "",
 			images: new Array<CharacterImage>(),
 			attributeArrays: new Map<string, string>(),
@@ -147,10 +158,71 @@ export const mutations = mutationTree(state, {
 	setListToDelete: (currentState, list: List) => {
 		currentState.listToDelete = list;
 	},
+	sortListByName: (currentState) => {
+		switch (currentState.list.sortorder) {
+			case Sortorder.ASCENDING:
+				currentState.list.characters.sort((a, b) => {
+					if (a.name === b.name) {
+						return a.created > b.created ? -1 : 1;
+					}
+					return a.name > b.name ? -1 : 1;
+				});
+				currentState.list.sortorder = Sortorder.DESCENDING;
+				break;
+			case Sortorder.DESCENDING:
+				currentState.list.characters.sort((a, b) => {
+					return a.created > b.created ? 1 : -1;
+				});
+				currentState.list.sortorder = Sortorder.DEFAULT;
+				break;
+			case Sortorder.DEFAULT:
+				currentState.list.characters.sort((a, b) => {
+					if (a.name === b.name) {
+						return a.created > b.created ? -1 : 1;
+					}
+					return a.name > b.name ? 1 : -1;
+				});
+				currentState.list.sortorder = Sortorder.ASCENDING;
+				break;
+		}
+	},
+	sortListByOrigin: (currentState) => {
+		switch (currentState.list.sortorder) {
+			case Sortorder.ASCENDING:
+				currentState.list.characters.sort((a, b) => {
+					if (a.origin === b.origin) {
+						return a.created > b.created ? -1 : 1;
+					}
+					return a.origin > b.origin ? -1 : 1;
+				});
+				currentState.list.sortorder = Sortorder.DESCENDING;
+				break;
+			case Sortorder.DESCENDING:
+				currentState.list.characters.sort((a, b) => {
+					return a.created > b.created ? 1 : -1;
+				});
+				currentState.list.sortorder = Sortorder.DEFAULT;
+				break;
+			case Sortorder.DEFAULT:
+				currentState.list.characters.sort((a, b) => {
+					if (a.origin === b.origin) {
+						return a.created > b.created ? -1 : 1;
+					}
+					return a.origin > b.origin ? 1 : -1;
+				});
+				currentState.list.sortorder = Sortorder.ASCENDING;
+				break;
+		}
+	},
+	resetListSorting: (currentState) => {
+		currentState.list.characters.sort((a, b) => {
+			return a.created > b.created ? 1 : -1;
+		});
+	},
 	deleteList: (currentState, id) => {
 		currentState.collection.lists = currentState.collection.lists.filter((list) => list.id !== id);
 		if (currentState.list.id === id) {
-			currentState.list = { id: "", name: "", characters: new Array<Character>() };
+			currentState.list = { id: "", name: "", characters: new Array<Character>(), sortorder: Sortorder.DEFAULT };
 		}
 	},
 	initializeStore() {

@@ -56,7 +56,7 @@
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { fixImportListJSON } from "@/utils/json";
 	import { v4 } from "uuid";
-	import { List } from "~/models/interfaces/List";
+	import { List, newList } from "~/models/interfaces/List";
 
 	@Component({
 		components: {},
@@ -64,7 +64,7 @@
 	})
 	export default class MoeImportList extends Vue {
 		json = "";
-		list: List = { id: "", name: "", characters: [] };
+		list: List = newList();
 		valid: Boolean | undefined = undefined;
 
 		importList() {
@@ -94,6 +94,9 @@
 				this.list.characters.forEach((character) => {
 					if (!character.id) {
 						character.id = v4();
+					}
+					if (!character.created) {
+						character.created = new Date();
 					}
 				});
 				this.valid = true;
