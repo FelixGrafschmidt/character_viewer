@@ -39,7 +39,7 @@
 		>
 			<div class="h-16 flex">
 				<span class="pt-5 pb-4"> {{ $accessor.collection.id }} </span>
-				<MoeButton class="ml-2 my-2" text="Copy ID" @click.native="copyID" />
+				<MoeButton class="ml-2 my-2" :text="copyText" @click.native="copyID" />
 			</div>
 			<div
 				v-if="showLoadCollection"
@@ -77,6 +77,7 @@
 		autosave = false;
 		showLoadCollection = false;
 		autosaveId = 0;
+		copyText = "Copy ID";
 
 		// Computed
 		get changes() {
@@ -150,6 +151,10 @@
 		}
 
 		copyID() {
+			this.copyText = "Copied!";
+			window.setTimeout(() => {
+				this.copyText = "Copy ID";
+			}, 1000 * 2);
 			navigator.clipboard.writeText(this.collection.id);
 		}
 	}
