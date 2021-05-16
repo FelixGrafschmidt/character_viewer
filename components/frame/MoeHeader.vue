@@ -34,10 +34,9 @@
 			aria-orientation="vertical"
 			aria-labelledby="options-menu"
 			class="flex flex-col h-32 mt-16 w-[25rem] mr-2"
-			@mouseenter="showLoadCollection = true"
 			@mouseleave="showLoadCollection = false"
 		>
-			<div class="h-16 flex">
+			<div class="h-16 flex" @mouseenter="showLoadCollection = true">
 				<span class="pt-5 pb-4"> {{ $accessor.collection.id }} </span>
 				<MoeButton class="ml-2 my-2" :text="copyText" @click.native="copyID" />
 			</div>
