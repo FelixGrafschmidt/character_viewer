@@ -9,6 +9,7 @@
 				<input
 					id="name"
 					v-model="newListName"
+					v-autofocus
 					type="text"
 					class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 w-full"
 					placeholder="name"

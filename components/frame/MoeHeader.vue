@@ -33,7 +33,7 @@
 			role="menu"
 			aria-orientation="vertical"
 			aria-labelledby="options-menu"
-			class="flex flex-col h-32 mt-16 w-[25rem]"
+			class="flex flex-col h-32 mt-16 w-[25rem] mr-2"
 			@mouseenter="showLoadCollection = true"
 			@mouseleave="showLoadCollection = false"
 		>
