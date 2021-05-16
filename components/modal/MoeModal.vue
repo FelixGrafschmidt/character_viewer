@@ -9,12 +9,12 @@
 			<component :is="component" />
 		</div>
 	</div>
+	<div v-else></div>
 </template>
 
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { Modal } from "~/models/enums/Modal";
-	import {} from "~/models/interfaces/List";
 
 	@Component({
 		components: {},
@@ -25,7 +25,7 @@
 			return this.modal !== Modal.NONE;
 		}
 
-		get modal() {
+		get modal(): Modal {
 			return this.$accessor.modal;
 		}
 
@@ -45,9 +45,6 @@
 					return "MoeLoadCollection";
 				case Modal.IMPORTLIST:
 					return "MoeImportList";
-
-				default:
-					return "";
 			}
 		}
 	}

@@ -111,7 +111,6 @@
 		disableAutosave() {
 			this.autosave = false;
 			this.countdown = 60;
-			this.countdownId = 0;
 		}
 
 		saveChanges(): Promise<void> {
