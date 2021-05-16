@@ -104,6 +104,7 @@
 	@Component({
 		components: {},
 		name: "lists",
+		middleware: ["resetCharacter"],
 	})
 	export default class Lists extends Vue {
 		newListName: string = "";
@@ -118,7 +119,6 @@
 
 		deleteList(list: List) {
 			this.$accessor.setModal(Modal.DELETELIST);
-			this.$accessor.resetCharacter();
 			this.$accessor.setListToDelete(list);
 		}
 
@@ -137,7 +137,6 @@
 		}
 
 		openList(list: List): void {
-			this.$accessor.resetCharacter();
 			this.$accessor.setList(list);
 			this.$router.push(this.$accessor.navigationPaths.list);
 		}

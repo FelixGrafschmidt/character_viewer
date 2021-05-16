@@ -64,7 +64,7 @@ export const mutations = mutationTree(state, {
 		currentState.collection.lists.push(newList);
 	},
 	removeListFromCollection: (currentState, id: string) => {
-		currentState.collection.lists.filter((list) => list.id !== id);
+		currentState.collection.lists = currentState.collection.lists.filter((list) => list.id !== id);
 	},
 
 	setList: (currentState, newList: List) => {

@@ -15,6 +15,7 @@
 	@Component({
 		components: {},
 		name: "gallery",
+		middleware: ["resetCharacter"],
 	})
 	export default class Gallery extends Vue {
 		mode: string = "list";

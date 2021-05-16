@@ -73,6 +73,13 @@
 					character.images = [];
 				}
 			});
+			if (this.list.characters.length > 500) {
+				window.alert("Too many characters!");
+				return;
+			}
+			if (!this.list.id.match(/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/)) {
+				this.list.id = v4();
+			}
 			const oldList = this.$accessor.collection.lists.filter((list) => list.id === this.list.id)[0];
 			if (oldList) {
 				if (
@@ -81,6 +88,8 @@
 					)
 				) {
 					return;
+				} else {
+					this.$accessor.removeListFromCollection(this.list.id);
 				}
 			}
 			this.$accessor.addListToCollection(this.list);

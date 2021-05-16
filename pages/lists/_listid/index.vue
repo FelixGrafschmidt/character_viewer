@@ -45,6 +45,7 @@
 	import { Character, newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		name: "characters",
+		middleware: ["resetCharacter"],
 	})
 	export default class Characters extends Vue {
 		fetchOnServer = false;

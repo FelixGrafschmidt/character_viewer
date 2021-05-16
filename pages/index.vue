@@ -34,6 +34,7 @@
 	@Component({
 		components: {},
 		name: "index",
+		middleware: ["resetCharacter"],
 	})
 	export default class Index extends Vue {
 		initialVisit: boolean = false;

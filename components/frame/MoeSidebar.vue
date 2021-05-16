@@ -70,7 +70,6 @@
 		}
 
 		navigateToList(list: List) {
-			this.$accessor.resetCharacter();
 			this.$accessor.setList(list);
 			this.$router.push(this.$accessor.navigationPaths.list);
 		}

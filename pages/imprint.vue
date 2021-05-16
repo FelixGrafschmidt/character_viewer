@@ -8,6 +8,6 @@
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
 
-	@Component({ name: "imprint" })
+	@Component({ name: "imprint", middleware: ["resetCharacter"] })
 	export default class Imprint extends Vue {}
 </script>
