@@ -146,8 +146,11 @@
 				this.$router.push("/lists");
 			}
 			this.$accessor.setList(list[0]);
-			if (this.$accessor.list.characters.filter((character) => character.id === characterid).length === 0) {
+			const character = this.$accessor.list.characters.filter((character) => character.id === characterid);
+			if (character.length === 0) {
 				this.$accessor.setCharacter(newCharacter());
+			} else {
+				this.$accessor.setCharacter(character[0]);
 			}
 			this.image = this.getMainImage();
 		}
