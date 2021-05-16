@@ -1,6 +1,6 @@
 <template>
 	<nav
-		class="dark:bg-gray-800 bg-gray-500 max-w-7xl pl-2 min-w-full relative flex items-center justify-between h-16"
+		class="dark:bg-gray-800 bg-gray-500 pl-2 min-w-full flex items-center justify-between h-16"
 		role="navigation"
 		aria-label="main navigation"
 	>
@@ -33,30 +33,27 @@
 			role="menu"
 			aria-orientation="vertical"
 			aria-labelledby="options-menu"
-			class="w-96 h-16"
+			class="flex flex-col h-32 mt-16 w-[25rem]"
 			@mouseenter="showLoadCollection = true"
 			@mouseleave="showLoadCollection = false"
 		>
-			<div class="pl-8 h-16 py-4">
-				{{ $accessor.collection.id }}
+			<div class="h-16 flex">
+				<span class="pt-5 pb-4"> {{ $accessor.collection.id }} </span>
+				<MoeButton class="ml-2 my-2" text="Copy ID" @click.native="copyID" />
 			</div>
 			<div
 				v-if="showLoadCollection"
 				class="
-					absolute
-					top-16
-					load-collection
 					dark:bg-gray-800
 					bg-gray-500
-					h-auto
-					pb-4
-					pl-8
-					w-96
-					pt-4
 					cursor-pointer
+					flex
+					justify-center
+					items-center
 					border-t
 					dark:border-yellow-300
 					border-yellow-400
+					h-16
 				"
 				@click="loadCollection"
 			>
@@ -150,6 +147,10 @@
 					this.$accessor.saveChanges();
 				}
 			}, 1000 * 60);
+		}
+
+		copyID() {
+			navigator.clipboard.writeText(this.collection.id);
 		}
 	}
 </script>
