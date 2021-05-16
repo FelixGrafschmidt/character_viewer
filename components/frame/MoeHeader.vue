@@ -36,7 +36,7 @@
 			class="flex flex-col h-32 mt-16 w-[25rem] mr-2"
 			@mouseleave="showLoadCollection = false"
 		>
-			<div class="h-16 flex" @mouseenter="showLoadCollection = true">
+			<div class="h-16 flex pl-2" @mouseenter="showLoadCollection = true">
 				<span class="pt-5 pb-4"> {{ $accessor.collection.id }} </span>
 				<MoeButton class="ml-2 my-2" :text="copyText" @click.native="copyID" />
 			</div>
@@ -50,6 +50,7 @@
 					justify-center
 					items-center
 					border-t
+					-mr-2
 					dark:border-yellow-300
 					border-yellow-400
 					h-16
