@@ -15,7 +15,7 @@
 				<div class="flex gap-4">
 					<div class="flex-row flex px-3 py-2 font-medium">
 						Autosave:&nbsp;
-						<p v-if="autosave" class="dark:text-green-400 text-green-700">on</p>
+						<p v-if="autosave" class="dark:text-green-400 text-green-700">{{ countdown }}</p>
 						<p v-else class="text-red-600">off</p>
 					</div>
 
@@ -77,6 +77,7 @@
 		autosave = false;
 		showLoadCollection = false;
 		autosaveId = 0;
+		countdown = 60;
 		copyText = "Copy ID";
 
 		// Computed
@@ -104,10 +105,13 @@
 
 		enableAutosave() {
 			this.autosave = true;
+			this.countdown = 60;
 		}
 
 		disableAutosave() {
 			this.autosave = false;
+			this.countdown = 60;
+			this.countdownId = 0;
 		}
 
 		saveChanges(): Promise<void> {
@@ -144,10 +148,12 @@
 
 		performAutosave() {
 			this.autosaveId = window.setInterval(() => {
-				if (this.autosave) {
+				this.countdown--;
+				if (this.autosave && this.countdown === 0) {
 					this.$accessor.saveChanges();
+					this.countdown = 60;
 				}
-			}, 1000 * 60);
+			}, 1000 * 1);
 		}
 
 		copyID() {
