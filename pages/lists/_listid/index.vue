@@ -2,17 +2,17 @@
 	<div class="mt-12 flex flex-col">
 		<div v-if="characters.length > 0" class="">
 			<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-100 z-[3] rounded font-extrabold text-lg">
-				<div class="w-2/5 dark:border-gray-800 border-r-2 py-5 text-center cursor-pointer" @click="$accessor.sortListByName()">
+				<div class="w-2/5 dark:border-gray-800 border-r-2 py-2 text-center cursor-pointer" @click="$accessor.sortListByName()">
 					Name
 				</div>
 				<div
-					class="w-2/5 dark:border-gray-800 border-r-2 border-l-2 py-5 text-center cursor-pointer"
+					class="w-2/5 dark:border-gray-800 border-r-2 border-l-2 py-2 text-center cursor-pointer"
 					@click="$accessor.sortListByOrigin()"
 				>
 					Origin
 				</div>
-				<div class="w-1/6 dark:border-gray-800 border-r-2 border-l-2 py-5 text-center">Images</div>
-				<div class="w-1/6 dark:border-gray-800 border-l-2 py-5 text-center">Main Image</div>
+				<div class="w-1/6 dark:border-gray-800 border-r-2 border-l-2 py-2 text-center">Images</div>
+				<div class="w-1/6 dark:border-gray-800 border-l-2 py-2 text-center">Main Image</div>
 			</div>
 			<div class="rounded">
 				<div
@@ -45,9 +45,9 @@
 	import { Character, newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		name: "characters",
-		middleware: "routeguard",
 	})
 	export default class Characters extends Vue {
+		fetchOnServer = false;
 		get character() {
 			return this.$accessor.character;
 		}
@@ -74,10 +74,15 @@
 			);
 		}
 
-		// mounted() {
-		// 	if (this.characters.length === 0) {
-		// 		this.$router.push("/character-edit");
-		// 	}
-		// }
+		mounted() {
+			const url = new URL(window.location.href);
+			const path = url.pathname.split("/");
+			const listid = path[2];
+			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
+			if (list.length === 0) {
+				this.$router.push("/lists");
+			}
+			this.$accessor.setList(list[0]);
+		}
 	}
 </script>

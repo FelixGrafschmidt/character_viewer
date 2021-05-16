@@ -239,9 +239,10 @@ export const actions = actionTree(
 			});
 		},
 		async loadCollection(_vuexContext: ActionContext<any, any>) {
-			let collectionId = localStorage.getItem("collectionId");
+			let collectionId = window.localStorage.getItem("collectionId");
 			const collection = newCollection();
 			if (collectionId) {
+				collection.id = collectionId;
 				await this.$axios
 					.$get("loadCollection", {
 						params: {

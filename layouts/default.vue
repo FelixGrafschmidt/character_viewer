@@ -17,11 +17,15 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	@Component({ name: "default" })
+	@Component({
+		name: "default",
+	})
 	export default class Default extends Vue {
 		isLoading = false;
 
-		mounted() {}
+		mounted() {
+			this.$accessor.loadCollection();
+		}
 	}
 </script>
 

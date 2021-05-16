@@ -38,8 +38,10 @@
 	export default class Index extends Vue {
 		initialVisit: boolean = false;
 
-		mounted(): void {
-			this.initialVisit = localStorage.getItem("collectionId") === null;
+		fetch() {
+			if (this.$accessor.collection.lists.length === 0) {
+				this.initialVisit = true;
+			}
 		}
 	}
 </script>

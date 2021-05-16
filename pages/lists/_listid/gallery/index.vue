@@ -15,10 +15,23 @@
 	@Component({
 		components: {},
 		name: "gallery",
-		middleware: "routeguard",
 	})
 	export default class Gallery extends Vue {
 		mode: string = "list";
+
+		mounted() {
+			const url = new URL(window.location.href);
+			const path = url.pathname.split("/");
+			const listid = path[2];
+			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
+			if (list.length === 0) {
+				this.$router.push("/lists");
+			}
+			if (list[0].characters.length === 0) {
+				this.$router.push("/lists/" + listid);
+			}
+			this.$accessor.setList(list[0]);
+		}
 
 		get list() {
 			return this.$accessor.list;

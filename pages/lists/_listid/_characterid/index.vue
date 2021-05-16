@@ -121,10 +121,9 @@
 	// Vue basics
 	import { Component, Vue, Watch } from "nuxt-property-decorator";
 	import { Modal } from "~/models/enums/Modal";
-	import { CharacterImage } from "~/models/interfaces/Character";
+	import { CharacterImage, newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		name: "character-edit",
-		middleware: "routeguard",
 	})
 	export default class CharacterEdit extends Vue {
 		get character() {
@@ -138,6 +137,18 @@
 		image: CharacterImage = { src: "", main: false, valid: true };
 
 		mounted() {
+			const url = new URL(window.location.href);
+			const path = url.pathname.split("/");
+			const listid = path[2];
+			const characterid = path[3];
+			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
+			if (list.length === 0) {
+				this.$router.push("/lists");
+			}
+			this.$accessor.setList(list[0]);
+			if (this.$accessor.list.characters.filter((character) => character.id === characterid).length === 0) {
+				this.$accessor.setCharacter(newCharacter());
+			}
 			this.image = this.getMainImage();
 		}
 

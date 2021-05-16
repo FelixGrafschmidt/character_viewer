@@ -74,10 +74,6 @@
 	@Component({
 		components: {},
 		name: "MoeHeader",
-		fetchOnServer: false,
-		fetch() {
-			this.$accessor.loadCollection();
-		},
 	})
 	export default class MoeHeader extends Vue {
 		// Data
