@@ -93,7 +93,7 @@
 
 		mounted() {
 			if (this.$route.query.id) {
-				window.localStorage.setItem("collectionId", this.$route.query.id[0]!);
+				window.localStorage.setItem("collectionId", this.$route.query.id.toString());
 				this.$accessor.loadCollection();
 			} else if (window.localStorage.getItem("collectionId")) {
 				this.$accessor.loadCollection();
