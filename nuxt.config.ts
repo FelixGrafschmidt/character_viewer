@@ -24,7 +24,7 @@ const nuxtConfig: NuxtConfig = {
 				name: "description",
 				content: process.env.npm_package_description || "",
 			},
-			{ rel: "them-color", content: "#ffffff", property: "" },
+			{ rel: "theme-color", content: "#ffffff", property: "" },
 			{ rel: "msapplication-TileColor", content: "#00aba9", property: "" },
 			{ rel: "msapplication-TileImage", content: "/mstile-144x144.png", property: "" },
 			{ rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5", property: "", content: "" },
@@ -98,11 +98,16 @@ const nuxtConfig: NuxtConfig = {
 	},
 	tailwindcss: {
 		jit: true,
+		exposeConfig: true,
 	},
 	pwa: {
 		workbox: {
 			enabled: false,
 		},
+	},
+	colorMode: {
+		classSuffix: "",
+		fallback: "dark",
 	},
 	// vite: {
 	// 	build: {

@@ -5,10 +5,10 @@
 				icon-class-names="fas fa-arrow-left"
 				class="py-1 px-4 rounded-br-sm has-tooltip"
 				class-names="text-sm font-medium focus:outline-none"
-				color="dark:bg-gray-600 bg-gray-400"
+				color="dark:bg-gray-600 bg-gray-300"
 				@click.native="backToCharacterList"
 			/>
-			<span class="tooltip bg-gray-300 dark:bg-gray-500 p-2 ml-2 my-0 py-0 rounded w-44">Back to Character List</span>
+			<span class="tooltip bg-gray-300 dark:bg-gray-600 px-2 ml-2 my-0 rounded w-44">Back to Character List</span>
 		</div>
 
 		<div class="flex flex-col items-center w-1/2 gap-2 justify-between">

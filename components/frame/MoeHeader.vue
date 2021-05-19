@@ -4,7 +4,10 @@
 		role="navigation"
 		aria-label="main navigation"
 	>
-		<MoeButton :icon-class-names="$colorMode.preference === 'light' ? 'fas fa-moon' : 'fas fa-sun'" @click.native="changeMode" />
+		<MoeButton
+			:icon-class-names="{ 'fas fa-moon': $colorMode.preference === 'light', 'fas fa-sun': $colorMode.preference === 'dark' }"
+			@click.native="changeMode"
+		/>
 		<div class="flex-1 flex items-center justify-start pl-4">
 			<nuxt-link v-slot="{ navigate }" custom to="/">
 				<h2 class="text-2xl cursor-pointer title caps-small" role="link" @click="navigate" @keypress.enter="navigate">

@@ -63,7 +63,6 @@
 		"stylelint": "^13.13.1",
 		"stylelint-config-recommended": "^5.0.0",
 		"tailwind-scrollbar": "^1.3.0",
-		"tailwindcss-dark-mode": "^1.1.7",
 		"vue-autofocus-directive": "^1.0.4",
 		"vuex": "^3.6.2"
 	}

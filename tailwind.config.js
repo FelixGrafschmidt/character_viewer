@@ -11,8 +11,9 @@ module.exports = {
 				blue: ["4px solid #3b82f6", "-8px"],
 			},
 		},
-		darkSelector: ".dark-mode",
+		// darkSelector: ".dark-mode",
 	},
+	darkMode: "class",
 	variants: {
 		backgroundColor: ["dark", "dark-hover", "dark-group-hover", "dark-even", "dark-odd", "hover", "responsive"],
 		borderColor: ["dark", "dark-focus", "dark-focus-within", "hover", "responsive"],

@@ -31,18 +31,16 @@
 
 <style lang="postcss">
 	@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lato&display=swap");
-	.dark-mode {
+	.dark {
 		@apply text-gray-100 bg-gray-900;
 	}
-	.light-mode {
-		@apply text-gray-900 bg-gray-100;
-	}
+
 	:root {
 		font-family: "Lato", sans-serif;
 	}
 
 	.tooltip {
-		@apply invisible absolute bg-white;
+		@apply invisible absolute;
 	}
 
 	.has-tooltip:hover .tooltip {
@@ -52,8 +50,8 @@
 	body {
 		@apply scrollbar;
 		@apply scrollbar-thin;
-		@apply scrollbar-track-gray-300;
-		@apply scrollbar-thumb-gray-500;
+		@apply !scrollbar-track-gray-500;
+		@apply !scrollbar-thumb-gray-700;
 		@apply dark:scrollbar-track-gray-800;
 		@apply dark:scrollbar-thumb-gray-500;
 		@apply overflow-y-scroll;
