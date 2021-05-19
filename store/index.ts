@@ -47,10 +47,11 @@ export const getters = getterTree(state, {
 	ready: (currentState) => currentState.ready,
 	navigationPaths: (currentState) => {
 		return {
-			list: `/lists/${currentState.list.id}`,
-			character: `/lists/${currentState.list.id}/${currentState.character.id}`,
-			gallery: `/lists/${currentState.list.id}/gallery`,
-			"gallery-character": `/lists/${currentState.list.id}/gallery/${currentState.character.id}`,
+			collection: `/${currentState.collection.id}`,
+			list: `/${currentState.collection.id}/${currentState.list.id}`,
+			character: `/${currentState.collection.id}/${currentState.list.id}/${currentState.character.id}`,
+			gallery: `/${currentState.collection.id}/${currentState.list.id}/gallery`,
+			"gallery-character": `/${currentState.collection.id}/${currentState.list.id}/gallery/${currentState.character.id}`,
 		};
 	},
 });

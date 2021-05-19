@@ -20,7 +20,9 @@
 		</h3>
 		<h3 class="py-2">
 			This might sound like a lot right now, so to get going, let's
-			<nuxt-link class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500" to="/lists"> create a new list. </nuxt-link>
+			<nuxt-link class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500" :to="$accessor.navigationPaths.collection">
+				create a new list.
+			</nuxt-link>
 		</h3>
 	</div>
 	<div v-else class="my-20">

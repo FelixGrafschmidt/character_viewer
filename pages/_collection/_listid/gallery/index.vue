@@ -26,10 +26,10 @@
 			const listid = path[2];
 			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push("/lists");
+				this.$router.push(this.$accessor.navigationPaths.collection);
 			}
 			if (list[0].characters.length === 0) {
-				this.$router.push("/lists/" + listid);
+				this.$router.push(this.$accessor.navigationPaths.list);
 			}
 			this.$accessor.setList(list[0]);
 		}

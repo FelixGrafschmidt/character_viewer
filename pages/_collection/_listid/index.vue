@@ -44,10 +44,10 @@
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { Character, newCharacter } from "~/models/interfaces/Character";
 	@Component({
-		name: "characters",
+		name: "list",
 		middleware: ["resetCharacter"],
 	})
-	export default class Characters extends Vue {
+	export default class List extends Vue {
 		fetchOnServer = false;
 		get character() {
 			return this.$accessor.character;
@@ -81,7 +81,7 @@
 			const listid = path[2];
 			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push("/lists");
+				this.$router.push(this.$accessor.navigationPaths.collection);
 			}
 			this.$accessor.setList(list[0]);
 		}

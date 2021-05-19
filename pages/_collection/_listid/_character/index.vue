@@ -123,9 +123,9 @@
 	import { Modal } from "~/models/enums/Modal";
 	import { CharacterImage, newCharacter } from "~/models/interfaces/Character";
 	@Component({
-		name: "character-edit",
+		name: "character",
 	})
-	export default class CharacterEdit extends Vue {
+	export default class Character extends Vue {
 		get character() {
 			return this.$accessor.character;
 		}
@@ -143,7 +143,7 @@
 			const characterid = path[3];
 			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push("/lists");
+				this.$router.push(this.$accessor.navigationPaths.collection);
 			}
 			this.$accessor.setList(list[0]);
 			const character = this.$accessor.list.characters.filter((character) => character.id === characterid);

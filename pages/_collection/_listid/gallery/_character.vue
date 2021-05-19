@@ -23,10 +23,10 @@
 	import { Component, Vue } from "nuxt-property-decorator";
 	@Component({
 		components: {},
-		name: "gallery",
+		name: "gallery-character",
 		middleware: ["resetCharacter"],
 	})
-	export default class Gallery extends Vue {
+	export default class GalleryCharacter extends Vue {
 		mode: string = "list";
 
 		mounted() {
@@ -36,7 +36,7 @@
 			const characterid = path[4];
 			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push("/lists");
+				this.$router.push(this.$accessor.navigationPaths.collection);
 			}
 			this.$accessor.setList(list[0]);
 			const character = this.$accessor.list.characters.filter((character) => character.id === characterid);
