@@ -20,12 +20,7 @@ module.exports = {
 		textColor: ["dark", "dark-hover", "dark-active", "hover", "responsive"],
 		scrollbar: ["dark"],
 	},
-	plugins: [
-		require("tailwindcss-dark-mode")(),
-		require("@tailwindcss/forms"),
-		require("tailwind-scrollbar"),
-		require("tailwindcss-typography"),
-	],
+	plugins: [require("@tailwindcss/forms"), require("tailwind-scrollbar"), require("tailwindcss-typography")],
 	purge: {
 		// enable remove unused CSS only in production
 		enabled: process.env.NODE_ENV === "production",
