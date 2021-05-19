@@ -1,7 +1,7 @@
 <template>
 	<div class="mt-12 flex flex-col">
 		<div v-if="characters.length > 0" class="">
-			<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-100 z-[3] rounded font-extrabold text-lg">
+			<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
 				<div class="w-2/5 dark:border-gray-800 border-r-2 py-2 text-center cursor-pointer" @click="$accessor.sortListByName()">
 					Name
 				</div>

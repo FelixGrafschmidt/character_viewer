@@ -43,11 +43,11 @@
 		</div>
 	</div>
 	<div v-else class="mb-20 mt-12 grid">
-		<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-100 z-[3] rounded font-extrabold text-lg">
-			<div class="py-2 w-2/5 text-center">ID</div>
-			<div class="py-2 w-2/5 text-center">Name</div>
-			<div class="py-2 w-1/6 text-center">Content</div>
-			<div class="py-2 w-1/6"></div>
+		<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
+			<div class="py-2 w-2/5 border-r-2 text-center">ID</div>
+			<div class="py-2 w-2/5 border-r-2 border-l-2 text-center">Name</div>
+			<div class="py-2 w-1/6 border-r-2 border-l-2 text-center">Content</div>
+			<div class="py-2 w-1/6 border-l-2"></div>
 		</div>
 		<div class="">
 			<div
