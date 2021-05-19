@@ -1,5 +1,5 @@
 <template>
-	<div class="flex relative gap-4 max-h-[inherit] my-20">
+	<div class="flex relative gap-4 max-h-[inherit] my-20" @click="quickImages ? addImageQuick($event) : undefined">
 		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"
@@ -66,7 +66,7 @@
 					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 					color="dark:bg-gray-600 bg-gray-400"
 					text="Add Image"
-					@click.native="addNewImage"
+					@click.stop.native="addNewImage"
 				/>
 			</div>
 		</div>
@@ -112,6 +112,20 @@
 					text="Discard Character"
 					@click.native.prevent="discardCharacter"
 				/>
+				<MoeButton
+					class="py-2 w-48"
+					class-names="rounded-md text-sm font-medium focus:outline-none"
+					color="dark:bg-blue-600 bg-blue-400"
+					:text="copyText"
+					@click.native.prevent="copyCharacter"
+				/>
+				<MoeButton
+					class="py-2 w-48"
+					class-names="rounded-md text-sm font-medium focus:outline-none"
+					color="dark:bg-blue-600 bg-blue-400"
+					text="Export Character"
+					@click.native.prevent="exportCharacter"
+				/>
 			</div>
 		</form>
 	</div>
@@ -120,12 +134,18 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue, Watch } from "nuxt-property-decorator";
+	import { saveAs } from "file-saver";
 	import { Modal } from "~/models/enums/Modal";
 	import { CharacterImage, newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		name: "character",
 	})
 	export default class Character extends Vue {
+		copyText = "Copy Character";
+		quickImages = false;
+
+		image: CharacterImage = { src: "", main: false, valid: true };
+
 		get character() {
 			return this.$accessor.character;
 		}
@@ -133,8 +153,6 @@
 		get characters() {
 			return this.$accessor.list.characters;
 		}
-
-		image: CharacterImage = { src: "", main: false, valid: true };
 
 		mounted() {
 			const url = new URL(window.location.href);
@@ -202,7 +220,11 @@
 			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 
-		addNewImage() {
+		addNewImage(event: MouseEvent) {
+			if (event.ctrlKey) {
+				this.quickImages = true;
+				return;
+			}
 			this.$accessor.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
 		}
@@ -220,6 +242,26 @@
 			const index = this.character.images.indexOf(this.image);
 			this.$accessor.removeCharacterImage(index);
 			this.image = this.getMainImage();
+		}
+
+		copyCharacter() {
+			this.copyText = "Copied!";
+			window.setTimeout(() => {
+				this.copyText = "Copy Character";
+			}, 1000 * 2);
+			navigator.clipboard.writeText(JSON.stringify(this.character));
+		}
+
+		exportCharacter() {
+			saveAs(new File([JSON.stringify(this.character)], this.character.name + ".json"));
+		}
+
+		async addImageQuick(event: MouseEvent) {
+			if (event.ctrlKey) {
+				this.quickImages = false;
+				return;
+			}
+			this.$accessor.addCharacterImage({ src: await navigator.clipboard.readText() });
 		}
 
 		@Watch("character.images.length", { deep: true })

@@ -1,22 +1,19 @@
 <template>
-	<nav
-		class="dark:bg-gray-800 bg-gray-500 pl-2 min-w-full flex items-center justify-between h-16"
-		role="navigation"
-		aria-label="main navigation"
-	>
+	<nav class="dark:bg-gray-800 bg-gray-500 pl-2 min-w-full flex items-center h-16 gap-3" role="navigation" aria-label="main navigation">
 		<MoeButton
 			:icon-class-names="{ 'fas fa-moon': $colorMode.preference === 'light', 'fas fa-sun': $colorMode.preference === 'dark' }"
+			class="max-w-[5%]"
 			@click.native="changeMode"
 		/>
-		<div class="flex-1 flex items-center justify-start pl-4">
-			<nuxt-link v-slot="{ navigate }" custom to="/">
-				<h2 class="text-2xl cursor-pointer title caps-small" role="link" @click="navigate" @keypress.enter="navigate">
+		<div class="w-[50%] gap-3 flex items-center justify-start">
+			<nuxt-link v-slot="{ navigate }" tag="h2" custom to="/">
+				<h2 class="text-xl cursor-pointer title caps-small" role="link" @click="navigate" @keypress.enter="navigate">
 					Character List Manager
 				</h2>
 			</nuxt-link>
-			<div class="ml-6">
-				<div class="flex gap-4">
-					<div class="flex-row flex px-3 py-2 font-medium">
+			<div>
+				<div class="flex gap-3 items-center">
+					<div class="flex font-medium items-center">
 						Autosave:&nbsp;
 						<p v-if="autosave" class="dark:text-green-400 text-green-700">{{ countdown }}</p>
 						<p v-else class="text-red-600">off</p>
@@ -26,42 +23,17 @@
 					<MoeButton v-else :text="'Enable autosave'" @click.native="enableAutosave"> </MoeButton>
 					<MoeButton :text="'Save'" @click.native="saveChanges"> </MoeButton>
 
-					<div v-if="changes" class="px-3 py-2 text-lg font-medium">
+					<div v-if="changes" class="text-lg font-medium max-w-[2rem] 2xl:max-w-none">
 						<div class="text-red-600">UNSAVED CHANGES</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div
-			role="menu"
-			aria-orientation="vertical"
-			aria-labelledby="options-menu"
-			class="flex flex-col h-32 mt-16 w-[25rem] mr-2"
-			@mouseleave="showLoadCollection = false"
-		>
-			<div class="h-16 flex pl-2" @mouseenter="showLoadCollection = true">
-				<span class="pt-5 pb-4"> {{ $accessor.collection.id }} </span>
-				<MoeButton class="ml-2 my-2" :text="copyText" @click.native="copyID" />
-			</div>
-			<div
-				v-if="showLoadCollection"
-				class="
-					dark:bg-gray-800
-					bg-gray-500
-					cursor-pointer
-					flex
-					justify-center
-					items-center
-					border-t
-					-mr-2
-					dark:border-yellow-300
-					border-yellow-400
-					h-16
-				"
-				@click="loadCollection"
-			>
-				Load Collection
-			</div>
+		<div class="w-[50%] flex gap-3 items-center justify-end mr-4" @mouseleave="showLoadCollection = false">
+			<span> {{ $accessor.collection.id }} </span>
+			<MoeButton :text="copyText" @click.native="copyID" />
+			<MoeButton text="Load Collection" @click.native="loadCollection" />
+			<MoeButton text="Export Collection" @click.native="exportCollection" />
 		</div>
 	</nav>
 </template>
@@ -69,6 +41,7 @@
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { Collection, getHash } from "@/models/interfaces/Collection";
+	import { saveAs } from "file-saver";
 	import { Modal } from "~/models/enums/Modal";
 
 	@Component({
@@ -164,6 +137,10 @@
 				this.copyText = "Copy ID";
 			}, 1000 * 2);
 			navigator.clipboard.writeText(this.collection.id);
+		}
+
+		exportCollection() {
+			saveAs(new File([JSON.stringify(this.collection)], this.collection.id + ".json"));
 		}
 	}
 </script>

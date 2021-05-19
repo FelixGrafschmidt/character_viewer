@@ -70,7 +70,7 @@
 						@input="updateListname(list.id, $event)"
 					/>
 				</form>
-				<div class="w-1/6 text-center">{{ list.characters.length }} Character(s)</div>
+				<div class="w-1/6 text-center">{{ list.characters.length }} {{ list.characters.length === 1 ? "Entry" : "Entries" }}</div>
 				<div class="w-1/6 text-center">
 					<MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" />
 					<MoeButton
@@ -85,6 +85,7 @@
 						color="dark:bg-gray-600 bg-gray-400 m-1"
 						@click.stop.native="deleteList(list)"
 					/>
+					<MoeButton :text="'Copy'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" @click.stop.native="copyList(list)" />
 				</div>
 			</div>
 		</div>
@@ -167,33 +168,16 @@
 			this.$accessor.renameList({ name, id });
 		}
 
-		shareList(): void {}
-
-		importById(): void {
-			// this.$buefy.dialog.prompt({
-			// 	title: "Load list by id",
-			// 	message: "Paste the id of the list you wish to load into the textfield.",
-			// 	confirmText: "Import",
-			// 	ariaRole: "alertdialog",
-			// 	ariaModal: true,
-			// 	trapFocus: true,
-			// 	onConfirm: (value) => {
-			// 		this.$axios
-			// 			.$get("loadList", {
-			// 				params: {
-			// 					id: value,
-			// 				},
-			// 			})
-			// 			.then((response) => {
-			// 				this.addListToCollection(response.data);
-			// 			})
-			// 			.catch();
-			// 	},
-			// });
-		}
-
 		importFromFile(): void {
 			this.$accessor.setModal(Modal.IMPORTLIST);
+		}
+
+		copyList(list: List) {
+			// this.copyText = "Copied!";
+			// window.setTimeout(() => {
+			// 	this.copyText = "Copy ID";
+			// }, 1000 * 2);
+			navigator.clipboard.writeText(JSON.stringify(list));
 		}
 	}
 </script>
