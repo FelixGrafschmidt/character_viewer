@@ -11,7 +11,7 @@ module.exports = {
 				blue: ["4px solid #3b82f6", "-8px"],
 			},
 		},
-		// darkSelector: ".dark-mode",
+		darkSelector: ".dark",
 	},
 	darkMode: "class",
 	variants: {
