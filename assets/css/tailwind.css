@@ -2,14 +2,3 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* .tooltip {
-	@apply invisible;
-	@apply absolute;
-	@apply bg-white;
-}
-
-.has-tooltip:hover .tooltip {
-	@apply visible;
-	@apply z-50;
-} */
