@@ -3,7 +3,7 @@
 		<MoeHeader class="h-16 fixed z-10 border-b border-teal-700" />
 		<div class="flex">
 			<MoeSidebar class="w-1/6 fixed h-full mt-16 mb-32 border-r border-teal-700" />
-			<div v-if="$accessor.ready" class="w-5/6 ml-auto px-6 py-2 max-h-[36rem] 2xl:max-h-[50rem]">
+			<div v-if="$accessor.ready" class="w-5/6 ml-auto px-6 py-2">
 				<nuxt />
 			</div>
 		</div>

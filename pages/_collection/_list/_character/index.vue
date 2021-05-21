@@ -1,5 +1,5 @@
 <template>
-	<div class="flex relative gap-4 max-h-[inherit] my-20" @click="quickImages ? addImageQuick($event) : undefined">
+	<div class="flex relative gap-4 max-h-[75vh] my-20" @click="quickImages ? addImageQuick($event) : undefined">
 		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"
@@ -12,7 +12,7 @@
 		</div>
 
 		<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
-			<figure class="h-[26rem] 2xl:h-[40rem]">
+			<figure class="h-[55vh] 2xl:h-[70vh] justify-self-start">
 				<img class="rounded max-h-full" :alt="character.name" :src="image.src || ''" />
 			</figure>
 			<div class="flex relative">
@@ -65,7 +65,7 @@
 					@mouseleave="scrollThumbsRight = false"
 				></button>
 			</div>
-			<div class="flex gap-8 h-[2rem] pt-4 items-center">
+			<div class="flex gap-8 pt-4 items-center justify-self-end">
 				<MoeButton
 					class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 					color="dark:bg-gray-600 bg-gray-400"
