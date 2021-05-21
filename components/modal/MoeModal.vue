@@ -1,15 +1,14 @@
 <template>
 	<div v-if="show">
 		<div
-			class="dark:bg-gray-900 bg-gray-100 absolute z-20 h-screen w-[99vw] grid opacity-75 inset-0"
+			class="dark:bg-gray-900 bg-gray-100 absolute z-20 h-screen w-[100vw] grid opacity-75 inset-0"
 			aria-role="dialog"
 			aria-modal
 		></div>
-		<div class="absolute inset-0 flex justify-center items-center z-30">
+		<div class="absolute inset-0 flex justify-center items-center z-30" @click="$accessor.deactivateModal()">
 			<component :is="component" />
 		</div>
 	</div>
-	<div v-else></div>
 </template>
 
 <script lang="ts">

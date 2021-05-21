@@ -98,6 +98,7 @@
 			} else if (window.localStorage.getItem("collectionId")) {
 				this.$accessor.loadCollection();
 			} else {
+				window.document.body.style.overflow = "hidden";
 				this.$accessor.setModal(Modal.LOADCOLLECTION);
 			}
 		}
@@ -118,6 +119,7 @@
 		}
 
 		openModal() {
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.LOADCOLLECTION);
 		}
 

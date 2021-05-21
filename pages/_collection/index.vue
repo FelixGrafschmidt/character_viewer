@@ -132,6 +132,7 @@
 		}
 
 		deleteList(list: List) {
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.DELETELIST);
 			this.$accessor.setListToDelete(list);
 		}
@@ -169,6 +170,7 @@
 		}
 
 		importFromFile(): void {
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.IMPORTLIST);
 		}
 

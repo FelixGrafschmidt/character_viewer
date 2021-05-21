@@ -97,6 +97,7 @@
 					this.$accessor.deactivateModal();
 				})
 				.catch(() => {
+					window.document.body.style.overflow = "hidden";
 					this.$accessor.setModal(Modal.SAVEERROR);
 				})
 				.finally(() => {
@@ -105,6 +106,7 @@
 		}
 
 		loadCollection() {
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.LOADCOLLECTION);
 		}
 

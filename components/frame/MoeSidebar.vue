@@ -80,13 +80,11 @@
 		}
 
 		captureScroll() {
-			window.document.body.style.position = "sticky";
 			window.document.body.style.overflow = "hidden";
 			this.showScrollbars = true;
 		}
 
 		releaseScroll() {
-			window.document.body.style.position = "static";
 			window.document.body.style.overflow = "overlay";
 			this.showScrollbars = false;
 		}

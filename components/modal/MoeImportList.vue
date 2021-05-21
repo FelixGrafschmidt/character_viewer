@@ -15,6 +15,7 @@
 			w-[40vw]
 			items-center
 		"
+		@click.stop
 		@submit.prevent="json !== '' ? importList() : undefined"
 	>
 		<label class="mx-12">

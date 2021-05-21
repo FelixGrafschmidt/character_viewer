@@ -16,6 +16,7 @@
 			sm:w-[40vw]
 		"
 		@submit.prevent="id !== '' ? loadCollection() : undefined"
+		@click.stop
 	>
 		<label class="mx-12 mt-8">
 			<span class="ml-2">Paste collection id below.</span>

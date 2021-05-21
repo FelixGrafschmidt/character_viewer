@@ -137,6 +137,8 @@ export const mutations = mutationTree(state, {
 		currentState.modal = modal;
 	},
 	deactivateModal: (currentState) => {
+		window.document.body.style.position = "static";
+		window.document.body.style.overflow = "overlay";
 		currentState.modal = Modal.NONE;
 	},
 	designateMainImage: (currentState, index: number) => {

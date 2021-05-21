@@ -33,6 +33,7 @@
 
 		contactUs() {
 			this.$accessor.deactivateModal();
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.CONTACTUS);
 		}
 
@@ -44,6 +45,7 @@
 					this.$accessor.deactivateModal();
 				})
 				.catch(() => {
+					window.document.body.style.overflow = "hidden";
 					this.$accessor.setModal(Modal.SAVEERROR);
 				})
 				.finally(() => {

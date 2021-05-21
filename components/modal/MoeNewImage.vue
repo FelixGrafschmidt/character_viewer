@@ -14,6 +14,7 @@
 			w-[40vw]
 			items-center
 		"
+		@click.stop
 		@submit.prevent="src !== '' ? addImage() : undefined"
 	>
 		<img v-if="src" :src="src" alt="new image" class="max-h-[55vh]" @load="valid = true" @error="valid = false" />

@@ -222,6 +222,7 @@
 		}
 
 		deleteCharacter() {
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.DELETECHARACTER);
 		}
 
@@ -253,6 +254,7 @@
 				this.quickImages = true;
 				return;
 			}
+			window.document.body.style.overflow = "hidden";
 			this.$accessor.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
 		}

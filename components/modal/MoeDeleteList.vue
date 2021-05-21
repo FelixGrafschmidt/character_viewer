@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10">
+	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10" @click.stop>
 		<div class="mt-12 px-16">
 			Are you sure you want to delete your list {{ list.name }} with {{ list.characters.length }} characters?
 		</div>
