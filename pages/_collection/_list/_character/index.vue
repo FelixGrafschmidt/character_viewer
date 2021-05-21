@@ -12,7 +12,7 @@
 		</div>
 
 		<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
-			<figure class="max-h-[70%] 2xl:max-h-[80%] min-h-[70%] 2xl:min-h-[80%] justify-center flex">
+			<figure class="h-[70%] min-h-[53vh] 2xl:min-h-[60vh] 2xl:h-[80%] justify-center flex">
 				<img class="rounded" :alt="character.name" :src="image.src || ''" />
 			</figure>
 			<div class="flex relative">
