@@ -42,7 +42,7 @@
 			</div>
 		</div>
 	</div>
-	<div v-else class="mb-20 mt-12 grid">
+	<div v-else class="mt-12 grid">
 		<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
 			<div class="py-2 w-2/5 dark:border-gray-800 border-r-2 text-center">ID</div>
 			<div class="py-2 w-2/5 dark:border-gray-800 border-r-2 border-l-2 text-center">Name</div>
@@ -53,7 +53,7 @@
 			<div
 				v-for="(list, index) in collection.lists"
 				:key="list.id"
-				class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
+				class="flex h-24 hover:bg-gray-500 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
 				:class="{
 					'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
 					'border-4 dark:border-teal-300 border-teal-600': list.id === $accessor.list.id,

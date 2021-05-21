@@ -10,7 +10,6 @@
 			relative
 			m-auto
 			pb-10
-			z-20
 			sm:pt-5
 			items-center
 			sm:max-h-[80vh]

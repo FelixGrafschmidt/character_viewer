@@ -11,7 +11,6 @@
 			m-auto
 			pb-10
 			pt-5
-			z-20
 			max-h-[80vh]
 			w-[40vw]
 			items-center

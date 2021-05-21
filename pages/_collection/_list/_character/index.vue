@@ -1,5 +1,5 @@
 <template>
-	<div class="flex relative gap-4 max-h-[75vh] my-20" @click="quickImages ? addImageQuick($event) : undefined">
+	<div class="flex relative gap-4 max-h-[75vh] mt-20 mb-12" @click="quickImages ? addImageQuick($event) : undefined">
 		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
 			<MoeButton
 				icon-class-names="fas fa-arrow-left"
@@ -12,13 +12,13 @@
 		</div>
 
 		<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
-			<figure class="h-[70%] min-h-[53vh] 2xl:min-h-[60vh] 2xl:h-[80%] justify-center flex">
+			<figure class="h-[75%] min-h-[57vh] 2xl:min-h-[64vh] 2xl:h-[84%] justify-center flex">
 				<img class="rounded" :alt="character.name" :src="image.src || ''" />
 			</figure>
 			<div class="flex relative">
 				<button
 					v-show="thumbsScrolling"
-					class="focus:outline-none absolute left-[-2.5rem] top-[5%] bg-teal-600 px-2 rounded-full fas fa-arrow-left h-full"
+					class="focus:outline-none absolute left-[-2.5rem] top-[5%] bg-teal-600 px-2 rounded-full fas fa-angle-left h-full"
 					@mouseenter="scrollThumbsLeft = true"
 					@mouseleave="scrollThumbsLeft = false"
 				></button>
@@ -60,7 +60,7 @@
 				</div>
 				<button
 					v-show="thumbsScrolling"
-					class="focus:outline-none absolute right-[-2.5rem] top-[5%] h-full bg-teal-600 rounded-full px-2 fas fa-arrow-right"
+					class="focus:outline-none absolute right-[-2.5rem] top-[5%] h-full bg-teal-600 rounded-full px-2 fas fa-angle-right"
 					@mouseenter="scrollThumbsRight = true"
 					@mouseleave="scrollThumbsRight = false"
 				></button>

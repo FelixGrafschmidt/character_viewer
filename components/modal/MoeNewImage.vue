@@ -10,7 +10,6 @@
 			relative
 			m-auto
 			py-10
-			z-20
 			h-[80vh]
 			w-[40vw]
 			items-center

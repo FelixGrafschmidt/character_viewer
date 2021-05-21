@@ -1,7 +1,5 @@
 <template>
-	<div
-		class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10 z-20"
-	>
+	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10">
 		<div class="text-3xl pt-8 self-center text-center">Contact us</div>
 		<div class="mt-12 px-16">
 			Feel free to
@@ -29,7 +27,21 @@
 			>.
 		</div>
 		<div
-			class="top-1 right-1 dark:bg-red-500 dark:text-gray-900 bg-red-800 text-gray-100 h-6 w-6 text-center rounded-2xl ml-24 cursor-pointer absolute"
+			class="
+				top-1
+				right-1
+				dark:bg-red-500
+				dark:text-gray-900
+				bg-red-800
+				text-gray-100
+				h-6
+				w-6
+				text-center
+				rounded-2xl
+				ml-24
+				cursor-pointer
+				absolute
+			"
 			@click="$accessor.deactivateModal()"
 		>
 			X
