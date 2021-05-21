@@ -47,7 +47,7 @@
 						@click="image = img"
 					>
 						<img
-							class="rounded overflow-hidden max-h-full mx-auto"
+							class="rounded overflow-hidden max-h-[7rem] mx-auto"
 							:class="{
 								'border-teal-300 border-4': img.main,
 								'border-green-700 border-4': img === image && img.valid,
@@ -161,6 +161,7 @@
 		quickImages = false;
 		scrollThumbsLeft = false;
 		scrollThumbsRight = false;
+		thumbsScrolling = false;
 
 		image: CharacterImage = { src: "", main: false, valid: true };
 
@@ -170,10 +171,6 @@
 
 		get characters() {
 			return this.$accessor.list.characters;
-		}
-
-		get thumbsScrolling() {
-			return this.character.images.length > 7;
 		}
 
 		mounted() {
@@ -203,6 +200,7 @@
 					thumbs.scrollLeft += 10;
 				}
 			}, 10);
+			this.calculateThumbsScrolling();
 		}
 
 		isNewCharacter() {
@@ -259,6 +257,7 @@
 			}
 			this.$accessor.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
+			this.calculateThumbsScrolling();
 		}
 
 		designateMainImage() {
@@ -274,6 +273,7 @@
 			const index = this.character.images.indexOf(this.image);
 			this.$accessor.removeCharacterImage(index);
 			this.image = this.getMainImage();
+			this.calculateThumbsScrolling();
 		}
 
 		copyCharacter() {
@@ -294,6 +294,15 @@
 				return;
 			}
 			this.$accessor.addCharacterImage({ src: await navigator.clipboard.readText() });
+		}
+
+		calculateThumbsScrolling() {
+			const thumbs = this.$refs.thumbs as Element;
+			let childrenWidth = 0;
+			for (const child of Array.from(thumbs.children)) {
+				childrenWidth += child.clientWidth;
+			}
+			this.thumbsScrolling = childrenWidth > thumbs.clientWidth;
 		}
 
 		@Watch("character.images.length", { deep: true })
