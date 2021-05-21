@@ -12,8 +12,8 @@
 		</div>
 
 		<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
-			<figure class="max-h-[70%] 2xl:max-h-[90%] justify-center flex">
-				<img class="rounded max-h-full" :alt="character.name" :src="image.src || ''" />
+			<figure class="max-h-[70%] 2xl:max-h-[80%] min-h-[70%] 2xl:min-h-[80%] justify-center flex">
+				<img class="rounded" :alt="character.name" :src="image.src || ''" />
 			</figure>
 			<div class="flex relative">
 				<button
