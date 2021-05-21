@@ -8,11 +8,11 @@
 		</div> -->
 		<div class="">© Felix Grafschmidt {{ new Date().getFullYear() }}</div>
 		<div
-			class="absolute right-0 flex flex-col-reverse bottom-0 w-[8rem] mr-1"
+			class="absolute right-0 flex flex-col-reverse gap-4 bottom-2 w-[8rem] mr-1"
 			@mouseenter="showInfomenu = true"
 			@mouseleave="showInfomenu = false"
 		>
-			<div class="flex gap-2 items-center h-10 mx-auto cursor-pointer">
+			<div class="flex gap-2 items-center h-10 mx-auto cursor-pointer justify-center">
 				<span :class="showInfomenu ? 'fas fa-angle-down' : 'fas fa-angle-up'"></span>
 				<span>Info</span>
 			</div>
@@ -26,7 +26,7 @@
 					gap-2
 					items-center
 					flex-col
-					mr-1
+					mr-px
 					justify-around
 					py-4
 					z-10
