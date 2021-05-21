@@ -56,7 +56,7 @@
 				class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
 				:class="{
 					'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
-					'border-4 border-green-500': list.id === $accessor.list.id,
+					'border-4 dark:border-teal-300 border-teal-600': list.id === $accessor.list.id,
 				}"
 				@click="openList(list)"
 			>

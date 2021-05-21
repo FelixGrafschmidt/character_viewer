@@ -16,7 +16,21 @@
 			<MoeButton text="Cancel" @click.native="$accessor.deactivateModal()" />
 		</div>
 		<div
-			class="top-1 right-1 dark:bg-red-500 dark:text-gray-900 bg-red-800 text-gray-100 h-6 w-6 text-center rounded-2xl ml-24 cursor-pointer absolute"
+			class="
+				top-1
+				right-1
+				dark:bg-red-500
+				dark:text-gray-900
+				bg-red-800
+				text-gray-100
+				h-6
+				w-6
+				text-center
+				rounded-2xl
+				ml-24
+				cursor-pointer
+				absolute
+			"
 			@click="$accessor.deactivateModal()"
 		>
 			X

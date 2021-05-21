@@ -16,7 +16,7 @@
 				v-for="characteritem of list.characters"
 				:key="characteritem.id"
 				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
-				:class="{ 'dark:text-green-300': character.id && characteritem.id === character.id }"
+				:class="{ 'dark:text-teal-300 text-teal-600': character.id && characteritem.id === character.id }"
 				role="link"
 				@click="navigateToCharacter(characteritem)"
 			>
@@ -35,7 +35,7 @@
 				v-for="listitem of collection.lists"
 				:key="listitem.id"
 				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
-				:class="{ 'dark:text-green-300': listitem.id === list.id }"
+				:class="{ 'dark:text-teal-300 text-teal-600': listitem.id === list.id }"
 				role="link"
 				@click="navigateToList(listitem)"
 			>

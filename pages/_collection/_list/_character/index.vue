@@ -15,39 +15,55 @@
 			<figure class="h-[26rem] 2xl:h-[40rem]">
 				<img class="rounded max-h-full" :alt="character.name" :src="image.src || ''" />
 			</figure>
-			<div
-				class="
-					max-h-[7rem]
-					min-h-[7rem]
-					w-full
-					flex
-					gap-1
-					items-center
-					overflow-x-scroll
-					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
-					dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
-				"
-			>
-				<figure
-					v-for="(img, i) in character.images"
-					:key="i"
-					class="cursor-pointer max-h-full min-w-[4rem] max-w-[4rem]"
-					:class="{
-						'border-red-500 border-4': !img.valid,
-					}"
-					@click="image = img"
+			<div class="flex relative">
+				<button
+					v-show="thumbsScrolling"
+					class="focus:outline-none absolute left-[-2.5rem] top-[5%] bg-teal-600 px-2 rounded-full fas fa-arrow-left h-full"
+					@mouseenter="scrollThumbsLeft = true"
+					@mouseleave="scrollThumbsLeft = false"
+				></button>
+				<div
+					ref="thumbs"
+					class="
+						max-h-[7rem]
+						min-h-[7rem]
+						w-full
+						flex
+						gap-1
+						items-center
+						overflow-x-scroll
+						scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
+						dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
+						max-w-lg
+					"
 				>
-					<img
-						class="rounded overflow-hidden max-h-full mx-auto"
+					<figure
+						v-for="(img, i) in character.images"
+						:key="i"
+						class="cursor-pointer max-h-full min-w-[4rem] max-w-[4rem]"
 						:class="{
-							'border-blue-500 border-4': img.main,
-							'border-green-500 border-4': img === image && img.valid,
+							'border-red-500 border-4': !img.valid,
 						}"
-						:src="img.src"
-						:alt="i"
-						@error="designateImageAsInvalid(img)"
-					/>
-				</figure>
+						@click="image = img"
+					>
+						<img
+							class="rounded overflow-hidden max-h-full mx-auto"
+							:class="{
+								'border-teal-300 border-4': img.main,
+								'border-green-700 border-4': img === image && img.valid,
+							}"
+							:src="img.src"
+							:alt="i"
+							@error="designateImageAsInvalid(img)"
+						/>
+					</figure>
+				</div>
+				<button
+					v-show="thumbsScrolling"
+					class="focus:outline-none absolute right-[-2.5rem] top-[5%] h-full bg-teal-600 rounded-full px-2 fas fa-arrow-right"
+					@mouseenter="scrollThumbsRight = true"
+					@mouseleave="scrollThumbsRight = false"
+				></button>
 			</div>
 			<div class="flex gap-8 h-[2rem] pt-4 items-center">
 				<MoeButton
@@ -115,14 +131,14 @@
 				<MoeButton
 					class="py-2 w-48"
 					class-names="rounded-md text-sm font-medium focus:outline-none"
-					color="dark:bg-blue-600 bg-blue-400"
+					color="dark:bg-gray-600 bg-gray-400"
 					:text="copyText"
 					@click.native.prevent="copyCharacter"
 				/>
 				<MoeButton
 					class="py-2 w-48"
 					class-names="rounded-md text-sm font-medium focus:outline-none"
-					color="dark:bg-blue-600 bg-blue-400"
+					color="dark:bg-gray-600 bg-gray-400"
 					text="Export Character"
 					@click.native.prevent="exportCharacter"
 				/>
@@ -143,6 +159,8 @@
 	export default class Character extends Vue {
 		copyText = "Copy Character";
 		quickImages = false;
+		scrollThumbsLeft = false;
+		scrollThumbsRight = false;
 
 		image: CharacterImage = { src: "", main: false, valid: true };
 
@@ -152,6 +170,10 @@
 
 		get characters() {
 			return this.$accessor.list.characters;
+		}
+
+		get thumbsScrolling() {
+			return this.character.images.length > 7;
 		}
 
 		mounted() {
@@ -171,6 +193,16 @@
 				this.$accessor.setCharacter(character[0]);
 			}
 			this.image = this.getMainImage();
+
+			window.setInterval(() => {
+				const thumbs = this.$refs.thumbs as Element;
+				if (this.scrollThumbsLeft) {
+					thumbs.scrollLeft -= 10;
+				}
+				if (this.scrollThumbsRight) {
+					thumbs.scrollLeft += 10;
+				}
+			}, 10);
 		}
 
 		isNewCharacter() {
