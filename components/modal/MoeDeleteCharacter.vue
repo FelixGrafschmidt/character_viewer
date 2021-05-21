@@ -43,6 +43,7 @@
 		deleteCharacter() {
 			this.$accessor.deleteCharacter(this.character);
 			this.$accessor.deactivateModal();
+			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 	}
 </script>

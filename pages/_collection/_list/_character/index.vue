@@ -223,8 +223,6 @@
 
 		deleteCharacter() {
 			this.$accessor.setModal(Modal.DELETECHARACTER);
-			// TODO do not switch page until user has made a choice
-			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 
 		changeName(event: InputEvent) {
@@ -257,7 +255,6 @@
 			}
 			this.$accessor.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
-			this.calculateThumbsScrolling();
 		}
 
 		designateMainImage() {
@@ -273,7 +270,6 @@
 			const index = this.character.images.indexOf(this.image);
 			this.$accessor.removeCharacterImage(index);
 			this.image = this.getMainImage();
-			this.calculateThumbsScrolling();
 		}
 
 		copyCharacter() {
@@ -310,6 +306,7 @@
 			if (!this.image) {
 				this.image = this.getMainImage();
 			}
+			this.calculateThumbsScrolling();
 		}
 	}
 </script>
