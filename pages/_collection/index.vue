@@ -53,10 +53,12 @@
 			<div
 				v-for="(list, index) in collection.lists"
 				:key="list.id"
-				class="flex h-24 hover:bg-gray-500 dark-hover:bg-gray-700 items-center rounded cursor-pointer"
+				class="flex h-24 items-center rounded cursor-pointer"
 				:class="{
-					'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
-					'border-4 dark:border-teal-300 border-teal-600': list.id === $accessor.list.id,
+					'bg-teal-500 hover:bg-teal-400': list.id === $accessor.list.id,
+					'hover:bg-gray-500  dark-hover:bg-gray-700': list.id !== $accessor.list.id,
+					'bg-gray-300  dark:bg-gray-800': list.id !== $accessor.list.id && index % 2 === 0,
+					'bg-gray-300  dark:bg-gray-800': list.id !== $accessor.list.id && index % 2 !== 0,
 				}"
 				@click="openList(list)"
 			>
@@ -175,10 +177,6 @@
 		}
 
 		copyList(list: List) {
-			// this.copyText = "Copied!";
-			// window.setTimeout(() => {
-			// 	this.copyText = "Copy ID";
-			// }, 1000 * 2);
 			navigator.clipboard.writeText(JSON.stringify(list));
 		}
 	}
