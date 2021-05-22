@@ -7,10 +7,10 @@
 		<h3 v-else class="text-lg max-w-[15rem] whitespace-nowrap truncate">No list selected</h3>
 		<div
 			:class="{
-				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 ':
+				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
 					showScrollbars,
 			}"
-			class="rounded max-h-[40%] min-h-[40%] overflow-y-scroll overflow-hidden"
+			class="rounded max-h-[40%] min-h-[40%] overflow-hidden"
 		>
 			<div
 				v-for="characteritem of list.characters"
@@ -26,10 +26,10 @@
 		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="$router.push($accessor.navigationPaths.collection)">Lists</h3>
 		<div
 			:class="{
-				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 ':
+				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
 					showScrollbars,
 			}"
-			class="rounded max-h-[40%] min-h-[40%] overflow-y-scroll overflow-hidden"
+			class="rounded max-h-[40%] min-h-[40%] overflow-hidden"
 		>
 			<div
 				v-for="listitem of collection.lists"

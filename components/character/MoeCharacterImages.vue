@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
-		<figure class="h-[75%] min-h-[57vh] 2xl:min-h-[64vh] 2xl:h-[84%] justify-center flex">
+		<figure class="h-[75%] min-h-[57vh] 2xl:min-h-[64vh] 2xl:h-[84%] justify-center flex cursor-pointer" @click="openImage(image)">
 			<img class="rounded" :alt="character.name" :src="image.src || ''" />
 		</figure>
 		<div class="flex relative">
@@ -145,6 +145,13 @@
 				childrenWidth += child.clientWidth;
 			}
 			this.thumbsScrolling = childrenWidth > thumbs.clientWidth;
+		}
+
+		openImage(image: CharacterImage) {
+			window.scroll(0, 0);
+			this.$accessor.setImage(image);
+			window.document.body.style.overflow = "hidden";
+			this.$accessor.setModal(Modal.FULLSCREENIMG);
 		}
 
 		@Watch("character.images.length", { deep: true })

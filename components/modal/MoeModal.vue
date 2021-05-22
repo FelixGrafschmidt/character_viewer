@@ -45,7 +45,8 @@
 				case Modal.IMPORTLIST:
 					return "MoeImportList";
 				case Modal.NEWLIST:
-					return "MoeNewList";
+				case Modal.FULLSCREENIMG:
+					return "MoeFullscreenImg";
 				default:
 					return "";
 			}

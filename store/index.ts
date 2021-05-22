@@ -24,6 +24,7 @@ export const state = () => ({
 		attributeArrays: new Map<string, string>(),
 		subCharacterArrays: new Map<string, SubCharacter[]>(),
 	},
+	image: { src: "", main: false, valid: true },
 	originalHash: "",
 	listToDelete: { id: "", name: "", characters: new Array<Character>() },
 	modal: Modal.NONE,
@@ -38,6 +39,7 @@ export const getters = getterTree(state, {
 	collection: (currentState) => currentState.collection,
 	list: (currentState) => currentState.list,
 	character: (currentState) => currentState.character,
+	image: (currentState) => currentState.image,
 	originalHash: (currentState) => currentState.originalHash,
 	listToDelete: (currentState) => currentState.listToDelete,
 	characterName: (currentState) => currentState.character.name,
@@ -142,6 +144,9 @@ export const mutations = mutationTree(state, {
 		window.document.body.style.position = "static";
 		window.document.body.style.overflow = "overlay";
 		currentState.modal = Modal.NONE;
+	},
+	setImage: (currentState, image: CharacterImage) => {
+		currentState.image = image;
 	},
 	designateMainImage: (currentState, index: number) => {
 		currentState.character.images.forEach((image, i) => {

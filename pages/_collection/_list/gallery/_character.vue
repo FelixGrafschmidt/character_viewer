@@ -2,7 +2,7 @@
 	<div class="relative mt-20 mb-20">
 		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="$router.push($accessor.navigationPaths.gallery)" />
 		<div class="flex flex-wrap gap-2 pt-2">
-			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%]">
+			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%] cursor-pointer" @click="openImage(image)">
 				<img :src="image.src" :alt="image.src" class="overflow-hidden" />
 			</figure>
 		</div>
@@ -12,6 +12,8 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
+	import { Modal } from "~/models/enums/Modal";
+	import { CharacterImage } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
 		name: "gallery-character",
@@ -40,6 +42,13 @@
 
 		get character() {
 			return this.$accessor.character;
+		}
+
+		openImage(image: CharacterImage) {
+			window.scroll(0, 0);
+			this.$accessor.setImage(image);
+			window.document.body.style.overflow = "hidden";
+			this.$accessor.setModal(Modal.FULLSCREENIMG);
 		}
 	}
 </script>
