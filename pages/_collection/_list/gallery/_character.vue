@@ -1,5 +1,5 @@
 <template>
-	<div class="relative mt-20 mb-12">
+	<div class="relative mt-20 mb-20">
 		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="$router.push($accessor.navigationPaths.gallery)" />
 		<div class="flex flex-wrap gap-2 pt-2">
 			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%]">
