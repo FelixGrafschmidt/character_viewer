@@ -125,6 +125,7 @@ const nuxtConfig: NuxtConfig = {
 	vue: {
 		config: { devtools: true },
 	},
+	modern: true,
 	// vite: {
 	// 	build: {
 	// 		rollupOptions: {
