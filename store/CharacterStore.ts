@@ -4,7 +4,7 @@ import { Character, CharacterImage, newCharacter, newCharacterImage } from "~/mo
 const VuexModule = createModule({
 	strict: false,
 	target: "nuxt",
-	namespaced: "characters",
+	namespaced: "CharacterStore",
 });
 
 @Module()

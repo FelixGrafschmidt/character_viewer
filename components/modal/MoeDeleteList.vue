@@ -47,7 +47,7 @@
 	})
 	export default class MoeDeleteList extends Vue {
 		get list() {
-			return this.$vxm.main.listToDelete;
+			return this.$vxm.main.collectionStore.listToDelete;
 		}
 	}
 </script>

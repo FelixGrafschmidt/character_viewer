@@ -3,7 +3,6 @@ import { action, createModule, createProxy, createSubModule, extractVuexModule, 
 import Vuex from "vuex";
 import Vue from "vue";
 import { Modal } from "~/models/enums/Modal";
-import { newList } from "~/models/interfaces/List";
 
 import { CollectionStore } from "~/store/CollectionStore";
 import { ListStore } from "~/store/ListStore";
@@ -15,7 +14,7 @@ Vue.use(Vuex);
 const VuexModule = createModule({
 	strict: false,
 	target: "nuxt",
-	namespaced: "main",
+	namespaced: "MainStore",
 });
 
 @Module()
@@ -27,7 +26,6 @@ export class MainStore extends VuexModule {
 	imageStore = createSubModule(ImageStore);
 
 	// State
-	listToDelete = newList(undefined);
 	modal = Modal.NONE;
 	loading = false;
 	mobileMode = "collection";
@@ -64,16 +62,6 @@ export class MainStore extends VuexModule {
 
 	// Actions
 	@action async nuxtServerInit(_nuxtContext: Context) {}
-
-	// @getter async navigationPaths() {
-	// 	return await {
-	// 		collection: `/${this.collectionStore.collection.id}`,
-	// 		list: `/${this.collectionStore.collection.id}/${this.listStore.list.id}`,
-	// 		character: `/${this.collectionStore.collection.id}/${this.listStore.list.id}/${this.characterStore.character.id}`,
-	// 		gallery: `/${this.collectionStore.collection.id}/${this.listStore.list.id}/gallery`,
-	// 		"gallery-character": `/${this.collectionStore.collection.id}/${this.listStore.list.id}/gallery/${this.characterStore.character.id}`,
-	// 	};
-	// }
 }
 
 // store.vuex.ts

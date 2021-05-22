@@ -74,7 +74,9 @@ const nuxtConfig: NuxtConfig = {
 		},
 	},
 	axios: {
-		baseURL: process.env.NODE_ENV === "production" ? "https://ithambar.moe" : "http://localhost:3000",
+		baseURL:
+			// process.env.NODE_ENV === "production" ? "https://ithambar.moe" :
+			"http://localhost:3000",
 	},
 	serverMiddleware: [
 		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
@@ -119,6 +121,9 @@ const nuxtConfig: NuxtConfig = {
 	colorMode: {
 		classSuffix: "",
 		fallback: "dark",
+	},
+	vue: {
+		config: { devtools: true },
 	},
 	// vite: {
 	// 	build: {

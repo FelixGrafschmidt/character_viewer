@@ -6,7 +6,7 @@ import { List, newList } from "~/models/interfaces/List";
 const VuexModule = createModule({
 	strict: false,
 	target: "nuxt",
-	namespaced: "lists",
+	namespaced: "ListStore",
 });
 
 @Module()
