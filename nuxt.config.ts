@@ -84,7 +84,15 @@ const nuxtConfig: NuxtConfig = {
 	router: {
 		middleware: "mobileRedirect",
 	},
-	components: ["~/components/frame", "~/components/modal", "~/components"],
+	components: [
+		"~/components",
+		"~/components/mobile",
+		"~/components/frame",
+		"~/components/frame/header",
+		"~/components/frame/footer",
+		"~/components/modal",
+		"~/components/common",
+	],
 	winstonLog: {
 		transportOptions: {
 			eol: "\n",

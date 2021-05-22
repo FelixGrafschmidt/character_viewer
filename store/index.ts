@@ -29,6 +29,7 @@ export const state = () => ({
 	modal: Modal.NONE,
 	loading: false,
 	ready: false,
+	mobileMode: "collection",
 });
 
 export type RootState = ReturnType<typeof state>;
@@ -45,6 +46,7 @@ export const getters = getterTree(state, {
 	modal: (currentState) => currentState.modal,
 	loading: (currentState) => currentState.loading,
 	ready: (currentState) => currentState.ready,
+	mobileMode: (currentState) => currentState.mobileMode,
 	navigationPaths: (currentState) => {
 		return {
 			collection: `/${currentState.collection.id}`,
@@ -227,6 +229,9 @@ export const mutations = mutationTree(state, {
 		if (currentState.list.id === id) {
 			currentState.list = { id: "", name: "", characters: new Array<Character>(), sortorder: Sortorder.DEFAULT };
 		}
+	},
+	setMobileMode: (currentState, mobileMode) => {
+		currentState.mobileMode = mobileMode;
 	},
 	initializeStore() {
 		console.log("Store initialized");
