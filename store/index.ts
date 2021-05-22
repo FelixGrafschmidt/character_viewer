@@ -1,5 +1,5 @@
 import { Context } from "@nuxt/types";
-import { action, createModule, createProxy, createSubModule, extractVuexModule, mutation } from "vuex-class-component";
+import { action, createModule, createProxy, createSubModule, extractVuexModule, Module, mutation } from "vuex-class-component";
 import Vuex from "vuex";
 import Vue from "vue";
 import { Modal } from "~/models/enums/Modal";
@@ -15,9 +15,11 @@ Vue.use(Vuex);
 const VuexModule = createModule({
 	strict: false,
 	target: "nuxt",
+	namespaced: "main",
 });
 
-export class MainStore extends VuexModule.With({}) {
+@Module()
+export class MainStore extends VuexModule {
 	// Submodules
 	collectionStore = createSubModule(CollectionStore);
 	listStore = createSubModule(ListStore);

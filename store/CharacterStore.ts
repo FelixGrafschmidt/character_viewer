@@ -1,12 +1,14 @@
-import { createModule, mutation } from "vuex-class-component";
+import { createModule, Module, mutation } from "vuex-class-component";
 import { Character, CharacterImage, newCharacter, newCharacterImage } from "~/models/interfaces/Character";
 
 const VuexModule = createModule({
 	strict: false,
 	target: "nuxt",
+	namespaced: "characters",
 });
 
-export class CharacterStore extends VuexModule.With({}) {
+@Module()
+export class CharacterStore extends VuexModule {
 	// State
 	character = newCharacter("");
 

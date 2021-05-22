@@ -1,4 +1,4 @@
-import { mutation, createModule } from "vuex-class-component";
+import { mutation, createModule, Module } from "vuex-class-component";
 import { Sortorder } from "~/models/enums/Sortorder";
 import { Character } from "~/models/interfaces/Character";
 import { List, newList } from "~/models/interfaces/List";
@@ -6,9 +6,11 @@ import { List, newList } from "~/models/interfaces/List";
 const VuexModule = createModule({
 	strict: false,
 	target: "nuxt",
+	namespaced: "lists",
 });
 
-export class ListStore extends VuexModule.With({}) {
+@Module()
+export class ListStore extends VuexModule {
 	// State
 	list = newList("");
 
