@@ -44,6 +44,8 @@
 					return "MoeLoadCollection";
 				case Modal.IMPORTLIST:
 					return "MoeImportList";
+				case Modal.NEWLIST:
+					return "MoeNewList";
 				default:
 					return "";
 			}

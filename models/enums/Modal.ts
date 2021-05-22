@@ -7,4 +7,5 @@ export enum Modal {
 	"NEWIMAGE",
 	"LOADCOLLECTION",
 	"IMPORTLIST",
+	"NEWLIST",
 }
