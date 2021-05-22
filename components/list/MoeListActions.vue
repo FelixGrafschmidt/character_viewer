@@ -1,0 +1,21 @@
+<template>
+	<div class="flex mt-7 justify-center mb-20">
+		<MoeButton :text="'Add New Character'" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="addNewCharacter" />
+	</div>
+</template>
+
+<script lang="ts">
+	import { Component, Vue } from "nuxt-property-decorator";
+	import { newCharacter } from "~/models/interfaces/Character";
+
+	@Component({
+		components: {},
+		name: "MoeListActions",
+	})
+	export default class MoeListActions extends Vue {
+		addNewCharacter() {
+			this.$accessor.setCharacter(newCharacter());
+			this.$router.push(this.$accessor.navigationPaths.character);
+		}
+	}
+</script>

@@ -87,6 +87,7 @@ const nuxtConfig: NuxtConfig = {
 	components: [
 		"~/components",
 		"~/components/collection",
+		"~/components/list",
 		"~/components/mobile",
 		"~/components/frame",
 		"~/components/frame/header",
