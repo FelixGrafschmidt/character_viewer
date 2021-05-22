@@ -4,7 +4,7 @@
 			<h1 v-if="error.statusCode === 404" class="text-lg">{{ error.message }}</h1>
 			<h1 v-else class="text-lg">An error occurred</h1>
 		</div>
-		<NuxtLink to="/">Back to Start</NuxtLink>
+		<nuxt-link to="/">Back to Start</nuxt-link>
 	</div>
 </template>
 
