@@ -53,7 +53,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { newList } from "@/models/interfaces/List";
+	import { List, newList } from "@/models/interfaces/List";
 	@Component({
 		components: {},
 		name: "MoeNewList",
@@ -63,6 +63,11 @@
 
 		get collection() {
 			return this.$accessor.collection;
+		}
+
+		openList(list: List): void {
+			this.$accessor.setList(list);
+			this.$router.push(this.$accessor.navigationPaths.list);
 		}
 
 		addList() {
