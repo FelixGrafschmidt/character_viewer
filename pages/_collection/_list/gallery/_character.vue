@@ -1,15 +1,6 @@
 <template>
 	<div class="relative mt-20 mb-12">
-		<div class="has-tooltip absolute top-[-1.5rem] left-[-1.5rem]">
-			<MoeButton
-				icon-class-names="fas fa-arrow-left"
-				class="py-1 px-4 rounded-br-sm has-tooltip"
-				class-names="text-sm font-medium focus:outline-none"
-				color="dark:bg-gray-600 bg-gray-300"
-				@click.native="$router.push($accessor.navigationPaths.gallery)"
-			/>
-			<span class="tooltip bg-gray-300 dark:bg-gray-600 px-2 ml-2 my-0 rounded w-40">Show all Characters</span>
-		</div>
+		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="$router.push($accessor.navigationPaths.gallery)" />
 		<div class="flex flex-wrap gap-2 pt-2">
 			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%]">
 				<img :src="image.src" :alt="image.src" class="overflow-hidden" />

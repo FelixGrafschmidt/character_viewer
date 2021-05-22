@@ -1,7 +1,10 @@
 <template>
 	<nav class="dark:bg-gray-800 bg-gray-500 pl-2 min-w-full flex items-center h-16 gap-3" role="navigation" aria-label="main navigation">
 		<MoeButton
-			:icon-class-names="{ 'fas fa-moon': $colorMode.preference === 'light', 'fas fa-sun': $colorMode.preference === 'dark' }"
+			:icon-class-names="{
+				'fas fa-moon': $colorMode.preference === 'light',
+				'fas fa-sun': !$colorMode.preference || $colorMode.preference === 'dark',
+			}"
 			class="max-w-[5%]"
 			@click.native="changeMode"
 		/>
