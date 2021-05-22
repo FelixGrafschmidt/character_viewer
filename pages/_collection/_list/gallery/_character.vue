@@ -1,6 +1,6 @@
 <template>
 	<div class="relative mt-20 mb-20">
-		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="$router.push($accessor.navigationPaths.gallery)" />
+		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="toGallery" />
 		<div class="flex flex-wrap gap-2 pt-2">
 			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%] cursor-pointer" @click="openImage(image)">
 				<img :src="image.src" :alt="image.src" class="overflow-hidden" />
@@ -27,28 +27,32 @@
 			const path = url.pathname.split("/");
 			const listid = path[2];
 			const characterid = path[4];
-			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
+			const list = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push(this.$accessor.navigationPaths.collection);
+				this.$router.push(this.$vxm.main.navigationPaths.collection);
 			}
-			this.$accessor.setList(list[0]);
-			const character = this.$accessor.list.characters.filter((character) => character.id === characterid);
+			this.$vxm.main.listStore.setList(list[0]);
+			const character = this.$vxm.main.listStore.list.characters.filter((character) => character.id === characterid);
 			if (character.length === 0) {
 				this.$router.push("/lists/" + listid + "/new");
 			} else {
-				this.$accessor.setCharacter(character[0]);
+				this.$vxm.main.characterStore.setCharacter(character[0]);
 			}
 		}
 
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 
 		openImage(image: CharacterImage) {
 			window.scroll(0, 0);
-			this.$accessor.setImage(image);
+			this.$vxm.main.imageStore.setImage(image);
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.FULLSCREENIMG);
+			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
+		}
+
+		toGallery() {
+			this.$router.push(this.$vxm.main.navigationPaths.gallery);
 		}
 	}
 </script>

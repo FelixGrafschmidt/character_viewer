@@ -5,7 +5,7 @@
 			aria-role="dialog"
 			aria-modal
 		></div>
-		<div class="absolute inset-0 flex justify-center items-center z-30" @click="$accessor.deactivateModal()">
+		<div class="absolute inset-0 flex justify-center items-center z-30" @click="$vxm.main.deactivateModal()">
 			<component :is="component" />
 		</div>
 	</div>
@@ -25,7 +25,7 @@
 		}
 
 		get modal(): Modal {
-			return this.$accessor.modal;
+			return this.$vxm.main.modal;
 		}
 
 		get component() {
@@ -45,6 +45,7 @@
 				case Modal.IMPORTLIST:
 					return "MoeImportList";
 				case Modal.NEWLIST:
+					return "MoeNewList";
 				case Modal.FULLSCREENIMG:
 					return "MoeFullscreenImg";
 				default:

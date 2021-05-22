@@ -12,7 +12,7 @@
 	})
 	export default class MoeMobileCharacter extends Vue {
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 	}
 </script>

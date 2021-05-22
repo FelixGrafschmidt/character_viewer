@@ -15,24 +15,24 @@
 	})
 	export default class MoeMobileContent extends Vue {
 		get mobileMode() {
-			return this.$accessor.mobileMode;
+			return this.$vxm.main.mobileMode;
 		}
 
 		mounted() {
 			if (this.$route.query.id) {
 				window.localStorage.setItem("collectionId", this.$route.query.id.toString());
-				this.$accessor.loadCollection();
+				this.$vxm.main.collectionStore.loadCollection(this.$axios);
 			} else if (window.localStorage.getItem("collectionId")) {
-				this.$accessor.loadCollection();
+				this.$vxm.main.collectionStore.loadCollection(this.$axios);
 			} else {
 				window.document.body.style.overflow = "hidden";
-				this.$accessor.setModal(Modal.LOADCOLLECTION);
+				this.$vxm.main.setModal(Modal.LOADCOLLECTION);
 			}
 		}
 
 		changeMode(mode: string) {
 			window.scroll(0, 0);
-			this.$accessor.setMobileMode(mode);
+			this.$vxm.main.setMobileMode(mode);
 		}
 	}
 </script>

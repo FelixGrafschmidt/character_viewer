@@ -34,22 +34,22 @@
 	})
 	export default class MoeMobileCollection extends Vue {
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		openModal() {
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.LOADCOLLECTION);
+			this.$vxm.main.setModal(Modal.LOADCOLLECTION);
 		}
 
 		selectList(list: List) {
-			this.$accessor.setList(list);
+			this.$vxm.main.listStore.setList(list);
 			this.changeMode("list");
 		}
 
 		changeMode(mode: string) {
 			window.scroll(0, 0);
-			this.$accessor.setMobileMode(mode);
+			this.$vxm.main.setMobileMode(mode);
 		}
 	}
 </script>

@@ -44,7 +44,7 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$accessor.deactivateModal()"
+			@click="$vxm.main.deactivateModal()"
 		>
 			X
 		</div>
@@ -62,20 +62,20 @@
 		name: string = "";
 
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
-		openList(list: List): void {
-			this.$accessor.setList(list);
-			this.$router.push(this.$accessor.navigationPaths.list);
+		openList(list: List) {
+			this.$vxm.main.listStore.setList(list);
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 
 		addList() {
-			this.$accessor.addListToCollection(newList(undefined, this.name));
+			this.$vxm.main.collectionStore.addListToCollection(newList(undefined, this.name));
 			if (this.collection.lists.length === 1) {
 				this.openList(this.collection.lists[0]);
 			} else {
-				this.$accessor.deactivateModal();
+				this.$vxm.main.deactivateModal();
 			}
 		}
 	}

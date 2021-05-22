@@ -1,5 +1,5 @@
-import { Context } from "@nuxt/types";
+import { vxm } from "~/store";
 
-export default function (context: Context) {
-	context.store.commit("resetCharacter");
+export default function () {
+	vxm.main.characterStore.resetCharacter();
 }

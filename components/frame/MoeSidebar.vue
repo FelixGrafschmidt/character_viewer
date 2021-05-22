@@ -1,8 +1,8 @@
 <template>
 	<aside class="dark:bg-gray-700 bg-gray-400 py-4 px-4" @mouseenter="captureScroll" @mouseleave="releaseScroll">
-		<h3 v-if="$accessor.list.id" class="text-lg max-w-[15rem] whitespace-nowrap truncate">
-			<span class="cursor-pointer" @click="$router.push($accessor.navigationPaths.list)"> {{ list.name }} </span> |
-			<span class="cursor-pointer" @click="$router.push($accessor.navigationPaths.gallery)">Gallery</span>
+		<h3 v-if="$vxm.main.listStore.list.id" class="text-lg max-w-[15rem] whitespace-nowrap truncate">
+			<span class="cursor-pointer" @click="toList"> {{ list.name }} </span> |
+			<span class="cursor-pointer" @click="toGallery">Gallery</span>
 		</h3>
 		<h3 v-else class="text-lg max-w-[15rem] whitespace-nowrap truncate">No list selected</h3>
 		<div
@@ -23,7 +23,7 @@
 				{{ characteritem.name }}
 			</div>
 		</div>
-		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="$router.push($accessor.navigationPaths.collection)">Lists</h3>
+		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="toCollection">Lists</h3>
 		<div
 			:class="{
 				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
@@ -58,25 +58,37 @@
 		showScrollbars = false;
 
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 
 		get list() {
-			return this.$accessor.list;
+			return this.$vxm.main.listStore.list;
 		}
 
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		navigateToList(list: List) {
-			this.$accessor.setList(list);
-			this.$router.push(this.$accessor.navigationPaths.list);
+			this.$vxm.main.listStore.setList(list);
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 
 		navigateToCharacter(character: Character) {
-			this.$accessor.setCharacter(character);
-			this.$router.push(this.$accessor.navigationPaths.character);
+			this.$vxm.main.characterStore.setCharacter(character);
+			this.$router.push(this.$vxm.main.navigationPaths.character);
+		}
+
+		toList() {
+			this.$router.push(this.$vxm.main.navigationPaths.list);
+		}
+
+		toGallery() {
+			this.$router.push(this.$vxm.main.navigationPaths.gallery);
+		}
+
+		toCollection() {
+			this.$router.push(this.$vxm.main.navigationPaths.collection);
 		}
 
 		captureScroll() {

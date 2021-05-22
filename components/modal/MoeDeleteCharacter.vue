@@ -3,7 +3,7 @@
 		<div class="mt-12 px-16">Are you sure you want to delete {{ character.name }}?</div>
 		<div class="flex m-auto pt-4">
 			<MoeButton class="mr-8" color="bg-red-500" text="Delete" @click.native="deleteCharacter" />
-			<MoeButton text="Cancel" @click.native="$accessor.deactivateModal()" />
+			<MoeButton text="Cancel" @click.native="$vxm.main.deactivateModal()" />
 		</div>
 		<div
 			class="
@@ -21,7 +21,7 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$accessor.deactivateModal()"
+			@click="$vxm.main.deactivateModal()"
 		>
 			X
 		</div>
@@ -37,13 +37,13 @@
 	})
 	export default class MoeDeleteCharacter extends Vue {
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 
 		deleteCharacter() {
-			this.$accessor.deleteCharacter(this.character);
-			this.$accessor.deactivateModal();
-			this.$router.push(this.$accessor.navigationPaths.list);
+			this.$vxm.main.listStore.deleteCharacter(this.character);
+			this.$vxm.main.deactivateModal();
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 	}
 </script>

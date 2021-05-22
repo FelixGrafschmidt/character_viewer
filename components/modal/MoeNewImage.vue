@@ -45,7 +45,7 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$accessor.deactivateModal()"
+			@click="$vxm.main.deactivateModal()"
 		>
 			X
 		</div>
@@ -61,7 +61,7 @@
 	})
 	export default class MoeNewImage extends Vue {
 		src = "";
-		valid: Boolean = true;
+		valid: boolean = true;
 
 		updateUrl(event: Event) {
 			const value = (event.target as HTMLInputElement).value;
@@ -76,8 +76,8 @@
 		}
 
 		addImage() {
-			this.$accessor.addCharacterImage({ src: this.src, valid: this.valid });
-			this.$accessor.deactivateModal();
+			this.$vxm.main.characterStore.addCharacterImage({ src: this.src, valid: this.valid });
+			this.$vxm.main.deactivateModal();
 		}
 	}
 </script>

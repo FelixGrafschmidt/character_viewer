@@ -71,44 +71,44 @@
 	export default class MoeCharacterAttributes extends Vue {
 		copyText = "Copy Character";
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 
 		get characters() {
-			return this.$accessor.list.characters;
+			return this.$vxm.main.listStore.list.characters;
 		}
 
 		isNewCharacter() {
 			return !(this.characters.filter((character) => character.id === this.character.id).length > 0);
 		}
 
-		saveNewCharacter() {
-			this.$accessor.addCharacter({ newCharacter: this.character });
-			this.backToCharacterList();
+		async saveNewCharacter() {
+			this.$vxm.main.listStore.addCharacter({ character: this.character, index: -1 });
+			await this.backToCharacterList();
 		}
 
-		saveChanges() {
-			this.backToCharacterList();
+		async saveChanges() {
+			await this.backToCharacterList();
 		}
 
-		discardCharacter() {
-			this.$accessor.resetCharacter();
-			this.backToCharacterList();
+		async discardCharacter() {
+			this.$vxm.main.characterStore.resetCharacter();
+			await this.backToCharacterList();
 		}
 
 		deleteCharacter() {
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.DELETECHARACTER);
+			this.$vxm.main.setModal(Modal.DELETECHARACTER);
 		}
 
 		changeName(event: InputEvent) {
 			const name = (event.target as HTMLInputElement).value;
-			this.$accessor.changeCharacterName(name);
+			this.$vxm.main.characterStore.changeCharacterName(name);
 		}
 
 		changeOrigin(event: InputEvent) {
 			const origin = (event.target as HTMLInputElement).value;
-			this.$accessor.changeCharacterOrigin(origin);
+			this.$vxm.main.characterStore.changeCharacterOrigin(origin);
 		}
 
 		copyCharacter() {
@@ -124,8 +124,8 @@
 		}
 
 		backToCharacterList() {
-			this.$accessor.resetCharacter();
-			this.$router.push(this.$accessor.navigationPaths.list);
+			this.$vxm.main.characterStore.resetCharacter();
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 	}
 </script>

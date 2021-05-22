@@ -16,11 +16,11 @@
 	export default class MoeCollectionActions extends Vue {
 		importFromFile(): void {
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.IMPORTLIST);
+			this.$vxm.main.setModal(Modal.IMPORTLIST);
 		}
 
 		addNewList() {
-			this.$accessor.setModal(Modal.NEWLIST);
+			this.$vxm.main.setModal(Modal.NEWLIST);
 		}
 	}
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<footer class="flex dark:bg-gray-800 bg-gray-500 h-10 justify-center items-center relative">
+	<footer class="flex dark:bg-gray-800 bg-gray-500 h-12 justify-center items-center relative">
 		<div class="">© Felix Grafschmidt {{ new Date().getFullYear() }}</div>
 		<div
 			class="absolute right-0 flex flex-col-reverse gap-4 bottom-2 w-[8rem] mr-1"

@@ -19,7 +19,7 @@
 	})
 	export default class MoeMobileList extends Vue {
 		get list() {
-			return this.$accessor.list;
+			return this.$vxm.main.listStore.list;
 		}
 
 		getMainImage(character: Character) {
@@ -31,13 +31,13 @@
 		}
 
 		selectCharacter(character: Character) {
-			this.$accessor.setCharacter(character);
+			this.$vxm.main.characterStore.setCharacter(character);
 			this.changeMode("character");
 		}
 
 		changeMode(mode: string) {
 			window.scroll(0, 0);
-			this.$accessor.setMobileMode(mode);
+			this.$vxm.main.setMobileMode(mode);
 		}
 	}
 </script>

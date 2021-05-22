@@ -45,7 +45,7 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$accessor.deactivateModal()"
+			@click="$vxm.main.deactivateModal()"
 		>
 			X
 		</div>
@@ -64,8 +64,8 @@
 
 		loadCollection() {
 			window.localStorage.setItem("collectionId", this.id);
-			this.$accessor.loadCollection();
-			this.$accessor.deactivateModal();
+			this.$vxm.main.collectionStore.loadCollection(this.$axios);
+			this.$vxm.main.deactivateModal();
 		}
 	}
 </script>

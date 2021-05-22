@@ -9,11 +9,11 @@
 				color="bg-red-500"
 				text="Delete"
 				@click.native="
-					$accessor.deleteList(list.id);
-					$accessor.deactivateModal();
+					$vxm.main.collectionStore.deleteList(list.id);
+					$vxm.main.deactivateModal();
 				"
 			/>
-			<MoeButton text="Cancel" @click.native="$accessor.deactivateModal()" />
+			<MoeButton text="Cancel" @click.native="$vxm.main.deactivateModal()" />
 		</div>
 		<div
 			class="
@@ -31,7 +31,7 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$accessor.deactivateModal()"
+			@click="$vxm.main.deactivateModal()"
 		>
 			X
 		</div>
@@ -47,7 +47,7 @@
 	})
 	export default class MoeDeleteList extends Vue {
 		get list() {
-			return this.$accessor.listToDelete;
+			return this.$vxm.main.listToDelete;
 		}
 	}
 </script>

@@ -3,14 +3,14 @@
 		<MoeHeader class="h-16 fixed z-10 border-b border-teal-700" />
 		<div class="flex">
 			<MoeSidebar class="w-1/6 fixed h-full mt-16 mb-32 border-r border-teal-700" />
-			<div v-if="$accessor.ready" class="w-5/6 ml-auto px-6 py-2">
+			<div v-if="$vxm.main.collectionStore.ready" class="w-5/6 ml-auto px-6 py-2">
 				<nuxt />
 			</div>
 		</div>
 
 		<MoeFooter class="h-16 fixed bottom-0 z-10 w-full border-t border-teal-700" />
 		<MoeModal />
-		<div v-if="$accessor.loading"></div>
+		<div v-if="$vxm.main.loading"></div>
 	</div>
 </template>
 
@@ -24,7 +24,7 @@
 		isLoading = false;
 
 		mounted() {
-			this.$accessor.loadCollection();
+			this.$vxm.main.collectionStore.loadCollection(this.$axios);
 		}
 	}
 </script>

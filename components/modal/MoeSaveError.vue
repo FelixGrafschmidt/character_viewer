@@ -28,28 +28,28 @@
 	})
 	export default class ModalMoeSaveError extends Vue {
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		contactUs() {
-			this.$accessor.deactivateModal();
+			this.$vxm.main.deactivateModal();
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.CONTACTUS);
+			this.$vxm.main.setModal(Modal.CONTACTUS);
 		}
 
 		saveChanges(): Promise<void> {
-			this.$accessor.setLoading(true);
-			return this.$accessor
+			this.$vxm.main.setLoading(true);
+			return this.$vxm.main.collectionStore
 				.saveChanges()
 				.then(() => {
-					this.$accessor.deactivateModal();
+					this.$vxm.main.deactivateModal();
 				})
 				.catch(() => {
 					window.document.body.style.overflow = "hidden";
-					this.$accessor.setModal(Modal.SAVEERROR);
+					this.$vxm.main.setModal(Modal.SAVEERROR);
 				})
 				.finally(() => {
-					this.$accessor.setLoading(false);
+					this.$vxm.main.setLoading(false);
 				});
 		}
 

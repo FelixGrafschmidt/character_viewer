@@ -50,11 +50,10 @@ const nuxtConfig: NuxtConfig = {
 		title: "Character List Manager",
 	},
 	loading: { color: "#2f847c" },
-	plugins: ["~/plugins/vue-autofocus"],
+	plugins: ["~/plugins/vue-autofocus", "~/plugins/storeProxies"],
 	buildModules: [
 		"@nuxt/typescript-build",
 		"@nuxtjs/stylelint-module",
-		"nuxt-typed-vuex",
 		"@nuxtjs/device",
 		"@nuxtjs/tailwindcss",
 		// "nuxt-windicss",

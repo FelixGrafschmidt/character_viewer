@@ -13,7 +13,7 @@
 	})
 	export default class MoeFullscreenImg extends Vue {
 		get src() {
-			return this.$accessor.image.src;
+			return this.$vxm.main.imageStore.image.src;
 		}
 	}
 </script>

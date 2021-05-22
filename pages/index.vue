@@ -20,7 +20,7 @@
 		</h3>
 		<h3 class="py-2">
 			This might sound like a lot right now, so to get going, let's
-			<nuxt-link class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500" :to="$accessor.navigationPaths.collection">
+			<nuxt-link class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500" :to="$vxm.main.navigationPaths.collection">
 				create a new list.
 			</nuxt-link>
 		</h3>
@@ -41,8 +41,8 @@
 	export default class Index extends Vue {
 		initialVisit: boolean = false;
 
-		fetch() {
-			if (this.$accessor.collection.lists.length === 0) {
+		mounted() {
+			if (this.$vxm.main.collectionStore.collection.lists.length === 0) {
 				this.initialVisit = true;
 			}
 		}

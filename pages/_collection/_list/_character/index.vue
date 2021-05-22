@@ -18,7 +18,7 @@
 		quickImages = false;
 
 		get characters() {
-			return this.$accessor.list.characters;
+			return this.$vxm.main.listStore.list.characters;
 		}
 
 		mounted() {
@@ -26,16 +26,16 @@
 			const path = url.pathname.split("/");
 			const listid = path[2];
 			const characterid = path[3];
-			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
+			const list = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push(this.$accessor.navigationPaths.collection);
+				this.$router.push(this.$vxm.main.navigationPaths.collection);
 			}
-			this.$accessor.setList(list[0]);
-			const character = this.$accessor.list.characters.filter((character) => character.id === characterid);
+			this.$vxm.main.listStore.setList(list[0]);
+			const character = this.$vxm.main.listStore.list.characters.filter((character) => character.id === characterid);
 			if (character.length === 0) {
-				this.$accessor.setCharacter(newCharacter());
+				this.$vxm.main.characterStore.setCharacter(newCharacter());
 			} else {
-				this.$accessor.setCharacter(character[0]);
+				this.$vxm.main.characterStore.setCharacter(character[0]);
 			}
 		}
 
@@ -45,13 +45,13 @@
 				return;
 			}
 			if (this.quickImages) {
-				this.$accessor.addCharacterImage({ src: await navigator.clipboard.readText() });
+				this.$vxm.main.characterStore.addCharacterImage({ src: await navigator.clipboard.readText(), valid: true });
 			}
 		}
 
 		backToCharacterList() {
-			this.$accessor.resetCharacter();
-			this.$router.push(this.$accessor.navigationPaths.list);
+			this.$vxm.main.characterStore.resetCharacter();
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 	}
 </script>

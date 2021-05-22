@@ -91,7 +91,7 @@
 		thumbsScrolling = false;
 		image: CharacterImage = { src: "", main: false, valid: true };
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 
 		mounted() {
@@ -119,22 +119,22 @@
 
 		addNewImage() {
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.NEWIMAGE);
+			this.$vxm.main.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
 		}
 
 		designateMainImage() {
 			const index = this.character.images.indexOf(this.image);
-			this.$accessor.designateMainImage(index);
+			this.$vxm.main.characterStore.designateMainImage(index);
 		}
 
 		designateImageAsInvalid(image: CharacterImage) {
-			this.$accessor.designateImageAsInvalid(image);
+			this.$vxm.main.characterStore.designateImageAsInvalid(image);
 		}
 
 		deleteImage() {
 			const index = this.character.images.indexOf(this.image);
-			this.$accessor.removeCharacterImage(index);
+			this.$vxm.main.characterStore.removeCharacterImage(index);
 			this.image = this.getMainImage();
 		}
 
@@ -149,9 +149,9 @@
 
 		openImage(image: CharacterImage) {
 			window.scroll(0, 0);
-			this.$accessor.setImage(image);
+			this.$vxm.main.imageStore.setImage(image);
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.FULLSCREENIMG);
+			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
 		}
 
 		@Watch("character.images.length", { deep: true })

@@ -14,8 +14,8 @@
 	})
 	export default class MoeListActions extends Vue {
 		addNewCharacter() {
-			this.$accessor.setCharacter(newCharacter());
-			this.$router.push(this.$accessor.navigationPaths.character);
+			this.$vxm.main.characterStore.setCharacter(newCharacter());
+			this.$router.push(this.$vxm.main.navigationPaths.character);
 		}
 	}
 </script>

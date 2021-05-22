@@ -1,14 +1,13 @@
 <template>
 	<div>
 		<div
-			v-for="(list, index) in collection.lists"
+			v-for="list in collection.lists"
 			:key="list.id"
 			class="flex h-24 items-center rounded cursor-pointer"
 			:class="{
-				'bg-teal-500 hover:bg-teal-400': list.id === $accessor.list.id,
-				'hover:bg-gray-500  dark-hover:bg-gray-700': list.id !== $accessor.list.id,
-				'bg-gray-300  dark:bg-gray-800': list.id !== $accessor.list.id && index % 2 === 0,
-				'bg-gray-300  dark:bg-gray-800': list.id !== $accessor.list.id && index % 2 !== 0,
+				'bg-teal-500 hover:bg-teal-400': list.id === $vxm.main.listStore.list.id,
+				'hover:bg-gray-500 dark-hover:bg-gray-700': list.id !== $vxm.main.listStore.list.id,
+				'bg-gray-300 dark:bg-gray-800': list.id !== $vxm.main.listStore.list.id,
 			}"
 			@click="openList(list)"
 		>
@@ -49,31 +48,31 @@
 		listToDelete: List = newList();
 
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		deleteList(list: List) {
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.DELETELIST);
-			this.$accessor.setListToDelete(list);
+			this.$vxm.main.setModal(Modal.DELETELIST);
+			this.$vxm.main.collectionStore.setListToDelete(list);
 		}
 
-		exportList(list: List): void {
+		exportList(list: List) {
 			saveAs(new File([JSON.stringify(list)], list.name + ".json"));
 		}
 
-		openList(list: List): void {
-			this.$accessor.setList(list);
-			this.$router.push(this.$accessor.navigationPaths.list);
+		openList(list: List) {
+			this.$vxm.main.listStore.setList(list);
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 
 		addListToCollection(list: List) {
-			this.$accessor.addListToCollection(list);
+			this.$vxm.main.collectionStore.addListToCollection(list);
 		}
 
 		updateListname(id: string, event: InputEvent) {
 			const name = (event.target as HTMLInputElement).value;
-			this.$accessor.renameList({ name, id });
+			this.$vxm.main.collectionStore.renameList({ name, id });
 		}
 
 		copyList(list: List) {

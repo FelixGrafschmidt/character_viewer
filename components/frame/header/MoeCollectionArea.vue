@@ -1,6 +1,6 @@
 <template>
 	<div class="w-[50%] flex gap-3 items-center justify-end mr-4">
-		<span> {{ $accessor.collection.id }} </span>
+		<span> {{ $vxm.main.collectionStore.collection.id }} </span>
 		<MoeButton :text="copyText" @click.native="copyID" />
 		<MoeButton text="Load Collection" @click.native="loadCollection" />
 		<MoeButton text="Export Collection" @click.native="exportCollection" />
@@ -11,7 +11,6 @@
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { saveAs } from "file-saver";
 	import { Modal } from "~/models/enums/Modal";
-	import { Collection } from "~/models/interfaces/Collection";
 
 	@Component({
 		components: {},
@@ -21,25 +20,12 @@
 		copyText = "Copy ID";
 
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		loadCollection() {
 			window.document.body.style.overflow = "hidden";
-			this.$accessor.setModal(Modal.LOADCOLLECTION);
-		}
-
-		saveNewCollection(collection: Collection) {
-			this.$axios
-				.$post("saveCollection", collection, { timeout: 1000 })
-				.then(() => {
-					this.$accessor.deactivateModal();
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-			this.$accessor.setCollection(collection);
-			localStorage.setItem("collectionId", collection.id);
+			this.$vxm.main.setModal(Modal.LOADCOLLECTION);
 		}
 
 		copyID() {

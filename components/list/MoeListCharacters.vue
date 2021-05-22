@@ -29,12 +29,12 @@
 	})
 	export default class MoeListCharacters extends Vue {
 		get characters() {
-			return this.$accessor.list.characters;
+			return this.$vxm.main.listStore.list.characters;
 		}
 
 		selectCharacter(character: Character) {
-			this.$accessor.setCharacter(character);
-			this.$router.push(this.$accessor.navigationPaths.character);
+			this.$vxm.main.characterStore.setCharacter(character);
+			this.$router.push(this.$vxm.main.navigationPaths.character);
 		}
 
 		getMainImage(character: Character) {

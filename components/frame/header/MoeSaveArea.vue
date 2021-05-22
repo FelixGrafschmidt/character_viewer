@@ -31,11 +31,11 @@
 		countdown = 60;
 
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		get changes() {
-			return this.$accessor.originalHash !== getHash(this.collection);
+			return this.$vxm.main.collectionStore.originalHash !== getHash(this.collection || {});
 		}
 
 		// Lifecycle
@@ -58,18 +58,18 @@
 		}
 
 		saveChanges(): Promise<void> {
-			this.$accessor.setLoading(true);
-			return this.$accessor
+			this.$vxm.main.setLoading(true);
+			return this.$vxm.main.collectionStore
 				.saveChanges()
 				.then(() => {
-					this.$accessor.deactivateModal();
+					this.$vxm.main.deactivateModal();
 				})
 				.catch(() => {
 					window.document.body.style.overflow = "hidden";
-					this.$accessor.setModal(Modal.SAVEERROR);
+					this.$vxm.main.setModal(Modal.SAVEERROR);
 				})
 				.finally(() => {
-					this.$accessor.setLoading(false);
+					this.$vxm.main.setLoading(false);
 				});
 		}
 
@@ -77,7 +77,7 @@
 			this.autosaveId = window.setInterval(() => {
 				this.countdown--;
 				if (this.autosave && this.countdown === 0) {
-					this.$accessor.saveChanges();
+					this.$vxm.main.collectionStore.saveChanges();
 					this.countdown = 60;
 				}
 			}, 1000 * 1);

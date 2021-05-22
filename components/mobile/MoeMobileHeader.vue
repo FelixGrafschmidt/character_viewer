@@ -7,7 +7,7 @@
 				class="m-auto w-60 h-8"
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="$accessor.setMobileMode('list')"
+				@click.native="$vxm.main.setMobileMode('list')"
 			/>
 		</div>
 		<div v-else-if="mobileMode === 'list'" class="flex flex-col gap-4">
@@ -17,7 +17,7 @@
 				class="m-auto w-60 h-8"
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="$accessor.setMobileMode('collection')"
+				@click.native="$vxm.main.setMobileMode('collection')"
 			/>
 		</div>
 		<div v-else-if="collection.lists.length > 0" class="flex flex-col gap-4">
@@ -34,19 +34,19 @@
 	})
 	export default class MoeMobileHeader extends Vue {
 		get collection() {
-			return this.$accessor.collection;
+			return this.$vxm.main.collectionStore.collection;
 		}
 
 		get list() {
-			return this.$accessor.list;
+			return this.$vxm.main.listStore.list;
 		}
 
 		get character() {
-			return this.$accessor.character;
+			return this.$vxm.main.characterStore.character;
 		}
 
 		get mobileMode() {
-			return this.$accessor.mobileMode;
+			return this.$vxm.main.mobileMode;
 		}
 	}
 </script>

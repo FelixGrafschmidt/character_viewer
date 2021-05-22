@@ -45,7 +45,7 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$accessor.deactivateModal()"
+			@click="$vxm.main.deactivateModal()"
 		>
 			X
 		</div>
@@ -80,7 +80,7 @@
 			if (!this.list.id.match(/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/)) {
 				this.list.id = v4();
 			}
-			const oldList = this.$accessor.collection.lists.filter((list) => list.id === this.list.id)[0];
+			const oldList = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === this.list.id)[0];
 			if (oldList) {
 				if (
 					!window.confirm(
@@ -89,11 +89,11 @@
 				) {
 					return;
 				} else {
-					this.$accessor.removeListFromCollection(this.list.id);
+					this.$vxm.main.collectionStore.removeListFromCollection(this.list.id);
 				}
 			}
-			this.$accessor.addListToCollection(this.list);
-			this.$accessor.deactivateModal();
+			this.$vxm.main.collectionStore.addListToCollection(this.list);
+			this.$vxm.main.deactivateModal();
 		}
 
 		parseJSONInput(event: InputEvent) {

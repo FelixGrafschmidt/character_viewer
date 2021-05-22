@@ -1,13 +1,13 @@
-import { accessorType } from "~/store";
+import { vxm } from "~/store";
 
 declare module "vue/types/vue" {
 	interface Vue {
-		$accessor: typeof accessorType;
+		$vxm: typeof vxm;
 	}
 }
 
 declare module "@nuxt/types" {
 	interface NuxtAppOptions {
-		$accessor: typeof accessorType;
+		$vxm: typeof vxm;
 	}
 }

@@ -18,11 +18,11 @@
 			const url = new URL(window.location.href);
 			const path = url.pathname.split("/");
 			const listid = path[2];
-			const list = this.$accessor.collection.lists.filter((list) => list.id === listid);
+			const list = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push(this.$accessor.navigationPaths.collection);
+				this.$router.push(this.$vxm.main.navigationPaths.collection);
 			}
-			this.$accessor.setList(list[0]);
+			this.$vxm.main.listStore.setList(list[0]);
 		}
 	}
 </script>
