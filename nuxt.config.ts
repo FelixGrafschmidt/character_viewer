@@ -74,7 +74,7 @@ const nuxtConfig: NuxtConfig = {
 		},
 	},
 	axios: {
-		baseURL: process.env.NODE_ENV === "production" ? "https://ithambar.moe" : "http://localhost:3000",
+		baseURL: "http://localhost:3000",
 	},
 	serverMiddleware: [
 		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
@@ -123,7 +123,7 @@ const nuxtConfig: NuxtConfig = {
 	vue: {
 		config: { devtools: true },
 	},
-	modern: true,
+	modern: process.env.NODE_ENV === "production",
 	// vite: {
 	// 	build: {
 	// 		rollupOptions: {

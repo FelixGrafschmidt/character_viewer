@@ -46,7 +46,7 @@
 
 		openImage(image: CharacterImage) {
 			window.scroll(0, 0);
-			this.$vxm.main.imageStore.setImage(image);
+			this.$vxm.main.characterStore.setActiveImage(image);
 			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
 		}

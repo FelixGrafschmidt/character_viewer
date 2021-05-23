@@ -1,5 +1,5 @@
 <template>
-	<div class="flex rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 relative m-auto pb-10">
+	<div class="flex rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 relative m-auto pb-10" @click.stop>
 		<img src="icons/error.svg" alt="error" class="max-w-16 h-16 mt-12 ml-12" />
 		<div class="mx-12">
 			<div class="mt-16 text-xl">
@@ -40,7 +40,7 @@
 		saveChanges(): Promise<void> {
 			this.$vxm.main.setLoading(true);
 			return this.$vxm.main.collectionStore
-				.saveChanges()
+				.saveChanges(this.$axios)
 				.then(() => {
 					this.$vxm.main.deactivateModal();
 				})

@@ -11,6 +11,7 @@ const VuexModule = createModule({
 export class CharacterStore extends VuexModule {
 	// State
 	character = newCharacter("");
+	activeImage = newCharacterImage(undefined);
 
 	// Mutations
 	@mutation setCharacter(character: Character) {
@@ -55,5 +56,9 @@ export class CharacterStore extends VuexModule {
 		this.character.images.forEach((image, i) => {
 			image.main = i === index;
 		});
+	}
+
+	@mutation setActiveImage(image: CharacterImage) {
+		this.activeImage = image;
 	}
 }

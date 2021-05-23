@@ -48,8 +48,8 @@ export class CollectionStore extends VuexModule {
 	}
 
 	// Actions
-	@action async saveChanges() {
-		return await this.$store.$axios.post("saveCollection", this.collection, { timeout: 1000 }).then(() => {
+	@action async saveChanges(axios: NuxtAxiosInstance) {
+		return await axios.$post("saveCollection", this.collection, { timeout: 1000 }).then(() => {
 			this.originalHash = getHash(this.collection);
 		});
 	}

@@ -60,7 +60,7 @@
 		saveChanges(): Promise<void> {
 			this.$vxm.main.setLoading(true);
 			return this.$vxm.main.collectionStore
-				.saveChanges()
+				.saveChanges(this.$axios)
 				.then(() => {
 					this.$vxm.main.deactivateModal();
 				})
@@ -77,7 +77,7 @@
 			this.autosaveId = window.setInterval(() => {
 				this.countdown--;
 				if (this.autosave && this.countdown === 0) {
-					this.$vxm.main.collectionStore.saveChanges();
+					this.$vxm.main.collectionStore.saveChanges(this.$axios);
 					this.countdown = 60;
 				}
 			}, 1000 * 1);

@@ -7,8 +7,6 @@ import { Modal } from "~/models/enums/Modal";
 import { CollectionStore } from "~/store/CollectionStore";
 import { ListStore } from "~/store/ListStore";
 import { CharacterStore } from "~/store/CharacterStore";
-import { ImageStore } from "~/store/ImageStore";
-
 Vue.use(Vuex);
 
 const VuexModule = createModule({
@@ -23,7 +21,6 @@ export class MainStore extends VuexModule {
 	collectionStore = createSubModule(CollectionStore);
 	listStore = createSubModule(ListStore);
 	characterStore = createSubModule(CharacterStore);
-	imageStore = createSubModule(ImageStore);
 
 	// State
 	modal = Modal.NONE;
