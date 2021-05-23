@@ -19,7 +19,7 @@
 		@submit.prevent="json !== '' ? importList() : undefined"
 	>
 		<label class="mx-12">
-			<span>Paste the content of your exported list below.</span>
+			<span>{{ $t("modals.import_list.title") }}</span>
 			<textarea
 				v-autofocus
 				type="text"
@@ -27,8 +27,8 @@
 				@input="parseJSONInput"
 			/>
 		</label>
-		<p v-if="json !== '' && !valid" class="text-red-600">Invalid file</p>
-		<MoeButton text="Import List" :class="{ 'cursor-not-allowed': json === '' || valid === undefined }" class="m-auto" />
+		<p v-if="json !== '' && !valid" class="text-red-600">{{ $t("modals.import_list.invalid") }}</p>
+		<MoeButton :text="$t('list.import')" :class="{ 'cursor-not-allowed': json === '' || valid === undefined }" class="m-auto" />
 		<div
 			class="
 				top-1

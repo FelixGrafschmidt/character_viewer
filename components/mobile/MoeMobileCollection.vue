@@ -1,9 +1,9 @@
 <template>
 	<div class="flex flex-col gap-4">
 		<div v-if="collection.lists.length === 0" class="m-auto flex flex-col items-center">
-			<p>Empty collection. Load a different one?</p>
+			<p>{{ $t("pages.mobile.empty_collection") }}</p>
 			<MoeButton
-				text="Load Collection"
+				:text="$t('collection.load')"
 				class="w-60 h-8 mt-2"
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"

@@ -19,7 +19,7 @@
 		@click.stop
 	>
 		<label class="mx-12 mt-8">
-			<span class="ml-2">Paste collection id below.</span>
+			<span class="ml-2">{{ $t("modals.load_collection.title") }}</span>
 			<input
 				v-model="id"
 				v-autofocus
@@ -28,7 +28,7 @@
 			/>
 		</label>
 
-		<MoeButton text="Load Collection" :class="{ 'cursor-not-allowed': id === '' }" class="m-auto" />
+		<MoeButton :text="$t('collection.load')" :class="{ 'cursor-not-allowed': id === '' }" class="m-auto" />
 		<div
 			class="
 				top-1

@@ -26,12 +26,7 @@
 			"~~/*": ["./*"],
 			"@@/*": ["./*"]
 		},
-		"types": [
-			"@types/node",
-			"@nuxt/types",
-			"@nuxtjs/color-mode"
-			// , "nuxt-i18n"
-		]
+		"types": ["@types/node", "@nuxt/types", "@nuxtjs/color-mode", "nuxt-i18n"]
 	},
 	"exclude": ["node_modules", ".nuxt", "dist"]
 }

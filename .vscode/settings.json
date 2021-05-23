@@ -85,5 +85,9 @@
 		"source.fixAll": true
 	},
 	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"comments.openPanel": "neverOpen"
+	"comments.openPanel": "neverOpen",
+	"i18n-ally.localesPaths": [
+		"i18n"
+	],
+	"i18n-ally.keystyle": "nested"
 }

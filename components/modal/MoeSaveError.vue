@@ -1,17 +1,17 @@
 <template>
 	<div class="flex rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 relative m-auto pb-10" @click.stop>
-		<img src="icons/error.svg" alt="error" class="max-w-16 h-16 mt-12 ml-12" />
+		<img src="icons/error.svg" :alt="$t('modals.save_error.alt')" class="max-w-16 h-16 mt-12 ml-12" />
 		<div class="mx-12">
-			<div class="mt-16 text-xl">
-				An error has occurred while saving your changes. <br />
-				Your changes have
-				<span class="font-bold">NOT</span>
-				been saved!
+			<div class="mt-16 text-xl flex flex-col">
+				<span> {{ $t("modals.save_error.error") }}</span>
+				<span>
+					{{ $t("modals.save_error.not_saved") }}
+				</span>
 			</div>
 			<div class="mt-8">
-				<MoeButton :text="'Try again'" @click.native="saveChanges"> </MoeButton>
-				<MoeButton :text="'Export your data'" @click.native="exportData"> </MoeButton>
-				<MoeButton :text="'Contact us'" @click.native="contactUs"> </MoeButton>
+				<MoeButton :text="$t('modals.save_error.try_again')" @click.native="saveChanges"> </MoeButton>
+				<MoeButton :text="$t('modals.save_error.export')" @click.native="exportData"> </MoeButton>
+				<MoeButton :text="$t('modals.save_error.contact')" @click.native="contactUs"> </MoeButton>
 			</div>
 		</div>
 	</div>

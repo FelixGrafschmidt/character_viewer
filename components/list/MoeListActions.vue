@@ -1,6 +1,6 @@
 <template>
 	<div class="flex mt-7 justify-center mb-20">
-		<MoeButton :text="'Add New Character'" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="addNewCharacter" />
+		<MoeButton :text="$t('character.add')" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="addNewCharacter" />
 	</div>
 </template>
 

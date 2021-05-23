@@ -1,7 +1,128 @@
 {
-	"title": "Character List Manager",
-	"introduction": "To get started select a menu item on the left",
-	"first_visit": "First time visit? Start by creating a {0}",
-	"first_visit_new_list": "new list",
-	"language": "Language"
+	"character": {
+		"add": "Add New Character",
+		"copied": "Copied!",
+		"copy": "Copy Character",
+		"delete": "Delete Character",
+		"discard": "Discard Character",
+		"export": "Export Character",
+		"images": "Images",
+		"main_image": "Main Image",
+		"name": "Name",
+		"origin": "Origin",
+		"save": "Save Character"
+	},
+	"collection": {
+		"copied": "Copied!",
+		"copy_id": "Copy ID",
+		"export": "Export Collection",
+		"load": "Load Collection"
+	},
+	"errors": {
+		"generic_error": "An error occurred."
+	},
+	"footer": {
+		"info": "Info"
+	},
+	"header": {
+		"autosave": {
+			"disable": "Disable autosave",
+			"enable": "Enable autosave",
+			"off": "OFF",
+			"save": "Save",
+			"title": "Autosave:",
+			"unsaved": "UNSAVED CHANGES"
+		},
+		"title": "Character List Manager"
+	},
+	"image": {
+		"add": "Add Image",
+		"make_main": "Designate as Main Image",
+		"remove": "Remove this Image"
+	},
+	"list": {
+		"content": "Content",
+		"copy": "Copy",
+		"create": "Create New List",
+		"delete": "Delete",
+		"export": "Export",
+		"id": "ID",
+		"import": "Import List",
+		"name": "Name"
+	},
+	"modals": {
+		"contact_us": {
+			"add_info": "add more info",
+			"github": "Feel free to {RAISEISSUE} on our Github page or {ADDINFO} to an existing issue.",
+			"mail": "You can also {MAILTO}.",
+			"mailto": "send us an eMail",
+			"raise_issue": "raise an issue",
+			"title": "Contact us"
+		},
+		"delete_character": {
+			"cancel": "Cancel",
+			"title": "Are you sure you want to delete {0}?"
+		},
+		"delete_list": {
+			"cancel": "Cancel",
+			"title": "Are you sure you want to delete your list {0} with {1} characters?"
+		},
+		"import_list": {
+			"invalid": "Invalid file",
+			"title": "Paste the content of your exported list below."
+		},
+		"load_collection": {
+			"title": "Paste collection id below."
+		},
+		"new_image": {
+			"alt": "new image",
+			"invalid": "Invalid image url",
+			"url": "Image URL"
+		},
+		"new_list": {
+			"add": "Add List",
+			"title": "Type a name for your new list."
+		},
+		"save_error": {
+			"alt": "error",
+			"contact": "Contact us",
+			"error": "An error has occurred while saving your changes.",
+			"export": "Export your data",
+			"not_saved": "Your changes have NOT been saved!",
+			"try_again": "Try again"
+		}
+	},
+	"navigation": {
+		"to_index": "Back to Start"
+	},
+	"pages": {
+		"faq": {
+			"content": "Frequently asked questions",
+			"heading": "FAQ"
+		},
+		"gallery": {
+			"title": "Gallery"
+		},
+		"imprint": {
+			"heading": "Imprint"
+		},
+		"index": {
+			"basic": "On this website you are able to manage lists of characters with a lot of customization ability. To achieve that, you were just assigned a collection id. You can see it in the top right corner. This id is saved on your harddrive (we are using your browser's {LOCALSTORAGE} ). If you ever want to change your browser or clear your locally saved data but also wish to keep your lists, make sure to save that id somewhere.",
+			"collection": "A collection consists of one or more lists. Each of these lists consists of one or more characters and those consist of attributes and lists of subcharacters.",
+			"heading": "Welcome! This appears to be your first visit.",
+			"list": "create a new list",
+			"localstorage": "localStorage",
+			"returning": "To get started select a menu item on the left",
+			"start": "This might sound like a lot right now, so to get going, let's {NEWLIST}."
+		},
+		"mobile": {
+			"back": "Back",
+			"empty_collection": "Empty collection. Load a different one?"
+		}
+	},
+	"sidebar": {
+		"gallery": "Gallery",
+		"lists": "Lists",
+		"no_list": "No list selected"
+	}
 }

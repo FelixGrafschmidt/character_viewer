@@ -1,8 +1,8 @@
 <template>
 	<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
-		<div class="py-2 w-2/5 dark:border-gray-800 border-r-2 text-center">ID</div>
-		<div class="py-2 w-2/5 dark:border-gray-800 border-r-2 border-l-2 text-center">Name</div>
-		<div class="py-2 w-1/6 dark:border-gray-800 border-r-2 border-l-2 text-center">Content</div>
+		<div class="py-2 w-2/5 dark:border-gray-800 border-r-2 text-center">{{ $t("list.id") }}</div>
+		<div class="py-2 w-2/5 dark:border-gray-800 border-r-2 border-l-2 text-center">{{ $t("list.name") }}</div>
+		<div class="py-2 w-1/6 dark:border-gray-800 border-r-2 border-l-2 text-center">{{ $t("list.content") }}</div>
 		<div class="py-2 w-1/6 dark:border-gray-800 border-l-2"></div>
 	</div>
 </template>

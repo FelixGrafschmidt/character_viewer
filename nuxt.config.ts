@@ -60,7 +60,7 @@ const nuxtConfig: NuxtConfig = {
 		"@nuxtjs/color-mode",
 		// "nuxt-vite",
 	],
-	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device"],
+	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device", "nuxt-i18n"],
 	build: {
 		extend(
 			config: WebpackConfiguration,
@@ -108,7 +108,7 @@ const nuxtConfig: NuxtConfig = {
 		whitelist: ["dark-mode"],
 	},
 	tailwindcss: {
-		jit: true,
+		mode: "jit",
 		exposeConfig: true,
 	},
 	pwa: {
@@ -124,6 +124,16 @@ const nuxtConfig: NuxtConfig = {
 		config: { devtools: true },
 	},
 	modern: process.env.NODE_ENV === "production",
+	i18n: {
+		locales: [
+			{ code: "en", iso: "en-US", file: "en.json" },
+			{ code: "de", iso: "de-DE", file: "de.json" },
+		],
+		defaultLocale: "en",
+		langDir: "~/i18n/",
+		strategy: "no_prefix",
+		detectBrowserLanguage: { useCookie: true },
+	},
 	// vite: {
 	// 	build: {
 	// 		rollupOptions: {

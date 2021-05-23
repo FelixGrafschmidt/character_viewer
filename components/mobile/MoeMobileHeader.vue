@@ -3,7 +3,7 @@
 		<div v-if="mobileMode === 'character'" class="flex flex-col gap-4">
 			<div class="m-auto">{{ character.name }}</div>
 			<MoeButton
-				text="Back"
+				:text="$t('pages.mobile.back')"
 				class="m-auto w-60 h-8"
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
@@ -13,7 +13,7 @@
 		<div v-else-if="mobileMode === 'list'" class="flex flex-col gap-4">
 			<div class="m-auto">{{ list.name }}</div>
 			<MoeButton
-				text="Back"
+				:text="$t('pages.mobile.back')"
 				class="m-auto w-60 h-8"
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"

@@ -17,9 +17,9 @@
 		@click.stop
 		@submit.prevent="src !== '' ? addImage() : undefined"
 	>
-		<img v-if="src" :src="src" alt="new image" class="max-h-[55vh]" @load="valid = true" @error="valid = false" />
+		<img v-if="src" :src="src" :alt="$t('modals.new_image.alt')" class="max-h-[55vh]" @load="valid = true" @error="valid = false" />
 		<label class="mx-12">
-			<span>Image URL</span>
+			<span>{{ $t("modals.new_image.url") }}</span>
 			<input
 				v-autofocus
 				:value="src"
@@ -27,8 +27,8 @@
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 mb-8 w-80"
 				@blur="updateUrl"
 		/></label>
-		<p v-if="!valid" class="text-red-600">Invalid image url</p>
-		<MoeButton text="Add Image" :class="{ 'cursor-not-allowed': src === '' }" class="m-auto" />
+		<p v-if="!valid" class="text-red-600">{{ $t("modals.new_image.invalid") }}</p>
+		<MoeButton :text="$t('image.add')" :class="{ 'cursor-not-allowed': src === '' }" class="m-auto" />
 		<div
 			class="
 				top-1

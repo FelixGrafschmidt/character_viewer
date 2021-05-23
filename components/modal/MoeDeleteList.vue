@@ -1,19 +1,11 @@
 <template>
 	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10" @click.stop>
 		<div class="mt-12 px-16">
-			Are you sure you want to delete your list {{ list.name }} with {{ list.characters.length }} characters?
+			{{ $t("modals.delete_list.title", [list.name, list.characters.length]) }}
 		</div>
 		<div class="flex m-auto pt-4">
-			<MoeButton
-				class="mr-8"
-				color="bg-red-500"
-				text="Delete"
-				@click.native="
-					$vxm.main.collectionStore.deleteList(list.id);
-					$vxm.main.deactivateModal();
-				"
-			/>
-			<MoeButton text="Cancel" @click.native="$vxm.main.deactivateModal()" />
+			<MoeButton class="mr-8" color="bg-red-500" :text="$t('list.delete')" @click.native="deleteList(list.id)" />
+			<MoeButton :text="$t('modals.delete_list.cancel')" @click.native="$vxm.main.deactivateModal()" />
 		</div>
 		<div
 			class="
@@ -48,6 +40,11 @@
 	export default class MoeDeleteList extends Vue {
 		get list() {
 			return this.$vxm.main.collectionStore.listToDelete;
+		}
+
+		deleteList(id: string) {
+			this.$vxm.main.collectionStore.deleteList(id);
+			this.$vxm.main.deactivateModal();
 		}
 	}
 </script>

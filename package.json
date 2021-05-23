@@ -24,6 +24,7 @@
 		"consola": "^2.15.3",
 		"file-saver": "^2.0.5",
 		"nuxt": "^2.15.6",
+		"nuxt-i18n": "^6.27.0",
 		"nuxt-property-decorator": "^2.9.1",
 		"nuxt-winston-log": "^1.2.0",
 		"object-hash": "^2.1.1",

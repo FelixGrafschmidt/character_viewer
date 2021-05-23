@@ -11,7 +11,7 @@
 		<div class="w-[50%] gap-3 flex items-center justify-start">
 			<nuxt-link v-slot="{ navigate }" tag="h2" custom to="/">
 				<h2 class="text-xl cursor-pointer title caps-small" role="link" @click="navigate" @keypress.enter="navigate">
-					Character List Manager
+					{{ $t("header.title") }}
 				</h2>
 			</nuxt-link>
 			<MoeSaveArea />

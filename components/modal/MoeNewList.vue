@@ -19,7 +19,7 @@
 		@submit.prevent="name !== '' ? addList() : undefined"
 	>
 		<label class="mx-12">
-			<span>Type a name for your new list.</span>
+			<span>{{ $t("modals.new_list.title") }}</span>
 			<input
 				v-model="name"
 				v-autofocus
@@ -27,7 +27,7 @@
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none mb-8 w-80"
 			/>
 		</label>
-		<MoeButton text="Add List" :class="{ 'cursor-not-allowed': name === '' }" class="m-auto" />
+		<MoeButton :text="$t('modals.new_list.add')" :class="{ 'cursor-not-allowed': name === '' }" class="m-auto" />
 		<div
 			class="
 				top-1

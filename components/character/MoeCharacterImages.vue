@@ -59,19 +59,19 @@
 			<MoeButton
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
-				text="Designate as Main Image"
+				:text="$t('image.make_main')"
 				@click.native="designateMainImage"
 			/>
 			<MoeButton
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
-				text="Remove this Image"
+				:text="$t('image.remove')"
 				@click.native="deleteImage"
 			/>
 			<MoeButton
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
-				text="Add Image"
+				:text="$t('image.add')"
 				@click.stop.native="addNewImage"
 			/>
 		</div>

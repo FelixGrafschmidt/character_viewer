@@ -2,9 +2,9 @@
 	<aside class="dark:bg-gray-700 bg-gray-400 py-4 px-4" @mouseenter="captureScroll" @mouseleave="releaseScroll">
 		<h3 v-if="$vxm.main.listStore.list.id" class="text-lg max-w-[15rem] whitespace-nowrap truncate">
 			<span class="cursor-pointer" @click="toList"> {{ list.name }} </span> |
-			<span class="cursor-pointer" @click="toGallery">Gallery</span>
+			<span class="cursor-pointer" @click="toGallery">{{ $t("sidebar.gallery") }}</span>
 		</h3>
-		<h3 v-else class="text-lg max-w-[15rem] whitespace-nowrap truncate">No list selected</h3>
+		<h3 v-else class="text-lg max-w-[15rem] whitespace-nowrap truncate">{{ $t("sidebar.no_list") }}</h3>
 		<div
 			:class="{
 				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
@@ -23,7 +23,7 @@
 				{{ characteritem.name }}
 			</div>
 		</div>
-		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="toCollection">Lists</h3>
+		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="toCollection">{{ $t("sidebar.lists") }}</h3>
 		<div
 			:class="{
 				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':

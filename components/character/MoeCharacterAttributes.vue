@@ -1,7 +1,7 @@
 <template>
 	<form class="h-1/5 w-1/2 flex flex-col" @submit.prevent="isNewCharacter() ? saveNewCharacter() : saveChanges()">
 		<label>
-			Name
+			{{ $t("character.name") }}
 			<input
 				:value="character.name"
 				type="text"
@@ -10,7 +10,7 @@
 			/>
 		</label>
 		<label>
-			Origin
+			{{ $t("character.origin") }}
 			<input
 				:value="character.origin"
 				type="text"
@@ -23,14 +23,14 @@
 				class="py-2 w-48"
 				class-names="rounded-md text-sm font-medium focus:outline-none"
 				color="dark:bg-green-600 bg-green-400"
-				text="Save Character"
+				:text="$t('character.save')"
 			/>
 			<MoeButton
 				v-if="!isNewCharacter()"
 				class="w-48"
 				class-names="rounded-md text-sm font-medium focus:outline-none"
 				color="dark:bg-red-600 bg-red-400"
-				text="Delete Character"
+				:text="$t('character.delete')"
 				@click.native.prevent="deleteCharacter"
 			/>
 			<MoeButton
@@ -38,7 +38,7 @@
 				class="w-48"
 				class-names="rounded-md text-sm font-medium focus:outline-none"
 				color="dark:bg-red-600 bg-red-400"
-				text="Discard Character"
+				:text="$t('character.discard')"
 				@click.native.prevent="discardCharacter"
 			/>
 			<MoeButton
@@ -52,7 +52,7 @@
 				class="py-2 w-48"
 				class-names="rounded-md text-sm font-medium focus:outline-none"
 				color="dark:bg-gray-600 bg-gray-400"
-				text="Export Character"
+				:text="$t('character.export')"
 				@click.native.prevent="exportCharacter"
 			/>
 		</div>
@@ -69,7 +69,7 @@
 		name: "MoeCharacterAttributes",
 	})
 	export default class MoeCharacterAttributes extends Vue {
-		copyText = "Copy Character";
+		copyText = this.$t("character.copy");
 		get character() {
 			return this.$vxm.main.characterStore.character;
 		}
@@ -112,9 +112,9 @@
 		}
 
 		copyCharacter() {
-			this.copyText = "Copied!";
+			this.copyText = this.$t("character.copied");
 			window.setTimeout(() => {
-				this.copyText = "Copy Character";
+				this.copyText = this.$t("character.copy");
 			}, 1000 * 2);
 			navigator.clipboard.writeText(JSON.stringify(this.character));
 		}

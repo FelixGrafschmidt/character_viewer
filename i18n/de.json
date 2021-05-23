@@ -1,7 +1,127 @@
 {
-	"title": "Character List Manager",
-	"introduction": "Wähle ein Menüitem links",
-	"first_visit": "Zum ersten Mal hier? Fang am besten mit einer {0} an",
-	"first_visit_new_list": "neuen Liste",
-	"language": "Sprache"
+	"character": {
+		"add": "Neuen Charakter hinzufügen",
+		"copied": "Kopiert!",
+		"copy": "Charakter kopieren",
+		"delete": "Charakter löschen",
+		"discard": "Charakter verwerfen",
+		"export": "Charakter exportieren",
+		"images": "Bilder",
+		"main_image": "Hauptbild",
+		"name": "Name",
+		"origin": "Ursprung",
+		"save": "Charakter speichern"
+	},
+	"collection": {
+		"copied": "Kopiert!",
+		"copy_id": "ID kopieren",
+		"export": "Sammlung exportieren",
+		"load": "Sammlung laden"
+	},
+	"errors": {
+		"generic_error": "Ein Fehler ist aufgetreten."
+	},
+	"footer": {
+		"info": "Info"
+	},
+	"header": {
+		"autosave": {
+			"disable": "Automatisches Speichern deaktivieren",
+			"enable": "Automatisches Speichern aktivieren",
+			"off": "AUS",
+			"save": "Speichern",
+			"title": "Automatisches Speichern:",
+			"unsaved": "UNGESPEICHERTE ÄNDERUNGEN"
+		},
+		"title": "Character List Manager"
+	},
+	"image": {
+		"add": "Bild hinzufügen",
+		"make_main": "Bild als Hauptbild markieren",
+		"remove": "Bild entfernen"
+	},
+	"list": {
+		"content": "Inhalt",
+		"copy": "Kopieren",
+		"create": "Neue Liste anlegen",
+		"delete": "Löschen",
+		"export": "Exportieren",
+		"id": "ID",
+		"import": "Liste importieren",
+		"name": "Name"
+	},
+	"modals": {
+		"contact_us": {
+			"add_info": "Informationen",
+			"github": "Berichte auf unserer Github-Seite gerne von einem {RAISEISSUE} oder füge {ADDINFO} zu einem bereits gemeldeten Problem hinzu.",
+			"mail": "Du kannst uns auch eine {MAILTO} schicken.",
+			"mailto": "Mail",
+			"raise_issue": "Problem",
+			"title": "Kontakt"
+		},
+		"delete_character": {
+			"cancel": "Abbrechen",
+			"title": "Bis du sicher, dass du {0} löschen möchtest?"
+		},
+		"delete_list": {
+			"cancel": "Cancel",
+			"title": "Bist du sicher, dass du die Liste {0} mit {1} Charakteren löschen möchtest?"
+		},
+		"import_list": {
+			"invalid": "Ungültige Datei",
+			"title": "Füge den Inhalt deiner exportiereten Liste unten ein."
+		},
+		"load_collection": {
+			"title": "Füge die ID der Sammlung unten ein."
+		},
+		"new_image": {
+			"alt": "neues Bild",
+			"invalid": "Ungültige Bild-URL",
+			"url": "Bild-URL"
+		},
+		"new_list": {
+			"add": "Liste hinzufügen",
+			"title": "Füge einen Namen für deine neue Liste ein."
+		},
+		"save_error": {
+			"alt": "Fehler",
+			"error": "Beim Speichern deiner Änderungen ist ein Fehler aufgetreten.",
+			"export": "Exportiere diine Daten",
+			"not_saved": "Deine Änderungen wurden NICHT gespeichert!",
+			"try_again": "Nochmal versuchen"
+		}
+	},
+	"navigation": {
+		"to_index": "Zurück zur Startseite"
+	},
+	"pages": {
+		"faq": {
+			"content": "Häufig gestellte Fragen",
+			"heading": "FAQ"
+		},
+		"gallery": {
+			"title": "Galerie"
+		},
+		"imprint": {
+			"heading": "Impressum"
+		},
+		"index": {
+			"basic": "Auf dieser Webseite kannst du Listen von Charakteren verwalten. Um das zu erreichen, wurde dir gerade eine Sammlungs-ID zugewiesen. Du kannst sie in der oberen rechten Ecke sehen. Diese ID wird auf deiner Festplatte gespeichert (wir benutzen den {LOCALSTORAGE} deines Browsers). Solltest du jemals deinen Browser wechseln oder deine lokal gespeicherten Daten löschen wollen, aber auch deine Listen behalten wollen, stelle sicher, dass du diese ID irgendwo speicherst.",
+			"collection": "Eine Sammlung besteht aus einer oder mehreren Listen. Jede dieser Listen besteht aus einem oder mehreren Charakteren und jeder dieser Charaktere aus einer Reihe von Attributen.",
+			"heading": "Hallo! Das scheint dein erster Besuch zu sein.",
+			"list": "neuen Liste",
+			"localstorage": "localStorage",
+			"returning": "Wähle links eine Option aus, um anzufangen.",
+			"start": "Das ist im Moment vielleicht etwas vie, also fang doch einfach mit einer {NEWLIST} an"
+		},
+		"mobile": {
+			"back": "Zurück",
+			"empty_collection": "Die Sammlung ist leer. Möchtest du eine andere laden?"
+		}
+	},
+	"sidebar": {
+		"gallery": "Galerie",
+		"lists": "Listen",
+		"no_list": "Keine Liste ausgewählt"
+	}
 }

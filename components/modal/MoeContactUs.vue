@@ -1,30 +1,36 @@
 <template>
 	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10" @click.stop>
-		<div class="text-3xl pt-8 self-center text-center">Contact us</div>
+		<div class="text-3xl pt-8 self-center text-center">{{ $t("modals.contact_us.title") }}</div>
 		<div class="mt-12 px-16">
-			Feel free to
-			<a
-				class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500"
-				target="_blank"
-				href="https://github.com/Ithambar/character_viewer/issues/new"
-				>raise an issue</a
-			>
-			on our Github page or
-			<a
-				class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500"
-				target="_blank"
-				href="https://github.com/Ithambar/character_viewer/issues"
-				>add more info</a
-			>
-			to an existing issue.
+			<i18n path="modals.contact_us.github">
+				<template #RAISEISSUE>
+					<a
+						class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500"
+						target="_blank"
+						href="https://github.com/Ithambar/character_viewer/issues/new"
+						>{{ $t("modals.contact_us.raise_issue") }}</a
+					>
+				</template>
+				<template #ADDINFO>
+					<a
+						class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500"
+						target="_blank"
+						href="https://github.com/Ithambar/character_viewer/issues"
+						>{{ $t("modals.contact_us.add_info") }}</a
+					>
+				</template>
+			</i18n>
 			<br />
-			You can also
-			<a
-				class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500"
-				target="_blank"
-				href="mailto:ithambar.lethenain@gmail.com?subject=Issue%20on%20character%20manager%20webpage"
-				>send us an eMail</a
-			>.
+			<i18n path="modals.contact_us.mail">
+				<template #MAILTO>
+					<a
+						class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500"
+						target="_blank"
+						href="mailto:ithambar.lethenain@gmail.com?subject=Issue%20on%20character%20manager%20webpage"
+						>{{ $t("modals.contact_us.mailto") }}</a
+					>
+				</template>
+			</i18n>
 		</div>
 		<div
 			class="

@@ -2,8 +2,8 @@
 	<div class="w-[50%] flex gap-3 items-center justify-end mr-4">
 		<span> {{ $vxm.main.collectionStore.collection.id }} </span>
 		<MoeButton :text="copyText" @click.native="copyID" />
-		<MoeButton text="Load Collection" @click.native="loadCollection" />
-		<MoeButton text="Export Collection" @click.native="exportCollection" />
+		<MoeButton :text="$t('collection.load')" @click.native="loadCollection" />
+		<MoeButton :text="$t('collection.export')" @click.native="exportCollection" />
 	</div>
 </template>
 
@@ -17,7 +17,7 @@
 		name: "MoeCollectionArea",
 	})
 	export default class MoeCollectionArea extends Vue {
-		copyText = "Copy ID";
+		copyText = this.$t("collection.copy_id");
 
 		get collection() {
 			return this.$vxm.main.collectionStore.collection;
@@ -29,9 +29,9 @@
 		}
 
 		copyID() {
-			this.copyText = "Copied!";
+			this.copyText = this.$t("collection.copied");
 			window.setTimeout(() => {
-				this.copyText = "Copy ID";
+				this.copyText = this.$t("collection.copy_id");
 			}, 1000 * 2);
 			navigator.clipboard.writeText(this.collection.id);
 		}

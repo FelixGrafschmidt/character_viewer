@@ -24,9 +24,24 @@
 			<div class="w-1/6 text-center">{{ list.characters.length }} {{ list.characters.length === 1 ? "Entry" : "Entries" }}</div>
 			<div class="w-1/6 text-center">
 				<!-- <MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" /> -->
-				<MoeButton :text="'Export'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" @click.stop.native="exportList(list)" />
-				<MoeButton :text="'Delete'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" @click.stop.native="deleteList(list)" />
-				<MoeButton :text="'Copy'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" @click.stop.native="copyList(list)" />
+				<MoeButton
+					:text="$t('list.export')"
+					class="w-18 px-1"
+					color="dark:bg-gray-600 bg-gray-400 m-1"
+					@click.stop.native="exportList(list)"
+				/>
+				<MoeButton
+					:text="$t('list.delete')"
+					class="w-18 px-1"
+					color="dark:bg-gray-600 bg-gray-400 m-1"
+					@click.stop.native="deleteList(list)"
+				/>
+				<MoeButton
+					:text="$t('list.copy')"
+					class="w-18 px-1"
+					color="dark:bg-gray-600 bg-gray-400 m-1"
+					@click.stop.native="copyList(list)"
+				/>
 			</div>
 		</div>
 	</div>
