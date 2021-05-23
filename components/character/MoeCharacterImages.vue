@@ -1,9 +1,11 @@
 <template>
-	<div class="flex flex-col items-center w-1/2 gap-2 justify-between">
-		<figure class="h-[75%] min-h-[57vh] 2xl:min-h-[64vh] 2xl:h-[84%] justify-center flex cursor-pointer" @click="openImage(image)">
-			<img class="rounded" :alt="character.name" :src="image.src || ''" />
-		</figure>
-		<div class="flex relative">
+	<div class="flex flex-col items-center w-1/2 justify-between h-[80vh]">
+		<div class="h-[75%] min-h-[75%] justify-center flex cursor-pointer">
+			<figure @click="openImage(image)">
+				<img class="rounded max-h-full m-auto" :alt="character.name" :src="image.src || ''" />
+			</figure>
+		</div>
+		<div class="flex relative h-[15%]">
 			<button
 				v-show="thumbsScrolling"
 				class="focus:outline-none absolute left-[-2.5rem] top-[5%] bg-teal-600 px-2 rounded-full fas fa-angle-left h-full"
@@ -13,8 +15,8 @@
 			<div
 				ref="thumbs"
 				class="
-					max-h-[7rem]
-					min-h-[7rem]
+					max-h-[6rem]
+					min-h-[6rem]
 					w-full
 					flex
 					gap-1
@@ -35,7 +37,7 @@
 					@click="image = img"
 				>
 					<img
-						class="rounded overflow-hidden max-h-[7rem] mx-auto"
+						class="rounded overflow-hidden max-h-[6rem] mx-auto"
 						:class="{
 							'border-teal-300 border-4': img.main,
 							'border-green-700 border-4': img === image && img.valid,
@@ -53,7 +55,7 @@
 				@mouseleave="scrollThumbsRight = false"
 			></button>
 		</div>
-		<div class="flex gap-8 pt-4 items-center justify-self-end">
+		<div class="flex gap-8 items-center justify-self-end h-[5%]">
 			<MoeButton
 				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
 				color="dark:bg-gray-600 bg-gray-400"
