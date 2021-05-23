@@ -1,7 +1,8 @@
 <template>
 	<div class="w-[50%] flex gap-3 items-center justify-end mr-4">
 		<span> {{ $vxm.main.collectionStore.collection.id }} </span>
-		<MoeButton :text="copyText" @click.native="copyID" />
+		<MoeButton v-if="copied" :text="$t('collection.copied')" @click.native="copyID" />
+		<MoeButton v-else :text="$t('collection.copy_id')" @click.native="copyID" />
 		<MoeButton :text="$t('collection.load')" @click.native="loadCollection" />
 		<MoeButton :text="$t('collection.export')" @click.native="exportCollection" />
 	</div>
@@ -17,7 +18,7 @@
 		name: "MoeCollectionArea",
 	})
 	export default class MoeCollectionArea extends Vue {
-		copyText = this.$t("collection.copy_id");
+		copied = false;
 
 		get collection() {
 			return this.$vxm.main.collectionStore.collection;
@@ -29,9 +30,9 @@
 		}
 
 		copyID() {
-			this.copyText = this.$t("collection.copied");
+			this.copied = true;
 			window.setTimeout(() => {
-				this.copyText = this.$t("collection.copy_id");
+				this.copied = false;
 			}, 1000 * 2);
 			navigator.clipboard.writeText(this.collection.id);
 		}

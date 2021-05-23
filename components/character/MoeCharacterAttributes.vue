@@ -42,10 +42,19 @@
 				@click.native.prevent="discardCharacter"
 			/>
 			<MoeButton
+				v-if="copied"
 				class="py-2 w-48"
 				class-names="rounded-md text-sm font-medium focus:outline-none"
 				color="dark:bg-gray-600 bg-gray-400"
-				:text="copyText"
+				:text="$t('character.copied')"
+				@click.native.prevent="copyCharacter"
+			/>
+			<MoeButton
+				v-else
+				class="py-2 w-48"
+				class-names="rounded-md text-sm font-medium focus:outline-none"
+				color="dark:bg-gray-600 bg-gray-400"
+				:text="$t('character.copy')"
 				@click.native.prevent="copyCharacter"
 			/>
 			<MoeButton
@@ -69,7 +78,7 @@
 		name: "MoeCharacterAttributes",
 	})
 	export default class MoeCharacterAttributes extends Vue {
-		copyText = this.$t("character.copy");
+		copied = false;
 		get character() {
 			return this.$vxm.main.characterStore.character;
 		}
@@ -112,9 +121,9 @@
 		}
 
 		copyCharacter() {
-			this.copyText = this.$t("character.copied");
+			this.copied = true;
 			window.setTimeout(() => {
-				this.copyText = this.$t("character.copy");
+				this.copied = false;
 			}, 1000 * 2);
 			navigator.clipboard.writeText(JSON.stringify(this.character));
 		}
