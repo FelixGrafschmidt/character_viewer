@@ -75,7 +75,7 @@
 			"title": "Füge die ID der Sammlung unten ein."
 		},
 		"new_image": {
-			"alt": "neues Bild",
+			"alt": "Ungültige Bild-URL",
 			"invalid": "Ungültige Bild-URL",
 			"url": "Bild-URL"
 		},

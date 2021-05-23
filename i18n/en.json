@@ -75,7 +75,7 @@
 			"title": "Paste collection id below."
 		},
 		"new_image": {
-			"alt": "new image",
+			"alt": "Invalid image url",
 			"invalid": "Invalid image url",
 			"url": "Image URL"
 		},

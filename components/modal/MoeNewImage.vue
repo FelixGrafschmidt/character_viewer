@@ -1,6 +1,7 @@
 <template>
 	<form
 		class="
+			justify-end
 			rounded-2xl
 			dark:bg-gray-700
 			bg-gray-400
@@ -17,8 +18,10 @@
 		@click.stop
 		@submit.prevent="src !== '' ? addImage() : undefined"
 	>
-		<img v-if="src" :src="src" :alt="$t('modals.new_image.alt')" class="max-h-[55vh]" @load="valid = true" @error="valid = false" />
-		<label class="mx-12">
+		<figure v-if="src" class="h-[80%] max-h-[80%]">
+			<img :src="src" :alt="$t('modals.new_image.alt')" class="max-h-full" @load="valid = true" @error="valid = false" />
+		</figure>
+		<label class="h-[10%]">
 			<span>{{ $t("modals.new_image.url") }}</span>
 			<input
 				v-autofocus
@@ -28,7 +31,9 @@
 				@blur="updateUrl"
 		/></label>
 		<p v-if="!valid" class="text-red-600">{{ $t("modals.new_image.invalid") }}</p>
-		<MoeButton :text="$t('image.add')" :class="{ 'cursor-not-allowed': src === '' }" class="m-auto" />
+		<div class="h-[10%]">
+			<MoeButton :text="$t('image.add')" :class="{ 'cursor-not-allowed': src === '' }" class="mt-4 mx-auto" />
+		</div>
 		<div
 			class="
 				top-1
@@ -61,7 +66,7 @@
 	})
 	export default class MoeNewImage extends Vue {
 		src = "";
-		valid: boolean = true;
+		valid = true;
 
 		updateUrl(event: Event) {
 			const value = (event.target as HTMLInputElement).value;
