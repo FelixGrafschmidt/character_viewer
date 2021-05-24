@@ -1,9 +1,9 @@
-import darkmode from "tailwindcss-dark-mode";
-import forms from "@tailwindcss/forms";
-import scrollbar from "tailwind-scrollbar";
-import typography from "tailwindcss-typography";
+const darkmode = require("tailwindcss-dark-mode");
+const forms = require("@tailwindcss/forms");
+const scrollbar = require("tailwind-scrollbar");
+const typography = require("tailwindcss-typography");
 
-export default {
+module.exports = {
 	mode: "jit",
 	theme: {
 		extend: {
