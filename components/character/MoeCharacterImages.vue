@@ -120,7 +120,6 @@
 		}
 
 		addNewImage() {
-			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
 		}
@@ -152,7 +151,6 @@
 		openImage(image: CharacterImage) {
 			window.scroll(0, 0);
 			this.$vxm.main.characterStore.setActiveImage(image);
-			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
 		}
 

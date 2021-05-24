@@ -1,5 +1,5 @@
 <template>
-	<div class="flex mb-2 sticky top-16 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
+	<div class="flex sticky top-0 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
 		<div class="w-2/5 dark:border-gray-800 border-r-2 py-2 text-center cursor-pointer" @click="$vxm.main.listStore.sortListByName()">
 			{{ $t("character.name") }}
 		</div>

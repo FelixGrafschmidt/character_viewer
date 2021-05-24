@@ -30,23 +30,24 @@
 		<MoeButton :text="$t('modals.new_list.add')" :class="{ 'cursor-not-allowed': name === '' }" class="m-auto" />
 		<div
 			class="
+				items-center
+				justify-center
 				top-1
 				right-1
+				flex
 				dark:bg-red-500
 				dark:text-gray-900
 				bg-red-800
 				text-gray-100
 				h-6
 				w-6
-				text-center
 				rounded-2xl
-				ml-24
 				cursor-pointer
 				absolute
 			"
 			@click="$vxm.main.deactivateModal()"
 		>
-			X
+			<div class="fas fa-times"></div>
 		</div>
 	</form>
 </template>

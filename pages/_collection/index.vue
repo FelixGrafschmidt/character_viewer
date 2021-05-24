@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-12 grid">
+	<div class="flex flex-col">
 		<MoeCollectionHeader />
 		<MoeCollectionLists />
 		<MoeCollectionActions />

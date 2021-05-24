@@ -3,7 +3,7 @@
 		<div
 			v-for="list in collection.lists"
 			:key="list.id"
-			class="flex h-24 items-center rounded cursor-pointer"
+			class="flex h-24 items-center rounded cursor-pointer my-1"
 			:class="{
 				'bg-teal-500 hover:bg-teal-400': list.id === $vxm.main.listStore.list.id,
 				'hover:bg-gray-500 dark-hover:bg-gray-700': list.id !== $vxm.main.listStore.list.id,
@@ -67,7 +67,6 @@
 		}
 
 		deleteList(list: List) {
-			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.DELETELIST);
 			this.$vxm.main.collectionStore.setListToDelete(list);
 		}

@@ -1,5 +1,5 @@
 <template>
-	<div class="flex relative gap-4 mt-20 mb-12" @click="quickImage">
+	<div class="flex relative gap-4 mt-4" @click="quickImage">
 		<MoeBackButton :tooltip-text="'Back to Character List'" @back="backToCharacterList" />
 
 		<MoeCharacterImages />

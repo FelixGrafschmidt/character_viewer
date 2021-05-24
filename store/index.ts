@@ -44,8 +44,6 @@ export class MainStore extends VuexModule {
 	}
 
 	@mutation deactivateModal() {
-		window.document.body.style.position = "static";
-		window.document.body.style.overflow = "overlay";
 		this.modal = Modal.NONE;
 	}
 

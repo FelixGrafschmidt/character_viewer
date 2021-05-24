@@ -14611,6 +14611,11 @@ vue-i18n@^8.24.4:
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.24.4.tgz#b158614c1df7db183d9cadddbb73e1d540269492"
   integrity sha512-RZE94WUAGxEiBAANxQ0pptbRwDkNKNSXl3fnJslpFOxVMF6UkUtMDSuYGuW2blDrVgweIXVpethOVkYoNNT9xw==
 
+vue-keep-scroll@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vue-keep-scroll/-/vue-keep-scroll-0.1.1.tgz#47a380c6a92a5238d89a5287c9e1c5d2469aecb2"
+  integrity sha1-R6OAxqkqUjjYmlKHyeHF0kaa7LI=
+
 vue-loader@^15.9.7:
   version "15.9.7"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.9.7.tgz#15b05775c3e0c38407679393c2ce6df673b01044"

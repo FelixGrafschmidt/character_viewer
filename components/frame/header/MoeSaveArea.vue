@@ -65,7 +65,6 @@
 					this.$vxm.main.deactivateModal();
 				})
 				.catch(() => {
-					window.document.body.style.overflow = "hidden";
 					this.$vxm.main.setModal(Modal.SAVEERROR);
 				})
 				.finally(() => {

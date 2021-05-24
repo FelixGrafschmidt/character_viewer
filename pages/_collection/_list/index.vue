@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-12 flex flex-col">
+	<div class="flex flex-col">
 		<MoeListHeader />
 		<MoeListCharacters />
 		<MoeListActions />

@@ -15,7 +15,6 @@
 	})
 	export default class MoeCollectionActions extends Vue {
 		importFromFile(): void {
-			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.IMPORTLIST);
 		}
 

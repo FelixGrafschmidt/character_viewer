@@ -38,7 +38,6 @@
 		}
 
 		openModal() {
-			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.LOADCOLLECTION);
 		}
 

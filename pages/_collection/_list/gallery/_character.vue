@@ -1,5 +1,5 @@
 <template>
-	<div class="relative mt-20 mb-20">
+	<div class="relative my-4">
 		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="toGallery" />
 		<div class="flex flex-wrap gap-2 pt-2">
 			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%] cursor-pointer" @click="openImage(image)">
@@ -47,7 +47,6 @@
 		openImage(image: CharacterImage) {
 			window.scroll(0, 0);
 			this.$vxm.main.characterStore.setActiveImage(image);
-			window.document.body.style.overflow = "hidden";
 			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
 		}
 

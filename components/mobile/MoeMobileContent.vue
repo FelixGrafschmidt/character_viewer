@@ -25,7 +25,6 @@
 			} else if (window.localStorage.getItem("collectionId")) {
 				this.$vxm.main.collectionStore.loadCollection(this.$axios);
 			} else {
-				window.document.body.style.overflow = "hidden";
 				this.$vxm.main.setModal(Modal.LOADCOLLECTION);
 			}
 		}

@@ -1,5 +1,5 @@
 <template>
-	<div v-if="initialVisit" class="my-20">
+	<div v-if="initialVisit" class="mt-4">
 		<h2 class="text-xl font-bold">{{ $t("pages.index.heading") }}</h2>
 		<i18n path="pages.index.basic" tag="h3" class="py-2">
 			<template #LOCALSTORAGE>
@@ -23,7 +23,7 @@
 			</template>
 		</i18n>
 	</div>
-	<div v-else class="my-20">
+	<div v-else class="mt-4">
 		<h2 class="text-xl font-bold">{{ $t("pages.index.returning") }}</h2>
 	</div>
 </template>
