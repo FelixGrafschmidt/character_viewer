@@ -134,14 +134,6 @@ const nuxtConfig: NuxtConfig = {
 		strategy: "no_prefix",
 		detectBrowserLanguage: { useCookie: true },
 	},
-	// vite: {
-	// 	build: {
-	// 		rollupOptions: {
-	// 			external: [
-	// 			],
-	// 		},
-	// 	},
-	// },
 };
 
 export default nuxtConfig;

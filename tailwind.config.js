@@ -38,7 +38,7 @@ module.exports = {
 		textColor: ["dark", "dark-hover", "dark-active", "hover", "responsive"],
 		scrollbar: ["dark", "rounded"],
 	},
-	plugins: [darkmode, forms, scrollbar, typography],
+	plugins: [darkmode(), forms, scrollbar, typography],
 	purge: {
 		// enable remove unused CSS only in production
 		enabled: process.env.NODE_ENV === "production",
