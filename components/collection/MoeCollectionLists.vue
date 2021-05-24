@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<div
-			v-for="list in collection.lists"
+			v-for="(list, index) in collection.lists"
 			:key="list.id"
 			class="flex h-24 items-center rounded cursor-pointer my-1"
 			:class="{
 				'bg-teal-500 hover:bg-teal-400': list.id === $vxm.main.listStore.list.id,
 				'hover:bg-gray-500 dark-hover:bg-gray-700': list.id !== $vxm.main.listStore.list.id,
-				'bg-gray-300 dark:bg-gray-800': list.id !== $vxm.main.listStore.list.id,
+				'bg-gray-300 dark:bg-gray-800': index % 2 !== 0,
 			}"
 			@click="openList(list)"
 		>
