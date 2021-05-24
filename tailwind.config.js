@@ -1,4 +1,9 @@
-module.exports = {
+import darkmode from "tailwindcss-dark-mode";
+import forms from "@tailwindcss/forms";
+import scrollbar from "tailwind-scrollbar";
+import typography from "tailwindcss-typography";
+
+export default {
 	mode: "jit",
 	theme: {
 		extend: {
@@ -31,14 +36,9 @@ module.exports = {
 		backgroundColor: ["dark", "dark-hover", "dark-group-hover", "dark-even", "dark-odd", "hover", "responsive"],
 		borderColor: ["dark", "dark-focus", "dark-focus-within", "hover", "responsive"],
 		textColor: ["dark", "dark-hover", "dark-active", "hover", "responsive"],
-		scrollbar: ["dark"],
+		scrollbar: ["dark", "rounded"],
 	},
-	plugins: [
-		require("tailwindcss-dark-mode")(),
-		require("@tailwindcss/forms"),
-		require("tailwind-scrollbar"),
-		require("tailwindcss-typography"),
-	],
+	plugins: [darkmode, forms, scrollbar, typography],
 	purge: {
 		// enable remove unused CSS only in production
 		enabled: process.env.NODE_ENV === "production",

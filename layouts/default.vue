@@ -13,7 +13,7 @@
 					px-6
 					max-h-full
 					mt-16
-					scrollbar scrollbar-thin scrollbar-track-gray-500 scrollbar-thumb-gray-700
+					scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
 					dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
 					overflow-y-scroll
 				"

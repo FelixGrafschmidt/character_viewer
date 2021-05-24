@@ -7,7 +7,7 @@
 		<h3 v-else class="text-lg max-w-[15rem] whitespace-nowrap truncate">{{ $t("sidebar.no_list") }}</h3>
 		<div
 			:class="{
-				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
+				'scrollbar-thin scrollbar-track-rounded scrollbar-thumb-rounded scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
 					showScrollbars,
 			}"
 			class="rounded max-h-[40%] min-h-[40%] overflow-hidden"
@@ -26,7 +26,7 @@
 		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="toCollection">{{ $t("sidebar.lists") }}</h3>
 		<div
 			:class="{
-				'scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
+				'scrollbar-thin scrollbar-track-rounded scrollbar-thumb-rounded scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
 					showScrollbars,
 			}"
 			class="rounded max-h-[40%] min-h-[40%] overflow-hidden"

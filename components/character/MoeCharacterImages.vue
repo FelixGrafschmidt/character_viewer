@@ -22,7 +22,7 @@
 					gap-1
 					items-center
 					overflow-x-scroll
-					scrollbar scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
+					scrollbar-thin scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-track-gray-300 scrollbar-thumb-gray-500
 					dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
 					max-w-[30vw]
 				"
