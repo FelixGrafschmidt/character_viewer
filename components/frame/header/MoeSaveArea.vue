@@ -1,7 +1,7 @@
 <template>
 	<div class="flex gap-3 items-center">
-		<div class="flex font-medium items-center">
-			{{ $t("header.autosave.title") }}&nbsp;
+		<div class="flex font-medium items-center gap-1">
+			{{ $t("header.autosave.title") }}
 			<p v-if="autosave" class="dark:text-green-400 text-green-700">{{ countdown }}</p>
 			<p v-else class="text-red-600">{{ $t("header.autosave.off") }}</p>
 		</div>
