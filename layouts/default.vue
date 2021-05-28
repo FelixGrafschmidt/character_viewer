@@ -57,6 +57,10 @@
 		@apply invisible absolute;
 	}
 
+	.has-tooltip {
+		position: relative;
+	}
+
 	.has-tooltip:hover .tooltip {
 		@apply visible z-50;
 	}
