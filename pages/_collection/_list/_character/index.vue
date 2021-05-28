@@ -10,14 +10,12 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Route, NavigationGuardNext } from "vue-router";
 	import { newCharacter } from "~/models/interfaces/Character";
 	@Component({
 		name: "character",
 	})
 	export default class Character extends Vue {
 		quickImages = false;
-		fromList = false;
 
 		get characters() {
 			return this.$vxm.main.listStore.list.characters;
@@ -53,17 +51,7 @@
 
 		backToCharacterList() {
 			this.$vxm.main.characterStore.resetCharacter();
-			if (this.fromList) {
-				window.history.back();
-			} else {
-				this.$router.push(this.$vxm.main.navigationPaths.list);
-			}
-		}
-
-		beforeRouteEnter(_to: Route, from: Route, next: NavigationGuardNext<Vue>) {
-			next((vm: any) => {
-				vm.fromList = from.name === "collection-list";
-			});
+			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}
 	}
 </script>

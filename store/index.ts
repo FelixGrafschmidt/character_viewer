@@ -26,6 +26,7 @@ export class MainStore extends VuexModule {
 	modal = Modal.NONE;
 	loading = false;
 	mobileMode = "collection";
+	scrollID = "";
 
 	// Getters
 	get navigationPaths() {
@@ -53,6 +54,10 @@ export class MainStore extends VuexModule {
 
 	@mutation setMobileMode(mobileMode: string) {
 		this.mobileMode = mobileMode;
+	}
+
+	@mutation setScrollID(scrollID: string) {
+		this.scrollID = scrollID;
 	}
 
 	// Actions

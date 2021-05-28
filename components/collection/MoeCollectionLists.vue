@@ -2,6 +2,7 @@
 	<div>
 		<div
 			v-for="(list, index) in collection.lists"
+			:ref="list.id"
 			:key="list.id"
 			class="flex h-24 items-center rounded cursor-pointer my-1"
 			:class="{
@@ -66,6 +67,18 @@
 			return this.$vxm.main.collectionStore.collection;
 		}
 
+		get scrollID() {
+			return this.$vxm.main.scrollID;
+		}
+
+		mounted() {
+			if (this.scrollID && this.$refs[this.scrollID]) {
+				const element = this.$refs[this.scrollID] as Element[];
+				element[0].scrollIntoView({ behavior: "auto", block: "start", inline: "start" });
+			}
+			this.$vxm.main.setScrollID("");
+		}
+
 		deleteList(list: List) {
 			this.$vxm.main.setModal(Modal.DELETELIST);
 			this.$vxm.main.collectionStore.setListToDelete(list);
@@ -76,6 +89,7 @@
 		}
 
 		openList(list: List) {
+			this.$vxm.main.setScrollID(list.id);
 			this.$vxm.main.listStore.setList(list);
 			this.$router.push(this.$vxm.main.navigationPaths.list);
 		}

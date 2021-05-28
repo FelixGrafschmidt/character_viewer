@@ -5,8 +5,8 @@
 			<MoeSidebar class="w-1/6 fixed h-full mt-16 mb-32 border-r border-teal-700" />
 			<div
 				v-if="$vxm.main.collectionStore.ready"
-				v-keep-scroll
 				class="
+					scroll-padding
 					content-height
 					w-5/6
 					ml-auto
@@ -63,5 +63,11 @@
 
 	.content-height {
 		height: calc(100vh - theme("height.32"));
+	}
+</style>
+
+<style lang="postcss" scoped>
+	.scroll-padding {
+		scroll-padding-top: 3rem;
 	}
 </style>

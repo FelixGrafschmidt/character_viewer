@@ -2,6 +2,7 @@
 	<div class="rounded">
 		<div
 			v-for="(character, index) in characters"
+			:ref="character.id"
 			:key="index"
 			class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer my-1"
 			:class="{
@@ -32,7 +33,20 @@
 			return this.$vxm.main.listStore.list.characters;
 		}
 
+		get scrollID() {
+			return this.$vxm.main.scrollID;
+		}
+
+		mounted() {
+			if (this.scrollID && this.$refs[this.scrollID]) {
+				const element = this.$refs[this.scrollID] as Element[];
+				element[0].scrollIntoView({ behavior: "auto", block: "start", inline: "start" });
+			}
+			this.$vxm.main.setScrollID("");
+		}
+
 		selectCharacter(character: Character) {
+			this.$vxm.main.setScrollID(character.id);
 			this.$vxm.main.characterStore.setCharacter(character);
 			this.$router.push(this.$vxm.main.navigationPaths.character);
 		}
