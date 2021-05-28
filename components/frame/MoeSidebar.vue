@@ -1,8 +1,8 @@
 <template>
-	<aside class="dark:bg-gray-700 bg-gray-400 py-4 px-4" @mouseenter="captureScroll" @mouseleave="releaseScroll">
+	<aside @mouseenter="captureScroll" @mouseleave="releaseScroll" class="dark:bg-gray-700 bg-gray-400 py-4 px-4">
 		<h3 v-if="$vxm.main.listStore.list.id" class="text-lg max-w-[15rem] whitespace-nowrap truncate">
-			<span class="cursor-pointer" @click="toList"> {{ list.name }} </span> |
-			<span class="cursor-pointer" @click="toGallery">{{ $t("sidebar.gallery") }}</span>
+			<span @click="toList" class="cursor-pointer"> {{ list.name }} </span> |
+			<span @click="toGallery" class="cursor-pointer">{{ $t("sidebar.gallery") }}</span>
 		</h3>
 		<h3 v-else class="text-lg max-w-[15rem] whitespace-nowrap truncate">{{ $t("sidebar.no_list") }}</h3>
 		<div
@@ -15,15 +15,15 @@
 			<div
 				v-for="characteritem of list.characters"
 				:key="characteritem.id"
-				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
-				:class="{ 'bg-teal-500': character.id && characteritem.id === character.id }"
-				role="link"
+				:class="{ 'bg-teal-500 dark-hover:bg-teal-400 hover:bg-teal-400': character.id && characteritem.id === character.id }"
 				@click="navigateToCharacter(characteritem)"
+				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
+				role="link"
 			>
 				{{ characteritem.name }}
 			</div>
 		</div>
-		<h3 class="text-lg caps-small cursor-pointer pt-2" @click="toCollection">{{ $t("sidebar.lists") }}</h3>
+		<h3 @click="toCollection" class="text-lg caps-small cursor-pointer pt-2">{{ $t("sidebar.lists") }}</h3>
 		<div
 			:class="{
 				'scrollbar-thin scrollbar-track-rounded scrollbar-thumb-rounded scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 overflow-y-scroll':
@@ -34,10 +34,10 @@
 			<div
 				v-for="listitem of collection.lists"
 				:key="listitem.id"
-				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
-				:class="{ 'bg-teal-500': listitem.id === list.id }"
-				role="link"
+				:class="{ 'bg-teal-500 dark-hover:bg-teal-400 hover:bg-teal-400': listitem.id === list.id }"
 				@click="navigateToList(listitem)"
+				class="dark-hover:bg-gray-800 hover:bg-gray-500 rounded pl-6 py-1 cursor-pointer"
+				role="link"
 			>
 				{{ listitem.name }}
 			</div>

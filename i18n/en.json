@@ -45,6 +45,7 @@
 		"copy": "Copy",
 		"create": "Create New List",
 		"delete": "Delete",
+		"entry_s": "{count} Entry | {count} Entries",
 		"export": "Export",
 		"id": "ID",
 		"import": "Import List",
@@ -124,5 +125,11 @@
 		"gallery": "Gallery",
 		"lists": "Lists",
 		"no_list": "No list selected"
+	},
+	"tutorial": {
+		"important": "Important!",
+		"saving": "One important thing right of the bat: Any changes you make on this site will not be persisted through page reloads unless you press the \"Save\" button at the top or have enabled autosaving. This is to prevent you form accidentally saving changes you did not want to save.",
+		"short_title": "Tutorial",
+		"title": "Tutorial ({index} of {length})"
 	}
 }

@@ -48,6 +48,8 @@
 					return "MoeNewList";
 				case Modal.FULLSCREENIMG:
 					return "MoeFullscreenImg";
+				case Modal.TUTORIAL:
+					return "MoeTutorial";
 				default:
 					return "";
 			}

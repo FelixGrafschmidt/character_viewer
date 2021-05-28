@@ -48,6 +48,7 @@
 		"export": "Exportieren",
 		"id": "ID",
 		"import": "Liste importieren",
+		"entry_s": "{count} Element | {count} Elemente",
 		"name": "Name"
 	},
 	"modals": {
@@ -85,8 +86,9 @@
 		},
 		"save_error": {
 			"alt": "Fehler",
+			"contact": "Kontakt",
 			"error": "Beim Speichern deiner Änderungen ist ein Fehler aufgetreten.",
-			"export": "Exportiere diine Daten",
+			"export": "Exportiere deine Daten",
 			"not_saved": "Deine Änderungen wurden NICHT gespeichert!",
 			"try_again": "Nochmal versuchen"
 		}
@@ -123,5 +125,11 @@
 		"gallery": "Galerie",
 		"lists": "Listen",
 		"no_list": "Keine Liste ausgewählt"
+	},
+	"tutorial": {
+		"saving": "Eine sehr wichtige Sache direkt zum Anfang: Alle Änderungen, die du auf dieser Seite durchführst, gehen beim Verlassen oder Neuladen der Seite verloren, es sei denn du speicherst sie über den \"Speichern\" Knopf oben oder hast das automatische Speichern aktiviert. Dies passiert, damit nicht unbeabsichtige Änderungen gespeichert werden.",
+		"short_title": "Tutorial",
+		"title": "Tutorial ({index} von {length})",
+		"important": "WICHTIG"
 	}
 }

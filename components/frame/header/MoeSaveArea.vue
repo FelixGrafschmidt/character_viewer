@@ -10,8 +10,9 @@
 		<MoeButton v-else :text="$t('header.autosave.enable')" @click.native="enableAutosave"> </MoeButton>
 		<MoeButton :text="$t('header.autosave.save')" @click.native="saveChanges"> </MoeButton>
 
-		<div v-if="changes" class="text-lg font-medium max-w-[2rem] 2xl:max-w-none">
-			<div class="text-red-600">{{ $t("header.autosave.unsaved") }}</div>
+		<div v-if="changes" class="text-lg font-medium max-w-[2rem] 2xl:max-w-none has-tooltip">
+			<div class="text-red-600 z-90">{{ $t("header.autosave.unsaved") }}</div>
+			<div class="tooltip bg-gray-300 -ml-10 dark:bg-gray-600 px-2 h-20 my-0 rounded w-40 z-30">tooltip</div>
 		</div>
 	</div>
 </template>
