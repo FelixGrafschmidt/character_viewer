@@ -56,13 +56,22 @@
 			></button>
 		</div>
 		<div class="flex gap-4 items-center justify-self-end h-[5%]">
-			<MoeButtonLight @click.native="designateMainImage" icon="fas fa-star" />
-			<MoeButtonLight
-				@click.native="deleteImage"
-				class="dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
-				icon="fas fa-trash"
-			/>
-			<MoeButtonLight @click.stop.native="addNewImage" icon="fas fa-plus-square" />
+			<div class="has-tooltip flex flex-col items-center">
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto -mt-10 p-1"> {{ $t("image.make_main") }} </span>
+				<MoeButtonLight @click.native="designateMainImage" icon="fas fa-star" />
+			</div>
+			<div class="has-tooltip flex flex-col items-center">
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto -mt-10 p-1"> {{ $t("image.remove") }} </span>
+				<MoeButtonLight
+					@click.native="deleteImage"
+					class="dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+					icon="fas fa-trash"
+				/>
+			</div>
+			<div class="has-tooltip flex flex-col items-center">
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto -mt-10 p-1"> {{ $t("image.add") }} </span>
+				<MoeButtonLight @click.stop.native="addNewImage" icon="fas fa-plus-square" />
+			</div>
 		</div>
 	</div>
 </template>

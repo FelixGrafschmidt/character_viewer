@@ -4,17 +4,17 @@
 			v-for="(character, index) in characters"
 			:ref="character.id"
 			:key="index"
-			class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer my-1"
 			:class="{
 				'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
 			}"
 			@click="selectCharacter(character)"
+			class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer my-1"
 		>
 			<div class="w-2/5 text-center">{{ character.name }}</div>
 			<form class="w-2/5 text-center relative">{{ character.origin }}</form>
 			<form class="w-1/6 text-center relative">{{ character.images.length }}</form>
 			<div class="w-1/6 text-center">
-				<img class="max-h-24 max-w-24 rounded m-auto" :src="getMainImage(character).src" :alt="character.name" />
+				<img :src="getMainImage(character).src" :alt="character.name" class="max-h-24 max-w-24 rounded m-auto" />
 			</div>
 		</div>
 	</div>

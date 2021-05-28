@@ -22,8 +22,7 @@
 			const lsTutorial = window.localStorage.getItem("tutorial");
 			if (lsTutorial) {
 				this.$vxm.main.setTutorial(parseInt(lsTutorial));
-			}
-			if (this.tutorial < 2) {
+			} else {
 				this.$vxm.main.setModal(Modal.TUTORIAL);
 			}
 		}

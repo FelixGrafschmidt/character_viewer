@@ -19,24 +19,46 @@
 			/>
 		</label>
 		<div class="flex mt-8 justify-center gap-8">
-			<MoeButtonLight icon="fas fa-save" class="py-2 w-24 dark:!bg-green-600 !bg-green-400" />
-			<MoeButtonLight
-				v-if="!isNewCharacter()"
-				@click.native.prevent="deleteCharacter"
-				icon="fas fa-trash"
-				class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
-			/>
-			<MoeButtonLight
-				v-else
-				@click.native.prevent="discardCharacter"
-				icon="fas fa-trash"
-				class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
-			/>
-			<MoeButtonLight v-if="copied" @click.native.prevent="copyCharacter" class="py-2 w-24">
-				{{ $t("character.copied") }}
-			</MoeButtonLight>
-			<MoeButtonLight v-else @click.native.prevent="copyCharacter" icon="fas fa-copy" class="py-2 w-24" />
-			<MoeButtonLight @click.native.prevent="exportCharacter" class="py-2 w-24" icon="fas fa-file-export" />
+			<div class="has-tooltip flex flex-col items-center">
+				<MoeButtonLight
+					icon="fas fa-save"
+					class="py-2 w-24 dark:!bg-green-600 !bg-green-400 dark-hover:!bg-green-700 hover:!bg-green-500"
+				/>
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto mt-10 p-1"> {{ $t("character.save") }} </span>
+			</div>
+			<div v-if="!isNewCharacter()" class="has-tooltip flex flex-col items-center">
+				<MoeButtonLight
+					@click.native.prevent="deleteCharacter"
+					icon="fas fa-trash"
+					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+				/>
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto mt-10 p-1"> {{ $t("character.delete") }} </span>
+			</div>
+			<div v-else class="has-tooltip flex flex-col items-center">
+				<MoeButtonLight
+					@click.native.prevent="discardCharacter"
+					icon="fas fa-trash"
+					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+				/>
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto mt-10 p-1"> {{ $t("character.discard") }} </span>
+			</div>
+			<div v-if="copied">
+				<MoeButtonLight @click.native.prevent="copyCharacter" class="py-2 w-24">
+					{{ $t("character.copied") }}
+				</MoeButtonLight>
+			</div>
+			<div v-else class="has-tooltip flex flex-col items-center">
+				<MoeButtonLight @click.native.prevent="copyCharacter" icon="fas fa-copy" class="py-2 w-24" />
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto mt-10 p-1">
+					{{ $t("character.copy") }}
+				</span>
+			</div>
+			<div class="has-tooltip flex flex-col items-center">
+				<MoeButtonLight @click.native.prevent="exportCharacter" class="py-2 w-24" icon="fas fa-file-export" />
+				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto mt-10 p-1">
+					{{ $t("character.export") }}
+				</span>
+			</div>
 		</div>
 	</form>
 </template>

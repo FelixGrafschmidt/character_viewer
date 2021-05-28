@@ -8,14 +8,13 @@
 
 		<MoeButtonDark v-if="autosave" @click.native="disableAutosave"> {{ $t("header.autosave.disable") }} </MoeButtonDark>
 		<MoeButtonDark v-else @click.native="enableAutosave"> {{ $t("header.autosave.enable") }} </MoeButtonDark>
-		<div class="has-tooltip">
+		<div class="has-tooltip flex flex-col items-center">
 			<MoeButtonDark @click.native="saveChanges" class="fas fa-save"></MoeButtonDark>
-			<div class="tooltip bg-gray-700 dark:bg-gray-700 rounded">Save</div>
+			<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded mx-auto mt-10 p-1">{{ $t("header.autosave.save") }}</span>
 		</div>
 
 		<div v-if="changes" class="text-lg font-medium max-w-[2rem] 2xl:max-w-none has-tooltip">
 			<div class="text-red-600 z-90">{{ $t("header.autosave.unsaved") }}</div>
-			<div class="tooltip bg-gray-300 -ml-10 dark:bg-gray-600 px-2 h-20 my-0 rounded w-40 z-30">tooltip</div>
 		</div>
 	</div>
 </template>
