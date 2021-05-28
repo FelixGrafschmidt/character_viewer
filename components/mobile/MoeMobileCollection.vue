@@ -2,24 +2,12 @@
 	<div class="flex flex-col gap-4">
 		<div v-if="collection.lists.length === 0" class="m-auto flex flex-col items-center">
 			<p>{{ $t("pages.mobile.empty_collection") }}</p>
-			<MoeButton
-				:text="$t('collection.load')"
-				class="w-60 h-8 mt-2"
-				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
-				color="dark:bg-gray-600 bg-gray-400"
-				@click.native="openModal()"
-			/>
+			<MoeButtonLight @click.native="openModal()" class="w-60 h-12 mt-2"> {{ $t("collection.load") }} </MoeButtonLight>
 		</div>
 		<template v-else>
-			<MoeButton
-				v-for="list in collection.lists"
-				:key="list.id"
-				class="m-auto w-60 h-12"
-				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="list.name"
-				@click.native="selectList(list)"
-			/>
+			<MoeButtonLight v-for="list in collection.lists" :key="list.id" @click.native="selectList(list)" class="m-auto w-60 h-12">
+				{{ list.name }}
+			</MoeButtonLight>
 		</template>
 	</div>
 </template>
