@@ -1,5 +1,5 @@
 <template>
-	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10" @click.stop>
+	<div @click.stop class="rounded-2xl dark:bg-gray-800 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10">
 		<div class="text-3xl pt-8 self-center text-center">{{ $t("modals.contact_us.title") }}</div>
 		<div class="mt-12 px-16">
 			<i18n path="modals.contact_us.github">
@@ -33,6 +33,7 @@
 			</i18n>
 		</div>
 		<div
+			@click="$vxm.main.deactivateModal()"
 			class="
 				items-center
 				justify-center
@@ -49,7 +50,6 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$vxm.main.deactivateModal()"
 		>
 			<div class="fas fa-times"></div>
 		</div>

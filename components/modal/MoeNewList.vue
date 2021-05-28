@@ -1,8 +1,10 @@
 <template>
 	<form
+		@click.stop
+		@submit.prevent="name !== '' ? addList() : undefined"
 		class="
 			rounded-2xl
-			dark:bg-gray-700
+			dark:bg-gray-800
 			bg-gray-400
 			dark:text-gray-100
 			text-gray-900
@@ -15,8 +17,6 @@
 			w-[40vw]
 			items-center
 		"
-		@click.stop
-		@submit.prevent="name !== '' ? addList() : undefined"
 	>
 		<label class="mx-12">
 			<span>{{ $t("modals.new_list.title") }}</span>
@@ -27,8 +27,9 @@
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none mb-8 w-80"
 			/>
 		</label>
-		<MoeButton :text="$t('modals.new_list.add')" :class="{ 'cursor-not-allowed': name === '' }" class="m-auto" />
+		<MoeButtonDark :class="{ 'cursor-not-allowed': name === '' }" class="m-auto"> {{ $t("modals.new_list.add") }} </MoeButtonDark>
 		<div
+			@click="$vxm.main.deactivateModal()"
 			class="
 				items-center
 				justify-center
@@ -45,7 +46,6 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$vxm.main.deactivateModal()"
 		>
 			<div class="fas fa-times"></div>
 		</div>

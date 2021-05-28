@@ -1,22 +1,22 @@
 <template>
 	<div
 		@click.stop
-		class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10 max-w-4xl px-10"
+		class="rounded-2xl dark:bg-gray-800 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10 max-w-4xl px-10"
 	>
 		<div class="text-3xl pt-8 self-center text-center">{{ $t("tutorial.title", { index: tutorial, length: 3 }) }}</div>
 		<component :is="step" />
 		<div class="flex justify-between w-full gap-8 mx-auto">
-			<MoeButton
-				:class="{ 'pointer-events-none cursor-not-allowed dark:bg-gray-500': tutorial === 1 }"
+			<MoeButtonDark
+				:class="{ 'pointer-events-none cursor-not-allowed !bg-gray-500 dark:bg-gray-500': tutorial === 1 }"
 				:disabled="tutorial === 1"
 				@click.native="previous"
-				text="Previous"
+				icon="fas fa-arrow-left"
 			/>
-			<MoeButton
-				:class="{ 'pointer-events-none cursor-not-allowed dark:bg-gray-500': tutorial === 3 }"
+			<MoeButtonDark
+				:class="{ 'pointer-events-none cursor-not-allowed !bg-gray-500 dark:bg-gray-500': tutorial === 3 }"
 				:disabled="tutorial === 3"
 				@click.native="next"
-				text="Next"
+				icon="fas fa-arrow-right"
 			/>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <template>
-	<div class="flex mt-7 justify-center mb-20">
-		<MoeButton :text="$t('list.create')" class="w-64 mr-2" color="dark:bg-gray-600 bg-gray-400" @click.native="addNewList" />
-		<MoeButton :text="$t('list.import')" class="w-64" color="dark:bg-gray-600 bg-gray-400" @click.native="importFromFile" />
+	<div class="flex mt-7 justify-center mb-20 gap-2">
+		<MoeButtonLight @click.native="addNewList" icon="fas fa-plus-square" class="w-24" />
+		<MoeButtonLight @click.native="importFromFile" icon="fas fa-file-import" class="w-24" />
 	</div>
 </template>
 

@@ -1,8 +1,10 @@
 <template>
 	<form
+		@click.stop
+		@submit.prevent="json !== '' ? importList() : undefined"
 		class="
 			rounded-2xl
-			dark:bg-gray-700
+			dark:bg-gray-800
 			bg-gray-400
 			dark:text-gray-100
 			text-gray-900
@@ -15,21 +17,22 @@
 			w-[40vw]
 			items-center
 		"
-		@click.stop
-		@submit.prevent="json !== '' ? importList() : undefined"
 	>
 		<label class="mx-12">
 			<span>{{ $t("modals.import_list.title") }}</span>
 			<textarea
 				v-autofocus
+				@input="parseJSONInput"
 				type="text"
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none mb-8 w-80"
-				@input="parseJSONInput"
 			/>
 		</label>
 		<p v-if="json !== '' && !valid" class="text-red-600">{{ $t("modals.import_list.invalid") }}</p>
-		<MoeButton :text="$t('list.import')" :class="{ 'cursor-not-allowed': json === '' || valid === undefined }" class="m-auto" />
+		<MoeButtonDark :class="{ 'cursor-not-allowed': json === '' || valid === undefined }" class="m-auto">
+			{{ $t("list.import") }}
+		</MoeButtonDark>
 		<div
+			@click="$vxm.main.deactivateModal()"
 			class="
 				items-center
 				justify-center
@@ -46,7 +49,6 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$vxm.main.deactivateModal()"
 		>
 			<div class="fas fa-times"></div>
 		</div>

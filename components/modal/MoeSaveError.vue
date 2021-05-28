@@ -1,6 +1,6 @@
 <template>
-	<div class="flex rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 relative m-auto pb-10" @click.stop>
-		<img src="icons/error.svg" :alt="$t('modals.save_error.alt')" class="max-w-16 h-16 mt-12 ml-12" />
+	<div @click.stop class="flex rounded-2xl dark:bg-gray-800 bg-gray-400 dark:text-gray-100 text-gray-900 relative m-auto pb-10">
+		<img :alt="$t('modals.save_error.alt')" src="icons/error.svg" class="max-w-16 h-16 mt-12 ml-12" />
 		<div class="mx-12">
 			<div class="mt-16 text-xl flex flex-col">
 				<span> {{ $t("modals.save_error.error") }}</span>
@@ -9,9 +9,9 @@
 				</span>
 			</div>
 			<div class="mt-8">
-				<MoeButton :text="$t('modals.save_error.try_again')" @click.native="saveChanges"> </MoeButton>
-				<MoeButton :text="$t('modals.save_error.export')" @click.native="exportData"> </MoeButton>
-				<MoeButton :text="$t('modals.save_error.contact')" @click.native="contactUs"> </MoeButton>
+				<MoeButtonDark @click.native="saveChanges"> {{ $t("modals.save_error.try_again") }} </MoeButtonDark>
+				<MoeButtonDark @click.native="exportData"> {{ $t("modals.save_error.export") }} </MoeButtonDark>
+				<MoeButtonDark @click.native="contactUs"> {{ $t("modals.save_error.contact") }} </MoeButtonDark>
 			</div>
 		</div>
 	</div>

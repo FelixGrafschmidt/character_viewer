@@ -5,9 +5,10 @@
 			:ref="list.id"
 			:key="list.id"
 			:class="{
-				'bg-teal-500 dark:bg-teal-500  dark-hover:bg-teal-400  hover:bg-teal-400': list.id === $vxm.main.listStore.list.id,
-				'hover:bg-gray-500 dark-hover:bg-gray-700': list.id !== $vxm.main.listStore.list.id,
+				'hover:bg-gray-500 dark-hover:bg-gray-600': list.id !== $vxm.main.listStore.list.id,
 				'bg-gray-300 dark:bg-gray-800': index % 2 !== 0,
+				'bg-gray-400 dark:bg-gray-700': index % 2 === 0,
+				'!bg-teal-500 dark:!bg-teal-500  dark-hover:!bg-teal-400  hover:bg-teal-400': list.id === $vxm.main.listStore.list.id,
 			}"
 			@click="openList(list)"
 			class="flex h-24 items-center rounded cursor-pointer my-1"
@@ -23,26 +24,11 @@
 				/>
 			</form>
 			<div class="w-1/6 text-center">{{ $tc("list.entry_s", list.characters.length) }}</div>
-			<div class="w-1/6 text-center">
+			<div class="w-1/6 text-center flex gap-2 justify-center">
 				<!-- <MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" /> -->
-				<MoeButton
-					:text="$t('list.export')"
-					@click.stop.native="exportList(list)"
-					class="w-18 px-1"
-					color="dark:bg-gray-600 bg-gray-400 m-1"
-				/>
-				<MoeButton
-					:text="$t('list.delete')"
-					@click.stop.native="deleteList(list)"
-					class="w-18 px-1"
-					color="dark:bg-gray-600 bg-gray-400 m-1"
-				/>
-				<MoeButton
-					:text="$t('list.copy')"
-					@click.stop.native="copyList(list)"
-					class="w-18 px-1"
-					color="dark:bg-gray-600 bg-gray-400 m-1"
-				/>
+				<MoeButtonDark @click.stop.native="exportList(list)" class="w-18 px-1" icon="fas fa-file-export" />
+				<MoeButtonDark @click.stop.native="deleteList(list)" class="w-18 px-1" icon="fas fa-trash" />
+				<MoeButtonDark @click.stop.native="copyList(list)" class="w-18 px-1" icon="fas fa-copy" />
 			</div>
 		</div>
 	</div>

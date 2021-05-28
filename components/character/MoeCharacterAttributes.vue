@@ -1,69 +1,42 @@
 <template>
-	<form class="h-1/5 w-1/2 flex flex-col" @submit.prevent="isNewCharacter() ? saveNewCharacter() : saveChanges()">
+	<form @submit.prevent="isNewCharacter() ? saveNewCharacter() : saveChanges()" class="h-1/5 w-1/2 flex flex-col">
 		<label>
 			{{ $t("character.name") }}
 			<input
 				:value="character.name"
+				@input="changeName"
 				type="text"
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 w-full mb-8"
-				@input="changeName"
 			/>
 		</label>
 		<label>
 			{{ $t("character.origin") }}
 			<input
 				:value="character.origin"
+				@input="changeOrigin"
 				type="text"
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 w-full"
-				@input="changeOrigin"
 			/>
 		</label>
 		<div class="flex mt-8 justify-center gap-8">
-			<MoeButton
-				class="py-2 w-48"
-				class-names="rounded-md text-sm font-medium focus:outline-none"
-				color="dark:bg-green-600 bg-green-400"
-				:text="$t('character.save')"
-			/>
-			<MoeButton
+			<MoeButtonLight icon="fas fa-save" class="py-2 w-24 dark:!bg-green-600 !bg-green-400" />
+			<MoeButtonLight
 				v-if="!isNewCharacter()"
-				class="w-48"
-				class-names="rounded-md text-sm font-medium focus:outline-none"
-				color="dark:bg-red-600 bg-red-400"
-				:text="$t('character.delete')"
 				@click.native.prevent="deleteCharacter"
+				icon="fas fa-trash"
+				class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
 			/>
-			<MoeButton
+			<MoeButtonLight
 				v-else
-				class="w-48"
-				class-names="rounded-md text-sm font-medium focus:outline-none"
-				color="dark:bg-red-600 bg-red-400"
-				:text="$t('character.discard')"
 				@click.native.prevent="discardCharacter"
+				icon="fas fa-trash"
+				class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
 			/>
-			<MoeButton
-				v-if="copied"
-				class="py-2 w-48"
-				class-names="rounded-md text-sm font-medium focus:outline-none"
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="$t('character.copied')"
-				@click.native.prevent="copyCharacter"
-			/>
-			<MoeButton
-				v-else
-				class="py-2 w-48"
-				class-names="rounded-md text-sm font-medium focus:outline-none"
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="$t('character.copy')"
-				@click.native.prevent="copyCharacter"
-			/>
-			<MoeButton
-				class="py-2 w-48"
-				class-names="rounded-md text-sm font-medium focus:outline-none"
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="$t('character.export')"
-				@click.native.prevent="exportCharacter"
-			/>
+			<MoeButtonLight v-if="copied" @click.native.prevent="copyCharacter" class="py-2 w-24">
+				{{ $t("character.copied") }}
+			</MoeButtonLight>
+			<MoeButtonLight v-else @click.native.prevent="copyCharacter" icon="fas fa-copy" class="py-2 w-24" />
+			<MoeButtonLight @click.native.prevent="exportCharacter" class="py-2 w-24" icon="fas fa-file-export" />
 		</div>
 	</form>
 </template>

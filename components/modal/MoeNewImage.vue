@@ -1,9 +1,11 @@
 <template>
 	<form
+		@click.stop
+		@submit.prevent="src !== '' ? addImage() : undefined"
 		class="
 			justify-end
 			rounded-2xl
-			dark:bg-gray-700
+			dark:bg-gray-800
 			bg-gray-400
 			dark:text-gray-100
 			text-gray-900
@@ -15,26 +17,25 @@
 			w-[40vw]
 			items-center
 		"
-		@click.stop
-		@submit.prevent="src !== '' ? addImage() : undefined"
 	>
 		<figure v-if="src" class="h-[80%] max-h-[80%]">
-			<img :src="src" :alt="$t('modals.new_image.alt')" class="max-h-full" @load="valid = true" @error="valid = false" />
+			<img :src="src" :alt="$t('modals.new_image.alt')" @load="valid = true" @error="valid = false" class="max-h-full" />
 		</figure>
 		<label class="h-[10%]">
 			<span>{{ $t("modals.new_image.url") }}</span>
 			<input
 				v-autofocus
 				:value="src"
+				@blur="updateUrl"
 				type="text"
 				class="block rounded-lg border text-gray-900 bg-gray-300 focus:outline-none h-8 mb-8 w-80"
-				@blur="updateUrl"
 		/></label>
 		<p v-if="!valid" class="text-red-600">{{ $t("modals.new_image.invalid") }}</p>
 		<div class="h-[10%]">
-			<MoeButton :text="$t('image.add')" :class="{ 'cursor-not-allowed': src === '' }" class="mt-4 mx-auto" />
+			<MoeButtonDark :class="{ 'cursor-not-allowed': src === '' }" class="mt-4 mx-auto"> {{ $t("image.add") }} </MoeButtonDark>
 		</div>
 		<div
+			@click="$vxm.main.deactivateModal()"
 			class="
 				items-center
 				justify-center
@@ -51,7 +52,6 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$vxm.main.deactivateModal()"
 		>
 			<div class="fas fa-times"></div>
 		</div>

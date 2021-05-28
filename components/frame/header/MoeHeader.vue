@@ -1,16 +1,16 @@
 <template>
 	<nav class="dark:bg-gray-800 bg-gray-500 pl-2 min-w-full flex items-center h-16 gap-3" role="navigation" aria-label="main navigation">
-		<MoeButton
-			:icon-class-names="{
+		<MoeButtonDark
+			:icon="{
 				'fas fa-moon': $colorMode.preference === 'light',
 				'fas fa-sun': !$colorMode.preference || $colorMode.preference === 'dark',
 			}"
-			class="max-w-[5%]"
 			@click.native="changeMode"
+			class="max-w-[5%]"
 		/>
 		<div class="w-[50%] gap-3 flex items-center justify-start">
 			<nuxt-link v-slot="{ navigate }" tag="h2" custom to="/">
-				<h2 class="text-xl cursor-pointer title caps-small" role="link" @click="navigate" @keypress.enter="navigate">
+				<h2 @click="navigate" @keypress.enter="navigate" class="text-xl cursor-pointer title caps-small" role="link">
 					{{ $t("header.title") }}
 				</h2>
 			</nuxt-link>

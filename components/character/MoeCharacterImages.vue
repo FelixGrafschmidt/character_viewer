@@ -2,15 +2,15 @@
 	<div class="flex flex-col items-center w-1/2 justify-between h-[80vh]">
 		<div class="h-[75%] min-h-[75%] justify-center flex cursor-pointer">
 			<figure @click="openImage(image)">
-				<img class="rounded max-h-full m-auto" :alt="character.name" :src="image.src || ''" />
+				<img :alt="character.name" :src="image.src || ''" class="rounded max-h-full m-auto" />
 			</figure>
 		</div>
 		<div class="flex relative h-[15%]">
 			<button
 				v-show="thumbsScrolling"
-				class="focus:outline-none absolute left-[-2.5rem] top-[5%] bg-teal-600 px-2 rounded-full fas fa-angle-left h-full"
 				@mouseenter="scrollThumbsLeft = true"
 				@mouseleave="scrollThumbsLeft = false"
+				class="focus:outline-none absolute left-[-2.5rem] top-[5%] bg-teal-600 px-2 rounded-full fas fa-angle-left h-full"
 			></button>
 			<div
 				ref="thumbs"
@@ -30,14 +30,13 @@
 				<figure
 					v-for="(img, i) in character.images"
 					:key="i"
-					class="cursor-pointer max-h-full min-w-[4rem] max-w-[4rem]"
 					:class="{
 						'border-red-500 border-4': !img.valid,
 					}"
 					@click="image = img"
+					class="cursor-pointer max-h-full min-w-[4rem] max-w-[4rem]"
 				>
 					<img
-						class="rounded overflow-hidden max-h-[6rem] mx-auto"
 						:class="{
 							'border-teal-300 border-4': img.main,
 							'border-green-700 border-4': img === image && img.valid,
@@ -45,35 +44,25 @@
 						:src="img.src"
 						:alt="i"
 						@error="designateImageAsInvalid(img)"
+						class="rounded overflow-hidden max-h-[6rem] mx-auto"
 					/>
 				</figure>
 			</div>
 			<button
 				v-show="thumbsScrolling"
-				class="focus:outline-none absolute right-[-2.5rem] top-[5%] h-full bg-teal-600 rounded-full px-2 fas fa-angle-right"
 				@mouseenter="scrollThumbsRight = true"
 				@mouseleave="scrollThumbsRight = false"
+				class="focus:outline-none absolute right-[-2.5rem] top-[5%] h-full bg-teal-600 rounded-full px-2 fas fa-angle-right"
 			></button>
 		</div>
-		<div class="flex gap-8 items-center justify-self-end h-[5%]">
-			<MoeButton
-				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="$t('image.make_main')"
-				@click.native="designateMainImage"
-			/>
-			<MoeButton
-				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="$t('image.remove')"
+		<div class="flex gap-4 items-center justify-self-end h-[5%]">
+			<MoeButtonLight @click.native="designateMainImage" icon="fas fa-star" />
+			<MoeButtonLight
 				@click.native="deleteImage"
+				class="dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+				icon="fas fa-trash"
 			/>
-			<MoeButton
-				class-names="p-1 rounded-md text-sm font-medium focus:outline-none "
-				color="dark:bg-gray-600 bg-gray-400"
-				:text="$t('image.add')"
-				@click.stop.native="addNewImage"
-			/>
+			<MoeButtonLight @click.stop.native="addNewImage" icon="fas fa-plus-square" />
 		</div>
 	</div>
 </template>

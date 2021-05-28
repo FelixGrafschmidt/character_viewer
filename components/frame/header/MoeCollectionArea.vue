@@ -1,10 +1,10 @@
 <template>
 	<div class="w-[50%] flex gap-3 items-center justify-end mr-4">
 		<span> {{ $vxm.main.collectionStore.collection.id }} </span>
-		<MoeButton v-if="copied" :text="$t('collection.copied')" @click.native="copyID" />
-		<MoeButton v-else :text="$t('collection.copy_id')" @click.native="copyID" />
-		<MoeButton :text="$t('collection.load')" @click.native="loadCollection" />
-		<MoeButton :text="$t('collection.export')" @click.native="exportCollection" />
+		<MoeButtonDark v-if="copied" @click.native="copyID"> {{ $t("collection.copied") }} </MoeButtonDark>
+		<MoeButtonDark v-else @click.native="copyID" class="fas fa-copy" />
+		<MoeButtonDark @click.native="loadCollection" class="fas fa-folder-open" />
+		<MoeButtonDark @click.native="exportCollection" icon="fas fa-download" />
 	</div>
 </template>
 

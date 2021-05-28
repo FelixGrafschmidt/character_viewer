@@ -1,8 +1,10 @@
 <template>
 	<form
+		@submit.prevent="id !== '' ? loadCollection() : undefined"
+		@click.stop
 		class="
 			rounded-2xl
-			dark:bg-gray-700
+			dark:bg-gray-800
 			bg-gray-400
 			dark:text-gray-100
 			text-gray-900
@@ -15,8 +17,6 @@
 			sm:max-h-[80vh]
 			sm:w-[40vw]
 		"
-		@submit.prevent="id !== '' ? loadCollection() : undefined"
-		@click.stop
 	>
 		<label class="mx-12 mt-8">
 			<span class="ml-2">{{ $t("modals.load_collection.title") }}</span>
@@ -28,8 +28,9 @@
 			/>
 		</label>
 
-		<MoeButton :text="$t('collection.load')" :class="{ 'cursor-not-allowed': id === '' }" class="m-auto" />
+		<MoeButtonDark :class="{ 'cursor-not-allowed': id === '' }" class="m-auto"> {{ $t("collection.load") }} </MoeButtonDark>
 		<div
+			@click="$vxm.main.deactivateModal()"
 			class="
 				items-center
 				justify-center
@@ -46,7 +47,6 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$vxm.main.deactivateModal()"
 		>
 			<div class="fas fa-times"></div>
 		</div>

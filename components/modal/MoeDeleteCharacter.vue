@@ -1,11 +1,16 @@
 <template>
-	<div class="rounded-2xl dark:bg-gray-700 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10" @click.stop>
+	<div @click.stop class="rounded-2xl dark:bg-gray-800 bg-gray-400 dark:text-gray-100 text-gray-900 grid relative m-auto pb-10">
 		<div class="mt-12 px-16">{{ $t("modals.delete_character.title", [character.name]) }}</div>
 		<div class="flex m-auto pt-4">
-			<MoeButton class="mr-8" color="bg-red-500" :text="$t('character.delete')" @click.native="deleteCharacter" />
-			<MoeButton :text="$t('modals.delete_character.cancel')" @click.native="$vxm.main.deactivateModal()" />
+			<MoeButtonDark @click.native="deleteCharacter" class="mr-8 !bg-red-500 dark-hover:!bg-red-700 hover:!bg-red-600">
+				{{ $t("character.delete") }}
+			</MoeButtonDark>
+			<MoeButtonDark @click.native="$vxm.main.deactivateModal()">
+				{{ $t("modals.delete_character.cancel") }}
+			</MoeButtonDark>
 		</div>
 		<div
+			@click="$vxm.main.deactivateModal()"
 			class="
 				items-center
 				justify-center
@@ -22,7 +27,6 @@
 				cursor-pointer
 				absolute
 			"
-			@click="$vxm.main.deactivateModal()"
 		>
 			<div class="fas fa-times"></div>
 		</div>

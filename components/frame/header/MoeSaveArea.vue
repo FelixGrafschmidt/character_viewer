@@ -6,9 +6,12 @@
 			<p v-else class="text-red-600">{{ $t("header.autosave.off") }}</p>
 		</div>
 
-		<MoeButton v-if="autosave" :text="$t('header.autosave.disable')" @click.native="disableAutosave"> </MoeButton>
-		<MoeButton v-else :text="$t('header.autosave.enable')" @click.native="enableAutosave"> </MoeButton>
-		<MoeButton :text="$t('header.autosave.save')" @click.native="saveChanges"> </MoeButton>
+		<MoeButtonDark v-if="autosave" @click.native="disableAutosave"> {{ $t("header.autosave.disable") }} </MoeButtonDark>
+		<MoeButtonDark v-else @click.native="enableAutosave"> {{ $t("header.autosave.enable") }} </MoeButtonDark>
+		<div class="has-tooltip">
+			<MoeButtonDark @click.native="saveChanges" class="fas fa-save"></MoeButtonDark>
+			<div class="tooltip bg-gray-700 dark:bg-gray-700 rounded">Save</div>
+		</div>
 
 		<div v-if="changes" class="text-lg font-medium max-w-[2rem] 2xl:max-w-none has-tooltip">
 			<div class="text-red-600 z-90">{{ $t("header.autosave.unsaved") }}</div>

@@ -1,11 +1,7 @@
 <template>
 	<div v-if="show">
-		<div
-			class="dark:bg-gray-900 bg-gray-100 absolute z-20 h-screen w-[100vw] grid opacity-75 inset-0"
-			aria-role="dialog"
-			aria-modal
-		></div>
-		<div class="absolute inset-0 flex justify-center items-center z-30" @click="$vxm.main.deactivateModal()">
+		<div class="bg-gray-900 absolute z-20 h-screen w-[100vw] grid opacity-90 inset-0" aria-role="dialog" aria-modal></div>
+		<div @click="$vxm.main.deactivateModal()" class="absolute inset-0 flex justify-center items-center z-30">
 			<component :is="component" />
 		</div>
 	</div>
