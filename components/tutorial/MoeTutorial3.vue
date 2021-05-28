@@ -12,6 +12,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
+	import { Modal } from "~/models/enums/Modal";
 
 	@Component({
 		components: {},
@@ -21,6 +22,7 @@
 		newList() {
 			this.$vxm.main.deactivateModal();
 			this.$router.push(this.$vxm.main.navigationPaths.collection);
+			this.$vxm.main.setModal(Modal.NEWLIST);
 		}
 	}
 </script>
