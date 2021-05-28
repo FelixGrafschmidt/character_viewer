@@ -95,6 +95,7 @@ const nuxtConfig: NuxtConfig = {
 		"~/components/frame/header",
 		"~/components/frame/footer",
 		"~/components/modal",
+		"~/components/tutorial",
 		"~/components/common",
 	],
 	winstonLog: {
