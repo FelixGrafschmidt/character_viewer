@@ -1,28 +1,15 @@
 <template>
-	<div>
-		<i18n path="pages.index.start" tag="h3" class="py-2">
-			<template #NEWLIST>
-				<a @click="newList" class="dark-hover:text-blue-300 hover:text-blue-700 text-blue-500 cursor-pointer">
-					{{ $t("pages.index.list") }}
-				</a>
-			</template>
-		</i18n>
-	</div>
+	<h3 class="py-2">
+		{{ $t("pages.index.start") }}
+	</h3>
 </template>
 
 <script lang="ts">
 	import { Component, Vue } from "nuxt-property-decorator";
-	import { Modal } from "~/models/enums/Modal";
 
 	@Component({
 		components: {},
-		name: "MoeTutorial1",
+		name: "MoeTutorial3",
 	})
-	export default class MoeTutorial1 extends Vue {
-		newList() {
-			this.$vxm.main.deactivateModal();
-			this.$router.push(this.$vxm.main.navigationPaths.collection);
-			this.$vxm.main.setModal(Modal.NEWLIST);
-		}
-	}
+	export default class MoeTutorial3 extends Vue {}
 </script>

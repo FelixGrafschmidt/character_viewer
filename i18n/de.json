@@ -111,10 +111,9 @@
 			"basic": "Auf dieser Webseite kannst du Listen von Charakteren verwalten. Um das zu erreichen, wurde dir gerade eine Sammlungs-ID zugewiesen. Du kannst sie in der oberen rechten Ecke sehen. Diese ID wird auf deiner Festplatte gespeichert (wir benutzen den {LOCALSTORAGE} deines Browsers). Solltest du jemals deinen Browser wechseln oder deine lokal gespeicherten Daten löschen wollen, aber auch deine Listen behalten wollen, stelle sicher, dass du diese ID irgendwo speicherst.",
 			"collection": "Eine Sammlung besteht aus einer oder mehreren Listen. Jede dieser Listen besteht aus einem oder mehreren Charakteren und jeder dieser Charaktere aus einer Reihe von Attributen.",
 			"heading": "Hallo! Das scheint dein erster Besuch zu sein.",
-			"list": "neuen Liste",
 			"localstorage": "localStorage",
 			"returning": "Wähle links eine Option aus, um anzufangen.",
-			"start": "Das ist im Moment vielleicht etwas vie, also fang doch einfach mit einer {NEWLIST} an"
+			"start": "Das ist im Moment vielleicht etwas viel, also fang doch einfach mit einer neuen Liste an."
 		},
 		"mobile": {
 			"back": "Zurück",
@@ -129,7 +128,7 @@
 	"tutorial": {
 		"saving": "Eine sehr wichtige Sache direkt zum Anfang: Alle Änderungen, die du auf dieser Seite durchführst, gehen beim Verlassen oder Neuladen der Seite verloren, es sei denn du speicherst sie über den \"Speichern\" Knopf oben oder hast das automatische Speichern aktiviert. Dies passiert, damit nicht unbeabsichtige Änderungen gespeichert werden.",
 		"short_title": "Tutorial",
-		"title": "Tutorial ({index} von {length})",
+		"title": "Tutorial",
 		"important": "WICHTIG"
 	}
 }

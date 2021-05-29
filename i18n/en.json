@@ -111,10 +111,9 @@
 			"basic": "On this website you are able to manage lists of characters with a lot of customization ability. To achieve that, you were just assigned a collection id. You can see it in the top right corner. This id is saved on your harddrive (we are using your browser's {LOCALSTORAGE} ). If you ever want to change your browser or clear your locally saved data but also wish to keep your lists, make sure to save that id somewhere.",
 			"collection": "A collection consists of one or more lists. Each of these lists consists of one or more characters and those consist of attributes and lists of subcharacters.",
 			"heading": "Welcome! This appears to be your first visit.",
-			"list": "create a new list",
 			"localstorage": "localStorage",
 			"returning": "To get started select a menu item on the left",
-			"start": "This might sound like a lot right now, so to get going, let's {NEWLIST}."
+			"start": "This might sound like a lot right now, so to get going, let's create a new list."
 		},
 		"mobile": {
 			"back": "Back",
@@ -130,6 +129,6 @@
 		"important": "Important!",
 		"saving": "One important thing right of the bat: Any changes you make on this site will not be persisted through page reloads unless you press the \"Save\" button at the top or have enabled autosaving. This is to prevent you form accidentally saving changes you did not want to save.",
 		"short_title": "Tutorial",
-		"title": "Tutorial ({index} of {length})"
+		"title": "Tutorial"
 	}
 }

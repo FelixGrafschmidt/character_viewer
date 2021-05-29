@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2 class="text-xl font-bold pt-8">{{ $t("pages.index.heading") }}</h2>
+		<h2 class="text-xl font-bold">{{ $t("pages.index.heading") }}</h2>
 		<div class="pb-8">
 			<i18n path="pages.index.basic" tag="h3" class="py-2">
 				<template #LOCALSTORAGE>
