@@ -30,7 +30,11 @@
 					<MoeButtonDark @click.stop.native="exportList(list)" class="w-18 px-1" icon="fas fa-file-export" />
 				</MoeTooltip>
 				<MoeTooltip :text="$t('list.delete')">
-					<MoeButtonDark @click.stop.native="deleteList(list)" class="w-18 px-1" icon="fas fa-trash" />
+					<MoeButtonDark
+						@click.stop.native="deleteList(list)"
+						class="w-18 px-1 !bg-red-400 dark:!bg-red-600 dark-hover:!bg-red-700 hover:!bg-red-500 !text-color-unset"
+						icon="fas fa-trash"
+					/>
 				</MoeTooltip>
 				<MoeTooltip :text="$t('list.copy')">
 					<MoeButtonDark @click.stop.native="copyList(list)" class="w-18 px-1" icon="fas fa-copy" />

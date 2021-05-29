@@ -36,9 +36,11 @@
 				top-1
 				right-1
 				flex
-				dark:bg-red-500
+				dark:bg-red-600
+				bg-red-400
+				dark-hover:bg-red-700
+				hover:bg-red-500
 				dark:text-gray-900
-				bg-red-800
 				text-gray-100
 				h-6
 				w-6
