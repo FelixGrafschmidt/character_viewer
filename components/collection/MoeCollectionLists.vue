@@ -26,24 +26,15 @@
 			<div class="w-1/6 text-center">{{ $tc("list.entry_s", list.characters.length) }}</div>
 			<div class="w-1/6 text-center flex gap-2 justify-center">
 				<!-- <MoeButton :text="'Share'" class="w-16" color="dark:bg-gray-600 bg-gray-400 m-1" /> -->
-				<div class="has-tooltip flex flex-col items-center">
+				<MoeTooltip :text="$t('list.export')">
 					<MoeButtonDark @click.stop.native="exportList(list)" class="w-18 px-1" icon="fas fa-file-export" />
-					<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-						{{ $t("list.export") }}
-					</span>
-				</div>
-				<div class="has-tooltip flex flex-col items-center">
+				</MoeTooltip>
+				<MoeTooltip :text="$t('list.delete')">
 					<MoeButtonDark @click.stop.native="deleteList(list)" class="w-18 px-1" icon="fas fa-trash" />
-					<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-						{{ $t("list.delete") }}
-					</span>
-				</div>
-				<div class="has-tooltip flex flex-col items-center">
+				</MoeTooltip>
+				<MoeTooltip :text="$t('list.copy')">
 					<MoeButtonDark @click.stop.native="copyList(list)" class="w-18 px-1" icon="fas fa-copy" />
-					<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-						{{ $t("list.copy") }}
-					</span>
-				</div>
+				</MoeTooltip>
 			</div>
 		</div>
 	</div>

@@ -4,24 +4,15 @@
 		<div v-if="copied">
 			<MoeButtonDark @click.native="copyID"> {{ $t("collection.copied") }} </MoeButtonDark>
 		</div>
-		<div v-else class="has-tooltip flex flex-col items-center">
+		<MoeTooltip v-else :text="$t('collection.copy_id')">
 			<MoeButtonDark @click.native="copyID" class="fas fa-copy" />
-			<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mt-10 p-1">
-				{{ $t("collection.copy_id") }}
-			</span>
-		</div>
-		<div class="has-tooltip flex flex-col items-center">
+		</MoeTooltip>
+		<MoeTooltip :text="$t('collection.load')">
 			<MoeButtonDark @click.native="loadCollection" class="fas fa-folder-open" />
-			<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-				{{ $t("collection.load") }}
-			</span>
-		</div>
-		<div class="has-tooltip flex flex-col items-end">
+		</MoeTooltip>
+		<MoeTooltip :text="$t('collection.export')" extra-classes="mr-16">
 			<MoeButtonDark @click.native="exportCollection" icon="fas fa-download" />
-			<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-				{{ $t("collection.export") }}
-			</span>
-		</div>
+		</MoeTooltip>
 	</div>
 </template>
 

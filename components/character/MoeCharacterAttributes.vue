@@ -19,52 +19,37 @@
 			/>
 		</label>
 		<div class="flex mt-8 justify-center gap-8">
-			<div class="has-tooltip flex flex-col items-center">
+			<MoeTooltip :text="$t('character.save')">
 				<MoeButtonLight
 					icon="fas fa-save"
 					class="py-2 w-24 dark:!bg-green-600 !bg-green-400 dark-hover:!bg-green-700 hover:!bg-green-500"
 				/>
-				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-					{{ $t("character.save") }}
-				</span>
-			</div>
-			<div v-if="!isNewCharacter()" class="has-tooltip flex flex-col items-center">
+			</MoeTooltip>
+			<MoeTooltip v-if="!isNewCharacter()" :text="$t('character.delete')">
 				<MoeButtonLight
 					@click.native.prevent="deleteCharacter"
 					icon="fas fa-trash"
 					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
 				/>
-				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-					{{ $t("character.delete") }}
-				</span>
-			</div>
-			<div v-else class="has-tooltip flex flex-col items-center">
+			</MoeTooltip>
+			<MoeTooltip v-else :text="$t('character.discard')">
 				<MoeButtonLight
 					@click.native.prevent="discardCharacter"
 					icon="fas fa-trash"
 					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
 				/>
-				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-					{{ $t("character.discard") }}
-				</span>
-			</div>
+			</MoeTooltip>
 			<div v-if="copied">
 				<MoeButtonLight @click.native.prevent="copyCharacter" class="py-2 w-24">
 					{{ $t("character.copied") }}
 				</MoeButtonLight>
 			</div>
-			<div v-else class="has-tooltip flex flex-col items-center">
+			<MoeTooltip v-else :text="$t('character.copy')">
 				<MoeButtonLight @click.native.prevent="copyCharacter" icon="fas fa-copy" class="py-2 w-24" />
-				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-					{{ $t("character.copy") }}
-				</span>
-			</div>
-			<div class="has-tooltip flex flex-col items-center">
+			</MoeTooltip>
+			<MoeTooltip :text="$t('character.export')">
 				<MoeButtonLight @click.native.prevent="exportCharacter" class="py-2 w-24" icon="fas fa-file-export" />
-				<span class="tooltip bg-gray-700 dark:bg-gray-700 rounded w-20 text-center mx-auto mt-10 p-1">
-					{{ $t("character.export") }}
-				</span>
-			</div>
+			</MoeTooltip>
 		</div>
 	</form>
 </template>

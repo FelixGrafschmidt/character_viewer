@@ -53,18 +53,6 @@
 		font-family: "Lato", sans-serif;
 	}
 
-	.tooltip {
-		@apply invisible absolute;
-	}
-
-	.has-tooltip {
-		position: relative;
-	}
-
-	.has-tooltip:hover .tooltip {
-		@apply visible z-50;
-	}
-
 	.content-height {
 		height: calc(100vh - theme("height.32"));
 	}

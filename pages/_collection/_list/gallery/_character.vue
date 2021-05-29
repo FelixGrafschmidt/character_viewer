@@ -2,7 +2,7 @@
 	<div class="relative my-4">
 		<MoeBackButton :tooltip-text="'Back to Gallery'" @back="toGallery" />
 		<div class="flex flex-wrap gap-2 pt-2">
-			<figure v-for="(image, i) in character.images" :key="i" class="w-[24%] cursor-pointer" @click="openImage(image)">
+			<figure v-for="(image, i) in character.images" :key="i" @click="openImage(image)" class="w-[24%] cursor-pointer">
 				<img :src="image.src" :alt="image.src" class="overflow-hidden" />
 			</figure>
 		</div>
