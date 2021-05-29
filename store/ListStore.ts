@@ -26,7 +26,7 @@ export class ListStore extends VuexModule {
 				character.attributeArray = [];
 			}
 		});
-		if (!list.sortorder) {
+		if (!list.sortorder || typeof list.sortorder === "number") {
 			list.sortorder = Sortorder.DEFAULT;
 		}
 		if (!list.sortcriterion) {
