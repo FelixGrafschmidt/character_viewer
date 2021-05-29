@@ -72,6 +72,9 @@ const nuxtConfig: NuxtConfig = {
 				config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
 			}
 		},
+		optimization: {
+			minimize: false,
+		},
 	},
 	axios: {
 		baseURL: process.env.BASEURL || "https://ithambar.moe",
