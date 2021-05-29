@@ -1,4 +1,5 @@
 import { mutation, createModule, Module } from "vuex-class-component";
+import { Sortcriterion } from "~/models/enums/Sortcriterion";
 import { Sortorder } from "~/models/enums/Sortorder";
 import { Character } from "~/models/interfaces/Character";
 import { List, newList } from "~/models/interfaces/List";
@@ -28,6 +29,9 @@ export class ListStore extends VuexModule {
 		if (!list.sortorder) {
 			list.sortorder = Sortorder.DEFAULT;
 		}
+		if (!list.sortcriterion) {
+			list.sortcriterion = Sortcriterion.CREATED;
+		}
 		this.list = list;
 	}
 
@@ -48,58 +52,96 @@ export class ListStore extends VuexModule {
 
 	@mutation sortListByName() {
 		switch (this.list.sortorder) {
-			case Sortorder.ASCENDING:
+			case Sortorder.ASC:
+				this.list.sortcriterion = Sortcriterion.NAME;
 				this.list.characters.sort((a, b) => {
 					if (a.name === b.name) {
 						return a.created > b.created ? -1 : 1;
 					}
 					return a.name > b.name ? -1 : 1;
 				});
-				this.list.sortorder = Sortorder.DESCENDING;
+				this.list.sortorder = Sortorder.DESC;
 				break;
-			case Sortorder.DESCENDING:
+			case Sortorder.DESC:
+				this.list.sortcriterion = Sortcriterion.CREATED;
 				this.list.characters.sort((a, b) => {
 					return a.created > b.created ? 1 : -1;
 				});
 				this.list.sortorder = Sortorder.DEFAULT;
 				break;
 			case Sortorder.DEFAULT:
+				this.list.sortcriterion = Sortcriterion.NAME;
 				this.list.characters.sort((a, b) => {
 					if (a.name === b.name) {
 						return a.created > b.created ? -1 : 1;
 					}
 					return a.name > b.name ? 1 : -1;
 				});
-				this.list.sortorder = Sortorder.ASCENDING;
+				this.list.sortorder = Sortorder.ASC;
 				break;
 		}
 	}
 
 	@mutation sortListByOrigin() {
 		switch (this.list.sortorder) {
-			case Sortorder.ASCENDING:
+			case Sortorder.ASC:
+				this.list.sortcriterion = Sortcriterion.ORIGIN;
 				this.list.characters.sort((a, b) => {
 					if (a.origin === b.origin) {
 						return a.created > b.created ? -1 : 1;
 					}
 					return a.origin > b.origin ? -1 : 1;
 				});
-				this.list.sortorder = Sortorder.DESCENDING;
+				this.list.sortorder = Sortorder.DESC;
 				break;
-			case Sortorder.DESCENDING:
+			case Sortorder.DESC:
+				this.list.sortcriterion = Sortcriterion.CREATED;
 				this.list.characters.sort((a, b) => {
 					return a.created > b.created ? 1 : -1;
 				});
 				this.list.sortorder = Sortorder.DEFAULT;
 				break;
 			case Sortorder.DEFAULT:
+				this.list.sortcriterion = Sortcriterion.ORIGIN;
 				this.list.characters.sort((a, b) => {
 					if (a.origin === b.origin) {
 						return a.created > b.created ? -1 : 1;
 					}
 					return a.origin > b.origin ? 1 : -1;
 				});
-				this.list.sortorder = Sortorder.ASCENDING;
+				this.list.sortorder = Sortorder.ASC;
+				break;
+		}
+	}
+
+	@mutation sortListByImages() {
+		switch (this.list.sortorder) {
+			case Sortorder.ASC:
+				this.list.sortcriterion = Sortcriterion.IMAGES;
+				this.list.characters.sort((a, b) => {
+					if (a.images.length === b.images.length) {
+						return a.created > b.created ? -1 : 1;
+					}
+					return a.images.length > b.images.length ? -1 : 1;
+				});
+				this.list.sortorder = Sortorder.DESC;
+				break;
+			case Sortorder.DESC:
+				this.list.sortcriterion = Sortcriterion.CREATED;
+				this.list.characters.sort((a, b) => {
+					return a.created > b.created ? 1 : -1;
+				});
+				this.list.sortorder = Sortorder.DEFAULT;
+				break;
+			case Sortorder.DEFAULT:
+				this.list.sortcriterion = Sortcriterion.IMAGES;
+				this.list.characters.sort((a, b) => {
+					if (a.images.length === b.images.length) {
+						return a.created > b.created ? -1 : 1;
+					}
+					return a.images.length > b.images.length ? 1 : -1;
+				});
+				this.list.sortorder = Sortorder.ASC;
 				break;
 		}
 	}

@@ -1,5 +1,5 @@
 export enum Sortorder {
-	"DEFAULT",
-	"ASCENDING",
-	"DESCENDING",
+	DEFAULT = "DEFAULT",
+	ASC = "ASC",
+	DESC = "DESC",
 }

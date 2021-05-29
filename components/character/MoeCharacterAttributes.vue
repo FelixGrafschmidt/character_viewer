@@ -6,7 +6,8 @@
 				min-h-[85%]
 				pr-8
 				scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
-				dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
+				dark:scrollbar-track-gray-700 dark:scrollbar-thumb-gray-500
+				scrollbar-track-rounded scrollbar-thumb-rounded
 				overflow-y-scroll
 				pl-1
 			"
