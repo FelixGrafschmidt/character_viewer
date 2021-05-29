@@ -6,7 +6,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "nuxt",
-		"run": "nuxt build && nuxt start",
+		"run": "yarn install && nuxt build && nuxt start",
 		"build": "nuxt build",
 		"start": "nuxt start",
 		"fix": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore ."
@@ -68,6 +68,7 @@
 		"tailwind-scrollbar": "^1.3.0",
 		"tailwindcss-dark-mode": "^1.1.7",
 		"vue-autofocus-directive": "^1.0.4",
+		"@nuxtjs/dotenv": "^1.4.1",
 		"vuex": "^3.6.2"
 	}
 }

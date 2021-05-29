@@ -48,6 +48,19 @@ jobs:
                   password: $PASSWORD
                   source: ".nuxt/,static/,api/,node_modules/,nuxt.config.ts,package.json,tsconfig.json,ecosystem.config.js"
                   target: "/srv/character_viewer/"
+            - name: copy env file
+              env:
+                  HOST: ${{ secrets.HOST }}
+                  PORT: ${{ secrets.PORT }}
+                  USERNAME: ${{ secrets.USERNAME }}
+                  PASSWORD: ${{ secrets.PASSWORD }}
+              uses: appleboy/ssh-action@master
+              with:
+                  host: $HOST
+                  port: $PORT
+                  username: $USERNAME
+                  password: $PASSWORD
+                  script: mv /srv/character_viewer/.prod.env /srv/character_viewer/.env
             - name: restart via ssh
               env:
                   HOST: ${{ secrets.HOST }}

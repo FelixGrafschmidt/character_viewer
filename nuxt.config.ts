@@ -74,8 +74,7 @@ const nuxtConfig: NuxtConfig = {
 		},
 	},
 	axios: {
-		baseURL: process.env.NODE_ENV === "production" ? "https://ithambar.moe" : "http://localhost:3000",
-		// baseURL: "http://localhost:3000",
+		baseURL: process.env.BASEURL,
 	},
 	serverMiddleware: [
 		{ path: "/loadCollection", handler: "../api/loadCollection.ts" },
@@ -123,7 +122,7 @@ const nuxtConfig: NuxtConfig = {
 		fallback: "dark",
 	},
 	vue: {
-		config: { devtools: true },
+		config: { devtools: !!process.env.DEVTOOLS },
 	},
 	modern: process.env.NODE_ENV === "production",
 	i18n: {
@@ -135,6 +134,9 @@ const nuxtConfig: NuxtConfig = {
 		langDir: "~/i18n/",
 		strategy: "no_prefix",
 		detectBrowserLanguage: { useCookie: true },
+	},
+	env: {
+		// build time configuration
 	},
 };
 
