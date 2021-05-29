@@ -30,10 +30,6 @@ export class MainStore extends VuexModule {
 	scrollID = "";
 	tutorial = 1;
 
-	get character() {
-		return this.characterStore.character;
-	}
-
 	@mutation toCollection(router: VueRouter) {
 		router.push(`/${this.collectionStore.collection.id}`);
 	}

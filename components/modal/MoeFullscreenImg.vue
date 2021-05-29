@@ -1,7 +1,22 @@
 <template>
-	<figure>
-		<img :src="src" class="max-h-screen max-w-[100vw]" />
-	</figure>
+	<div class="flex items-center justify-between w-full">
+		<MoeButtonLight
+			v-if="$vxm.main.characterStore.character.images.length > 1"
+			@click.native.stop="$vxm.main.characterStore.previousImage"
+			class="h-20 w-20 !rounded-full text-5xl ml-2"
+			icon="fas fa-angle-left"
+		/>
+		<figure>
+			<img :src="src" class="max-h-screen max-w-[100vw]" />
+		</figure>
+
+		<MoeButtonLight
+			v-if="$vxm.main.characterStore.character.images.length > 1"
+			@click.native.stop="$vxm.main.characterStore.nextImage"
+			class="h-20 w-20 !rounded-full text-5xl mr-2"
+			icon="fas fa-angle-right"
+		/>
+	</div>
 </template>
 
 <script lang="ts">

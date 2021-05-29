@@ -75,4 +75,22 @@ export class CharacterStore extends VuexModule {
 	@mutation setActiveImage(image: CharacterImage) {
 		this.activeImage = image;
 	}
+
+	@mutation nextImage() {
+		const currentIndex = this.character.images.indexOf(this.activeImage);
+		if (this.character.images.length - 1 > currentIndex) {
+			this.activeImage = this.character.images[currentIndex + 1];
+		} else {
+			this.activeImage = this.character.images[0];
+		}
+	}
+
+	@mutation previousImage() {
+		const currentIndex = this.character.images.indexOf(this.activeImage);
+		if (currentIndex > 0) {
+			this.activeImage = this.character.images[currentIndex - 1];
+		} else {
+			this.activeImage = this.character.images[this.character.images.length - 1];
+		}
+	}
 }

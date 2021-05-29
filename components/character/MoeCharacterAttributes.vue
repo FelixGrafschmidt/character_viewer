@@ -59,6 +59,7 @@
 				<label>
 					<input
 						v-model="attribute.name"
+						v-autofocus
 						type="text"
 						class="h-4 block border-none rounded text-gray-100 dark:bg-gray-900 focus:outline-none w-32 mb-1 pl-0"
 					/>
