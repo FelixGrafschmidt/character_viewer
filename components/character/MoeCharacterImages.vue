@@ -62,7 +62,7 @@
 			<MoeTooltip :text="$t('image.remove')" position="top">
 				<MoeButtonLight
 					@click.native="deleteImage"
-					class="dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+					class="dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500 !text-color-unset"
 					icon="fas fa-trash"
 				/>
 			</MoeTooltip>

@@ -22,21 +22,21 @@
 			<MoeTooltip :text="$t('character.save')">
 				<MoeButtonLight
 					icon="fas fa-save"
-					class="py-2 w-24 dark:!bg-green-600 !bg-green-400 dark-hover:!bg-green-700 hover:!bg-green-500"
+					class="py-2 w-24 dark:!bg-green-600 !bg-green-400 dark-hover:!bg-green-700 hover:!bg-green-500 !text-color-unset"
 				/>
 			</MoeTooltip>
 			<MoeTooltip v-if="!isNewCharacter()" :text="$t('character.delete')">
 				<MoeButtonLight
 					@click.native.prevent="deleteCharacter"
 					icon="fas fa-trash"
-					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500 !text-color-unset"
 				/>
 			</MoeTooltip>
 			<MoeTooltip v-else :text="$t('character.discard')">
 				<MoeButtonLight
 					@click.native.prevent="discardCharacter"
 					icon="fas fa-trash"
-					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500"
+					class="py-2 w-24 dark:!bg-red-600 !bg-red-400 dark-hover:!bg-red-700 hover:!bg-red-500 !text-color-unset"
 				/>
 			</MoeTooltip>
 			<div v-if="copied">

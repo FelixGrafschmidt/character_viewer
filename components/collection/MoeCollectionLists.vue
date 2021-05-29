@@ -8,7 +8,7 @@
 				'hover:bg-gray-500 dark-hover:bg-gray-600': list.id !== $vxm.main.listStore.list.id,
 				'bg-gray-300 dark:bg-gray-800': index % 2 !== 0,
 				'bg-gray-400 dark:bg-gray-700': index % 2 === 0,
-				'!bg-teal-500 dark:!bg-teal-500  dark-hover:!bg-teal-400  hover:bg-teal-400': list.id === $vxm.main.listStore.list.id,
+				'!bg-teal-500 dark:!bg-teal-500  dark-hover:!bg-teal-400  hover:!bg-teal-400': list.id === $vxm.main.listStore.list.id,
 			}"
 			@click="openList(list)"
 			class="flex h-24 items-center rounded cursor-pointer my-1"
