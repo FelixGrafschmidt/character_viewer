@@ -21,7 +21,7 @@
 			const path = url.pathname.split("/");
 			const collectionid = path[1];
 			if (!collectionid.match(/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/)) {
-				this.$router.push(this.$vxm.main.navigationPaths.collection);
+				this.$vxm.main.toCollection(this.$router);
 			}
 			const oldId = window.localStorage.getItem("collectionId");
 			window.localStorage.setItem("collectionId", collectionid);

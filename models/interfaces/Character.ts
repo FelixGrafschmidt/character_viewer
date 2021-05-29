@@ -6,6 +6,12 @@ export interface CharacterImage {
 	valid: boolean;
 }
 
+export interface CharacterAttribute {
+	name: string;
+	value: string;
+	id: string;
+}
+
 export interface SubCharacter {
 	id: string;
 	name: string;
@@ -20,7 +26,7 @@ export interface Character {
 	origin: string;
 	images: Array<CharacterImage>;
 	created: Date;
-	attributeArrays: Map<string, string>;
+	attributeArray: Array<CharacterAttribute>;
 	subCharacterArrays: Map<string, Array<SubCharacter>>;
 }
 
@@ -30,10 +36,10 @@ export function newCharacter(
 	origin = "",
 	created = new Date(),
 	images = [],
-	attributeArrays = new Map<string, string>(),
+	attributeArray = [],
 	subCharacterArrays = new Map<string, Array<SubCharacter>>()
 ): Character {
-	return { id, name, origin, images, created, attributeArrays, subCharacterArrays };
+	return { id, name, origin, images, created, attributeArray, subCharacterArrays };
 }
 
 export function newCharacterImage(src = "", main = false, valid = true): CharacterImage {

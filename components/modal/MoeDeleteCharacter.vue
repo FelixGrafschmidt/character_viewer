@@ -48,7 +48,7 @@
 		deleteCharacter() {
 			this.$vxm.main.listStore.deleteCharacter(this.character);
 			this.$vxm.main.deactivateModal();
-			this.$router.push(this.$vxm.main.navigationPaths.list);
+			this.$vxm.main.toList(this.$router);
 		}
 	}
 </script>

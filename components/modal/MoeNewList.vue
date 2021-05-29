@@ -68,7 +68,7 @@
 
 		openList(list: List) {
 			this.$vxm.main.listStore.setList(list);
-			this.$router.push(this.$vxm.main.navigationPaths.list);
+			this.$vxm.main.toList(this.$router);
 		}
 
 		addList() {

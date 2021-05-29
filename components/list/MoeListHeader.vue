@@ -1,16 +1,17 @@
 <template>
 	<div class="flex sticky top-0 dark:bg-gray-600 bg-gray-400 z-[3] rounded font-extrabold text-lg">
-		<div class="w-2/5 dark:border-gray-800 border-r-2 py-2 text-center cursor-pointer" @click="$vxm.main.listStore.sortListByName()">
+		<div @click="$vxm.main.listStore.sortListByName()" class="w-[35%] dark:border-gray-800 border-r-2 py-2 text-center cursor-pointer">
 			{{ $t("character.name") }}
 		</div>
 		<div
-			class="w-2/5 dark:border-gray-800 border-r-2 border-l-2 py-2 text-center cursor-pointer"
 			@click="$vxm.main.listStore.sortListByOrigin()"
+			class="w-[35%] dark:border-gray-800 border-r-2 border-l-2 py-2 text-center cursor-pointer"
 		>
 			{{ $t("character.origin") }}
 		</div>
-		<div class="w-1/6 dark:border-gray-800 border-r-2 border-l-2 py-2 text-center">{{ $t("character.images") }}</div>
-		<div class="w-1/6 dark:border-gray-800 border-l-2 py-2 text-center">{{ $t("character.main_image") }}</div>
+		<div class="w-[10%] dark:border-gray-800 border-r-2 border-l-2 py-2 text-center">{{ $t("character.images") }}</div>
+		<div class="w-[10%] dark:border-gray-800 border-r-2 border-l-2 py-2 text-center">{{ $t("character.attributes") }}</div>
+		<div class="w-[10%] dark:border-gray-800 border-l-2 py-2 text-center">{{ $t("character.main_image") }}</div>
 	</div>
 </template>
 

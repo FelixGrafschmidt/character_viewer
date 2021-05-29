@@ -71,24 +71,24 @@
 
 		navigateToList(list: List) {
 			this.$vxm.main.listStore.setList(list);
-			this.$router.push(this.$vxm.main.navigationPaths.list);
+			this.$vxm.main.toList(this.$router);
 		}
 
 		navigateToCharacter(character: Character) {
 			this.$vxm.main.characterStore.setCharacter(character);
-			this.$router.push(this.$vxm.main.navigationPaths.character);
+			this.$vxm.main.toCharacter(this.$router);
 		}
 
 		toList() {
-			this.$router.push(this.$vxm.main.navigationPaths.list);
+			this.$vxm.main.toList(this.$router);
 		}
 
 		toGallery() {
-			this.$router.push(this.$vxm.main.navigationPaths.gallery);
+			this.$vxm.main.toGallery(this.$router);
 		}
 
 		toCollection() {
-			this.$router.push(this.$vxm.main.navigationPaths.collection);
+			this.$vxm.main.toCollection(this.$router);
 		}
 
 		captureScroll() {

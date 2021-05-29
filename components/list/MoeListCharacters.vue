@@ -10,10 +10,11 @@
 			@click="selectCharacter(character)"
 			class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer my-1"
 		>
-			<div class="w-2/5 text-center">{{ character.name }}</div>
-			<form class="w-2/5 text-center relative">{{ character.origin }}</form>
-			<form class="w-1/6 text-center relative">{{ character.images.length }}</form>
-			<div class="w-1/6 text-center">
+			<div class="w-[35%] text-center">{{ character.name }}</div>
+			<form class="w-[35%] text-center relative">{{ character.origin }}</form>
+			<form class="w-[10%] text-center relative">{{ character.images.length }}</form>
+			<form class="w-[10%] text-center relative">{{ character.attributeArray.length }}</form>
+			<div class="w-[10%] text-center">
 				<img :src="getMainImage(character).src" :alt="character.name" class="max-h-24 max-w-24 rounded m-auto" />
 			</div>
 		</div>
@@ -48,7 +49,7 @@
 		selectCharacter(character: Character) {
 			this.$vxm.main.setScrollID(character.id);
 			this.$vxm.main.characterStore.setCharacter(character);
-			this.$router.push(this.$vxm.main.navigationPaths.character);
+			this.$vxm.main.toCharacter(this.$router);
 		}
 
 		getMainImage(character: Character) {

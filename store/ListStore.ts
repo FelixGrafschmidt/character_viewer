@@ -20,6 +20,10 @@ export class ListStore extends VuexModule {
 			if (!character.created) {
 				character.created = new Date();
 			}
+
+			if (!character.attributeArray) {
+				character.attributeArray = [];
+			}
 		});
 		if (!list.sortorder) {
 			list.sortorder = Sortorder.DEFAULT;

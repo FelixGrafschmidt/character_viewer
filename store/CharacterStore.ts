@@ -1,5 +1,6 @@
+import { v4 } from "uuid";
 import { createModule, Module, mutation } from "vuex-class-component";
-import { Character, CharacterImage, newCharacter, newCharacterImage } from "~/models/interfaces/Character";
+import { Character, CharacterAttribute, CharacterImage, newCharacter, newCharacterImage } from "~/models/interfaces/Character";
 
 const VuexModule = createModule({
 	strict: false,
@@ -18,6 +19,11 @@ export class CharacterStore extends VuexModule {
 		character.images.forEach((image) => {
 			if (image.valid === undefined) {
 				image.valid = true;
+			}
+		});
+		character.attributeArray.forEach((attribute) => {
+			if (!attribute.id) {
+				attribute.id = v4();
 			}
 		});
 		this.character = character;
@@ -41,6 +47,14 @@ export class CharacterStore extends VuexModule {
 
 	@mutation designateImageAsInvalid(img: CharacterImage) {
 		this.character.images.filter((image) => image === img)[0].valid = false;
+	}
+
+	@mutation addAttribute() {
+		this.character.attributeArray.push({ name: "", value: "", id: v4() });
+	}
+
+	@mutation removeAttribute(attribute: CharacterAttribute) {
+		this.character.attributeArray = this.character.attributeArray.filter((attr) => attr.id !== attribute.id);
 	}
 
 	@mutation removeCharacterImage(index: number) {

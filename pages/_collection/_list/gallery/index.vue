@@ -1,7 +1,7 @@
 <template>
 	<div class="my-4">
 		<div class="flex flex-wrap gap-2 pt-2">
-			<figure v-for="(character, i) in list.characters" :key="i" class="w-[24%] cursor-pointer" @click="selectCharacter(character)">
+			<figure v-for="(character, i) in list.characters" :key="i" @click="selectCharacter(character)" class="w-[24%] cursor-pointer">
 				<img :src="getMainImage(character).src" :alt="character.name" class="overflow-hidden" />
 			</figure>
 		</div>
@@ -26,10 +26,10 @@
 			const listid = path[2];
 			const list = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push(this.$vxm.main.navigationPaths.collection);
+				this.$vxm.main.toCollection(this.$router);
 			}
 			if (list[0].characters.length === 0) {
-				this.$router.push(this.$vxm.main.navigationPaths.list);
+				this.$vxm.main.toList(this.$router);
 			}
 			this.$vxm.main.listStore.setList(list[0]);
 		}
@@ -49,7 +49,7 @@
 		selectCharacter(character: Character) {
 			this.mode = "characters";
 			this.$vxm.main.characterStore.setCharacter(character);
-			this.$router.push(this.$vxm.main.navigationPaths["gallery-character"]);
+			this.$vxm.main.toGalleryCharacter(this.$router);
 		}
 	}
 </script>

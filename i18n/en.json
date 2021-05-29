@@ -1,6 +1,7 @@
 {
 	"character": {
 		"add": "Add New Character",
+		"attributes": "Attributes",
 		"copied": "Copied!",
 		"copy": "Copy Character",
 		"delete": "Delete Character",

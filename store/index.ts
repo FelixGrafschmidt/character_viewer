@@ -2,6 +2,7 @@ import { Context } from "@nuxt/types";
 import { action, createModule, createProxy, createSubModule, extractVuexModule, Module, mutation } from "vuex-class-component";
 import Vuex from "vuex";
 import Vue from "vue";
+import VueRouter from "vue-router";
 import { Modal } from "~/models/enums/Modal";
 
 import { CollectionStore } from "~/store/CollectionStore";
@@ -29,15 +30,28 @@ export class MainStore extends VuexModule {
 	scrollID = "";
 	tutorial = 1;
 
-	// Getters
-	get navigationPaths() {
-		return {
-			collection: `/${this.collectionStore.collection.id}`,
-			list: `/${this.collectionStore.collection.id}/${this.listStore.list.id}`,
-			character: `/${this.collectionStore.collection.id}/${this.listStore.list.id}/${this.characterStore.character.id}`,
-			gallery: `/${this.collectionStore.collection.id}/${this.listStore.list.id}/gallery`,
-			"gallery-character": `/${this.collectionStore.collection.id}/${this.listStore.list.id}/gallery/${this.characterStore.character.id}`,
-		};
+	get character() {
+		return this.characterStore.character;
+	}
+
+	@mutation toCollection(router: VueRouter) {
+		router.push(`/${this.collectionStore.collection.id}`);
+	}
+
+	@mutation toList(router: VueRouter) {
+		router.push(`/${this.collectionStore.collection.id}/${this.listStore.list.id}`);
+	}
+
+	@mutation toCharacter(router: VueRouter) {
+		router.push(`/${this.collectionStore.collection.id}/${this.listStore.list.id}/${this.characterStore.character.id}`);
+	}
+
+	@mutation toGallery(router: VueRouter) {
+		router.push(`/${this.collectionStore.collection.id}/${this.listStore.list.id}/gallery`);
+	}
+
+	@mutation toGalleryCharacter(router: VueRouter) {
+		router.push(`/${this.collectionStore.collection.id}/${this.listStore.list.id}/gallery/${this.characterStore.character.id}`);
 	}
 
 	// Mutations

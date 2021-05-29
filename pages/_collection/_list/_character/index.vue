@@ -28,7 +28,7 @@
 			const characterid = path[3];
 			const list = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$router.push(this.$vxm.main.navigationPaths.collection);
+				this.$vxm.main.toCollection(this.$router);
 			}
 			this.$vxm.main.listStore.setList(list[0]);
 			const character = this.$vxm.main.listStore.list.characters.filter((character) => character.id === characterid);
@@ -51,7 +51,7 @@
 
 		backToCharacterList() {
 			this.$vxm.main.characterStore.resetCharacter();
-			this.$router.push(this.$vxm.main.navigationPaths.list);
+			this.$vxm.main.toList(this.$router);
 		}
 	}
 </script>
