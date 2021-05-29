@@ -59,6 +59,7 @@ const nuxtConfig: NuxtConfig = {
 		// "nuxt-windicss",
 		"@nuxtjs/color-mode",
 		"nuxt-vite",
+		"@nuxtjs/dotenv",
 	],
 	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device", "nuxt-i18n"],
 	build: {
