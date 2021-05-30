@@ -46,6 +46,8 @@
 					return "MoeFullscreenImg";
 				case Modal.TUTORIAL:
 					return "MoeTutorial";
+				case Modal.NEWATTRIBUTE:
+					return "MoeAttributes";
 				default:
 					return "";
 			}

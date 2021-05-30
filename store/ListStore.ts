@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { mutation, createModule, Module } from "vuex-class-component";
 import { Sortcriterion } from "~/models/enums/Sortcriterion";
 import { Sortorder } from "~/models/enums/Sortorder";
@@ -149,6 +150,18 @@ export class ListStore extends VuexModule {
 	@mutation resetListSorting() {
 		this.list.characters.sort((a, b) => {
 			return a.created > b.created ? 1 : -1;
+		});
+	}
+
+	@mutation addAttributesToCharacters({ attributes, characters }: { attributes: Array<string>; characters: Array<string> }) {
+		this.list.characters.forEach((character) => {
+			if (characters.includes(character.id)) {
+				attributes.forEach((attr) => {
+					if (character.attributeArray.filter((a) => a.name === attr).length < 1) {
+						character.attributeArray.push({ id: v4(), name: attr, value: "" });
+					}
+				});
+			}
 		});
 	}
 }
