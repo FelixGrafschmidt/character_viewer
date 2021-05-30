@@ -43,9 +43,19 @@ export class ListStore extends VuexModule {
 		}
 	}
 
-	@mutation deleteCharacter(character: Character) {
-		const characters = this.list.characters.filter((characterInList) => {
-			return character.id !== characterInList.id;
+	@mutation updateCharacter(character: Character) {
+		let index = -1;
+		this.list.characters.forEach((char, i) => {
+			if (char.id === character.id) {
+				index = i;
+			}
+		});
+		this.list.characters[index] = character;
+	}
+
+	@mutation deleteCharacter(id: string) {
+		const characters = this.list.characters.filter((character) => {
+			return id !== character.id;
 		});
 		this.list.characters = characters;
 	}

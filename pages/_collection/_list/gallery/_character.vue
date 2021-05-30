@@ -29,7 +29,7 @@
 			const characterid = path[4];
 			const list = this.$vxm.main.collectionStore.collection.lists.filter((list) => list.id === listid);
 			if (list.length === 0) {
-				this.$vxm.main.toCollection(this.$router);
+				this.$vxm.main.toCollection({ router: this.$router, keepCollection: false });
 			}
 			this.$vxm.main.listStore.setList(list[0]);
 			const character = this.$vxm.main.listStore.list.characters.filter((character) => character.id === characterid);

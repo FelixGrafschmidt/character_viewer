@@ -8,6 +8,8 @@
 				'bg-gray-300  dark:bg-gray-800': index % 2 === 0,
 			}"
 			@click="selectCharacter(character)"
+			@click.middle="openCharacterInNewContext(character)"
+			@mousedown.prevent
 			class="flex h-24 hover:bg-gray-400 dark-hover:bg-gray-700 items-center rounded cursor-pointer my-1"
 		>
 			<div class="w-[35%] text-center">{{ character.name }}</div>
@@ -50,6 +52,13 @@
 			this.$vxm.main.setScrollID(character.id);
 			this.$vxm.main.characterStore.setCharacter(character);
 			this.$vxm.main.toCharacter(this.$router);
+		}
+
+		openCharacterInNewContext(character: Character) {
+			const collection = this.$vxm.main.collectionStore.collection;
+			localStorage.setItem("collection", JSON.stringify(collection));
+			localStorage.setItem("hash", this.$vxm.main.collectionStore.originalHash);
+			window.open(this.$vxm.main.listStore.list.id + "/" + character.id);
 		}
 
 		getMainImage(character: Character) {

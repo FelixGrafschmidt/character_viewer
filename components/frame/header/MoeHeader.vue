@@ -32,6 +32,17 @@
 		changeMode() {
 			this.$colorMode.preference = this.$colorMode.preference === "light" ? "dark" : "light";
 		}
+
+		mounted() {
+			if (localStorage.getItem("collection")) {
+				this.$vxm.main.collectionStore.setCollectionNoHash(JSON.parse(localStorage.getItem("collection")!));
+				localStorage.removeItem("collection");
+			}
+			if (localStorage.getItem("hash")) {
+				this.$vxm.main.collectionStore.setHash(localStorage.getItem("hash")!);
+				localStorage.removeItem("hash");
+			}
+		}
 	}
 </script>
 

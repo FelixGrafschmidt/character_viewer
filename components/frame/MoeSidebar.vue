@@ -88,7 +88,7 @@
 		}
 
 		toCollection() {
-			this.$vxm.main.toCollection(this.$router);
+			this.$vxm.main.toCollection({ router: this.$router, keepCollection: true });
 		}
 
 		captureScroll() {

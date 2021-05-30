@@ -84,7 +84,7 @@
 
 		newList() {
 			this.$vxm.main.deactivateModal();
-			this.$vxm.main.toCollection(this.$router);
+			this.$vxm.main.toCollection({ router: this.$router, keepCollection: false });
 			this.$vxm.main.setModal(Modal.NEWLIST);
 		}
 	}

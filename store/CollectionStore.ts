@@ -24,6 +24,10 @@ export class CollectionStore extends VuexModule {
 		this.originalHash = getHash(collection);
 	}
 
+	@mutation setCollectionNoHash(collection: Collection) {
+		this.collection = collection;
+	}
+
 	@mutation addListToCollection(list: List) {
 		this.collection.lists.push(list);
 	}
@@ -34,6 +38,10 @@ export class CollectionStore extends VuexModule {
 
 	@mutation setListToDelete(list: List) {
 		this.listToDelete = list;
+	}
+
+	@mutation setHash(hash: string) {
+		this.originalHash = hash;
 	}
 
 	@mutation deleteList(id: string) {

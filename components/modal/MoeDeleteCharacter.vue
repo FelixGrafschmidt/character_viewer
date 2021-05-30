@@ -51,7 +51,7 @@
 		}
 
 		deleteCharacter() {
-			this.$vxm.main.listStore.deleteCharacter(this.character);
+			this.$vxm.main.listStore.deleteCharacter(this.character.id);
 			this.$vxm.main.deactivateModal();
 			this.$vxm.main.toList(this.$router);
 		}

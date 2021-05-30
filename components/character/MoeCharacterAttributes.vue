@@ -191,5 +191,9 @@
 		removeAttribute(attribute: CharacterAttribute) {
 			this.$vxm.main.characterStore.removeAttribute(attribute);
 		}
+
+		beforeDestroy() {
+			this.$vxm.main.listStore.updateCharacter(this.character);
+		}
 	}
 </script>
