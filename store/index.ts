@@ -30,12 +30,8 @@ export class MainStore extends VuexModule {
 	scrollID = "";
 	tutorial = 1;
 
-	@mutation toCollection({ router, keepCollection }: { router: VueRouter; keepCollection: boolean }) {
-		if (keepCollection) {
-			router.push(`/${this.collectionStore.collection.id}?keepcollection=true`);
-		} else {
-			router.push(`/${this.collectionStore.collection.id}`);
-		}
+	@mutation toCollection(router: VueRouter) {
+		router.push(`/${this.collectionStore.collection.id}`);
 	}
 
 	@mutation toList(router: VueRouter) {

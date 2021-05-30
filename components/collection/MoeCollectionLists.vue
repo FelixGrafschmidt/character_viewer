@@ -11,7 +11,6 @@
 				'!bg-teal-500 dark:!bg-teal-500  dark-hover:!bg-teal-400  hover:!bg-teal-400': list.id === $vxm.main.listStore.list.id,
 			}"
 			@click="openList(list)"
-			@click.middle="openListInNewContext(list)"
 			class="flex h-24 items-center rounded cursor-pointer my-1"
 		>
 			<div class="w-2/5 text-center">{{ list.id }}</div>
@@ -83,12 +82,6 @@
 
 		exportList(list: List) {
 			saveAs(new File([JSON.stringify(list)], list.name + ".json"));
-		}
-
-		openListInNewContext(list: List) {
-			localStorage.setItem("collection", JSON.stringify(this.collection));
-			localStorage.setItem("hash", this.$vxm.main.collectionStore.originalHash);
-			window.open(this.collection.id + "/" + list.id);
 		}
 
 		openList(list: List) {

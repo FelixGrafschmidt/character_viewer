@@ -17,14 +17,11 @@
 	})
 	export default class Collection extends Vue {
 		async mounted() {
-			if (window.location.search.includes("keepcollection=true")) {
-				return;
-			}
 			const url = new URL(window.location.href);
 			const path = url.pathname.split("/");
 			const collectionid = path[1];
 			if (!collectionid.match(/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/)) {
-				this.$vxm.main.toCollection({ router: this.$router, keepCollection: false });
+				this.$vxm.main.toCollection(this.$router);
 			}
 			const oldId = window.localStorage.getItem("collectionId");
 			window.localStorage.setItem("collectionId", collectionid);
