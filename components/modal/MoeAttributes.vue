@@ -12,26 +12,41 @@
 			m-auto
 			pb-10
 			pt-5
-			h-[80vh]
+			max-h-[80vh]
 			w-[60vw]
 		"
 	>
 		<div class="flex justify-evenly max-h-[85%] min-h-[85%]">
-			<div
-				class="
-					flex flex-col
-					scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
-					dark:scrollbar-track-gray-700 dark:scrollbar-thumb-gray-500
-					scrollbar-track-rounded scrollbar-thumb-rounded
-					overflow-y-scroll
-					px-4
-				"
-			>
-				<span class="mb-2">Select all Characters to apply these attributes to</span>
-				<label ref="characters" :id="character.id" v-for="character in characters" :key="character.id">
-					<input type="checkbox" checked />
-					{{ character.name }}
-				</label>
+			<div>
+				<span>Select all Characters to apply these attributes to</span>
+				<div
+					class="
+						flex flex-col
+						scrollbar-thin scrollbar-track-gray-300 scrollbar-thumb-gray-500
+						dark:scrollbar-track-gray-700 dark:scrollbar-thumb-gray-500
+						scrollbar-track-rounded scrollbar-thumb-rounded
+						overflow-y-scroll
+						max-h-[90%]
+						min-h-[90%]
+						px-4
+						mt-4
+					"
+				>
+					<label
+						ref="characters"
+						:id="character.id"
+						v-for="character in characters"
+						:key="character.id"
+						class="flex flex-row items-center py-1"
+					>
+						<input
+							type="checkbox"
+							checked
+							class="rounded text-teal-500 !focus:outline-none !shadow-none !ring-offset-0 !ring-0"
+						/>
+						<span class="ml-1 select-none"> {{ character.name }} </span>
+					</label>
+				</div>
 			</div>
 			<form @submit.prevent class="flex flex-col">
 				<div
