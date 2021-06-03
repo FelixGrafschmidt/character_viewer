@@ -80,6 +80,9 @@
 		src = "";
 		addImages() {
 			this.src.split("\n").forEach((url) => {
+				if (this.$vxm.main.characterStore.character.images.filter((img) => img.src === url).length > 0) {
+					return;
+				}
 				this.$vxm.main.characterStore.addCharacterImage({ src: url, valid: true });
 			});
 			this.$vxm.main.deactivateModal();

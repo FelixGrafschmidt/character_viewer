@@ -42,6 +42,9 @@ export class CharacterStore extends VuexModule {
 	}
 
 	@mutation addCharacterImage({ src, valid }: { src: string; valid: boolean }) {
+		if (this.character.images.filter((img) => img.src === src).length > 0) {
+			return;
+		}
 		this.character.images.push(newCharacterImage(src, this.character.images.filter((image) => image.main).length === 0, valid));
 	}
 
