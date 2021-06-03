@@ -11,6 +11,7 @@
 <script lang="ts">
 	// Vue basics
 	import { Component, Vue } from "nuxt-property-decorator";
+	import { Modal } from "~/models/enums/Modal";
 	import { Character } from "~/models/interfaces/Character";
 	@Component({
 		components: {},
@@ -18,8 +19,6 @@
 		middleware: ["resetCharacter"],
 	})
 	export default class Gallery extends Vue {
-		mode: string = "list";
-
 		mounted() {
 			const url = new URL(window.location.href);
 			const path = url.pathname.split("/");
@@ -47,9 +46,9 @@
 		}
 
 		selectCharacter(character: Character) {
-			this.mode = "characters";
 			this.$vxm.main.characterStore.setCharacter(character);
-			this.$vxm.main.toGalleryCharacter(this.$router);
+			this.$vxm.main.characterStore.setActiveImage(character.images[0]);
+			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
 		}
 	}
 </script>
