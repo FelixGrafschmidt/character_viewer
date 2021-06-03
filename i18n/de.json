@@ -40,6 +40,7 @@
 		"add": "Bild hinzufügen",
 		"add_multi": "Bilder hinzufügen",
 		"make_main": "Bild als Hauptbild markieren",
+		"multi_url": "",
 		"remove": "Bild entfernen"
 	},
 	"list": {

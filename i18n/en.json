@@ -17,7 +17,8 @@
 		"copied": "Copied!",
 		"copy_id": "Copy ID",
 		"export": "Export Collection",
-		"load": "Load Collection"
+		"load": "Load Collection",
+		"unload": "Unload Collection"
 	},
 	"errors": {
 		"generic_error": "An error occurred."
