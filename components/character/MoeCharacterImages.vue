@@ -2,7 +2,7 @@
 	<div class="flex flex-col items-center w-1/2 justify-between h-[80vh]">
 		<div class="h-[75%] min-h-[75%] justify-center flex cursor-pointer">
 			<figure @click="openImage(image)">
-				<img :alt="character.name" :src="image.src || ''" class="rounded max-h-full m-auto" />
+				<img :alt="character.name" :src="image.src || ''" @load="image.valid = true" class="rounded max-h-full m-auto" />
 			</figure>
 		</div>
 		<div class="flex relative h-[15%]">
@@ -43,6 +43,7 @@
 						}"
 						:src="img.src"
 						:alt="i"
+						@load="img.valid = true"
 						@error="designateImageAsInvalid(img)"
 						class="rounded overflow-hidden max-h-[6rem] mx-auto"
 					/>
