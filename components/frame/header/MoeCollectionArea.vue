@@ -17,7 +17,7 @@
 			<MoeButtonDark
 				@click.native="unloadCollection"
 				icon="fas fa-times"
-				class="!bg-red-400 dark:!bg-red-600 dark-hover:!bg-red-700 hover:!bg-red-500 !text-color-unset h-10 w-10"
+				class="dark-hover:!bg-red-700 hover:!bg-red-500 !text-color-unset h-10 w-10"
 			/>
 		</MoeTooltip>
 	</div>
