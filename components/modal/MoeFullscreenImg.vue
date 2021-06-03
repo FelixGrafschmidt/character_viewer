@@ -9,8 +9,8 @@
 			class="h-20 w-20 !rounded-full text-5xl ml-2"
 			icon="fas fa-angle-left"
 		/>
-		<figure class="w-full h-full">
-			<img :src="src" class="max-h-screen max-w-[80vw]" />
+		<figure class="w-full h-full justify-center flex">
+			<img :src="src" class="max-h-screen max-w-[80vw] h-full w-full" />
 		</figure>
 
 		<MoeButtonLight
