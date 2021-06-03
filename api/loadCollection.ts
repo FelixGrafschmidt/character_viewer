@@ -2,14 +2,12 @@
 import * as http from "http";
 import * as url from "url";
 import * as createServer from "connect";
-import { Tedis } from "tedis";
+import redis from "redis";
 import { v4 } from "uuid";
-const tedis = new Tedis({
-	host: "127.0.0.1",
-	port: 6378,
-});
 
-export default async function (req: createServer.IncomingMessage, res: http.ServerResponse): Promise<void> {
+const client = redis.createClient(6378, "127.0.0.1");
+
+export default function (req: createServer.IncomingMessage, res: http.ServerResponse): void {
 	let collection = { id: v4(), lists: new Array<any>() };
 	try {
 		const params: url.URLSearchParams = new url.URL(req.originalUrl!, "https://localhost").searchParams;
@@ -20,18 +18,27 @@ export default async function (req: createServer.IncomingMessage, res: http.Serv
 		const id: string = params.get("id") || "";
 		if (id) {
 			collection = { id, lists: [] };
-			await tedis.exists(id).then(async () => {
-				await tedis.get(id).then((response: any) => {
+			client.exists(id, (err) => {
+				if (err) {
+					throw err;
+				}
+				client.get(id, (err, response) => {
+					if (err) {
+						throw err;
+					}
 					if (typeof response === "string") {
 						collection = JSON.parse(response) as { id: string; lists: Array<any> };
 						res.statusCode = 200;
 					}
+
+					res.end(JSON.stringify(collection));
 				});
 			});
+		} else {
+			res.end(JSON.stringify(collection));
 		}
 	} catch (error) {
 		console.error(error);
-	} finally {
 		res.end(JSON.stringify(collection));
 	}
 }
