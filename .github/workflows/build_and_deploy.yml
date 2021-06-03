@@ -48,6 +48,7 @@ jobs:
                   password: $PASSWORD
                   source: ".nuxt/,static/,api/,node_modules/,nuxt.config.ts,package.json,tsconfig.json,ecosystem.config.js"
                   target: "/srv/character_viewer/"
+                  debug: true
             - name: restart via ssh
               env:
                   HOST: ${{ secrets.HOST }}
