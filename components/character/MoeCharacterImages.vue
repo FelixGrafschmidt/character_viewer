@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col items-center w-1/2 justify-between h-[80vh]">
 		<div class="h-[75%] min-h-[75%] justify-center flex cursor-pointer">
-			<figure @click="openImage(image)">
+			<figure @click="openImage(image)" class="flex flex-col justify-center">
 				<img :alt="character.name" :src="image.src || ''" @load="image.valid = true" class="rounded max-h-full m-auto" />
 			</figure>
 		</div>
