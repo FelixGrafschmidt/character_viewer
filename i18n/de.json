@@ -38,6 +38,7 @@
 	},
 	"image": {
 		"add": "Bild hinzufügen",
+		"add_multi": "Bilder hinzufügen",
 		"make_main": "Bild als Hauptbild markieren",
 		"remove": "Bild entfernen"
 	},
@@ -46,10 +47,10 @@
 		"copy": "Kopieren",
 		"create": "Neue Liste anlegen",
 		"delete": "Löschen",
+		"entry_s": "{count} Element | {count} Elemente",
 		"export": "Exportieren",
 		"id": "ID",
 		"import": "Liste importieren",
-		"entry_s": "{count} Element | {count} Elemente",
 		"name": "Name"
 	},
 	"modals": {
@@ -127,9 +128,9 @@
 		"no_list": "Keine Liste ausgewählt"
 	},
 	"tutorial": {
+		"important": "WICHTIG",
 		"saving": "Eine sehr wichtige Sache direkt zum Anfang: Alle Änderungen, die du auf dieser Seite durchführst, gehen beim Verlassen oder Neuladen der Seite verloren, es sei denn du speicherst sie über den \"Speichern\" Knopf oben oder hast das automatische Speichern aktiviert. Dies passiert, damit nicht unbeabsichtige Änderungen gespeichert werden.",
 		"short_title": "Tutorial",
-		"title": "Tutorial",
-		"important": "WICHTIG"
+		"title": "Tutorial"
 	}
 }

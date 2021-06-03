@@ -69,6 +69,9 @@
 			<MoeTooltip :text="$t('image.add')" position="top">
 				<MoeButtonLight @click.stop.native="addNewImage" icon="fas fa-plus" />
 			</MoeTooltip>
+			<MoeTooltip :text="$t('image.add_multi')" position="top">
+				<MoeButtonLight @click.stop.native="addImageMulti" icon="fab fa-buffer" />
+			</MoeTooltip>
 		</div>
 	</div>
 </template>
@@ -117,6 +120,10 @@
 		addNewImage() {
 			this.$vxm.main.setModal(Modal.NEWIMAGE);
 			this.image = this.getMainImage();
+		}
+
+		addImageMulti() {
+			this.$vxm.main.setModal(Modal.IMAGEMULTI);
 		}
 
 		designateMainImage() {

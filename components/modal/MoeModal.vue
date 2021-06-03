@@ -48,6 +48,8 @@
 					return "MoeTutorial";
 				case Modal.NEWATTRIBUTE:
 					return "MoeAttributes";
+				case Modal.IMAGEMULTI:
+					return "MoeImageMulti";
 				default:
 					return "";
 			}

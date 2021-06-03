@@ -10,7 +10,7 @@
 			icon="fas fa-angle-left"
 		/>
 		<figure>
-			<img :src="src" class="max-h-screen max-w-[100vw]" />
+			<img :src="src" class="max-h-screen max-w-[80vw]" />
 		</figure>
 
 		<MoeButtonLight

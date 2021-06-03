@@ -35,6 +35,7 @@
 		"tedis": "^0.1.12",
 		"uuid": "^8.3.2",
 		"vue-keep-scroll": "^0.1.1",
+		"vue-textarea-autosize": "^1.1.1",
 		"vuex-class-component": "^2.3.5",
 		"vuex-module-decorators": "^1.0.1"
 	},
