@@ -11,7 +11,7 @@
 		/>
 		<div class="max-w-[86%]">
 			<figure class="justify-center flex">
-				<img :src="src" class="max-h-screen max-w-[80vw] h-full w-screen object-contain" />
+				<img :src="src" :alt="index" class="max-h-screen max-w-[80vw] h-full w-screen object-contain" />
 			</figure>
 		</div>
 		<MoeButtonLight
@@ -36,6 +36,10 @@
 	export default class MoeFullscreenImg extends Vue {
 		get src() {
 			return this.$vxm.main.characterStore.activeImage.src;
+		}
+
+		get index() {
+			return this.$vxm.main.characterStore.character.images.indexOf(this.$vxm.main.characterStore.activeImage);
 		}
 	}
 </script>
