@@ -1,30 +1,15 @@
 <template>
 	<div @click.stop class="h-screen max-h-screen relative w-screen">
-		<div class="flex items-center justify-between w-full h-screen max-h-screen">
-			<MoeButtonLight
-				:class="{
-					visible: $vxm.main.characterStore.character.images.length > 1,
-					invisible: $vxm.main.characterStore.character.images.length <= 1,
-				}"
-				@click.native.stop="$vxm.main.characterStore.previousImage"
-				class="h-20 !rounded-full text-5xl ml-2 w-20 max-w-[7%]"
-				icon="fas fa-angle-left"
+		<client-only>
+			<vue-easy-lightbox
+				:loop="true"
+				:visible="true"
+				:imgs="imagesRaw"
+				:index="index"
+				@hide="$vxm.main.deactivateModal()"
+				class="max-h-screen !z-0"
 			/>
-			<div class="max-w-[86%]">
-				<figure class="justify-center flex">
-					<img :src="src" :alt="index" class="max-h-screen max-w-[80vw] h-full w-screen object-contain" />
-				</figure>
-			</div>
-			<MoeButtonLight
-				@click.native.stop="$vxm.main.characterStore.nextImage"
-				:class="{
-					visible: $vxm.main.characterStore.character.images.length > 1,
-					invisible: $vxm.main.characterStore.character.images.length <= 1,
-				}"
-				class="h-20 w-20 !rounded-full text-5xl mr-2 max-w-[7%]"
-				icon="fas fa-angle-right"
-			/>
-		</div>
+		</client-only>
 		<div
 			@mouseenter="showThumbs = true"
 			@mouseleave="showThumbs = false"
@@ -48,35 +33,12 @@
 				<figure
 					v-for="(image, i) in images"
 					:key="image.src"
-					@click="selectImage(image)"
+					@click="index = i"
 					class="min-w-[4rem] max-w-[4rem] h-full cursor-pointer flex flex-col justify-center"
 				>
 					<img :src="image.src" :alt="i" class="object-contain max-h-[6rem]" />
 				</figure>
 			</div>
-		</div>
-		<div
-			@click="$vxm.main.deactivateModal()"
-			class="
-				items-center
-				justify-center
-				top-1
-				right-1
-				flex
-				dark:bg-red-600
-				bg-red-400
-				dark-hover:bg-red-700
-				hover:bg-red-500
-				dark:text-gray-900
-				text-gray-100
-				h-6
-				w-6
-				rounded-2xl
-				cursor-pointer
-				absolute
-			"
-		>
-			<div class="fas fa-times"></div>
 		</div>
 	</div>
 </template>
@@ -91,13 +53,14 @@
 	})
 	export default class MoeFullscreenImg extends Vue {
 		showThumbs = false;
+		index = 0;
 
 		get src() {
 			return this.$vxm.main.characterStore.activeImage.src;
 		}
 
-		get index() {
-			return this.$vxm.main.characterStore.character.images.indexOf(this.$vxm.main.characterStore.activeImage);
+		get imagesRaw() {
+			return this.$vxm.main.characterStore.character.images.map((img) => img.src);
 		}
 
 		get images() {
@@ -107,5 +70,17 @@
 		selectImage(image: CharacterImage) {
 			this.$vxm.main.characterStore.setActiveImage(image);
 		}
+
+		showImg(index: any) {
+			this.index = index;
+		}
 	}
 </script>
+
+<style lang="postcss" scoped>
+	::v-deep .vel-toolbar {
+		position: absolute;
+		top: 0;
+		height: fit-content;
+	}
+</style>

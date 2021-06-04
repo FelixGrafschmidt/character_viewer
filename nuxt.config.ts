@@ -51,7 +51,13 @@ const nuxtConfig: NuxtConfig = {
 		title: "Character List Manager",
 	},
 	loading: { color: "#2f847c" },
-	plugins: ["~/plugins/vue-autofocus", "~/plugins/storeProxies", "~/plugins/vue-keep-scroll", "~/plugins/vue-textarea-autosize"],
+	plugins: [
+		"~/plugins/vue-autofocus",
+		"~/plugins/storeProxies",
+		"~/plugins/vue-keep-scroll",
+		"~/plugins/vue-textarea-autosize",
+		{ src: "~/plugins/vue-easy-lightbox.js", mode: "client" },
+	],
 	buildModules: [
 		"@nuxt/typescript-build",
 		"@nuxtjs/stylelint-module",
