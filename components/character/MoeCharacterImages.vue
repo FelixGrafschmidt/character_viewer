@@ -2,7 +2,7 @@
 	<div class="flex flex-col items-center w-1/2 justify-between h-[80vh]">
 		<div class="h-[75%] min-h-[75%] justify-center flex cursor-pointer">
 			<figure @click="openImage(image)" class="flex flex-col justify-center">
-				<img :alt="character.name" :src="image.src || ''" @load="image.valid = true" class="rounded max-h-full m-auto" />
+				<img :alt="character.name" :src="image.src || ''" @load="markValid(image)" class="rounded max-h-full m-auto" />
 			</figure>
 		</div>
 		<div class="flex relative h-[15%]">
@@ -43,8 +43,8 @@
 						}"
 						:src="img.src"
 						:alt="i"
-						@load="img.valid = true"
-						@error="designateImageAsInvalid(img)"
+						@load="markValid(img)"
+						@error="markInvalid(img)"
 						class="rounded overflow-hidden max-h-[6rem] mx-auto"
 					/>
 				</figure>
@@ -132,8 +132,12 @@
 			this.$vxm.main.characterStore.designateMainImage(index);
 		}
 
-		designateImageAsInvalid(image: CharacterImage) {
-			this.$vxm.main.characterStore.designateImageAsInvalid(image);
+		markInvalid(image: CharacterImage) {
+			image.valid = false;
+		}
+
+		markValid(image: CharacterImage) {
+			image.valid = true;
 		}
 
 		deleteImage() {
