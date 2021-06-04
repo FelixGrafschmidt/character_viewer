@@ -17,7 +17,8 @@
 		"copied": "Kopiert!",
 		"copy_id": "ID kopieren",
 		"export": "Sammlung exportieren",
-		"load": "Sammlung laden"
+		"load": "Sammlung laden",
+		"unload": "Sammlung de-laden"
 	},
 	"errors": {
 		"generic_error": "Ein Fehler ist aufgetreten."
@@ -41,6 +42,7 @@
 		"add_multi": "Bilder hinzufügen",
 		"make_main": "Bild als Hauptbild markieren",
 		"multi_url": "",
+		"export_all": "Alle Bilder exportieren",
 		"remove": "Bild entfernen"
 	},
 	"list": {

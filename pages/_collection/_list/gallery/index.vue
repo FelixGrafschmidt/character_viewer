@@ -47,7 +47,7 @@
 
 		selectCharacter(character: Character) {
 			this.$vxm.main.characterStore.setCharacter(character);
-			this.$vxm.main.characterStore.setActiveImage(character.images[0]);
+			this.$vxm.main.characterStore.setActiveImage(character.images.filter((image) => image.main)[0]);
 			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
 		}
 	}

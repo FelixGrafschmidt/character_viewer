@@ -40,6 +40,7 @@
 	"image": {
 		"add": "Add Image",
 		"add_multi": "Add Images",
+		"export_all": "Export all Images",
 		"make_main": "Designate as Main Image",
 		"multi_url": "Insert urls seperated by linebreaks",
 		"remove": "Remove this Image"

@@ -67,6 +67,14 @@
 			return this.$vxm.main.characterStore.character.images;
 		}
 
+		get activeImage() {
+			return this.$vxm.main.characterStore.activeImage;
+		}
+
+		mounted() {
+			this.index = this.$vxm.main.characterStore.character.images.indexOf(this.activeImage);
+		}
+
 		selectImage(image: CharacterImage) {
 			this.$vxm.main.characterStore.setActiveImage(image);
 		}

@@ -73,6 +73,9 @@
 			<MoeTooltip :text="$t('image.add_multi')" position="top">
 				<MoeButtonLight @click.stop.native="addImageMulti" icon="fab fa-buffer" />
 			</MoeTooltip>
+			<MoeTooltip :text="$t('image.export_all')" position="top">
+				<MoeButtonLight @click.stop.native="exportImages" icon="far fa-save" />
+			</MoeTooltip>
 		</div>
 	</div>
 </template>
@@ -159,6 +162,14 @@
 			window.scroll(0, 0);
 			this.$vxm.main.characterStore.setActiveImage(image);
 			this.$vxm.main.setModal(Modal.FULLSCREENIMG);
+		}
+
+		exportImages() {
+			let imageSources = "";
+			this.character.images.forEach((image) => {
+				imageSources += image.src + "\n";
+			});
+			saveAs(new File([imageSources], this.character.name + "_images.txt"));
 		}
 
 		@Watch("character.images.length", { deep: true })
