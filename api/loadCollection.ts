@@ -1,13 +1,12 @@
 /* eslint-disable no-array-constructor */
-import * as http from "http";
 import * as url from "url";
-import * as createServer from "connect";
+import { Request, Response } from "express";
 import redis from "redis";
 import { v4 } from "uuid";
 
 const client = redis.createClient(6378, "127.0.0.1");
 
-export default function (req: createServer.IncomingMessage, res: http.ServerResponse): void {
+export default function (req: Request, res: Response): void {
 	let collection = { id: v4(), lists: new Array<any>() };
 	try {
 		const params: url.URLSearchParams = new url.URL(req.originalUrl!, "https://localhost").searchParams;
