@@ -96,6 +96,9 @@
 			"export": "Export your data",
 			"not_saved": "Your changes have NOT been saved!",
 			"try_again": "Try again"
+		},
+		"unload_collection": {
+			"title": "Are you sure you eant to unload your collection from your browser? If you have saved the id you can later reload it."
 		}
 	},
 	"navigation": {

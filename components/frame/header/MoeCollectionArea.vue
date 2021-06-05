@@ -27,7 +27,6 @@
 	import { Component, Vue } from "nuxt-property-decorator";
 	import { saveAs } from "file-saver";
 	import { Modal } from "~/models/enums/Modal";
-	import { newCollection } from "~/models/interfaces/Collection";
 
 	@Component({
 		components: {},
@@ -57,7 +56,7 @@
 		}
 
 		unloadCollection() {
-			this.$vxm.main.collectionStore.setCollection(newCollection());
+			this.$vxm.main.setModal(Modal.UNLOADCOLLECTION);
 		}
 	}
 </script>

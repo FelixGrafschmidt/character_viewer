@@ -50,6 +50,8 @@
 					return "MoeAttributes";
 				case Modal.IMAGEMULTI:
 					return "MoeImageMulti";
+				case Modal.UNLOADCOLLECTION:
+					return "MoeUnloadCollection";
 				default:
 					return "";
 			}
