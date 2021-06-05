@@ -20,7 +20,7 @@
 				class="
 					flex
 					overflow-x-scroll
-					mx-8
+					px-8
 					gap-1
 					h-1/2
 					max-h-[6rem]
