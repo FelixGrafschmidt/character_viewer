@@ -1,4 +1,3 @@
-import TerserPlugin from "terser-webpack-plugin";
 import { NuxtConfig } from "@nuxt/types";
 import { NuxtOptionsLoaders, NuxtWebpackEnv } from "@nuxt/types/config/build";
 import { Configuration as WebpackConfiguration } from "@nuxt/types/node_modules/@types/webpack";
@@ -79,18 +78,6 @@ const nuxtConfig: NuxtConfig = {
 			if (ctx.isDev) {
 				config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
 			}
-		},
-		optimization: {
-			minimizer: [
-				new TerserPlugin({
-					parallel: true,
-					sourceMap: true, // Must be set to true if using source-maps in production
-					terserOptions: {
-						// https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-						mangle: false,
-					},
-				}),
-			],
 		},
 	},
 	axios: {
