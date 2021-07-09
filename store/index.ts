@@ -95,7 +95,6 @@ export const store = new Vuex.Store({
 });
 
 // Creating proxies.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const vxm = {
 	main: createProxy(store, MainStore),
 };

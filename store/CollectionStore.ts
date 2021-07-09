@@ -1,5 +1,4 @@
 import { action, createModule, Module, mutation } from "vuex-class-component";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { NuxtAxiosInstance } from "@nuxtjs/axios";
 import { Collection, getHash, newCollection } from "~/models/interfaces/Collection";
 import { List, newList } from "~/models/interfaces/List";

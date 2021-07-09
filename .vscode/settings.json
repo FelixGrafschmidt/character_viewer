@@ -50,7 +50,6 @@
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"npm-scripts.showStartNotification": false,
 	"prettier.arrowParens": "always",
-	"prettier.disableLanguages": [],
 	"prettier.endOfLine": "lf",
 	"prettier.printWidth": 120,
 	"prettier.quoteProps": "consistent",
@@ -86,10 +85,8 @@
 	},
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"comments.openPanel": "neverOpen",
-	"i18n-ally.localesPaths": [
-		"i18n"
-	],
+	"i18n-ally.localesPaths": ["i18n"],
 	"i18n-ally.keystyle": "nested",
 	"vetur.validation.template": true,
-	"vetur.validation.interpolation": true,
+	"vetur.validation.interpolation": true
 }

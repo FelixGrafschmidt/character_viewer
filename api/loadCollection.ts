@@ -1,13 +1,13 @@
-/* eslint-disable no-array-constructor */
 import * as url from "url";
 import { Request, Response } from "express";
 import redis from "redis";
 import { v4 } from "uuid";
+import { List } from "~/models/interfaces/List";
 
 const client = redis.createClient(6378, "127.0.0.1");
 
 export default function (req: Request, res: Response): void {
-	let collection = { id: v4(), lists: new Array<any>() };
+	let collection = { id: v4(), lists: [] as Array<List> };
 	try {
 		const params: url.URLSearchParams = new url.URL(req.originalUrl!, "https://localhost").searchParams;
 
