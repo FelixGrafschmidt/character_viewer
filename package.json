@@ -18,7 +18,7 @@
 		"@nuxtjs/pwa": "3.3.5",
 		"@tailwindcss/forms": "^0.3.3",
 		"@tailwindcss/jit": "^0.1.18",
-		"@types/file-saver": "^2.0.2",
+		"@types/file-saver": "^2.0.3",
 		"@types/object-hash": "^2.1.0",
 		"@types/redis": "^2.8.30",
 		"@types/uuid": "^8.3.0",
