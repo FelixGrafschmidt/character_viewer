@@ -52,7 +52,7 @@
 		"@nuxtjs/eslint-module": "^3.0.2",
 		"@nuxtjs/style-resources": "^1.2.0",
 		"@nuxtjs/stylelint-module": "^4.0.0",
-		"@nuxtjs/tailwindcss": "^4.2.0",
+		"@nuxtjs/tailwindcss": "^4.2.1",
 		"@rollup/plugin-image": "^2.0.6",
 		"@types/tailwindcss": "^2.2.0",
 		"babel-eslint": "^10.1.0",
