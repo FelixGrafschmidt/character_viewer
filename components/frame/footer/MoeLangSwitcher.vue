@@ -5,8 +5,8 @@
 		<div v-for="locale in $i18n.locales" :key="locale.code" class="w-full">
 			<div
 				v-if="locale.code !== $i18n.locale"
-				class="cursor-pointer w-full text-center py-2 border-t border-teal-700"
 				@click="changeLocale(locale)"
+				class="cursor-pointer w-full text-center py-2 border-t border-teal-700"
 			>
 				{{ locale.code.toUpperCase() }}
 			</div>
@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-	import { LocaleObject } from "nuxt-i18n";
+	import { LocaleObject } from "@nuxtjs/i18n";
 	import { Component, Vue } from "nuxt-property-decorator";
 
 	@Component({
