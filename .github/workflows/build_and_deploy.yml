@@ -62,6 +62,19 @@ jobs:
                   username: $USERNAME
                   password: $PASSWORD
                   script: pm2 restart character_viewer
+            - name: delete build file via ssh
+              env:
+                  HOST: ${{ secrets.HOST }}
+                  PORT: ${{ secrets.PORT }}
+                  USERNAME: ${{ secrets.USERNAME }}
+                  PASSWORD: ${{ secrets.PASSWORD }}
+              uses: appleboy/ssh-action@master
+              with:
+                  host: $HOST
+                  port: $PORT
+                  username: $USERNAME
+                  password: $PASSWORD
+                  script: rm ~/*.zip
             - name: Discord notification
               env:
                   DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}

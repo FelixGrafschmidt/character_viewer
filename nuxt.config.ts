@@ -67,7 +67,7 @@ const nuxtConfig: NuxtConfig = {
 		"@nuxtjs/color-mode",
 		"nuxt-vite",
 	],
-	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device", "nuxt-i18n"],
+	modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxtjs/proxy", "nuxt-winston-log", "@nuxtjs/device", "@nuxtjs/i18n"],
 	build: {
 		extend(
 			config: WebpackConfiguration,
@@ -147,6 +147,9 @@ const nuxtConfig: NuxtConfig = {
 		// overwriting private on server, available on client and server
 		devtools: process.env.DEVTOOLS,
 		baseurl: process.env.BASEURL,
+	},
+	vite: {
+		// build: true,
 	},
 };
 

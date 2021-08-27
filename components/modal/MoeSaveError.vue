@@ -1,6 +1,6 @@
 <template>
 	<div @click.stop class="flex rounded-2xl dark:bg-gray-800 bg-gray-400 dark:text-gray-100 text-gray-900 relative m-auto pb-10">
-		<img :alt="$t('modals.save_error.alt')" src="icons/error.svg" class="max-w-16 h-16 mt-12 ml-12" />
+		<MoeSVG :name="'error'" :alt="$t('modals.save_error.alt')" class="ml-10 mt-10 h-16 w-16" />
 		<div class="mx-12">
 			<div class="mt-16 text-xl flex flex-col">
 				<span> {{ $t("modals.save_error.error") }}</span>
