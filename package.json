@@ -27,7 +27,7 @@
 		"object-hash": "^2.2.0",
 		"postcss-html": "^0.36.0",
 		"redis": "^3.1.2",
-		"tailwindcss": "^2.2.8",
+		"tailwindcss": "^2.2.19",
 		"tailwindcss-typography": "^3.1.0",
 		"uuid": "^8.3.2",
 		"vue-easy-lightbox": "^0.16.1",
