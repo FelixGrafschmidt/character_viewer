@@ -3,8 +3,7 @@ const forms = require("@tailwindcss/forms");
 const scrollbar = require("tailwind-scrollbar");
 const typography = require("tailwindcss-typography");
 
-module.exports = {
-	mode: "jit",
+const config = {
 	theme: {
 		extend: {
 			colors: {
@@ -39,10 +38,10 @@ module.exports = {
 		scrollbar: ["dark", "rounded"],
 	},
 	plugins: [darkmode(), forms, scrollbar, typography],
-	purge: {
-		// enable remove unused CSS only in production
-		enabled: process.env.NODE_ENV === "production",
+	content: process.env.NODE_ENV === "production" ? {
 		// any file that may contain the reference of CSS styles by class name.
-		content: ["components/**/*.vue", "layouts/**/*.vue", "pages/**/*.vue", "plugins/**/*.js", "nuxt.config.ts"],
-	},
+		files: ["components/**/*.vue", "layouts/**/*.vue", "pages/**/*.vue", "plugins/**/*.js", "nuxt.config.ts"],
+	} : {},
 };
+
+module.exports = config

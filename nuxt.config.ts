@@ -143,13 +143,16 @@ const nuxtConfig: NuxtConfig = {
 		strategy: "no_prefix",
 		detectBrowserLanguage: { useCookie: true },
 	},
+	postcss: {
+		from: undefined,
+	},
 	publicRuntimeConfig: {
 		// overwriting private on server, available on client and server
 		devtools: process.env.DEVTOOLS,
 		baseurl: process.env.BASEURL,
 	},
 	vite: {
-		// build: true,
+		ssr: true,
 	},
 };
 

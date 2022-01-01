@@ -6,7 +6,11 @@
 		"noImplicitThis": true,
 		"module": "esnext",
 		"moduleResolution": "node",
-		"lib": ["esnext", "esnext.asynciterable", "dom"],
+		"lib": [
+			"esnext",
+			"esnext.asynciterable",
+			"dom"
+		],
 		"experimentalDecorators": true,
 		"esModuleInterop": true,
 		"allowJs": false,
@@ -21,12 +25,30 @@
 		"noEmit": true,
 		"baseUrl": ".",
 		"paths": {
-			"~/*": ["./*"],
-			"@/*": ["./*"],
-			"~~/*": ["./*"],
-			"@@/*": ["./*"]
+			"~/*": [
+				"./*"
+			],
+			"@/*": [
+				"./*"
+			],
+			"~~/*": [
+				"./*"
+			],
+			"@@/*": [
+				"./*"
+			]
 		},
-		"types": ["@types/node", "@nuxt/types", "@nuxtjs/color-mode", "@nuxtjs/i18n"]
+		"types": [
+			"node",
+			"@types/node",
+			"@nuxt/types",
+			"@nuxtjs/color-mode",
+			"@nuxtjs/i18n"
+		]
 	},
-	"exclude": ["node_modules", ".nuxt", "dist"]
+	"exclude": [
+		"node_modules",
+		".nuxt",
+		"dist"
+	]
 }
