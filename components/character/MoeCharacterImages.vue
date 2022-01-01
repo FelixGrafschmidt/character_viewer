@@ -14,18 +14,7 @@
 			></button>
 			<div
 				ref="thumbs"
-				class="
-					max-h-[6rem]
-					min-h-[6rem]
-					w-full
-					flex
-					gap-1
-					items-center
-					overflow-x-scroll
-					scrollbar-thin scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-track-gray-300 scrollbar-thumb-gray-500
-					dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500
-					max-w-[30vw]
-				"
+				class="max-h-[6rem] min-h-[6rem] w-full flex gap-1 items-center overflow-x-scroll scrollbar-thin scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-track-gray-300 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-500 max-w-[30vw]"
 			>
 				<figure
 					v-for="(img, i) in character.images"
@@ -81,6 +70,7 @@
 </template>
 
 <script lang="ts">
+	import { saveAs } from "file-saver";
 	import { Component, Vue, Watch } from "nuxt-property-decorator";
 	import { Modal } from "~/models/enums/Modal";
 	import { CharacterImage } from "~/models/interfaces/Character";
