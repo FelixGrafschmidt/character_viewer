@@ -64,7 +64,7 @@ export class CollectionStore extends VuexModule {
 					params: {
 						id: collectionId,
 					},
-					timeout: 1000,
+					timeout: 10000,
 				})
 				.then((response: Collection) => {
 					collectionId = response.id;
