@@ -64,7 +64,7 @@
 		"eslint-plugin-vue-libs": "^4.0.0",
 		"hint": "^6.1.9",
 		"nuxt-property-decorator": "^2.9.1",
-		"nuxt-vite": "^0.2.4",
+		"nuxt-vite": "^0.3.5",
 		"nuxt-windicss": "^2.2.2",
 		"postcss": "^8.4.5",
 		"postcss-syntax": "^0.36.2",
