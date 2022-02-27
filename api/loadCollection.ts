@@ -4,7 +4,9 @@ import { Request, Response } from "express";
 import redis from "redis";
 import { v4 } from "uuid";
 
-const client = redis.createClient(6378, "127.0.0.1");
+const port = parseInt(process.env.REDIS_PORT || "6378")
+
+const client = redis.createClient(port, "127.0.0.1");
 
 export default function (req: Request, res: Response): void {
 	let collection = { id: v4(), lists: new Array<any>() };

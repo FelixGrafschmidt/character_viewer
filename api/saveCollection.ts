@@ -1,7 +1,9 @@
 import redis from "redis";
 import { Request, Response } from "express";
 
-const client = redis.createClient(6378, "127.0.0.1");
+const port = parseInt(process.env.REDIS_PORT || "6378")
+
+const client = redis.createClient(port, "127.0.0.1");
 
 export default function (req: Request, res: Response): void {
 	res.statusCode = 404;
