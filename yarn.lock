@@ -2995,10 +2995,10 @@
     globby "11.x.x"
     postcss "7.x.x"
 
-"@types/tailwindcss@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/tailwindcss/-/tailwindcss-3.0.0.tgz#2f0daf9a5788d3bc9a83e5fbcab76206e130ae27"
-  integrity sha512-322KvIsPYb5ryo+I60WN2Os7uBkdkc6G6n1SGcQZJAma6bygaOkEFJVWX8yy8wKo5yhnsOHb7L4LyBrcRnN29Q==
+"@types/tailwindcss@^3.0.2":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@types/tailwindcss/-/tailwindcss-3.0.7.tgz#28ba83255d9f6371c1e9ee9e98ba3c6daf62588f"
+  integrity sha512-M3DEErH+kbqRPcYg3CFhf0UFJwD1xgOjm9GxJcUZJGO/DZwu1fBknt4ajXCU6BI2wvTeLq9pSam78fcbjDOsCQ==
 
 "@types/tapable@^1", "@types/tapable@^1.0.5":
   version "1.0.8"
