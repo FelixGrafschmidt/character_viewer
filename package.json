@@ -67,7 +67,7 @@
 		"nuxt-property-decorator": "^2.9.1",
 		"nuxt-vite": "^0.2.4",
 		"nuxt-windicss": "^2.2.2",
-		"postcss": "^8.4.5",
+		"postcss": "^8.4.12",
 		"postcss-syntax": "^0.36.2",
 		"prettier": "^2.5.1",
 		"stylelint": "^14.2.0",
