@@ -81,7 +81,7 @@ const nuxtConfig: NuxtConfig = {
 		},
 	},
 	axios: {
-		baseURL: process.env.BASEURL || "https://ithambar.moe",
+		baseURL: process.env.BASEURL || "https://lists.ithambar.moe",
 	},
 	serverMiddleware: [
 		bodyParser.json(),
