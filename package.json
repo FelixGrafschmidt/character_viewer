@@ -2,7 +2,7 @@
 	"name": "character_viewer_fe_nuxt",
 	"version": "1.0.0",
 	"description": "My impeccable Nuxt.js project",
-	"author": "Ithambar",
+	"author": "Felix Grafschmidt",
 	"engines": {
 		"node": ">=16.0.0"
 	},
